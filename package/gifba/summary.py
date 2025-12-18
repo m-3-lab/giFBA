@@ -131,8 +131,8 @@ class CommunitySummary:
         output.append(f"{uptake.reset_index().to_string(index=False)}\n\n")
         output.append("Secretion:\n")
         self.secretion = self.env_flux[self.env_flux['Flux'] > 0].copy()
-        self.secretion[f"{self.element}-Flux"] = secretion[f"{self.element}-Flux"] / secretion.reset_index()[f"{self.element}-Flux"].sum()
-        output.append(f"{secretion.reset_index().to_string(index=False)}\n\n")
+        self.secretion[f"{self.element}-Flux"] = self.secretion[f"{self.element}-Flux"] / self.secretion.reset_index()[f"{self.element}-Flux"].sum()
+        output.append(f"{self.secretion.reset_index().to_string(index=False)}\n\n")
 
         for model in self.flux.index.get_level_values(0).unique():
             output.append("-----------------------------------------------------------------\n")
