@@ -124,26 +124,56 @@ class CommunitySummary:
         output.append(f"Community Summary (Cumulative through Iteration {self.iter_shown}):\n")
         output.append(f"Optimization Type: {self.method}\n")
         output.append(f"{self.objective_total_expression}\n\n")
+
+        # uptake
         output.append("Uptake:\n")
-        uptake = self.env_flux[self.env_flux['Flux'] < 0].copy()
-        uptake[f"{self.element}-Flux"] = uptake[f"{self.element}-Flux"] / uptake[f"{self.element}-Flux"].sum()
+        uptake = self.env_flux.loc[self.env_flux['Flux'] < 0].copy()
+        uptake_total_element_flux = uptake.loc[:, f"{self.element}-Flux"].sum()
+        if uptake_total_element_flux > 0:
+            uptake.loc[:, f"{self.element}-Flux"] = uptake.loc[:, f"{self.element}-Flux"] / uptake_total_element_flux * 100
+        else:
+            uptake.loc[:, f"{self.element}-Flux"] = 0
         uptake["Flux"] = uptake["Flux"].abs()
+        uptake[f"{self.element}-Flux"] = uptake[f"{self.element}-Flux"].map("{:.2f}%".format)
         output.append(f"{uptake.reset_index().to_string(index=False)}\n\n")
+
+        # secretion
         output.append("Secretion:\n")
-        self.secretion = self.env_flux[self.env_flux['Flux'] > 0].copy()
-        self.secretion[f"{self.element}-Flux"] = self.secretion[f"{self.element}-Flux"] / self.secretion.reset_index()[f"{self.element}-Flux"].sum()
-        output.append(f"{self.secretion.reset_index().to_string(index=False)}\n\n")
+        secretion = self.env_flux.loc[self.env_flux['Flux'] > 0].copy()
+        secretion_total_element_flux = secretion.loc[:, f"{self.element}-Flux"].sum()
+        if secretion_total_element_flux > 0:
+            secretion.loc[:, f"{self.element}-Flux"] = secretion.loc[:, f"{self.element}-Flux"] / secretion_total_element_flux * 100
+        else:
+            secretion.loc[:, f"{self.element}-Flux"] = 0
+        secretion[f"{self.element}-Flux"] = secretion[f"{self.element}-Flux"].map("{:.2f}%".format)
+        output.append(f"{secretion.reset_index().to_string(index=False)}\n\n")
 
         for model in self.flux.index.get_level_values(0).unique():
             output.append("-----------------------------------------------------------------\n")
             output.append(f"{self.community.model_names[model]} (Model {model}) Summary:\n")
             output.append(f"{self.objective_expressions[model]}\n\n")
+            
+            # uptake
             output.append(f"{self.community.model_names[model]} Uptake:\n")
             uptake = self.flux.loc[model][self.flux.loc[model]['Flux'] < 0].copy()
             uptake["Flux"] = uptake["Flux"].abs()
+            uptake_total_element_flux = uptake.loc[:, f"{self.element}-Flux"].sum()
+            if uptake_total_element_flux > 0:
+                uptake.loc[:, f"{self.element}-Flux"] = uptake.loc[:, f"{self.element}-Flux"] / uptake_total_element_flux * 100
+            else:
+                uptake.loc[:, f"{self.element}-Flux"] = 0
+            uptake[f"{self.element}-Flux"] = uptake[f"{self.element}-Flux"].map("{:.2f}%".format)
             output.append(f"{uptake.reset_index().to_string(index=False)}\n\n")
+            
+            # secretion
             output.append(f"Model {model} Secretion:\n")
             secretion = self.flux.loc[model][self.flux.loc[model]['Flux'] > 0].copy()
+            secretion_total_element_flux = secretion.loc[:, f"{self.element}-Flux"].sum()
+            if secretion_total_element_flux > 0:
+                secretion.loc[:, f"{self.element}-Flux"] = secretion.loc[:, f"{self.element}-Flux"] / secretion_total_element_flux * 100
+            else:
+                secretion.loc[:, f"{self.element}-Flux"] = 0
+            secretion[f"{self.element}-Flux"] = secretion[f"{self.element}-Flux"].map("{:.2f}%".format)
             output.append(f"{secretion.reset_index().to_string(index=False)}\n\n")
         output.append("\nAccessible at summary.flux or summary.env_flux for cumulative fluxes.\n")
 
@@ -167,6 +197,12 @@ class CommunitySummary:
         uptake = self.env_flux[self.env_flux['Flux'] < 0].copy()
         uptake['Flux'] = uptake['Flux'].abs()
         if not uptake.empty:
+            uptake_total_element_flux = uptake.loc[:, f"{self.element}-Flux"].sum()
+            if uptake_total_element_flux > 0:
+                uptake.loc[:, f"{self.element}-Flux"] = uptake.loc[:, f"{self.element}-Flux"] / uptake_total_element_flux * 100
+            else:
+                uptake.loc[:, f"{self.element}-Flux"] = 0
+            uptake[f"{self.element}-Flux"] = uptake[f"{self.element}-Flux"].map("{:.2f}%".format)
             html += uptake.reset_index().to_html(index=False)
         else:
             html += "<i>No uptake fluxes</i>"
@@ -175,6 +211,12 @@ class CommunitySummary:
         html += "<h4>Community Secretion</h4>"
         secretion = self.env_flux[self.env_flux['Flux'] > 0].copy()
         if not secretion.empty:
+            secretion_total_element_flux = secretion.loc[:, f"{self.element}-Flux"].sum()
+            if secretion_total_element_flux > 0:
+                secretion.loc[:, f"{self.element}-Flux"] = secretion.loc[:, f"{self.element}-Flux"] / secretion_total_element_flux * 100
+            else:
+                secretion.loc[:, f"{self.element}-Flux"] = 0
+            secretion[f"{self.element}-Flux"] = secretion[f"{self.element}-Flux"].map("{:.2f}%".format)
             html += secretion.reset_index().to_html(index=False)
         else:
             html += "<i>No secretion fluxes</i>"
@@ -187,6 +229,12 @@ class CommunitySummary:
             # Organism Uptake Table
             org_uptake = self.flux.loc[model][self.flux.loc[model]['Flux'] < 0].copy()
             org_uptake['Flux'] = org_uptake['Flux'].abs()
+            uptake_total_element_flux = org_uptake.loc[:, f"{self.element}-Flux"].sum()
+            if uptake_total_element_flux > 0:
+                org_uptake.loc[:, f"{self.element}-Flux"] = org_uptake.loc[:, f"{self.element}-Flux"] / uptake_total_element_flux * 100
+            else:
+                org_uptake.loc[:, f"{self.element}-Flux"] = 0
+            org_uptake[f"{self.element}-Flux"] = org_uptake[f"{self.element}-Flux"].map("{:.2f}%".format)
             html += f"<b>Model {model} Uptake:</b>"
             if not org_uptake.empty:
                 html += org_uptake.reset_index().to_html(index=False)
@@ -195,6 +243,12 @@ class CommunitySummary:
 
             # Organism Secretion Table
             org_secretion = self.flux.loc[model][self.flux.loc[model]['Flux'] > 0].copy()
+            secretion_total_element_flux = org_secretion.loc[:, f"{self.element}-Flux"].sum()
+            if secretion_total_element_flux > 0:
+                org_secretion.loc[:, f"{self.element}-Flux"] = org_secretion.loc[:, f"{self.element}-Flux"] / secretion_total_element_flux * 100
+            else:
+                org_secretion.loc[:, f"{self.element}-Flux"] = 0
+            org_secretion[f"{self.element}-Flux"] = org_secretion[f"{self.element}-Flux"].map("{:.2f}%".format)
             html += f"<b>Model {model} Secretion:</b>"
             if not org_secretion.empty:
                 html += org_secretion.reset_index().to_html(index=False)
