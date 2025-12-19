@@ -48,13 +48,13 @@ def find_min_medium(community=None, models=None, base_media=None, min_growth=Non
 	
 	if community is not None:
 		if isinstance(community.media, (list)):
-			base_media = community.media[0]
+			base_media = {ex: np.abs(flux) for ex, flux in community.media[0].items()}
 			min_growth = community.media[1]
 		
 		models = community.models
 	else:
 		models = models
-		base_media = base_media
+		base_media = {ex: np.abs(flux) for ex, flux in base_media.items()}
 		min_growth = min_growth if min_growth is not None else 0.1
 
 	min_medium = []
