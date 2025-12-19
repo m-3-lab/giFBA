@@ -53,7 +53,7 @@ def find_min_medium(community=None, models=None, base_media=None, min_growth=Non
 		
 		models = community.models
 	else:
-		models = models
+		models = models.deepcopy()
 		base_media = {ex: np.abs(flux) for ex, flux in base_media.items()}
 		min_growth = min_growth if min_growth is not None else 0.1
 
@@ -134,7 +134,7 @@ def check_media(community):
 		if not isinstance(flux, (int, float)):
 			raise ValueError(f"Flux value for reaction {rxn_id} must be a number.")
 
-	return community.media
+	return community.media.copy()
 
 def check_models(models):
 	if models is None:
