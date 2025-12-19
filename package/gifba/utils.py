@@ -134,7 +134,7 @@ def check_media(community):
 		if not isinstance(flux, (int, float)):
 			raise ValueError(f"Flux value for reaction {rxn_id} must be a number.")
 		
-		community.media[rxn_id] = np.abs(flux)  # ensure uptake is positive (set as negative later)
+		community.media[rxn_id] = -np.abs(flux)  # ensure uptake is negative
 
 	return community.media
 

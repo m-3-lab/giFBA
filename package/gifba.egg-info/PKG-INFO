@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: gifba
+Version: 0.1.0
+Summary: A set of tools and helpers for running iterative interaction flux balance analysis with COBRApy models
+Author-email: M-3-Lab <your.email@example.com>
+License: MIT
+Project-URL: Homepage, https://m-3-lab.github.io
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: cobra>=0.27.0
+Requires-Dist: numpy>=1.21
+Requires-Dist: pandas>=1.3
