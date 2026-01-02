@@ -165,7 +165,7 @@ class gifbaObject:
         self.org_fluxes = self.org_fluxes.groupby(level=["Model"]).cumsum()
 
         # return results for total fluxes
-        return self.env_fluxes.iloc[-1], self.org_fluxes.groupby(level=["Model"]).sum()
+        return self.env_fluxes.iloc[-1], self.org_fluxes.iloc[-1]
 
     def create_vars(self, m_vals=[1,1]):
         """Initialize variables for giFBA.
