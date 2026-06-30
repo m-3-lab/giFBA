@@ -142,7 +142,7 @@
 "gene_reaction_rule":""
 },
 {
-"id":"EX_bio(e)",
+"id":"EX_Bio(e)",
 "name":"",
 "metabolites":{
 "biomass[e]":-1.0

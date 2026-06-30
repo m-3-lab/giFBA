@@ -10,39 +10,35 @@ import pandas as pd
 
 def load_simple_models(number):        
     situation_models = {
-        "1_1_single": ["sim1_1.json"],
-        "1_2_single": ["sim1_2.json"],
-        "1_3_parallel": ["sim1_3_org1.json", "sim1_3_org2.json"],
-        "2_1_A_varied_abundance": ["sim2_1_org1.json", "sim2_1_org2.json"],
-        "2_1_B_varied_abundance": ["sim2_1_org1.json", "sim2_1_org2.json"],
-        "2_2_A_varied_rates": ["sim2_2_A_org1.json", "sim2_2_A_org2.json"],
-        "2_2_B_varied_rates": ["sim2_2_B_org1.json", "sim2_2_B_org2.json"],
-        "2_2_C_varied_rates": ["sim2_2_C_org1.json", "sim2_2_C_org2.json"],
-        "2_3_rates_and_abundance": ["sim2_2_C_org1.json", "sim2_2_C_org2.json"],
-        "3_1_crossfeed": ["sim3_1_org1.json", "sim3_1_org2.json"],
-        "3_2_layered": ["sim3_2_org1.json", "sim3_2_org2.json"],
-        "3_3": ["sim3_3_org1.json", "sim3_3_org2.json"],
-        "4_1": ["sim4_1_org1.json", "sim4_1_org2.json"],
-        "5_1": ["sim5_1_org1.json", "sim5_1_org2.json"],
-        "test2": ["test2_sim_1.json", "test2_sim_2.json"],
-        "test3": ["test3_sim_1.json", "test3_sim_2.json", "test3_sim_3.json"],
-        "chaos": ["chaos_1.json", "chaos_2.json"]
-
+        "1_1_single"               : ["sim1_1.json"],
+        "1_2_single"               : ["sim1_2.json"],
+        "1_3_parallel"             : ["sim1_3_org1.json", "sim1_3_org2.json"],
+        "2_1_A_varied_abundance"   : ["sim2_1_org1.json", "sim2_1_org2.json"],
+        "2_1_B_varied_abundance"   : ["sim2_1_org1.json", "sim2_1_org2.json"],
+        "2_2_A_varied_rates"       : ["sim2_2_A_org1.json", "sim2_2_A_org2.json"],
+        "2_2_B_varied_rates"       : ["sim2_2_B_org1.json", "sim2_2_B_org2.json"],
+        "2_2_C_varied_rates"       : ["sim2_2_C_org1.json", "sim2_2_C_org2.json"],
+        "2_3_rates_and_abundance"  : ["sim2_2_C_org1.json", "sim2_2_C_org2.json"],
+        "3_1_crossfeed"            : ["sim3_1_org1.json", "sim3_1_org2.json"],
+        "3_2_layered"              : ["sim3_2_org1.json", "sim3_2_org2.json"],
+        "4_1_crossfeed_competition": ["sim4_1_org1.json", "sim4_1_org2.json"],
+        "4_2_superfluous_crossfeed": ["sim4_2_org1.json", "sim4_2_org2.json"],
+        "4_3_efficient_crossfeed"  : ["sim4_3_org1.json", "sim4_3_org2.json"],
+        "5_1_coupling"             : ["sim5_1_org1.json", "sim5_1_org2.json"],
+        "5_2_dynamical"            : ["sim5_2_org1.json", "sim5_2_org2.json"]
     }
 
     situation_media = None
-    if number in ["1_1_single", "1_2_single", "2_1_A_varied_abundance", "2_1_B_varied_abundance", "2_2_A_varied_rates", "2_2_B_varied_rates", "2_2_C_varied_rates", "2_3_rates_and_abundance", "3_2_layered", "3c", "5a", "chaos"]: # A only in media 
+    if number in ["1_1_single", "1_2_single", "2_1_A_varied_abundance", "2_1_B_varied_abundance", "2_2_A_varied_rates", "2_2_B_varied_rates", "2_2_C_varied_rates", "2_3_rates_and_abundance", "3_2_layered", "4_1_crossfeed_competition", "5_1_coupling", "5_2_dynamical"]: # A only in media 
         situation_media = {"EX_A(e)": -10}
     elif number in ["1_3_parallel"]:
         situation_media = {"EX_A(e)": -10, "EX_B(e)": -10}
     elif number in ["3_1_crossfeed"]:
         situation_media = {"EX_A(e)": -10, "EX_C(e)": -10}
-    elif number in ["4a"]:
+    elif number in ["4_2_superfluous_crossfeed"]:
         situation_media = {"EX_A(e)": -10, "EX_B(e)": -10, "EX_D(e)": -10}
-    elif number in ["test2"]:
+    elif number in ["4_3_efficient_crossfeed"]:
         situation_media = {"EX_A(e)": -10, "EX_D(e)": -10}
-    elif number in ["test3"]:
-        situation_media = {"EX_A(e)": -10, "EX_C(e)": -10, "EX_E(e)": -10}
 
     models = []
     for file_name in situation_models[number]:
