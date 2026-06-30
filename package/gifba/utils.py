@@ -8,25 +8,22 @@ import pandas as pd
 # from package import gifba
 
 
-def load_simple_models(number):
-    if number == "2b":
-        number = "2a"  # same models as 2a
-    elif number == "5b" or number == "5c":
-        number = "5a"  # same models as 5a
-        
+def load_simple_models(number):        
     situation_models = {
-        "1a": ["sim1a.json"],
-        "1b": ["sim1b.json"],
-        "1c": ["sim1c_1.json", "sim1c_2.json"],
-        "2a": ["sim2a_1.json", "sim2a_2.json"],
-        "2c": ["sim2c_1.json", "sim2c_2.json"],
-        "2d": ["sim2d_1.json", "sim2d_2.json"],
-        "2e": ["sim2e_1.json", "sim2e_2.json"],
-        "3a": ["sim3a_1.json", "sim3a_2.json"],
-        "3b": ["sim3b_1.json", "sim3b_2.json"],
-        "3c": ["sim3c_1.json", "sim3c_2.json"],
-        "4a": ["sim4a_1.json", "sim4a_2.json"],
-        "5a": ["sim5a_1.json", "sim5a_2.json"],
+        "1_1_single": ["sim1_1.json"],
+        "1_2_single": ["sim1_2.json"],
+        "1_3_parallel": ["sim1_3_org1.json", "sim1_3_org2.json"],
+        "2_1_A_varied_abundance": ["sim2_1_org1.json", "sim2_1_org2.json"],
+        "2_1_B_varied_abundance": ["sim2_1_org1.json", "sim2_1_org2.json"],
+        "2_2_A_varied_rates": ["sim2_2_A_org1.json", "sim2_2_A_org2.json"],
+        "2_2_B_varied_rates": ["sim2_2_B_org1.json", "sim2_2_B_org2.json"],
+        "2_2_C_varied_rates": ["sim2_2_C_org1.json", "sim2_2_C_org2.json"],
+        "2_3_rates_and_abundance": ["sim2_2_C_org1.json", "sim2_2_C_org2.json"],
+        "3_1_crossfeed": ["sim3_1_org1.json", "sim3_1_org2.json"],
+        "3_2_layered": ["sim3_2_org1.json", "sim3_2_org2.json"],
+        "3_3": ["sim3_3_org1.json", "sim3_3_org2.json"],
+        "4_1": ["sim4_1_org1.json", "sim4_1_org2.json"],
+        "5_1": ["sim5_1_org1.json", "sim5_1_org2.json"],
         "test2": ["test2_sim_1.json", "test2_sim_2.json"],
         "test3": ["test3_sim_1.json", "test3_sim_2.json", "test3_sim_3.json"],
         "chaos": ["chaos_1.json", "chaos_2.json"]
@@ -34,11 +31,11 @@ def load_simple_models(number):
     }
 
     situation_media = None
-    if number in ["1a", "1b", "2a", "2b", "2c", "2d", "2e", "3b", "3c", "5a", "chaos"]: # A only in media 
+    if number in ["1_1_single", "1_2_single", "2_1_A_varied_abundance", "2_1_B_varied_abundance", "2_2_A_varied_rates", "2_2_B_varied_rates", "2_2_C_varied_rates", "2_3_rates_and_abundance", "3_2_layered", "3c", "5a", "chaos"]: # A only in media 
         situation_media = {"EX_A(e)": -10}
-    elif number in ["1c"]:
+    elif number in ["1_3_parallel"]:
         situation_media = {"EX_A(e)": -10, "EX_B(e)": -10}
-    elif number in ["3a"]:
+    elif number in ["3_1_crossfeed"]:
         situation_media = {"EX_A(e)": -10, "EX_C(e)": -10}
     elif number in ["4a"]:
         situation_media = {"EX_A(e)": -10, "EX_B(e)": -10, "EX_D(e)": -10}
@@ -49,7 +46,7 @@ def load_simple_models(number):
 
     models = []
     for file_name in situation_models[number]:
-        model_path = files("gifba").joinpath("Simple_Models", file_name)
+        model_path = files("gifba").joinpath("Toy_Models", file_name)
         models.append(cb.io.load_json_model(str(model_path)))
     
     return models, situation_media
@@ -183,15 +180,16 @@ def check_method(method):
 
     return method
 
-def prepare_compartmentalized_model(community, rel_abund=None):
+def prepare_compartmentalized_model(community, rel_abund=None, obj_rxn_ids=None):
     from cobra import Model
     import cobra as cb
 
     models = community.models
     media = community.media
-    rel_abund = list(community.rel_abund.flatten()) if rel_abund is None else check_rel_abund(rel_abund, community.size)
+    rel_abund = list(community.rel_abund.flatten()) if rel_abund is None else rel_abund #check_rel_abund(rel_abund, community.size)
     community_id = community.id
-    community.create_vars()
+
+    # community.create_vars()
 
     for model_idx, model in enumerate(models):
         # these will be converted to the internal reactions between compartment e1 or e2 moving to e0
@@ -241,8 +239,8 @@ def prepare_compartmentalized_model(community, rel_abund=None):
 
             new_rxn = rxn.copy()
             new_rxn.id = id
-            new_rxn.upper_bound = orig_ub / rel_abund[model_idx]
-            new_rxn.lower_bound = orig_lb / rel_abund[model_idx]
+            new_rxn.upper_bound = orig_ub 
+            new_rxn.lower_bound = orig_lb
             comp_model.add_reactions([new_rxn])
             
     # add e0 exchange rxns
@@ -277,9 +275,14 @@ def prepare_compartmentalized_model(community, rel_abund=None):
 
     # Set objective to weighted sum of individual model biomass reactions
     objective_reactions = []
-    for ex in comp_model.exchanges:
-        if "biomass" in ex.id:
-            objective_reactions.append(ex)
+    for rxn in comp_model.reactions:
+
+        if obj_rxn_ids is None:
+            if "biomass(e" in rxn.id and not(rxn.id.endswith("(e0)")):
+                objective_reactions.append(rxn)
+        else:
+            if rxn.id in obj_rxn_ids:
+                objective_reactions.append(rxn)
     objective_rxns_coef = [1 for _ in range(len(models))]
     comp_model.objective = dict(zip(objective_reactions, objective_rxns_coef))
 
