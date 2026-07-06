@@ -13,25 +13,22 @@ def load_simple_models(number):
         "1_1_single"               : ["sim1_1.json"],
         "1_2_single"               : ["sim1_2.json"],
         "1_3_parallel"             : ["sim1_3_org1.json", "sim1_3_org2.json"],
-        "2_1_A_varied_abundance"   : ["sim2_1_org1.json", "sim2_1_org2.json"],
-        "2_1_B_varied_abundance"   : ["sim2_1_org1.json", "sim2_1_org2.json"],
-        "2_2_A_varied_rates"       : ["sim2_2_A_org1.json", "sim2_2_A_org2.json"],
-        "2_2_B_varied_rates"       : ["sim2_2_B_org1.json", "sim2_2_B_org2.json"],
-        "2_2_C_varied_rates"       : ["sim2_2_C_org1.json", "sim2_2_C_org2.json"],
-        "2_3_rates_and_abundance"  : ["sim2_2_C_org1.json", "sim2_2_C_org2.json"],
+        "2_1_competition"          : ["sim2_1_org1.json", "sim2_1_org2.json"],
         "3_1_crossfeed"            : ["sim3_1_org1.json", "sim3_1_org2.json"],
         "3_2_layered"              : ["sim3_2_org1.json", "sim3_2_org2.json"],
         "4_1_crossfeed_competition": ["sim4_1_org1.json", "sim4_1_org2.json"],
         "4_2_superfluous_crossfeed": ["sim4_2_org1.json", "sim4_2_org2.json"],
         "4_3_efficient_crossfeed"  : ["sim4_3_org1.json", "sim4_3_org2.json"],
         "5_1_coupling"             : ["sim5_1_org1.json", "sim5_1_org2.json"],
-        "5_2_dynamical"            : ["sim5_2_org1.json", "sim5_2_org2.json"]
+        "5_2_dynamical"            : ["sim5_2_org1.json", "sim5_2_org2.json"],
+
+        "test_horseshoe"           : ["sim_test_horseshoe_1.json", "sim_test_horseshoe_2.json"],
     }
 
     situation_media = None
-    if number in ["1_1_single", "1_2_single", "2_1_A_varied_abundance", "2_1_B_varied_abundance", "2_2_A_varied_rates", "2_2_B_varied_rates", "2_2_C_varied_rates", "2_3_rates_and_abundance", "3_2_layered", "4_1_crossfeed_competition", "5_1_coupling", "5_2_dynamical"]: # A only in media 
+    if number in ["1_1_single", "1_2_single", "2_1_competition", "3_2_layered", "4_1_crossfeed_competition", "5_1_coupling", "5_2_dynamical"]: # A only in media 
         situation_media = {"EX_A(e)": -10}
-    elif number in ["1_3_parallel"]:
+    elif number in ["1_3_parallel", "4_2_superfluous_crossfeed"]:
         situation_media = {"EX_A(e)": -10, "EX_B(e)": -10}
     elif number in ["3_1_crossfeed"]:
         situation_media = {"EX_A(e)": -10, "EX_C(e)": -10}
@@ -39,6 +36,11 @@ def load_simple_models(number):
         situation_media = {"EX_A(e)": -10, "EX_B(e)": -10, "EX_D(e)": -10}
     elif number in ["4_3_efficient_crossfeed"]:
         situation_media = {"EX_A(e)": -10, "EX_D(e)": -10}
+
+    if number == "test_horseshoe":
+        situation_media = {"EX_A(e)": -10, 
+                           }
+
 
     models = []
     for file_name in situation_models[number]:
@@ -176,6 +178,62 @@ def check_method(method):
 
     return method
 
+def prep_micom_cfba(community_id, ids, paths, rel_abund=None):
+    from micom import Community
+    import cobra as cb
+    import pandas as pd
+
+    abund = rel_abund if rel_abund is not None else [1/len(ids) for _ in range(len(ids))]
+    community = pd.DataFrame({
+        "id": ids,
+        "file": paths,
+        "abundance": abund
+    })
+
+    # create micom community
+    micom_comm = Community(community)
+
+    cfba_model = cb.Model(community_id)
+
+    for met in micom_comm.metabolites:
+        cfba_model.add_metabolites([met.copy()])
+    
+    for rxn in micom_comm.reactions:
+        new_rxn = rxn.copy()
+        new_rxn.id = rxn.id
+        new_rxn.lower_bound = rxn.lower_bound
+        new_rxn.upper_bound = rxn.upper_bound
+        
+        # Remap stoichiometry to the cfba_model's metabolites
+        new_stoichiometry = {cfba_model.metabolites.get_by_id(m.id): c for m, c in new_rxn.metabolites.items()}
+        new_rxn.subtract_metabolites(new_rxn.metabolites)  # Clear old objects
+        new_rxn.add_metabolites(new_stoichiometry)          # Attach new objects
+        
+        cfba_model.add_reactions([new_rxn])
+
+    objective_dict = {}
+    for constraint in micom_comm.constraints:
+        if "community" in constraint.name:
+            coefficients_dict = constraint.expression.as_coefficients_dict()
+
+            for var in constraint.variables:
+                for idx, id in enumerate(ids):
+                    if var.name.endswith(f"_{id}") and var.name != "community_objective":
+                        rxn = cfba_model.reactions.get_by_id(var.name)
+                        objective_dict[rxn] = abs(coefficients_dict[var])
+
+    # set coeffs to relative abundances for each organism's biomass reaction
+    for idx, id in enumerate(ids):
+        for rxn in objective_dict.keys():
+            if rxn.id.endswith(f"_{id}"):
+                objective_dict[rxn] = abund[idx]
+
+    # Set the objective of the cfba_model
+    cfba_model.objective = objective_dict
+    cfba_model.objective_direction = "max"
+
+    return cfba_model, micom_comm, objective_dict
+
 def prepare_compartmentalized_model(community, rel_abund=None, obj_rxn_ids=None):
     from cobra import Model
     import cobra as cb
@@ -237,6 +295,12 @@ def prepare_compartmentalized_model(community, rel_abund=None, obj_rxn_ids=None)
             new_rxn.id = id
             new_rxn.upper_bound = orig_ub 
             new_rxn.lower_bound = orig_lb
+            
+            # --- THE FIX: Remap stoichiometry to the comp_model's metabolites ---
+            new_stoichiometry = {comp_model.metabolites.get_by_id(m.id): c for m, c in new_rxn.metabolites.items()}
+            new_rxn.subtract_metabolites(new_rxn.metabolites) # Clear old objects
+            new_rxn.add_metabolites(new_stoichiometry)        # Attach new objects
+            
             comp_model.add_reactions([new_rxn])
             
     # add e0 exchange rxns
@@ -283,6 +347,90 @@ def prepare_compartmentalized_model(community, rel_abund=None, obj_rxn_ids=None)
     comp_model.objective = dict(zip(objective_reactions, objective_rxns_coef))
 
     return comp_model, objective_reactions
+        
+
+
+
+
+
+
+def prepare_compartmentalized_model_with_micom(gifba_community, model_paths, media, rel_abund=None, obj_rxn_ids=None):
+    import pandas as pd
+    import cobra as cb
+    import gifba 
+    from micom import Community
+    import numpy as np
+    import optlang
+
+    # get media from giFBA
+    models = gifba_community.models
+
+        
+    id2index = {model.id: idx for idx, model in enumerate(models)}
+    media = {k.replace("(e)", "_m"): -v for k, v in media.items()}
+    rxn_up_bounds = {model_idx: {rxn.id : rxn.upper_bound for rxn in models[model_idx].reactions} for model_idx in range(len(models))}
+    rxn_low_bounds = {model_idx: {rxn.id : rxn.lower_bound for rxn in models[model_idx].reactions} for model_idx in range(len(models))}
+
+    abund = [0.5, 0.5]
+    ids = [f"Org{i+1}" for i in range(len(models))]
+    # create community dataframe
+    community = pd.DataFrame({
+        "id": ids,
+        "file": model_paths,
+        "abundance": abund
+    })
+
+    # create micom community
+    community = Community(community)
+
+    comp_model = cb.Model(f"compartmentalized_model_{gifba_community.id}")
+
+    tmp = cb.Model("tmp")
+    tmp.add_reactions([r.copy() for r in community.reactions])  # use community.model
+
+    for rxn in tmp.reactions:
+        # new_stoich = {}
+        # for met, coef in list(rxn.metabolites.items()):  # snapshot (met->coef)
+        #     if met.compartment == "m" and len(rxn.metabolites) == 1:
+        #         new_stoich[met] = -1.0  # or coef * something, up to you
+        #     elif met.compartment == "m":
+        #         new_stoich[met] = 1.0  # or coef * something, up to you
+        #     else:
+        #         # WARNING: your compartments are like 'c__Org1', 'e__Org2' etc
+        #         # met.compartment[-1] works only if last char is '1'/'2'
+        #         model_num = int(met.compartment[-1]) - 1
+        #         new_stoich[met] = coef / abund[model_num]
+        
+        # # overwrite stoichiometry
+        # rxn.add_metabolites(new_stoich, combine=False)
+        if "_m" not in rxn.id and len(rxn.metabolites) != 1:
+            model_num = int(rxn.id.split("__")[-1][-1]) - 1
+            orig_id = rxn.id.replace("__Org"+str(model_num+1), "")
+
+            if "EX_" not in orig_id:
+                rxn.lower_bound = rxn_low_bounds[model_num][orig_id]# * abund[model_num]
+                rxn.upper_bound = rxn_up_bounds[model_num][orig_id]# * abund[model_num]
+
+
+    comp_model.add_reactions([r.copy() for r in tmp.reactions])
+
+    
+    for reaction in comp_model.reactions:
+        if "biomass" in reaction.id.lower() or "bio" in reaction.id.lower():
+            print(reaction.id, reaction.reaction, reaction.lower_bound, reaction.upper_bound)
+    
+    # change objective to community growth (weighted sum of biomass reactions)
+    objective_reactions = [rxn for rxn in comp_model.reactions if "dm_biomass(e)" in rxn.id.lower()]
+    objective_rxns_coef = abund #[1 for _ in range(len(objective_reactions))]
+    comp_model.objective = dict(zip(objective_reactions, objective_rxns_coef))
+    comp_model.objective.direction = "max"
+
+    return comp_model, objective_reactions
+
+
+
+
+    
         
 
 

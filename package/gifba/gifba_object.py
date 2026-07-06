@@ -407,7 +407,7 @@ class gifbaObject:
         # check if environment fluxes are under-saturated
         is_overconsumed = np.zeros_like(total_org_flux)
         with np.errstate(divide='ignore', invalid='ignore'): # ignore division by zero warnings
-            is_overconsumed[env_tmp != 0] = -total_org_flux[np.abs(env_tmp) >= 1e-12].astype(np.float64) / env_tmp[np.abs(env_tmp) >= 1e-12].astype(np.float64) # only check non-zero env fluxes
+            is_overconsumed[np.abs(env_tmp) >= 1e-12] = -total_org_flux[np.abs(env_tmp) >= 1e-12].astype(np.float64) / env_tmp[np.abs(env_tmp) >= 1e-12].astype(np.float64) # only check non-zero env fluxes
         
         if self.debug:
             print("\nenv fluxes (mmol/(gT/hr)):")
