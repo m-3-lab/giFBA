@@ -1,0 +1,29 @@
+,Source,Target,Type,Value
+7,Eubacterium hallii DSM 3353,leu_L[e],Uptake,0.1389974844252565
+8,Eubacterium hallii DSM 3353,ala_L[e],Uptake,0.21185629896006003
+11,Eubacterium hallii DSM 3353,lys_L[e],Uptake,0.10569144879871495
+12,Bifidobacterium longum infantis ATCC 15697,h[e],Secretion,9.272566451654406
+13,Eubacterium hallii DSM 3353,h[e],Uptake,7.865094900112087
+14,Bifidobacterium longum infantis ATCC 15697,4abut[e],Secretion,0.1540202961027945
+18,Eubacterium hallii DSM 3353,asn_L[e],Uptake,0.07436267187552818
+20,Bifidobacterium longum infantis ATCC 15697,glc_D[e],Uptake,5.000000000000006
+21,Eubacterium hallii DSM 3353,glc_D[e],Uptake,5.0000000000000036
+24,Bifidobacterium longum infantis ATCC 15697,lac_L[e],Secretion,9.266496713487225
+25,Eubacterium hallii DSM 3353,lac_L[e],Uptake,9.266496713487195
+34,Bifidobacterium longum infantis ATCC 15697,co2[e],Secretion,0.4858780404786254
+35,Eubacterium hallii DSM 3353,co2[e],Secretion,17.1733225049014
+39,Eubacterium hallii DSM 3353,hxan[e],Uptake,0.14492285979400862
+40,Eubacterium hallii DSM 3353,h2[e],Secretion,15.14647960060227
+42,Eubacterium hallii DSM 3353,but[e],Secretion,9.108313211838356
+43,Bifidobacterium longum infantis ATCC 15697,glyglu[e],Uptake,0.2280125341901864
+44,Eubacterium hallii DSM 3353,glyglu[e],Uptake,0.3310666204062084
+49,Bifidobacterium longum infantis ATCC 15697,ac[e],Secretion,0.1715462199982553
+50,Eubacterium hallii DSM 3353,ac[e],Uptake,1.002824614373277
+51,Bifidobacterium longum infantis ATCC 15697,pi[e],Uptake,0.09882151084762554
+52,Eubacterium hallii DSM 3353,pi[e],Uptake,0.4545675932386241
+55,Bifidobacterium longum infantis ATCC 15697,nh4[e],Uptake,0.2010411727301982
+56,Eubacterium hallii DSM 3353,nh4[e],Uptake,1.2168447413396213
+57,Bifidobacterium longum infantis ATCC 15697,biomass[c],Secretion,0.06676818729483948
+58,Eubacterium hallii DSM 3353,biomass[c],Secretion,0.31686838194787875
+61,Bifidobacterium longum infantis ATCC 15697,h2o[e],Secretion,1.1625181001294358
+62,Eubacterium hallii DSM 3353,h2o[e],Secretion,6.739235777042334

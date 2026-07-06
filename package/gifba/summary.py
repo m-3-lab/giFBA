@@ -35,10 +35,9 @@ class CommunitySummary:
         else: 
             self.iter_shown = community.iters - 1
 
-        # pull cumulative organism fluxes
+        # pull organism fluxes
         self.community = community
-        self.flux = self.community.org_fluxes.copy()
-        self.flux = self.flux.xs(self.iter_shown, level='Iteration')
+        self.flux = self.community.org_final.copy()
 
         # extract objectives and create expressions to print
         self.method = self.community.method
@@ -51,25 +50,26 @@ class CommunitySummary:
         self.objective_total_expression = f"Sum(Model_i Biomass) = {self.objective_total}"
 
         # create summary dataframe for overall community
-        self.env_flux = self.community.env_fluxes.loc[self.iter_shown].copy() - self.community.env_fluxes.loc[0]
-        self.env_flux = self.env_flux.T.reset_index()
-        self.env_flux.columns = ["Exchange", "Flux"]
+        self.total_flux = self.community.org_final[self.community.org_exs].sum()
+        self.total_flux = self.total_flux.T.reset_index()
+        self.total_flux = self.total_flux.copy()
+        self.total_flux.columns = ["Exchange", "Flux"]
 
         # add metabolite to env_flux
-        self.env_flux["Metabolite"] = self.env_flux["Exchange"].map(self.community.ex_to_met)
-        self.env_flux = self.env_flux.set_index("Metabolite")
+        self.total_flux["Metabolite"] = self.total_flux["Exchange"].map(self.community.ex_to_met)
+        self.total_flux = self.total_flux.set_index("Metabolite")
 
 
         # add element information
         metabolites = {m.id: m for m in self.community.exchange_metabolites}
-        self.env_flux[f"{self.element}-Number"] = [
+        self.total_flux[f"{self.element}-Number"] = [
             metabolites[met_id].elements.get(self.element, 0) if met_id in metabolites else 0
-            for met_id in self.env_flux.index
+            for met_id in self.total_flux.index
         ]
-        self.env_flux[f"{self.element}-Flux"] = self.env_flux[f"{self.element}-Number"] * self.env_flux["Flux"].abs()
+        self.total_flux[f"{self.element}-Flux"] = self.total_flux[f"{self.element}-Number"] * self.total_flux["Flux"].abs()
 
         # remove unused fluxes
-        self.env_flux = self.env_flux[self.env_flux['Flux'] != 0] # remove zero fluxes
+        self.total_flux = self.total_flux[self.total_flux['Flux'] != 0] # remove zero fluxes
 
         # create dfs for organisms
         self.flux = self.flux[self.community.org_exs].copy()
@@ -126,7 +126,7 @@ class CommunitySummary:
 
         # uptake
         output.append("Uptake:\n")
-        uptake = self.env_flux.loc[self.env_flux['Flux'] < 0].copy()
+        uptake = self.total_flux.loc[self.total_flux['Flux'] < 0].copy()
         uptake_total_element_flux = uptake.loc[:, f"{self.element}-Flux"].sum()
         if uptake_total_element_flux > 0:
             uptake.loc[:, f"{self.element}-Flux"] = uptake.loc[:, f"{self.element}-Flux"] / uptake_total_element_flux * 100
@@ -138,7 +138,7 @@ class CommunitySummary:
 
         # secretion
         output.append("Secretion:\n")
-        secretion = self.env_flux.loc[self.env_flux['Flux'] > 0].copy()
+        secretion = self.total_flux.loc[self.total_flux['Flux'] > 0].copy()
         secretion_total_element_flux = secretion.loc[:, f"{self.element}-Flux"].sum()
         if secretion_total_element_flux > 0:
             secretion.loc[:, f"{self.element}-Flux"] = secretion.loc[:, f"{self.element}-Flux"] / secretion_total_element_flux * 100
@@ -174,7 +174,7 @@ class CommunitySummary:
                 secretion.loc[:, f"{self.element}-Flux"] = 0
             secretion[f"{self.element}-Flux"] = secretion[f"{self.element}-Flux"].map("{:.2f}%".format)
             output.append(f"{secretion.reset_index().to_string(index=False)}\n\n")
-        output.append("\nAccessible at summary.flux or summary.env_flux for cumulative fluxes.\n")
+        output.append("\nAccessible at summary.flux or summary.total_flux for cumulative fluxes.\n")
 
         return "".join(output)
 
@@ -193,7 +193,7 @@ class CommunitySummary:
 
         # Community Uptake Table
         html += "<h4>Community Uptake</h4>"
-        uptake = self.env_flux[self.env_flux['Flux'] < 0].copy()
+        uptake = self.total_flux[self.total_flux['Flux'] < 0].copy()
         uptake['Flux'] = uptake['Flux'].abs()
         if not uptake.empty:
             uptake_total_element_flux = uptake.loc[:, f"{self.element}-Flux"].sum()
@@ -208,7 +208,7 @@ class CommunitySummary:
 
         # Community Secretion Table
         html += "<h4>Community Secretion</h4>"
-        secretion = self.env_flux[self.env_flux['Flux'] > 0].copy()
+        secretion = self.total_flux[self.total_flux['Flux'] > 0].copy()
         if not secretion.empty:
             secretion_total_element_flux = secretion.loc[:, f"{self.element}-Flux"].sum()
             if secretion_total_element_flux > 0:
@@ -254,7 +254,7 @@ class CommunitySummary:
             else:
                 html += "<i>No secretion fluxes</i>"
 
-        html += "<p>Accessible at summary.flux or summary.env_flux for cumulative fluxes.</p>"
+        html += "<p>Accessible at summary.flux or summary.total_flux for cumulative fluxes.</p>"
 
         return html
 
