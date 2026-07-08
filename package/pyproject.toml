@@ -23,7 +23,7 @@ dependencies = [
 Homepage = "https://m-3-lab.github.io"
 
 [tool.setuptools]
-package-data = { "gifba" = ["AGORA2_Models/*.mat", "Simple_Models/*.json"] }
+package-data = { "gifba" = ["Toy_Models/*.json"] }
 
 [tool.setuptools.packages.find]
 include = ["gifba*"]
