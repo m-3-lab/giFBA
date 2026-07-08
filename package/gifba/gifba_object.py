@@ -364,8 +364,8 @@ class gifbaObject:
         for ex in self.models[model_idx].exchanges:
             mask = np.array(self.org_exs) == ex.id
             if mask.any():  # Check if the exchange reaction exists in org_exs
-                print(-self._env_scaling_factors[model_idx, mask] * self.env_fluxes.loc[iter, 0][ex.id])
-                ex.lower_bound = -self._env_scaling_factors[model_idx, mask] * self.env_fluxes.loc[iter, 0][ex.id]
+                lb = -self._env_scaling_factors[model_idx, mask] * self.env_fluxes.loc[iter, 0][ex.id]
+                ex.lower_bound = lb[0]
        
         return
 
