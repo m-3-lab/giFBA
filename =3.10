@@ -1,0 +1,361 @@
+2 channel Terms of Service accepted
+Channels:
+ - defaults
+Platform: linux-64
+Collecting package metadata (repodata.json): - \ | / done
+Solving environment: \ | done
+
+## Package Plan ##
+
+  environment location: /home/rseag/anaconda3/envs/gifba_test
+
+  added / updated specs:
+    - jupyter
+    - matplotlib
+    - python
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    anyio-4.12.1               |  py314h06a4308_0         330 KB
+    argon2-cffi-25.1.0         |  py314h06a4308_0          35 KB
+    argon2-cffi-bindings-25.1.0|  py314hee96239_0          36 KB
+    asttokens-3.0.1            |  py314h06a4308_0          69 KB
+    async-lru-2.3.0            |  py314h06a4308_0          29 KB
+    attrs-26.1.0               |  py314h0c820a0_0         180 KB
+    babel-2.17.0               |  py314h06a4308_0        13.3 MB
+    beautifulsoup4-4.15.0      |  py314h06a4308_0         266 KB
+    bleach-6.4.0               |  py314h06a4308_0         345 KB
+    brotlicffi-1.2.0.0         |  py314h7354ed3_0         372 KB
+    certifi-2026.6.17          |  py314h06a4308_0         131 KB
+    cffi-2.0.0                 |  py314h4eded50_1         291 KB
+    charset-normalizer-3.4.7   |  py314h06a4308_0         140 KB
+    comm-0.2.3                 |  py314h06a4308_0          20 KB
+    contourpy-1.3.3            |  py314hdb19cb5_0        11.3 MB
+    cycler-0.12.1              |  py314h06a4308_0          20 KB
+    debugpy-1.8.21             |  py314h7354ed3_0         2.6 MB
+    decorator-5.3.1            |  py314h06a4308_0          43 KB
+    executing-2.2.1            |  py314h06a4308_0         324 KB
+    fonttools-4.63.0           |  py314h47b2149_0         6.0 MB
+    h11-0.16.0                 |  py314h06a4308_1          66 KB
+    httpcore-1.0.9             |  py314h06a4308_0         126 KB
+    httpx-0.28.1               |  py314h06a4308_1         221 KB
+    idna-3.18                  |  py314h06a4308_0         187 KB
+    ipykernel-7.2.0            |  py314h6fa48dc_0         255 KB
+    ipython-9.14.0             |  py314h06a4308_0         1.2 MB
+    ipython_pygments_lexers-1.1.1|  py314h06a4308_0          20 KB
+    ipywidgets-8.1.7           |  py314h06a4308_1         246 KB
+    jedi-0.20.0                |  py314h06a4308_0         3.0 MB
+    jinja2-3.1.6               |  py314h06a4308_0         358 KB
+    json5-0.12.1               |  py314h06a4308_0          71 KB
+    jsonschema-4.25.1          |  py314h06a4308_0         198 KB
+    jsonschema-specifications-2025.9.1|  py314h06a4308_0          17 KB
+    jupyter-1.1.1              |  py314h06a4308_0          11 KB
+    jupyter-lsp-2.3.0          |  py314h06a4308_0         118 KB
+    jupyter_client-8.9.1       |  py314h06a4308_0         252 KB
+    jupyter_console-6.6.3      |  py314h06a4308_1          56 KB
+    jupyter_core-5.9.1         |  py314h06a4308_0          99 KB
+    jupyter_events-0.12.1      |  py314h06a4308_0          45 KB
+    jupyter_server-2.20.0      |  py314h06a4308_0         616 KB
+    jupyter_server_terminals-0.5.4|  py314h06a4308_0          27 KB
+    jupyterlab-4.5.9           |  py314h06a4308_0         7.6 MB
+    jupyterlab_pygments-0.3.0  |  py314h06a4308_0          21 KB
+    jupyterlab_server-2.28.0   |  py314h06a4308_1         123 KB
+    jupyterlab_widgets-3.0.16  |  py314h06a4308_1         582 KB
+    kiwisolver-1.4.9           |  py314h24d9097_0          76 KB
+    libmpdec-4.0.1             |       h47b2149_0          88 KB
+    markupsafe-3.0.3           |  py314h47b2149_0          29 KB
+    matplotlib-3.11.0          |  py314h06a4308_0           7 KB
+    matplotlib-base-3.11.0     |  py314h54cb298_0         9.3 MB
+    matplotlib-inline-0.2.1    |  py314h06a4308_0          20 KB
+    mistune-3.2.1              |  py314h06a4308_0         149 KB
+    mkl-service-2.7.2          |  py314h365c7f6_0          75 KB
+    mkl_fft-2.2.0              |  py314hc849d88_0         180 KB
+    mkl_random-1.4.1           |  py314h973aee8_0         393 KB
+    nbclient-0.11.0            |  py314h06a4308_0          93 KB
+    nbconvert-7.17.1           |  py314h06a4308_0           8 KB
+    nbconvert-core-7.17.1      |  py314h06a4308_0         509 KB
+    nbconvert-pandoc-7.17.1    |  py314h06a4308_0           8 KB
+    nbformat-5.10.4            |  py314h06a4308_0         153 KB
+    nest-asyncio-1.5.1         |     pyhd3eb1b0_0          10 KB
+    notebook-7.5.6             |  py314h06a4308_0         5.9 MB
+    notebook-shim-0.2.4        |  py314h06a4308_1          26 KB
+    numpy-2.5.0                |  py314ha8834a8_0          20 KB
+    numpy-base-2.5.0           |  py314h7c74580_0         8.2 MB
+    packaging-26.0             |  py314h06a4308_0         202 KB
+    pandocfilters-1.5.1        |  py314h06a4308_0          20 KB
+    parso-0.8.7                |  py314h06a4308_0         235 KB
+    pexpect-4.9.0              |  py314h06a4308_1         152 KB
+    pillow-12.2.0              |  py314ha780b37_1        35.1 MB
+    pip-26.1.2                 |     pyh0d26453_0         1.1 MB
+    platformdirs-4.9.4         |  py314h06a4308_0          57 KB
+    prometheus_client-0.24.1   |  py314h06a4308_0         172 KB
+    prompt-toolkit-3.0.52      |  py314h06a4308_1         758 KB
+    psutil-7.0.0               |  py314hee96239_1         546 KB
+    pure_eval-0.2.3            |  py314h06a4308_0          37 KB
+    pycparser-3.0              |  py314h06a4308_0         157 KB
+    pygments-2.20.0            |  py314h06a4308_0         4.8 MB
+    pyparsing-3.2.5            |  py314h06a4308_0         572 KB
+    pyqt-6.11.0                |  py314h0eb9b55_0         4.5 MB
+    pyqt6-sip-13.11.1          |  py314h47b2149_0          78 KB
+    pysocks-1.7.1              |  py314h06a4308_1          35 KB
+    python-3.14.6              |h4bdf6f9_100_cp314        35.3 MB
+    python-fastjsonschema-2.21.2|  py314h06a4308_0         249 KB
+    python-json-logger-4.0.0   |  py314h06a4308_0          36 KB
+    python_abi-3.14            |          4_cp314           5 KB
+    pyyaml-6.0.3               |  py314h591646f_0         247 KB
+    pyzmq-27.1.0               |  py314hcf8288c_1         384 KB
+    qtconsole-5.7.2            |  py314h06a4308_0         258 KB
+    qtpy-2.4.3                 |  py314h06a4308_0         129 KB
+    referencing-0.37.0         |  py314h06a4308_0          82 KB
+    requests-2.34.2            |  py314h06a4308_0         191 KB
+    rfc3339-validator-0.1.4    |  py314h06a4308_0          10 KB
+    rfc3986-validator-0.1.1    |  py314h06a4308_0          12 KB
+    rpds-py-0.28.0             |  py314h498d7c9_0         331 KB
+    send2trash-1.8.3           |  py314h06a4308_0          35 KB
+    setuptools-82.0.1          |  py314h06a4308_0         1.6 MB
+    sip-6.15.1                 |  py314he6c97cb_0         712 KB
+    soupsieve-2.5              |  py314h06a4308_0          93 KB
+    stack_data-0.6.3           |  py314h06a4308_0          69 KB
+    terminado-0.18.1           |  py314h06a4308_1          34 KB
+    tinycss2-1.5.1             |  py314h06a4308_0         108 KB
+    tornado-6.5.7              |  py314h47b2149_0         897 KB
+    traitlets-5.15.0           |  py314h06a4308_0         223 KB
+    typing-extensions-4.15.0   |  py314h06a4308_0          11 KB
+    typing_extensions-4.15.0   |  py314h06a4308_0          99 KB
+    urllib3-2.7.0              |  py314h06a4308_0         360 KB
+    wcwidth-0.2.14             |  py314h06a4308_0          66 KB
+    webencodings-0.5.1         |  py314h06a4308_2          28 KB
+    websocket-client-1.8.0     |  py314h06a4308_0         117 KB
+    widgetsnbextension-4.0.14  |  py314h06a4308_0         871 KB
+    ------------------------------------------------------------
+                                           Total:       167.3 MB
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      pkgs/main/linux-64::_libgcc_mutex-0.1-main 
+  _openmp_mutex      pkgs/main/linux-64::_openmp_mutex-5.1-52_gnu 
+  anyio              pkgs/main/linux-64::anyio-4.12.1-py314h06a4308_0 
+  aom                pkgs/main/linux-64::aom-3.13.2-h664349e_0 
+  argon2-cffi        pkgs/main/linux-64::argon2-cffi-25.1.0-py314h06a4308_0 
+  argon2-cffi-bindi~ pkgs/main/linux-64::argon2-cffi-bindings-25.1.0-py314hee96239_0 
+  asttokens          pkgs/main/linux-64::asttokens-3.0.1-py314h06a4308_0 
+  async-lru          pkgs/main/linux-64::async-lru-2.3.0-py314h06a4308_0 
+  attrs              pkgs/main/linux-64::attrs-26.1.0-py314h0c820a0_0 
+  babel              pkgs/main/linux-64::babel-2.17.0-py314h06a4308_0 
+  beautifulsoup4     pkgs/main/linux-64::beautifulsoup4-4.15.0-py314h06a4308_0 
+  blas               pkgs/main/linux-64::blas-1.0-mkl 
+  bleach             pkgs/main/linux-64::bleach-6.4.0-py314h06a4308_0 
+  brotlicffi         pkgs/main/linux-64::brotlicffi-1.2.0.0-py314h7354ed3_0 
+  bzip2              pkgs/main/linux-64::bzip2-1.0.8-h5eee18b_6 
+  ca-certificates    pkgs/main/linux-64::ca-certificates-2026.5.14-h06a4308_0 
+  cairo              pkgs/main/linux-64::cairo-1.18.4-ha82d1dd_1 
+  certifi            pkgs/main/linux-64::certifi-2026.6.17-py314h06a4308_0 
+  cffi               pkgs/main/linux-64::cffi-2.0.0-py314h4eded50_1 
+  charset-normalizer pkgs/main/linux-64::charset-normalizer-3.4.7-py314h06a4308_0 
+  comm               pkgs/main/linux-64::comm-0.2.3-py314h06a4308_0 
+  contourpy          pkgs/main/linux-64::contourpy-1.3.3-py314hdb19cb5_0 
+  cycler             pkgs/main/linux-64::cycler-0.12.1-py314h06a4308_0 
+  cyrus-sasl         pkgs/main/linux-64::cyrus-sasl-2.1.28-h2f687bf_5 
+  dav1d              pkgs/main/linux-64::dav1d-1.5.3-h12c9f22_1 
+  debugpy            pkgs/main/linux-64::debugpy-1.8.21-py314h7354ed3_0 
+  decorator          pkgs/main/linux-64::decorator-5.3.1-py314h06a4308_0 
+  defusedxml         pkgs/main/noarch::defusedxml-0.7.1-pyhd3eb1b0_0 
+  executing          pkgs/main/linux-64::executing-2.2.1-py314h06a4308_0 
+  expat              pkgs/main/linux-64::expat-2.8.2-h7354ed3_1 
+  fontconfig         pkgs/main/linux-64::fontconfig-2.17.1-h062c814_0 
+  fonttools          pkgs/main/linux-64::fonttools-4.63.0-py314h47b2149_0 
+  freetype           pkgs/main/linux-64::freetype-2.14.1-hf5b9546_0 
+  fribidi            pkgs/main/linux-64::fribidi-1.0.16-h10f3c28_1 
+  graphite2          pkgs/main/linux-64::graphite2-1.3.15-h9ba177b_0 
+  h11                pkgs/main/linux-64::h11-0.16.0-py314h06a4308_1 
+  harfbuzz           pkgs/main/linux-64::harfbuzz-12.3.0-h572a7f1_2 
+  httpcore           pkgs/main/linux-64::httpcore-1.0.9-py314h06a4308_0 
+  httpx              pkgs/main/linux-64::httpx-0.28.1-py314h06a4308_1 
+  icu                pkgs/main/linux-64::icu-78.3-h53478e7_1 
+  idna               pkgs/main/linux-64::idna-3.18-py314h06a4308_0 
+  intel-openmp       pkgs/main/linux-64::intel-openmp-2025.0.0-h06a4308_1172 
+  ipykernel          pkgs/main/linux-64::ipykernel-7.2.0-py314h6fa48dc_0 
+  ipython            pkgs/main/linux-64::ipython-9.14.0-py314h06a4308_0 
+  ipython_pygments_~ pkgs/main/linux-64::ipython_pygments_lexers-1.1.1-py314h06a4308_0 
+  ipywidgets         pkgs/main/linux-64::ipywidgets-8.1.7-py314h06a4308_1 
+  jedi               pkgs/main/linux-64::jedi-0.20.0-py314h06a4308_0 
+  jinja2             pkgs/main/linux-64::jinja2-3.1.6-py314h06a4308_0 
+  json5              pkgs/main/linux-64::json5-0.12.1-py314h06a4308_0 
+  jsonschema         pkgs/main/linux-64::jsonschema-4.25.1-py314h06a4308_0 
+  jsonschema-specif~ pkgs/main/linux-64::jsonschema-specifications-2025.9.1-py314h06a4308_0 
+  jupyter            pkgs/main/linux-64::jupyter-1.1.1-py314h06a4308_0 
+  jupyter-lsp        pkgs/main/linux-64::jupyter-lsp-2.3.0-py314h06a4308_0 
+  jupyter_client     pkgs/main/linux-64::jupyter_client-8.9.1-py314h06a4308_0 
+  jupyter_console    pkgs/main/linux-64::jupyter_console-6.6.3-py314h06a4308_1 
+  jupyter_core       pkgs/main/linux-64::jupyter_core-5.9.1-py314h06a4308_0 
+  jupyter_events     pkgs/main/linux-64::jupyter_events-0.12.1-py314h06a4308_0 
+  jupyter_server     pkgs/main/linux-64::jupyter_server-2.20.0-py314h06a4308_0 
+  jupyter_server_te~ pkgs/main/linux-64::jupyter_server_terminals-0.5.4-py314h06a4308_0 
+  jupyterlab         pkgs/main/linux-64::jupyterlab-4.5.9-py314h06a4308_0 
+  jupyterlab_pygmen~ pkgs/main/linux-64::jupyterlab_pygments-0.3.0-py314h06a4308_0 
+  jupyterlab_server  pkgs/main/linux-64::jupyterlab_server-2.28.0-py314h06a4308_1 
+  jupyterlab_widgets pkgs/main/linux-64::jupyterlab_widgets-3.0.16-py314h06a4308_1 
+  kiwisolver         pkgs/main/linux-64::kiwisolver-1.4.9-py314h24d9097_0 
+  lcms2              pkgs/main/linux-64::lcms2-2.19.1-h425df66_1 
+  ld_impl_linux-64   pkgs/main/linux-64::ld_impl_linux-64-2.44-h9e0c5a2_3 
+  lerc               pkgs/main/linux-64::lerc-4.1.0-h7354ed3_2 
+  libavif            pkgs/main/linux-64::libavif-1.3.0-h2b90b00_1 
+  libcups            pkgs/main/linux-64::libcups-2.4.15-hbe4054b_0 
+  libdeflate         pkgs/main/linux-64::libdeflate-1.22-h5eee18b_0 
+  libdrm             pkgs/main/linux-64::libdrm-2.4.124-h5eee18b_0 
+  libegl             pkgs/main/linux-64::libegl-1.7.0-h5eee18b_2 
+  libevent           pkgs/main/linux-64::libevent-2.1.12-hdbd6064_1 
+  libexpat           pkgs/main/linux-64::libexpat-2.8.2-h7354ed3_1 
+  libffi             pkgs/main/linux-64::libffi-3.4.8-h06d3fd0_3 
+  libgcc             pkgs/main/linux-64::libgcc-15.2.0-h69a1729_8 
+  libgcc-ng          pkgs/main/linux-64::libgcc-ng-15.2.0-h166f726_8 
+  libgl              pkgs/main/linux-64::libgl-1.7.0-h5eee18b_2 
+  libglib            pkgs/main/linux-64::libglib-2.86.3-ha16e27a_2 
+  libglvnd           pkgs/main/linux-64::libglvnd-1.7.0-h5eee18b_2 
+  libglx             pkgs/main/linux-64::libglx-1.7.0-h5eee18b_2 
+  libiconv           pkgs/main/linux-64::libiconv-1.18-h75a1612_0 
+  libjpeg-turbo      pkgs/main/linux-64::libjpeg-turbo-3.1.3-h47b2149_0 
+  libkrb5            pkgs/main/linux-64::libkrb5-1.22.2-hbd13c29_0 
+  libllvm21          pkgs/main/linux-64::libllvm21-21.1.8-h3801bc2_1 
+  libmpdec           pkgs/main/linux-64::libmpdec-4.0.1-h47b2149_0 
+  libopengl          pkgs/main/linux-64::libopengl-1.7.0-h5eee18b_2 
+  libopenjpeg        pkgs/main/linux-64::libopenjpeg-2.5.4-h47b2149_2 
+  libpciaccess       pkgs/main/linux-64::libpciaccess-0.18-h5eee18b_0 
+  libpng             pkgs/main/linux-64::libpng-1.6.56-h22898a0_0 
+  libpq              pkgs/main/linux-64::libpq-17.10-h0cb448f_1 
+  libsodium          pkgs/main/linux-64::libsodium-1.0.21-h83fc4cd_1 
+  libstdcxx          pkgs/main/linux-64::libstdcxx-15.2.0-h39759b7_8 
+  libstdcxx-ng       pkgs/main/linux-64::libstdcxx-ng-15.2.0-hc03a8fd_8 
+  libtiff            pkgs/main/linux-64::libtiff-4.7.1-h2b43d3b_1 
+  libuuid            pkgs/main/linux-64::libuuid-1.41.5-h5eee18b_0 
+  libwebp-base       pkgs/main/linux-64::libwebp-base-1.6.0-hb7bb969_0 
+  libxcb             pkgs/main/linux-64::libxcb-1.17.0-h9b100fa_0 
+  libxkbcommon       pkgs/main/linux-64::libxkbcommon-1.13.1-h13fa2f1_0 
+  libxml2            pkgs/main/linux-64::libxml2-2.14.6-hf2a51f9_1 
+  libzlib            pkgs/main/linux-64::libzlib-1.3.2-h47b2149_0 
+  lmdb               pkgs/main/linux-64::lmdb-0.9.31-hb25bd0a_0 
+  lz4-c              pkgs/main/linux-64::lz4-c-1.9.4-h7354ed3_5 
+  markupsafe         pkgs/main/linux-64::markupsafe-3.0.3-py314h47b2149_0 
+  matplotlib         pkgs/main/linux-64::matplotlib-3.11.0-py314h06a4308_0 
+  matplotlib-base    pkgs/main/linux-64::matplotlib-base-3.11.0-py314h54cb298_0 
+  matplotlib-inline  pkgs/main/linux-64::matplotlib-inline-0.2.1-py314h06a4308_0 
+  mesalib            pkgs/main/linux-64::mesalib-25.1.5-h3583ad3_3 
+  mistune            pkgs/main/linux-64::mistune-3.2.1-py314h06a4308_0 
+  mkl                pkgs/main/linux-64::mkl-2025.0.0-h6d8faa4_942 
+  mkl-service        pkgs/main/linux-64::mkl-service-2.7.2-py314h365c7f6_0 
+  mkl_fft            pkgs/main/linux-64::mkl_fft-2.2.0-py314hc849d88_0 
+  mkl_random         pkgs/main/linux-64::mkl_random-1.4.1-py314h973aee8_0 
+  mysql-common       pkgs/main/linux-64::mysql-common-9.3.0-h9e076cb_6 
+  mysql-libs         pkgs/main/linux-64::mysql-libs-9.3.0-he5ffe59_6 
+  nbclient           pkgs/main/linux-64::nbclient-0.11.0-py314h06a4308_0 
+  nbconvert          pkgs/main/linux-64::nbconvert-7.17.1-py314h06a4308_0 
+  nbconvert-core     pkgs/main/linux-64::nbconvert-core-7.17.1-py314h06a4308_0 
+  nbconvert-pandoc   pkgs/main/linux-64::nbconvert-pandoc-7.17.1-py314h06a4308_0 
+  nbformat           pkgs/main/linux-64::nbformat-5.10.4-py314h06a4308_0 
+  ncurses            pkgs/main/linux-64::ncurses-6.5-h7934f7d_0 
+  nest-asyncio       pkgs/main/noarch::nest-asyncio-1.5.1-pyhd3eb1b0_0 
+  notebook           pkgs/main/linux-64::notebook-7.5.6-py314h06a4308_0 
+  notebook-shim      pkgs/main/linux-64::notebook-shim-0.2.4-py314h06a4308_1 
+  numpy              pkgs/main/linux-64::numpy-2.5.0-py314ha8834a8_0 
+  numpy-base         pkgs/main/linux-64::numpy-base-2.5.0-py314h7c74580_0 
+  openldap           pkgs/main/linux-64::openldap-2.6.12-h007892f_1 
+  openssl            pkgs/main/linux-64::openssl-3.5.7-h1b28b03_0 
+  packaging          pkgs/main/linux-64::packaging-26.0-py314h06a4308_0 
+  pandoc             pkgs/main/linux-64::pandoc-3.8-h06a4308_0 
+  pandocfilters      pkgs/main/linux-64::pandocfilters-1.5.1-py314h06a4308_0 
+  parso              pkgs/main/linux-64::parso-0.8.7-py314h06a4308_0 
+  pcre2              pkgs/main/linux-64::pcre2-10.46-hf426167_0 
+  pexpect            pkgs/main/linux-64::pexpect-4.9.0-py314h06a4308_1 
+  pillow             pkgs/main/linux-64::pillow-12.2.0-py314ha780b37_1 
+  pip                pkgs/main/noarch::pip-26.1.2-pyh0d26453_0 
+  pixman             pkgs/main/linux-64::pixman-0.46.4-h86ba9f7_1 
+  platformdirs       pkgs/main/linux-64::platformdirs-4.9.4-py314h06a4308_0 
+  prometheus_client  pkgs/main/linux-64::prometheus_client-0.24.1-py314h06a4308_0 
+  prompt-toolkit     pkgs/main/linux-64::prompt-toolkit-3.0.52-py314h06a4308_1 
+  prompt_toolkit     pkgs/main/noarch::prompt_toolkit-3.0.52-hd3eb1b0_1 
+  psutil             pkgs/main/linux-64::psutil-7.0.0-py314hee96239_1 
+  pthread-stubs      pkgs/main/linux-64::pthread-stubs-0.3-h0ce48e5_1 
+  ptyprocess         pkgs/main/noarch::ptyprocess-0.7.0-pyhd3eb1b0_3 
+  pure_eval          pkgs/main/linux-64::pure_eval-0.2.3-py314h06a4308_0 
+  pycparser          pkgs/main/linux-64::pycparser-3.0-py314h06a4308_0 
+  pygments           pkgs/main/linux-64::pygments-2.20.0-py314h06a4308_0 
+  pyparsing          pkgs/main/linux-64::pyparsing-3.2.5-py314h06a4308_0 
+  pyqt               pkgs/main/linux-64::pyqt-6.11.0-py314h0eb9b55_0 
+  pyqt6-sip          pkgs/main/linux-64::pyqt6-sip-13.11.1-py314h47b2149_0 
+  pysocks            pkgs/main/linux-64::pysocks-1.7.1-py314h06a4308_1 
+  python             pkgs/main/linux-64::python-3.14.6-h4bdf6f9_100_cp314 
+  python-dateutil    pkgs/main/linux-64::python-dateutil-2.9.0post0-py314h06a4308_2 
+  python-fastjsonsc~ pkgs/main/linux-64::python-fastjsonschema-2.21.2-py314h06a4308_0 
+  python-json-logger pkgs/main/linux-64::python-json-logger-4.0.0-py314h06a4308_0 
+  python_abi         pkgs/main/linux-64::python_abi-3.14-4_cp314 
+  pyyaml             pkgs/main/linux-64::pyyaml-6.0.3-py314h591646f_0 
+  pyzmq              pkgs/main/linux-64::pyzmq-27.1.0-py314hcf8288c_1 
+  qtbase             pkgs/main/linux-64::qtbase-6.11.0-ha82b782_2 
+  qtconsole          pkgs/main/linux-64::qtconsole-5.7.2-py314h06a4308_0 
+  qtdeclarative      pkgs/main/linux-64::qtdeclarative-6.11.0-h89ee561_1 
+  qtpy               pkgs/main/linux-64::qtpy-2.4.3-py314h06a4308_0 
+  qtsvg              pkgs/main/linux-64::qtsvg-6.11.0-hbecefc2_1 
+  qttools            pkgs/main/linux-64::qttools-6.11.0-h0af0a4d_1 
+  qtwayland          pkgs/main/linux-64::qtwayland-6.11.0-h84ca50f_1 
+  qtwebchannel       pkgs/main/linux-64::qtwebchannel-6.11.0-h7ebffc9_1 
+  qtwebsockets       pkgs/main/linux-64::qtwebsockets-6.11.0-h03d4248_1 
+  readline           pkgs/main/linux-64::readline-8.3-hc2a1206_0 
+  referencing        pkgs/main/linux-64::referencing-0.37.0-py314h06a4308_0 
+  requests           pkgs/main/linux-64::requests-2.34.2-py314h06a4308_0 
+  rfc3339-validator  pkgs/main/linux-64::rfc3339-validator-0.1.4-py314h06a4308_0 
+  rfc3986-validator  pkgs/main/linux-64::rfc3986-validator-0.1.1-py314h06a4308_0 
+  rpds-py            pkgs/main/linux-64::rpds-py-0.28.0-py314h498d7c9_0 
+  send2trash         pkgs/main/linux-64::send2trash-1.8.3-py314h06a4308_0 
+  setuptools         pkgs/main/linux-64::setuptools-82.0.1-py314h06a4308_0 
+  sip                pkgs/main/linux-64::sip-6.15.1-py314he6c97cb_0 
+  six                pkgs/main/linux-64::six-1.17.0-py314h06a4308_0 
+  soupsieve          pkgs/main/linux-64::soupsieve-2.5-py314h06a4308_0 
+  spirv-tools        pkgs/main/linux-64::spirv-tools-2026.1-h24d9097_0 
+  sqlite             pkgs/main/linux-64::sqlite-3.53.2-h795bf6d_0 
+  stack_data         pkgs/main/linux-64::stack_data-0.6.3-py314h06a4308_0 
+  tbb                pkgs/main/linux-64::tbb-2022.0.0-hdb19cb5_0 
+  tbb-devel          pkgs/main/linux-64::tbb-devel-2022.0.0-hdb19cb5_0 
+  terminado          pkgs/main/linux-64::terminado-0.18.1-py314h06a4308_1 
+  tinycss2           pkgs/main/linux-64::tinycss2-1.5.1-py314h06a4308_0 
+  tk                 pkgs/main/linux-64::tk-8.6.15-h54e0aa7_0 
+  tornado            pkgs/main/linux-64::tornado-6.5.7-py314h47b2149_0 
+  traitlets          pkgs/main/linux-64::traitlets-5.15.0-py314h06a4308_0 
+  typing-extensions  pkgs/main/linux-64::typing-extensions-4.15.0-py314h06a4308_0 
+  typing_extensions  pkgs/main/linux-64::typing_extensions-4.15.0-py314h06a4308_0 
+  tzdata             pkgs/main/noarch::tzdata-2026b-he532380_0 
+  urllib3            pkgs/main/linux-64::urllib3-2.7.0-py314h06a4308_0 
+  wayland            pkgs/main/linux-64::wayland-1.24.0-hdac8c69_0 
+  wcwidth            pkgs/main/linux-64::wcwidth-0.2.14-py314h06a4308_0 
+  webencodings       pkgs/main/linux-64::webencodings-0.5.1-py314h06a4308_2 
+  websocket-client   pkgs/main/linux-64::websocket-client-1.8.0-py314h06a4308_0 
+  widgetsnbextension pkgs/main/linux-64::widgetsnbextension-4.0.14-py314h06a4308_0 
+  xcb-util           pkgs/main/linux-64::xcb-util-0.4.1-h5eee18b_2 
+  xcb-util-cursor    pkgs/main/linux-64::xcb-util-cursor-0.1.5-h5eee18b_0 
+  xcb-util-image     pkgs/main/linux-64::xcb-util-image-0.4.0-h5eee18b_2 
+  xcb-util-keysyms   pkgs/main/linux-64::xcb-util-keysyms-0.4.1-h5eee18b_0 
+  xcb-util-renderut~ pkgs/main/linux-64::xcb-util-renderutil-0.3.10-h5eee18b_0 
+  xcb-util-wm        pkgs/main/linux-64::xcb-util-wm-0.4.2-h5eee18b_0 
+  xkeyboard-config   pkgs/main/linux-64::xkeyboard-config-2.44-h382ed1a_1 
+  xorg-libice        pkgs/main/linux-64::xorg-libice-1.1.2-h9b100fa_0 
+  xorg-libsm         pkgs/main/linux-64::xorg-libsm-1.2.6-h9b100fa_0 
+  xorg-libx11        pkgs/main/linux-64::xorg-libx11-1.8.12-h9b100fa_1 
+  xorg-libxau        pkgs/main/linux-64::xorg-libxau-1.0.12-h9b100fa_0 
+  xorg-libxdmcp      pkgs/main/linux-64::xorg-libxdmcp-1.1.5-h9b100fa_0 
+  xorg-libxext       pkgs/main/linux-64::xorg-libxext-1.3.6-h9b100fa_0 
+  xorg-libxfixes     pkgs/main/linux-64::xorg-libxfixes-6.0.1-h9b100fa_0 
+  xorg-libxrandr     pkgs/main/linux-64::xorg-libxrandr-1.5.4-h9b100fa_0 
+  xorg-libxrender    pkgs/main/linux-64::xorg-libxrender-0.9.12-h9b100fa_0 
+  xorg-libxshmfence  pkgs/main/linux-64::xorg-libxshmfence-1.3.3-h9b100fa_0 
+  xorg-libxxf86vm    pkgs/main/linux-64::xorg-libxxf86vm-1.1.6-h9b100fa_0 
+  xorg-xorgproto     pkgs/main/linux-64::xorg-xorgproto-2024.1-h47b2149_2 
+  xz                 pkgs/main/linux-64::xz-5.8.2-h448239c_0 
+  yaml               pkgs/main/linux-64::yaml-0.2.5-h7b6447c_0 
+  zeromq             pkgs/main/linux-64::zeromq-4.3.5-hf801bfb_2 
+  zlib               pkgs/main/linux-64::zlib-1.3.2-h47b2149_0 
+  zstd               pkgs/main/linux-64::zstd-1.5.7-h11fc155_0 
+
+
+Proceed ([y]/n)? 
