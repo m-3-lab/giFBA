@@ -251,8 +251,7 @@ def prepare_compartmentalized_model(community, rel_abund=None, obj_rxn_ids=None)
             ex.lower_bound = -1000  # Set lower bound to 0 for all exchange reactions
         for med_ex in media.keys():
             if med_ex in model.reactions:
-                lb = media[med_ex] / rel_abund[model_idx]
-                model.reactions.get_by_id(med_ex).lower_bound = lb[0]
+                model.reactions.get_by_id(med_ex).lower_bound = media[med_ex] / rel_abund[model_idx]
 
 
     comp_model = Model("compartmentalized_model_"+str(community_id))
