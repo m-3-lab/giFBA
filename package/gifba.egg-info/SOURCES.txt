@@ -10,6 +10,8 @@ gifba.egg-info/SOURCES.txt
 gifba.egg-info/dependency_links.txt
 gifba.egg-info/requires.txt
 gifba.egg-info/top_level.txt
+gifba/Simple_Models/chaos_1.json
+gifba/Simple_Models/chaos_2.json
 gifba/Simple_Models/sim1a.json
 gifba/Simple_Models/sim1b.json
 gifba/Simple_Models/sim1c_1.json
@@ -30,7 +32,7 @@ gifba/Simple_Models/sim3c_1.json
 gifba/Simple_Models/sim3c_2.json
 gifba/Simple_Models/sim4a_1.json
 gifba/Simple_Models/sim4a_2.json
+gifba/Simple_Models/sim5a_1.json
+gifba/Simple_Models/sim5a_2.json
 gifba/Simple_Models/test2_sim_1.json
 gifba/Simple_Models/test2_sim_2.json
-gifba/Simple_Models/test_sim_1.json
-gifba/Simple_Models/test_sim_2.json

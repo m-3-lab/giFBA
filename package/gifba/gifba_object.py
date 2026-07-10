@@ -5,6 +5,8 @@ from cobra.util.solver import linear_reaction_coefficients
 from . import utils
 from .config import GROWTH_MIN_OBJ, ROUND
 from .summary import CommunitySummary
+import numpy as np
+from scipy.optimize import root_scalar
 
 class gifbaObject:
     """_summary_
@@ -100,17 +102,28 @@ class gifbaObject:
             a COBRApy model summary. Also formatting iteration information for a cytoscape-compatible
             node/edge table. 
     """
-    def __init__(self, models, media, rel_abund="equal", id=None, step_size=1):
+    def __init__(self, models, media, rel_abund="equal", step_size=1, 
+                 **kwargs):
+                 #id=None, sim_type="standard", debug=False, v=False, OC_Rounding=ROUND, OC_Method="optim"):
         self.models = utils.check_models(models)
         self.media = media
         self.media = utils.check_media(self)
         self.size = len(self.models)
         self.rel_abund = utils.check_rel_abund(rel_abund, self.size)
-        self.id = id
         self.step_size = step_size
-        self.iter_converged = None
-        self.sim_type = "standard"
         self.flow = None
+        self.iters = None
+        
+        # simulation parameters with defaults
+        self.threshold = kwargs.get("threshold", 1e-12)
+        self.sim_type = kwargs.get("sim_type", "standard")
+        self.OC_Rounding = kwargs.get("OC_Rounding", ROUND)
+        self.OC_Method = kwargs.get("OC_Method", "optim")
+
+        # optional user parameters
+        self.id = kwargs.get("id", None)
+        self.debug = kwargs.get("debug", False)
+        self.v = kwargs.get("v", False)
 
         # get obj rxn ids
         model_obj_rxns = []
@@ -120,13 +133,14 @@ class gifbaObject:
         self.objective_rxns = dict(zip(range(self.size), 
                                       model_obj_rxns))
 
-    def run_additive_gifba(self, iters, method, flow = 0, early_stop=True, v=False):
+    def run_additive_gifba(self, iters, method, **kwargs):
         """_summary_
 
         Args:
             iters (_type_): _description_
             method (_type_): _description_
-            early_stop (bool, optional): _description_. Defaults to True.
+            flow (float, optional): _description_. Defaults to 0.
+            threshold (float, optional): _description_. Defaults to 1e-12.
             v (bool, optional): _description_. Defaults to False.
 
         Returns:
@@ -135,9 +149,11 @@ class gifbaObject:
         """
         self.iters = utils.check_iters(iters)
         self.method = utils.check_method(method)
-        self.early_stop = early_stop
-        self.v = v
-        self.flow = flow
+        self.threshold = kwargs.get("threshold", 1e-12)
+        self.v = kwargs.get("v", False)
+        self.debug = kwargs.get("debug", False)
+        self.flow = kwargs.get("flow", 0)
+        self.sim_type = "additive"
 
         # create variables
         self.create_vars()
@@ -152,25 +168,24 @@ class gifbaObject:
             self._update_media(iter)# maybe change name
 
             # check early stopping condition
-            if self.early_stop:
-                if self.v: print("Checking Convergence...")
-                env_tmp = self.env_fluxes
-                delta = env_tmp.loc[iter+1, 0] - env_tmp.loc[iter, 0]
-                if np.all(np.abs(delta) < 1e-6):
-                    # copy last iter to all future iters
-                    self.env_fluxes.loc[(slice(iter+1, None),0), :] = self.env_fluxes.loc[(iter,0), :].values
-                    
-                    # copy last iter to all future iters
-                    vals = self.org_fluxes.loc[(slice(None),iter,0), :].values
-                    n_future = self.iters - (iter + 1)
-                    if n_future > 0:
-                        tiled = np.tile(vals, (n_future, 1))  # shape (n_future * n_models, n_rxns)
-                        self.org_fluxes.iloc[-(n_future*self.size):] = tiled
+            if self.v: print("Checking Convergence...")
+            env_tmp = self.env_fluxes
+            delta = env_tmp.loc[iter+1, 0] - env_tmp.loc[iter, 0]
+            if np.all(np.abs(delta) < self.threshold):
+                # copy last iter to all future iters
+                self.env_fluxes.loc[(slice(iter+1, None),0), :] = self.env_fluxes.loc[(iter,0), :].values
+                
+                # copy last iter to all future iters
+                vals = self.org_fluxes.loc[(slice(None),iter,0), :].values
+                n_future = self.iters - (iter + 1)
+                if n_future > 0:
+                    tiled = np.tile(vals, (n_future, 1))  # shape (n_future * n_models, n_rxns)
+                    self.org_fluxes.iloc[-(n_future*self.size):] = tiled
 
 
-                    if self.v: print("Converged at iteration", iter)
-                    self.iter_converged = iter
-                    break
+                if self.v: print("Converged at iteration", iter)
+                self.iter_converged = iter
+                break
         
         if self.iter_converged is None:
             self.iter_converged = self.iters - 1
@@ -203,6 +218,10 @@ class gifbaObject:
         This function sets up the optimization variables for the giFBA analysis.
 
         """
+        # default initialization of vars
+        self.iters = 1 if self.iters is None else self.iters
+        self.iter_converged = None
+        self.periodicity = None
         self.m_vals = m_vals # default to [1,1] for community giFBA, can be set to [n, m] for sampling via giFBA_sampling m_vals arg
         # get list of all unique rxns and exchanges
         self.ex_to_met = {}
@@ -271,6 +290,7 @@ class gifbaObject:
         self.org_fluxes = pd.DataFrame(self.org_fluxes, columns=self.org_rxns, index=multi_idx)	# convert to interprettable df
         self.org_fluxes.index.names = ["Model", "Iteration", "Run"]
 
+ 
 
         # store model names
         self.model_names = {model_idx: model.name for model_idx, model in enumerate(self.models)}
@@ -283,8 +303,6 @@ class gifbaObject:
         Update the media (f_n,j) for each iteration
         f_{n+1, j} =(1-flow)( f_{n,j} + sum(V_{n,i,j}) ) + flow*(f_{0,j})
         """
-
-
         # run organism flux function
         self._flux_function(iter)
 
@@ -293,18 +311,20 @@ class gifbaObject:
         run_exs = self.org_fluxes.loc[:, iter, 0][self.env_fluxes.columns].to_numpy().T # (row, col) = (n_ex, n_org) # uptake = negative flux
         sum_org_flux = run_exs.sum(axis=1).reshape(-1, 1) # (n_ex, n_org) -> (n_ex, ) sum across orgs
 
-        if self.sim_type == "standard":
+        if self.sim_type == "additive":
             self.env_fluxes.loc[iter+1, 0] = ((1-self.flow) * (env_tmp +  sum_org_flux) + (self.flow * self.env_fluxes.loc[0,0].to_numpy().reshape(-1, 1))).flatten().round(ROUND) # (n_ex, 1) + (n_ex, 1) -> (n_ex, 1)
 
-        elif self.sim_type == "consist_check":
+        elif self.sim_type == "standard":
+            # get init env for iter 0
             env_tmp = self.env_fluxes.loc[0, 0][:].to_numpy().reshape(-1, 1)
+
+            # pull ex info for iter and set uptake to 0
             run_exs = self.org_fluxes.loc[:, iter, 0][self.env_fluxes.columns].to_numpy().T # (row, col) = (n_ex, n_org) # uptake = negative flux
             run_exs[run_exs < 0] = 0 # only secretion counts
+            
+            # sum org fluxes and media
             sum_org_flux = run_exs.sum(axis=1).reshape(-1, 1)
-            # sum_org_flux[sum_org_flux < 0] = 0 # no uptake into env
             self.env_fluxes.loc[iter+1, 0] = (env_tmp + sum_org_flux).flatten()#.round(ROUND) # (n_ex, 1) + (n_ex, 1) -> (n_ex, 1)
-            biomass_mask = np.isin(self.env_fluxes.columns, self.biomass_exs) # biomass will not be cumulative
-            self.env_fluxes.loc[(iter+1, 0), self.env_fluxes.columns[biomass_mask]] = sum_org_flux[biomass_mask].flatten()#.round(ROUND)
         return
 
 
@@ -318,14 +338,6 @@ class gifbaObject:
             for model_idx in range(self.size):
                 self._env_scaling_factors[model_idx, :] = self._env_scaling_factors[model_idx, :] / self.rel_abund[model_idx]
 
-        # if self._is_rerun:
-        #     print(self._env_scaling_factors[:, self.ex_over] * self.env_fluxes.loc[iter, 0][self.env_fluxes.columns[self.ex_over]])
-        # else:
-        #     for ii, ex in enumerate(self.env_fluxes.columns):
-        #         for model_idx in range(self.size):
-        #             ex_v = self.env_fluxes.loc[iter, 0][ex]
-        #             print(self._env_scaling_factors[model_idx, ii] * ex_v, end = ", ")
-        #         print("")
         # simulate each organism
         for model_idx in range(self.size):
             # if self.v: print(" Simulating model:", model_idx+1, " of ", self.size)
@@ -339,7 +351,7 @@ class gifbaObject:
         self._check_overconsumption(iter)
 
         # once all orgs have been simulated without overconsumption, update internal rxns
-        if self.sim_type == "standard" and not(self._is_rerun):
+        if self.sim_type == "additive" and not(self._is_rerun):
             self._update_internal_reactions(iter)
 
         return
@@ -353,10 +365,7 @@ class gifbaObject:
             mask = np.array(self.org_exs) == ex.id
             if mask.any():  # Check if the exchange reaction exists in org_exs
                 ex.lower_bound = -self._env_scaling_factors[model_idx, mask] * self.env_fluxes.loc[iter, 0][ex.id]
-    
-                # print(ex.id, ex.lower_bound)
-           
-
+       
         return
 
     def _sim_fba(self, iter, model_idx):
@@ -366,10 +375,13 @@ class gifbaObject:
         """
         # run pFBA
         sol1 = self.models[model_idx].slim_optimize()
-        if model_idx == 0:
-            print("#"*45)
-            print("Run Info")
-        print(f"Objective value (model {model_idx}): {sol1}")
+        
+        if self.debug:
+            if model_idx == 0:
+                print("#"*45)
+                print("Run Info")
+            print(f"Objective value (model {model_idx}): {sol1}")
+
         if sol1 > GROWTH_MIN_OBJ:
             if self.method == "pfba":
                 sol = cb.flux_analysis.parsimonious.pfba(self.models[model_idx])
@@ -388,122 +400,204 @@ class gifbaObject:
         #pull iter info and establish array shapes
         env_tmp = self.env_fluxes.loc[iter, 0][:].to_numpy().reshape(-1, 1)   # (row, col) = (n_ex, 1)     # uptake = positive
         run_exs = self.org_fluxes.loc[:, iter, 0][self.env_fluxes.columns].to_numpy().T # (row, col) = (n_ex, n_org) # uptake = negative flux
-        #self.rel_abund  # (n_org, 1)
 
         # get org fluxes
         total_org_flux = run_exs.sum(axis=1).reshape(-1, 1) # (n_ex, n_org) -> (n_ex, 1) sum across orgs
 
-
         # check if environment fluxes are under-saturated
         is_overconsumed = np.zeros_like(total_org_flux)
         with np.errstate(divide='ignore', invalid='ignore'): # ignore division by zero warnings
-            is_overconsumed[env_tmp != 0] = -total_org_flux[np.abs(env_tmp) >= 1e-6].astype(np.float64) / env_tmp[np.abs(env_tmp) >= 1e-6].astype(np.float64) # only check non-zero env fluxes
+            is_overconsumed[np.abs(env_tmp) >= 1e-12] = -total_org_flux[np.abs(env_tmp) >= 1e-12].astype(np.float64) / env_tmp[np.abs(env_tmp) >= 1e-12].astype(np.float64) # only check non-zero env fluxes
+        
+        if self.debug:
+            print("\nenv fluxes (mmol/(gT/hr)):")
+            print(self.env_fluxes.loc[iter, 0].T)
+            print("\norg fluxes (mmol/(gT/hr)):")
+            print(self.org_fluxes.loc[:, iter, 0][self.env_fluxes.columns])
+            print("#"*45)
+            print()
 
-        print("\nenv fluxes (mmol/(gT/hr)):")
-        print(self.env_fluxes.loc[iter, 0].T)
-        print("\norg fluxes (mmol/(gT/hr)):")
-        print(self.org_fluxes.loc[:, iter, 0][self.env_fluxes.columns])
-        print("#"*45)
-        print()
-
-        if iter == 0 and not self._is_rerun:
-            self.X_list = []
-            self.OC_list = []
-            self.rerun_list = []
-            self.iter_list = []
 
         # check if iteration uses more flux than available in environment
         if not self._is_rerun:
-            self.rerun_ct=0
+            self._rerun_ct=0
+
+        # initialize lists on first call fro newton method tracking
+        if iter == 0 and not self._is_rerun:
+            self._X_list = []
+            self._OC_list = []
+            self._rerun_list = []
+            self._iter_list = []
+            self._ex_over_dict = {ex: {"X_list": [], "OC_list": [], "iter_list": [], "rerun_list": []} for ex in self.env_fluxes.columns}
+        
+        # re-run flux if overconsumed, adjusting only the over-consumed reactions
+        if is_overconsumed.max().round(self.OC_Rounding) > 1 or (self._rerun_ct !=0 and is_overconsumed.max().round(self.OC_Rounding) <1): # rounding avoids numerical issues with X being set to inf or nan
+            if self.OC_Method == "optim":
+                self._optim_method_x(iter, is_overconsumed, run_exs, env_tmp)
+            if self.OC_Method == "newton":
+                self._newton_method_x(iter, is_overconsumed, run_exs, env_tmp)
+            self._is_rerun = True
+            self._rerun_ct += 1
+            self._flux_function(iter)
+        
+        return
+    
+    def _optim_method_x(self, iter, is_overconsumed, run_exs, env_tmp):
+        """
+        Finds a universal cap X for each metabolite to balance community consumption 
+        with available media. Handles both over-consumption (pull down) and 
+        under-consumption (push up).
+        """
+        ex_over = np.argmax(is_overconsumed) # index of flux causing over-consumed
+        # Iterate through all metabolites in the media
+
+        # Current total consumption factor (Total_Flux / Media)
+        oc_factor = is_overconsumed[ex_over, 0]
+        
+
+        if self.v: print(self.env_fluxes.columns[ex_over], f"over-consumed by factor of {is_overconsumed.max():.12f} (rerun count: {self._rerun_ct})")
+
+
+        # 1. Gather current individual fluxes (normalized by abundance)
+        # run_exs is total weighted flux (a_i * v_i). We want internal flux v_i.
+        rel_abund = self.rel_abund.flatten()
+        v_ij_magnitudes = np.abs(run_exs[ex_over, :]) / rel_abund
+
+        # 2. Define the community response function
+        def residual(X):
+            # Total = sum( abundance * min(Cap, Individual_Flux) )
+            total_flux = np.sum(rel_abund * np.minimum(X, v_ij_magnitudes))
+            return total_flux - self.env_fluxes.loc[(iter, 0), self.env_fluxes.columns[ex_over]] # residual = total_flux - media_flux (want to find X where residual = 0)
+
+        # 3. Determine Search Brackets
+        current_max_v = np.max(v_ij_magnitudes)
+        
+        if oc_factor > 1:
+            # Overconsumption: Root is between 0 and current max
+            low, high = 0, current_max_v
+        else:
+            # Underconsumption: Try to find a cap X > current flux to push uptake
+            low = current_max_v
+            high = current_max_v * 2
+            
+            
+            # Expand 'high' until we find a bracket for underconsumption
+            while residual(high) < 0 and high < 1e6:
+                high *= 2
+
+        # 4. Solve for the optimal cap X
+        try:
+            sol = root_scalar(residual, bracket=[low, high], method='brentq')
+            X_opt = sol.root
+        except (ValueError, RuntimeError):
+            # Fallback to current best if root finding fails
+            X_opt = high if oc_factor < 1 else low
+
+        # 5. Apply the universal cap
+        # scaling_factor * media = X_opt => scaling = X_opt / media
+        self._env_scaling_factors[:, ex_over] = X_opt / env_tmp[ex_over, 0]
+        
+        if self.debug:
+            print(f"  X = {X_opt:.6f}")
+
+        # Flag for re-simulation
+        self._is_rerun = True
+        self._rerun_ct += 1
+        return
+    
+    def _newton_method_x(self, iter, is_overconsumed, run_exs, env_tmp):
+        # reset if different ex is overconsumed on re-run
         if self._is_rerun and is_overconsumed.max() != 1:
             ex_over = np.argmax(is_overconsumed) # index of flux causing over-consumed
-            if ex_over != self.ex_over:
-                self._is_rerun = False # reset re-run flag if different ex is overconsumed on re-run, will trigger new overconsumption loop if necessary
-                self.X_list = []
-                self.OC_list = []
-                self.rerun_list = []
-                self.iter_list = []
-        if True:
-            if is_overconsumed.max() > 1 or (self.rerun_ct !=0 and is_overconsumed.max() <1):
-                # print("OC:", is_overconsumed)
-                ex_over = np.argmax(is_overconsumed) # index of flux causing over-consumed
-                if self._is_rerun and ex_over != self.ex_over:
-                    self._is_rerun = False # reset re-run flag if different ex is overconsumed on re-run, will trigger new overconsumption loop if necessary
-                    self.X_list = []
-                    self.OC_list = []
-                    self.rerun_list = []
-                    self.iter_list = []
+            if ex_over != self._ex_over:
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]] = {}
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]]["X_list"] = []
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]]["OC_list"] = []
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]]["rerun_list"] = []
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]]["iter_list"] = []
+                self._rerun_ct = 0
 
+        if is_overconsumed.max() > 1 or (self._rerun_ct !=0 and is_overconsumed.max() <1):
+            ex_over = np.argmax(is_overconsumed) # index of flux causing over-consumed
+            if self._is_rerun and ex_over != self._ex_over:
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]] = {}
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]]["X_list"] = []
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]]["OC_list"] = []
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]]["rerun_list"] = []
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]]["iter_list"] = []
+                self._rerun_ct = 0   
 
-                print(self.env_fluxes.columns[ex_over], f"over-consumed by factor of {is_overconsumed.max():.8f} (rerun count: {self.rerun_ct})")
-                print("v"*45)
-                # adjust only over-consumed bound
-                x_denom = 0
-                for model_idx in range(self.size):
-                    if self.env_fluxes.columns[ex_over] in self.models[model_idx].reactions:
-                        lb_ij = self.models[model_idx].reactions.get_by_id(self.env_fluxes.columns[ex_over]).lower_bound
-                        V_ij = run_exs[ex_over, model_idx]
-                        a_i = self.rel_abund[model_idx]
-                        x_denom += V_ij / lb_ij
+            if self.v: print(self.env_fluxes.columns[ex_over], f"over-consumed by factor of {is_overconsumed.max():.12f} (rerun count: {self._rerun_ct})")
+            if self.debug: print("v"*45)
 
+            # adjust only over-consumed bound
+            x_denom = 0
+            for model_idx in range(self.size):
+                if self.env_fluxes.columns[ex_over] in self.models[model_idx].reactions:
+                    lb_ij = self.models[model_idx].reactions.get_by_id(self.env_fluxes.columns[ex_over]).lower_bound
+                    V_ij = run_exs[ex_over, model_idx]
+                    a_i = self.rel_abund[model_idx]
+                    x_denom += V_ij / lb_ij
+                    
+                    if self.debug:
                         print("Model idx", model_idx, "    (alpha =", a_i[0],")")
                         print(f"  big V: {V_ij: 3.6f}   mmol/(gT/hr)")
                         print(f"  lil v: {V_ij/a_i[0]: 3.6f}   mmol/(gi/hr)")
                         print(f"     lb: {lb_ij[0]: 3.6f}   mmol/(gi/hr)")
+            
+            if not self._is_rerun or (self._is_rerun and self._rerun_ct ==0):
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]]["X_list"].append(0)
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]]["OC_list"].append(0)
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]]["rerun_list"].append(-1)
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]]["iter_list"].append(iter)
+
+                # assume n=1 uses this form
+                x_n = env_tmp[ex_over, 0] / x_denom[0]
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]]["X_list"].append(x_n)
+
+            if self._is_rerun and self._rerun_ct !=0:
+                # just use one LB for the ex over if we have already re-run
+                for model_idx in range(self.size):
+                    if self.env_fluxes.columns[ex_over] in self.models[model_idx].reactions:
+                        lb = self.models[model_idx].reactions.get_by_id(self.env_fluxes.columns[ex_over]).lower_bound
+                        break
+                self._ex_over_dict[self.env_fluxes.columns[ex_over]]["X_list"].append(-lb[0])
                 
-                if not self._is_rerun:
-                    self.X_list.append(0)
-                    self.OC_list.append(0)
-                    self.rerun_list.append(-1)
-                    self.iter_list.append(iter)
 
-                    # assume n=1 uses this form
-                    x_n = env_tmp[ex_over, 0] / x_denom[0]
-                    self.X_list.append(x_n)
-                if self._is_rerun:
-                    # just use one LB for the ex over if we have already re-run
-                    for model_idx in range(self.size):
-                        if self.env_fluxes.columns[ex_over] in self.models[model_idx].reactions:
-                            lb = self.models[0].reactions.get_by_id(self.env_fluxes.columns[ex_over]).lower_bound
-                            break
-                    self.X_list.append(-lb[0])
+            self._ex_over_dict[self.env_fluxes.columns[ex_over]]["OC_list"].append(is_overconsumed[ex_over, 0])
 
-                self.OC_list.append(is_overconsumed[ex_over, 0])
+            # infer next best X based on deg 1 Newton Method
+            m = (self._ex_over_dict[self.env_fluxes.columns[ex_over]]["X_list"][-1] - self._ex_over_dict[self.env_fluxes.columns[ex_over]]["X_list"][-2]) / (self._ex_over_dict[self.env_fluxes.columns[ex_over]]["OC_list"][-1] - self._ex_over_dict[self.env_fluxes.columns[ex_over]]["OC_list"][-2])
+            b = self._ex_over_dict[self.env_fluxes.columns[ex_over]]["X_list"][-1] - m * self._ex_over_dict[self.env_fluxes.columns[ex_over]]["OC_list"][-1]
+            X_n_p_1 = m * 1 + b  # new env bound at OC = 1
 
-                print(f"   X_n:    {self.X_list[-1]:>18.14f}")
-                print(f"  OC_n:    {self.OC_list[-1]:>18.14f}")
-                print(f" X_n-1:    {self.X_list[-2]:>18.14f}")
-                print(f"OC_n-1:    {self.OC_list[-2]:>18.14f}")
-
-                # infer next best X based on deg 1 Newton Method
-                m = (self.X_list[-1] - self.X_list[-2]) / (self.OC_list[-1] - self.OC_list[-2])
-                b = self.X_list[-1] - m * self.OC_list[-1]
-                X_n_p_1 = m * 1 + b  # new env bound at OC = 1
+            if self.debug:
+                print(f"   X_n:    {self._ex_over_dict[self.env_fluxes.columns[ex_over]]['X_list'][-1]:>18.14f}")
+                print(f"  OC_n:    {self._ex_over_dict[self.env_fluxes.columns[ex_over]]['OC_list'][-1]:>18.14f}")
+                print(f" X_n-1:    {self._ex_over_dict[self.env_fluxes.columns[ex_over]]['X_list'][-2]:>18.14f}")
+                print(f"OC_n-1:    {self._ex_over_dict[self.env_fluxes.columns[ex_over]]['OC_list'][-2]:>18.14f}")            
                 print(f" X_n+1:    {X_n_p_1:>18.14f}")
-
-                # set new scaling factor for next run \
-                # this is div by env bc gets re-multiplied in set_env
-                self._env_scaling_factors[:, ex_over] = X_n_p_1 / env_tmp[ex_over, 0]
-
-                
                 print("^"*45)
-                self.rerun_list.append(self.rerun_ct)
-                self.iter_list.append(iter)
-                self.ex_over = ex_over
-                # self._env_scaling_factors[:, ex_over] = 1 / x_denom
-                # self._env_scaling_factors[model_idx, ex_over] = (run_exs[ex_over, model_idx] / (run_exs[ex_over, :].T @ self.rel_abund))
-                # re-run flux function with adjusted bounds
-                self.rerun_ct = self.rerun_ct + 1
-                self._is_rerun = True
-                self.OC_n_min_1 = is_overconsumed[ex_over, 0]
-                self._flux_function(iter)
+
+            # set new scaling factor for next run 
+            # this is div by env bc gets re-multiplied in set_env
+            self._env_scaling_factors[:, ex_over] = X_n_p_1 / env_tmp[ex_over, 0]
+
+            # store for next run
+            self._ex_over_dict[self.env_fluxes.columns[ex_over]]["rerun_list"].append(self._rerun_ct)
+            self._ex_over_dict[self.env_fluxes.columns[ex_over]]["iter_list"].append(iter)
+            self._ex_over = ex_over
+            self._rerun_ct += 1
+            self._is_rerun = True
 
         return
-    
 
     def _update_internal_reactions(self, iter):
         """
         Update internal reactions based on total flux
+        Only used for additive model (cumulative fluxes across iterations), 
+        not for standard model (fluxes are per iteration and do not carry over, 
+        so no need to update internal rxns based on cumulative flux)
         """
         for model_idx in range(self.size):
             for rxn in self.models[model_idx].reactions:
@@ -532,37 +626,40 @@ class gifbaObject:
     def summarize(self, iter_shown=None):
         return CommunitySummary(self, iter_shown)
 
-    def run_gifba(self, iters, method, early_stop=True, v=False):
+    def run_gifba(self, iters, method, threshold=1e-12, attractor_size=0.9, v=False, debug=False):
         """ After each iteration, add only the new fluxes, 
         and do not remove uptaken ones. If fluxes remains 
         the same, update the environment, otherwise- re-do this process """
         self.iters = utils.check_iters(iters)
         self.method = utils.check_method(method)
-        self.early_stop = early_stop
+        self.threshold = threshold
+        self.attractor_size = attractor_size
         self.v = v
+        self.debug = debug # will print info on every iteration and re-run, so use with caution
+        self.sim_type = "standard"
+        
 
-        # create variables
+        # create storage variables
         self.create_vars()
 
         # run iterations
         for iter in range(self.iters):
             self.iter = iter
-            print(f"\nIteration: {iter}")
+            if self.debug or self.v: print(f"\nIteration: {iter}")
 
             # update media for the iteration
             self._is_rerun = False # reset re-run flag for overconsumption
-            self.sim_type = "consist_check"
             self._update_media(iter)# maybe change name
 
             # check early stopping condition
-            if self.early_stop and self.iter > 0:
-                if self.v: print("Checking Convergence...")
+            if (self.iter > 0) or (iter == self.iters - 1):
+                if self.debug: print("Checking Convergence...")
                 for per in range(1, iter+1):
                     # check if last (-1) and per+1 iteration from end are the same (accounting for rounding) 
                     env_delta = self.env_fluxes.iloc[iter].values - self.env_fluxes.iloc[iter-per].values
                     org_delta = self.org_fluxes.iloc[self.size*iter:self.size*(iter+1)].values - self.org_fluxes.iloc[self.size*(iter-per):self.size*(iter-per+1)].values
                     
-                    if np.all(np.abs(org_delta) < 1e-6) and np.all(np.abs(env_delta) < 1e-6):
+                    if np.all(np.abs(org_delta) < self.threshold) and np.all(np.abs(env_delta) < self.threshold):
                         self.periodicity = per
                         self.iter_converged = iter
                         break
@@ -586,19 +683,21 @@ class gifbaObject:
                 self.env_fluxes.loc[iters_copy+1, :] = self.env_fluxes.loc[iters_copy+1-self.periodicity, :].values
 
         # check periodic/adjust
-        env_final, org_final = self.average_periodicity()
+        env_final, self.org_final = self.average_periodicity()
         
         # return results for total fluxes
-        return env_final, org_final
+        return env_final, self.org_final
     
     def average_periodicity(self):
         """Calculate the average periodicity of the system based on the environmental fluxes."""
         # if no convergence, give warning and return average of all iterations
-        if self.iter_converged is None:
+        if self.periodicity is None and self.iter_converged is None:
+            self.periodicity = int(self.iters * self.attractor_size) # set periodicity to a percentage of total iters if no convergence, so at least some averaging is done
+
             print("Model did not converge or show periodicity within the iteration limit, results may be unreliable.")
-            print("All iterations will be used for flux calculations, but consider increasing the number of iterations or checking model setup.")
+            print(f"{self.periodicity} iterations ({self.attractor_size*100:.1f}%) will be used for flux calculations, but consider increasing the number of iterations or checking model setup.")
         
-        print("Model is periodic and average of the last", self.periodicity, "iterations will be used for flux calculations.")
+        if self.v: print("Model is periodic and average of the last", self.periodicity, "iterations will be used for flux calculations.")
         
         # calculate average for the period size
         env_flux_avg = self.env_fluxes.loc[(slice(self.iters - self.periodicity, self.iters -1)), :].mean()

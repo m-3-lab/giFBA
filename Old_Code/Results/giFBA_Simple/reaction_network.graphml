@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d8" for="edge" attr.name="weight" attr.type="long" />
+  <key id="d7" for="edge" attr.name="shared_metabolites" attr.type="string" />
+  <key id="d6" for="node" attr.name="ub" attr.type="double" />
+  <key id="d5" for="node" attr.name="lb" attr.type="double" />
+  <key id="d4" for="node" attr.name="reversible" attr.type="boolean" />
+  <key id="d3" for="node" attr.name="gene_reaction_rule" attr.type="string" />
+  <key id="d2" for="node" attr.name="subsystem" attr.type="string" />
+  <key id="d1" for="node" attr.name="name" attr.type="string" />
+  <key id="d0" for="node" attr.name="node_type" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="EX_A(e)">
+      <data key="d0">reaction</data>
+      <data key="d1" />
+      <data key="d2" />
+      <data key="d3" />
+      <data key="d4">True</data>
+      <data key="d5">-10.0</data>
+      <data key="d6">1000.0</data>
+    </node>
+    <node id="EX_B(e)">
+      <data key="d0">reaction</data>
+      <data key="d1" />
+      <data key="d2" />
+      <data key="d3" />
+      <data key="d4">True</data>
+      <data key="d5">-10.0</data>
+      <data key="d6">1000.0</data>
+    </node>
+    <node id="T_A">
+      <data key="d0">reaction</data>
+      <data key="d1" />
+      <data key="d2" />
+      <data key="d3" />
+      <data key="d4">True</data>
+      <data key="d5">-1000.0</data>
+      <data key="d6">1000.0</data>
+    </node>
+    <node id="T_B">
+      <data key="d0">reaction</data>
+      <data key="d1" />
+      <data key="d2" />
+      <data key="d3" />
+      <data key="d4">True</data>
+      <data key="d5">-1000.0</data>
+      <data key="d6">1000.0</data>
+    </node>
+    <node id="T_Bio">
+      <data key="d0">reaction</data>
+      <data key="d1" />
+      <data key="d2" />
+      <data key="d3" />
+      <data key="d4">False</data>
+      <data key="d5">0.0</data>
+      <data key="d6">1000.0</data>
+    </node>
+    <node id="Biomass(c)">
+      <data key="d0">reaction</data>
+      <data key="d1" />
+      <data key="d2" />
+      <data key="d3" />
+      <data key="d4">False</data>
+      <data key="d5">0.0</data>
+      <data key="d6">1000.0</data>
+    </node>
+    <node id="EX_Bio(e)">
+      <data key="d0">reaction</data>
+      <data key="d1" />
+      <data key="d2" />
+      <data key="d3" />
+      <data key="d4">False</data>
+      <data key="d5">0.0</data>
+      <data key="d6">1000.0</data>
+    </node>
+    <edge source="T_A" target="Biomass(c)">
+      <data key="d7">A[c]</data>
+      <data key="d8">1</data>
+    </edge>
+    <edge source="T_B" target="EX_B(e)">
+      <data key="d7">B[e]</data>
+      <data key="d8">1</data>
+    </edge>
+    <edge source="T_Bio" target="EX_Bio(e)">
+      <data key="d7">biomass[e]</data>
+      <data key="d8">1</data>
+    </edge>
+    <edge source="Biomass(c)" target="T_B">
+      <data key="d7">B[c]</data>
+      <data key="d8">1</data>
+    </edge>
+    <edge source="Biomass(c)" target="T_Bio">
+      <data key="d7">biomass[c]</data>
+      <data key="d8">1</data>
+    </edge>
+  </graph>
+</graphml>
