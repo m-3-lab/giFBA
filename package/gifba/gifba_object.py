@@ -325,6 +325,9 @@ class gifbaObject:
             # sum org fluxes and media
             sum_org_flux = run_exs.sum(axis=1).reshape(-1, 1)
             self.env_fluxes.loc[iter+1, 0] = (env_tmp + sum_org_flux).flatten()#.round(ROUND) # (n_ex, 1) + (n_ex, 1) -> (n_ex, 1)
+        
+        # add fixed point relaxation method
+        
         return
 
 
