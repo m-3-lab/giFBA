@@ -1,0 +1,46 @@
+,Source,Target,Type,Value
+0,Escherichia coli str K 12 substr MG1655,so4[e],Uptake,0.049546505116056495
+1,Bacteroides thetaiotaomicron 3731,so4[e],Uptake,0.001832236728830068
+2,Escherichia coli str K 12 substr MG1655,mn2[e],Uptake,0.0013568039888761233
+3,Bacteroides thetaiotaomicron 3731,mn2[e],Uptake,0.001832236728830068
+4,Escherichia coli str K 12 substr MG1655,k[e],Uptake,0.0013568039888761233
+5,Bacteroides thetaiotaomicron 3731,k[e],Uptake,0.001832236728830068
+6,Escherichia coli str K 12 substr MG1655,cl[e],Uptake,0.0013568039888761233
+7,Bacteroides thetaiotaomicron 3731,cl[e],Uptake,0.001832236728830068
+8,Escherichia coli str K 12 substr MG1655,h2[e],Secretion,15.128594113189191
+9,Escherichia coli str K 12 substr MG1655,fe3[e],Uptake,0.0013568039888761233
+10,Bacteroides thetaiotaomicron 3731,fe3[e],Uptake,0.001832236728830068
+11,Escherichia coli str K 12 substr MG1655,ac[e],Secretion,5.880399121719958
+12,Bacteroides thetaiotaomicron 3731,ac[e],Secretion,8.844143414564853
+13,Escherichia coli str K 12 substr MG1655,fe2[e],Uptake,0.0013568039888761233
+14,Bacteroides thetaiotaomicron 3731,fe2[e],Uptake,0.005496710186490204
+15,Escherichia coli str K 12 substr MG1655,cobalt2[e],Uptake,0.0013568039888761233
+16,Bacteroides thetaiotaomicron 3731,cobalt2[e],Uptake,0.001832236728830068
+17,Escherichia coli str K 12 substr MG1655,zn2[e],Uptake,0.0013568039888761233
+18,Bacteroides thetaiotaomicron 3731,zn2[e],Uptake,0.001832236728830068
+19,Escherichia coli str K 12 substr MG1655,ca2[e],Uptake,0.0013568039888761233
+20,Bacteroides thetaiotaomicron 3731,ca2[e],Uptake,0.001832236728830068
+21,Escherichia coli str K 12 substr MG1655,for[e],Uptake,5.701999831093154
+22,Bacteroides thetaiotaomicron 3731,for[e],Secretion,5.7020150045587386
+23,Escherichia coli str K 12 substr MG1655,etoh[e],Secretion,1.478666160386198
+24,Escherichia coli str K 12 substr MG1655,thm[e],Secretion,0.0027136079777522193
+25,Escherichia coli str K 12 substr MG1655,pi[e],Uptake,0.23819643165523885
+26,Bacteroides thetaiotaomicron 3731,pi[e],Uptake,0.14281853417025125
+27,Bacteroides thetaiotaomicron 3731,cys_L[e],Uptake,0.04849668490691845
+28,Escherichia coli str K 12 substr MG1655,co2[e],Secretion,12.47714291898565
+29,Bacteroides thetaiotaomicron 3731,co2[e],Uptake,2.4711961579293567
+30,Bacteroides thetaiotaomicron 3731,urea[e],Secretion,0.561044627440361
+31,Escherichia coli str K 12 substr MG1655,biomass[c],Secretion,0.17373985054884156
+32,Bacteroides thetaiotaomicron 3731,biomass[c],Secretion,0.23076901253574672
+33,Escherichia coli str K 12 substr MG1655,glc_D[e],Uptake,5.0
+34,Bacteroides thetaiotaomicron 3731,glc_D[e],Uptake,5.0
+35,Escherichia coli str K 12 substr MG1655,cu2[e],Uptake,0.0013568039888761233
+36,Bacteroides thetaiotaomicron 3731,cu2[e],Uptake,0.001832236728830068
+37,Escherichia coli str K 12 substr MG1655,h[e],Secretion,1.839681116662844
+38,Bacteroides thetaiotaomicron 3731,h[e],Uptake,1.8396871229498037
+39,Escherichia coli str K 12 substr MG1655,h2o[e],Secretion,0.9275778106528336
+40,Bacteroides thetaiotaomicron 3731,h2o[e],Secretion,21.948400457288084
+41,Escherichia coli str K 12 substr MG1655,nh4[e],Uptake,1.9397573749351513
+42,Bacteroides thetaiotaomicron 3731,nh4[e],Uptake,2.7398409096218375
+43,Escherichia coli str K 12 substr MG1655,mg2[e],Uptake,0.0013568039888761233
+44,Bacteroides thetaiotaomicron 3731,mg2[e],Uptake,0.001832236728830068
