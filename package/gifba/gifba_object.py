@@ -630,9 +630,26 @@ class gifbaObject:
         return CommunitySummary(self, iter_shown)
 
     def run_gifba(self, iters, method, threshold=1e-12, attractor_size=0.9, v=False, debug=False):
-        """ After each iteration, add only the new fluxes, 
-        and do not remove uptaken ones. If fluxes remains 
-        the same, update the environment, otherwise- re-do this process """
+        """ 
+            Run giFBA for a given numebr of iterations on the community of models with the given media.
+
+
+        Args:
+            iters (int): Number of iterations to run the simulation.
+            method (str): The FBA method to use for the simulation - must be "pfba" (recommended) or "fba".
+            threshold (float, optional): The numerical threshold for convergence. Defaults to 1e-12.
+            attractor_size (float, optional): The size of the attractor (in percentage of number of iterations) if convergence is not achieved. Defaults to 0.9.
+            v (bool, optional): Toggle verbose output. True will provide printed outputs for current iteration and any re-runs from overconsumption adjustment. Defaults to False.
+            debug (bool, optional): Development mode. True will provide additional debugging information detailing the simulation process (media & org. fluxes at each step, overconsumption ratio, overconsumption adjustment). Not recommended for real-world community models Defaults to False.
+        
+        State Inputs (Attributes Used):
+            self.attribute_name (type): Implicit input used for calculation.
+        
+        Returns:
+            tuple[pd.Series, pd.DataFrame]: A tuple containing two pandas objects for simulation steady-state fluxes:
+                - pd.Series: Media/Environment fluxes (f_n,j) at steady state in units of ( mmol/(gT * hr) ). Returns fixed points, average of periodic fixed points, or average of last <attractor_size> * <iterations> if convergence is not achieved.
+                - pd.DataFrame: Per-organism fluxes (V_i,j) at steady state in units of ( mmol/(gT * hr) ). Returns fixed points, average of periodic fixed points, or average of last <attractor_size> * <iterations> if convergence is not achieved.
+        """
         self.iters = utils.check_iters(iters)
         self.method = utils.check_method(method)
         self.threshold = threshold
