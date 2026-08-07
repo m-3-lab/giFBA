@@ -10,102 +10,8 @@ from scipy.optimize import root_scalar
 from typing import Literal
 
 class gifbaObject:
-    """_summary_
-
-    Attributes:
-        models: List[cobra.Model], (n_organisms_or_models, )
-            A list of cobra.Model objects.
-        media: Dict[str: float] 
-            The media conditions for the models.
-        rel_abund: np.ndarray[float], (n_organisms_or_models, 1)
-            The relative abundance of the models, stored as a column vector. 
-        id: str, (optional, default=None)
-            An optional identifier for the giFBA analysis.
-        size: int 
-            The number of models in the community. Length of models list.
-        objective_rxns: Dict[int: str]
-            A dictionary mapping model indices to their objective reaction IDs.
-        iters: int
-            The number of iterations to run the giFBA analysis.
-        method: str (optional, default="pfba")
-            The method to use for flux balance analysis ("fba" or "pfba").
-        early_stop: bool (optional, default=True)
-            A boolean indicating whether to stop early if convergence is reached.
-        v: bool (optional, default=False)
-            A boolean indicating whether to print verbose output.
-        m_vals: List[int], (2, ) (optional, default=[1,1])
-            A list containing two integers that define the number of sample points and 
-            start points for different runs per iteration. This variable is mainly 
-            used for sampling via gifba_sampling, and should remain [1,1] for standard 
-            giFBA.
-        ex_to_met: Dict[str: str] 
-            A dictionary mapping exchange reaction IDs to metabolite IDs.
-        metid_to_name: Dict[str: str]
-            A dictionary mapping metabolite IDs to their human readable names.
-        exchange_metabolites: List[str]
-            A list of all unique exchange metabolite IDs across the models. This is 
-            a redundant variable, containing all values of ex_to_met.
-        exchanges: List[str]
-            A list of all unique exchange reaction IDs across the models.
-        org_exs: List[str]
-            A list of all unique exchange reaction IDs across the models.
-        org_rxns: List[str]
-            A list of all unique reaction IDs across the models.
-        env_fluxes: pd.DataFrame, (n_iterations * m_vals[0] * m_vals[1] + 1, n_exchanges)
-            A DataFrame storing the environmental fluxes for each iteration and run. Dataframe
-            index is multi-indexed by iteration & run (giFBA drops run index, only necessary
-            for sampling). Columns are unique exchange reaction IDs for the entire community.
-        org_fluxes: pd.DataFrame, (n_iterations * m_vals[0] * m_vals[1] * n_orgs, n_reactions)
-            A DataFrame storing the fluxes of all reactions for each model, iteration, and run. 
-            Dataframe index is multi-indexed by model, iteration, and run (giFBA drops run index,
-            only necessary for sampling). Columns are unique reaction IDs for the entire community.
-        model_names: Dict[int: str]
-            A dictionary mapping model indices to their names.
-        summary: CommunitySummary
-            A CommunitySummary object summarizing the results of the giFBA analysis, see 
-            CommunitySummary for more details.
-
-    Methods:
-        __init__(self, models, media, rel_abund="equal", id=None):
-            Initializes the gifbaObject with the given parameters.
-        
-        run_gifba(self, iters, method, early_stop=True, v=False):
-            Runs the giFBA analysis for a specified number of iterations using the chosen method.
-        
-        create_vars(self, m_vals=[1,1]):
-            Initializes variables for the community giFBA analysis and interpretation. This includes
-            setting up DataFrames for environmental and organism fluxes, as well as storing model
-            names and reaction mappings.
-
-        update_media(self, iter):
-            Updates the media conditions for each iteration based on the fluxes of the models. This 
-            method wraps around the _flux_function and handles the media update logic.
-
-        _flux_function(self, iter):
-            Runs the flux function for each model in the community for the given iteration. This method
-            wraps around the _set_env & _sim_fba methods and handles the overconsumption check.
-
-        _set_env(self, iter, model_idx):
-            Sets the exchange reactions of a model to match the environment fluxes for a given iteration and
-            model index. This is mainly provided to ensure a cleaner wrapper function.
-
-        _sim_fba(self, iter, model_idx):
-            Runs Basic FBA or parsimonious FBA (pFBA) on a model and stores the resulting
-            fluxes in the org_fluxes DataFrame. If the model's objective value is below a minimum
-             threshold (entailing no growth), the fluxes are not updated (remain zero).
-
-        _check_overconsumption(self, iter):
-            Checks for over-consumption of environmental metabolites, scales down overconsumed reactions, and
-            re-runs the flux function if necessary.
-        
-        summarize(self, iter_shown=None):
-            Summarizes the results of the giFBA analysis in a CommunitySummary object, formatted to match
-            a COBRApy model summary. Also formatting iteration information for a cytoscape-compatible
-            node/edge table. 
-    """
     def __init__(self, models, media, rel_abund="equal", 
                  **kwargs):
-                 #id=None, debug=False, v=False, OC_Rounding=ROUND, OC_Method="optim"):
         self.models = utils.check_models(models)
         self.media = media
         self.media = utils.check_media(self)
@@ -210,7 +116,7 @@ class gifbaObject:
         self.iters = utils.check_iters(iters)
         self.method = utils.check_method(method)
         self.threshold = self.threshold if threshold is None else threshold
-        self.attractor_size = self.attractor_size if attractor_size is None else attractor_size
+        self.attractor_size = 0.9 if attractor_size is None else attractor_size
         self.relaxation_ratio = 1.0 if relaxation_ratio is None or fp_method == "picard" else relaxation_ratio
         self.fp_method = "relaxation" if fp_method is None or fp_method == "picard" else fp_method
         self.v = v
