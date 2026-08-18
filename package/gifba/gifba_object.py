@@ -2,15 +2,16 @@ import cobra as cb
 import numpy as np
 import pandas as pd
 from cobra.util.solver import linear_reaction_coefficients
+from scipy.optimize import root_scalar
+from typing import Literal
 from . import utils
 from .config import GROWTH_MIN_OBJ, ROUND
 from .summary import CommunitySummary
-import numpy as np
-from scipy.optimize import root_scalar
-from typing import Literal
+
 
 class gifbaObject:
-    def __init__(self, models, media, rel_abund="equal", 
+
+    def __init__(self, models, media, rel_abund="equal",
                  **kwargs):
         self.models = utils.check_models(models)
         self.media = media
@@ -36,7 +37,7 @@ class gifbaObject:
             obj_rxn = linear_reaction_coefficients(model).keys()
             model_obj_rxns.extend([rxn.id for rxn in obj_rxn])
         self.objective_rxns = dict(zip(range(self.size), 
-                                      model_obj_rxns))
+                                       model_obj_rxns))
 
     def run_gifba(self, 
                   iters: int, 
@@ -122,7 +123,6 @@ class gifbaObject:
         self.v = v
         self.debug = debug # will print info on every iteration and re-run, so use with caution
         
-
         # create storage variables
         self.create_vars()
 
@@ -133,7 +133,7 @@ class gifbaObject:
 
             # update media for the iteration
             self._is_rerun = False # reset re-run flag for overconsumption
-            self._update_media(iter)# maybe change name
+            self._update_media(iter) # maybe change name
 
             # check early stopping condition
             if (self.iter > 0) or (iter == self.iters - 1):
@@ -264,12 +264,12 @@ class gifbaObject:
         for flux_idx, flux in enumerate(list(self.media.values())):
             self.env_fluxes[0][env0_masks[flux_idx]] = -flux
 
-        #set columns for multi-indexing
+        # set columns for multi-indexing
         iters_col = np.repeat(np.arange(1, self.iters+1), self.m_vals[0] * self.m_vals[1]) 
         run_col = np.tile(np.arange(self.m_vals[0] * self.m_vals[1]), self.iters)
         iters_col = np.insert(iters_col, 0, 0) # add 0th iteration
         run_col = np.insert(run_col, 0, 0) # add 0th run 
-        multi_idx = [iters_col , run_col]
+        multi_idx = [iters_col, run_col]
         self.env_fluxes = pd.DataFrame(self.env_fluxes, columns=self.org_exs, index=multi_idx) # convert to interprettable df
         self.env_fluxes.index.names = ["Iteration", "Run"]
 
@@ -278,22 +278,19 @@ class gifbaObject:
         cols = len(self.org_rxns)
         self.org_fluxes = np.zeros((rows, cols)) # pfba will drop run column
         
-        # create unique multi-index for 
+        # create unique multi-index for org_fluxes
         models_col = np.tile(np.arange(self.size), self.iters * self.m_vals[0] * self.m_vals[1]) 
         iters_col = np.repeat(np.arange(self.iters), self.m_vals[0] * self.m_vals[1] * self.size) 
         run_col = np.tile(np.repeat(np.arange(self.m_vals[0] * self.m_vals[1]), self.size), self.iters) 
-        multi_idx = [models_col, iters_col , run_col]
+        multi_idx = [models_col, iters_col, run_col]
         self.org_fluxes = pd.DataFrame(self.org_fluxes, columns=self.org_rxns, index=multi_idx)	# convert to interprettable df
         self.org_fluxes.index.names = ["Model", "Iteration", "Run"]
-
- 
 
         # store model names
         self.model_names = {model_idx: model.name for model_idx, model in enumerate(self.models)}
 
         return
         
-
     def _update_media(self, iter): 
         """ 
         Update the media conditions for each iteration based on the fluxes simulated for each model. 
@@ -340,7 +337,6 @@ class gifbaObject:
         run_exs = self.org_fluxes.loc[:, iter, 0][self.env_fluxes.columns].to_numpy().T # (row, col) = (n_ex, n_org) # uptake = negative flux
         sum_org_flux = run_exs.sum(axis=1).reshape(-1, 1) # (n_ex, n_org) -> (n_ex, ) sum across orgs
 
-
         # get init env for iter 0
         env_tmp = self.env_fluxes.loc[0, 0][:].to_numpy().reshape(-1, 1)
 
@@ -350,7 +346,7 @@ class gifbaObject:
         
         # sum org fluxes and media
         sum_org_flux = run_exs.sum(axis=1).reshape(-1, 1)
-        self.env_fluxes.loc[iter+1, 0] = (env_tmp + sum_org_flux).flatten()#.round(ROUND) # (n_ex, 1) + (n_ex, 1) -> (n_ex, 1)
+        self.env_fluxes.loc[iter+1, 0] = (env_tmp + sum_org_flux).flatten() # (n_ex, 1) + (n_ex, 1) -> (n_ex, 1)
         
         # add fixed point relaxation method
         if self.fp_method == "relaxation":
@@ -386,7 +382,6 @@ class gifbaObject:
         # Placeholder for Anderson acceleration method implementation
         raise NotImplementedError("Anderson acceleration method is not yet implemented.")
         
-
     def _flux_function(self, iter):
         """
         Apply the flux function for each model in the community for the given iteration. This method 
@@ -445,7 +440,6 @@ class gifbaObject:
 
         # check over consumption
         self._check_overconsumption(iter)
-
 
         return
 
@@ -574,7 +568,7 @@ class gifbaObject:
             - `self._flux_function(iter)`
 
         """
-        #pull iter info and establish array shapes
+        # pull iter info and establish array shapes
         env_tmp = self.env_fluxes.loc[iter, 0][:].to_numpy().reshape(-1, 1)   # (row, col) = (n_ex, 1)     # uptake = positive
         run_exs = self.org_fluxes.loc[:, iter, 0][self.env_fluxes.columns].to_numpy().T # (row, col) = (n_ex, n_org) # uptake = negative flux
 
@@ -593,7 +587,6 @@ class gifbaObject:
             print(self.org_fluxes.loc[:, iter, 0][self.env_fluxes.columns])
             print("#"*45)
             print()
-
 
         # check if iteration uses more flux than available in environment
         if not self._is_rerun:
@@ -648,9 +641,7 @@ class gifbaObject:
         # Current total consumption factor (Total_Flux / Media)
         oc_factor = is_overconsumed[ex_over, 0]
         
-
         if self.v: print(self.env_fluxes.columns[ex_over], f"over-consumed by factor of {is_overconsumed.max():.12f} (rerun count: {self._rerun_ct})")
-
 
         # 1. Gather current individual fluxes (normalized by abundance)
         # run_exs is total weighted flux (a_i * v_i). We want internal flux v_i.
@@ -674,7 +665,7 @@ class gifbaObject:
             low = current_max_v
             high = current_max_v * 2
             
-            
+        
             # Expand 'high' until we find a bracket for underconsumption
             while residual(high) < 0 and high < 1e6:
                 high *= 2
@@ -784,7 +775,6 @@ class gifbaObject:
                         break
                 self._ex_over_dict[self.env_fluxes.columns[ex_over]]["X_list"].append(-lb[0])
                 
-
             self._ex_over_dict[self.env_fluxes.columns[ex_over]]["OC_list"].append(is_overconsumed[ex_over, 0])
 
             # infer next best X based on deg 1 Newton Method
@@ -811,7 +801,6 @@ class gifbaObject:
 
         return
     
-
     def __enter__(self):
         """Context manager entry point."""
         return self
