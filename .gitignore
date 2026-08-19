@@ -2,3 +2,14 @@ Examples_Orig/AGORA2_Models/
 package/gifba/AGORA2_Models/
 Chaos_Vacc/
 Examples/2_real_models/data/
+
+# AGORA models are large binaries fetched separately, not version controlled
+# (anchored to the repo root; Old_Code/AGORA2_Models/ is already tracked)
+/AGORA2_Models/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# macOS Finder metadata
+.DS_Store
