@@ -24,7 +24,8 @@ def plot_micom_tradeoff_pts(micom_results, iterpretation, tradeoffs, rel_abund, 
                 posx /= rel_abund[0]
                 posy /= rel_abund[1]
 
-        label = str(alpha_tradeoff) if alpha_tradeoff != 1.0 else r"$\alpha$=1.0"
+        # old: label = str(alpha_tradeoff) if alpha_tradeoff != 1.0 else r"$\alpha$=1.0"
+        label = rf"$\alpha$={alpha_tradeoff}"
 
         plt.text(posx+offsets[idx][0], posy+offsets[idx][1], 
                 label,
