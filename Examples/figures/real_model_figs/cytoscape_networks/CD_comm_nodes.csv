@@ -1,0 +1,49 @@
+ID,Name,Type
+Clostridium difficile R20291,Clostridium difficile R20291,Organism
+Clostridium hiranonis TO 931 DSM 13275,Clostridium hiranonis TO 931 DSM 13275,Organism
+Bacteroides thetaiotaomicron 3731,Bacteroides thetaiotaomicron 3731,Organism
+Eggerthella lenta DSM 11767,Eggerthella lenta DSM 11767,Organism
+gly[e],Glycine,Metabolite
+arg_L[e],L-arginine,Metabolite
+etoh[e],Ethanol,Metabolite
+biomass[c],Produced biomass,Metabolite
+his_L[e],L-histidine,Metabolite
+strch1[e],"starch, structure 1 (1,6-{7[1,4-Glc], 4[1,4-Glc]})",Metabolite
+cys_L[e],L-cysteine,Metabolite
+thymd[e],Thymidine,Metabolite
+succ[e],Succinate,Metabolite
+for[e],Formate,Metabolite
+26dap_M[e],"meso-2,6-Diaminoheptanedioate",Metabolite
+nh4[e],Ammonium,Metabolite
+hspg_degr_11[e],Heparan sulfate degradation product 11,Metabolite
+so4[e],sulfate,Metabolite
+glc_D[e],D-glucose,Metabolite
+ac[e],Acetate,Metabolite
+4abut[e],4-Aminobutanoate,Metabolite
+glu_L[e],L-glutamate,Metabolite
+na1[e],Sodium,Metabolite
+hspg_degr_6[e],Heparan sulfate degradation product 6,Metabolite
+orn[e],Ornithine,Metabolite
+malt[e],Maltose,Metabolite
+h[e],proton,Metabolite
+tyr_L[e],L-tyrosine,Metabolite
+indole[e],Indole,Metabolite
+h2o[e],Water,Metabolite
+hspg[e],heparan sulfate proteoglycan,Metabolite
+phe_L[e],L-phenylalanine,Metabolite
+urea[e],Urea,Metabolite
+idour[e],L-iduronate,Metabolite
+leu_L[e],L-leucine,Metabolite
+co2[e],Carbon dioxide,Metabolite
+h2[e],Hydrogen,Metabolite
+ala_L[e],L-alanine,Metabolite
+ser_L[e],L-serine,Metabolite
+thr_L[e],L-threonine,Metabolite
+val_L[e],L-valine,Metabolite
+cytd[e],Cytidine,Metabolite
+pi[e],hydrogenphosphate,Metabolite
+pro_L[e],L-proline,Metabolite
+trp_L[e],L-tryptophan,Metabolite
+fru[e],D-Fructose,Metabolite
+adn[e],Adenosine,Metabolite
+4hoxpacd[e],(4-hydroxyphenyl)acetaldehyde,Metabolite
