@@ -18,7 +18,6 @@ def load_simple_models(number):
         "3_2_layered"              : ["sim3_2_org1.json", "sim3_2_org2.json"],
         "4_1_crossfeed_competition": ["sim4_1_org1.json", "sim4_1_org2.json"],
         "4_2_superfluous_crossfeed": ["sim4_2_org1.json", "sim4_2_org2.json"],
-        "4_3_efficient_crossfeed"  : ["sim4_3_org1.json", "sim4_3_org2.json"],
         "5_1_coupling"             : ["sim5_1_org1.json", "sim5_1_org2.json"],
         "5_2_dynamical"            : ["sim5_2_org1.json", "sim5_2_org2.json"]
     }
@@ -32,8 +31,6 @@ def load_simple_models(number):
         situation_media = {"EX_A(e)": -10, "EX_C(e)": -10}
     elif number in ["4_2_superfluous_crossfeed"]:
         situation_media = {"EX_A(e)": -10, "EX_B(e)": -10, "EX_D(e)": -10}
-    elif number in ["4_3_efficient_crossfeed"]:
-        situation_media = {"EX_A(e)": -10, "EX_D(e)": -10}
 
     models = []
     for file_name in situation_models[number]:

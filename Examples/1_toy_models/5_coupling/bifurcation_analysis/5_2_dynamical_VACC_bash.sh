@@ -4,7 +4,7 @@
 #SBATCH --ntasks=16
 #SBATCH --mem=40G
 #SBATCH --account=pi-dbernste
-#SBATCH --job-name=chaos
+#SBATCH --job-name=5_2_dynamical_VACC
 #SBATCH --array=1-25
 #SBATCH --output=logs/trash/%x_%A_%a.out
 #SBATCH --error=logs/trash/%x_%A_%a.err

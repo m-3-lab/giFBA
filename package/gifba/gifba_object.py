@@ -20,6 +20,7 @@ class gifbaObject:
         self.rel_abund = utils.check_rel_abund(rel_abund, self.size)
         self.flow = None
         self.iters = None
+        self.simulation_ct = 0
         
         # simulation parameters with defaults
         self.threshold = kwargs.get("threshold", 1e-12)
@@ -125,6 +126,7 @@ class gifbaObject:
         
         # create storage variables
         self.create_vars()
+        self.simulation_ct = 0
 
         # run iterations
         for iter in range(self.iters):
@@ -493,7 +495,7 @@ class gifbaObject:
                 relative abundance in the community, converting v_ij (mmol/(g_i * hr)) to 
                 V_ij (mmol/(gT * hr)).
         """
-        # run pFBA
+        # run check growth
         sol1 = self.models[model_idx].slim_optimize()
         
         if self.debug:
@@ -502,9 +504,12 @@ class gifbaObject:
                 print("Run Info")
             print(f"Objective value (model {model_idx}): {sol1}")
 
+
         if sol1 > GROWTH_MIN_OBJ:
+            self.simulation_ct +=1
             if self.method == "pfba":
                 sol = cb.flux_analysis.parsimonious.pfba(self.models[model_idx])
+
             elif self.method == "fba":
                 sol = self.models[model_idx].optimize()
             
