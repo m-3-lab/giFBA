@@ -112,7 +112,6 @@ def run_dfba(renamed_models, vmax_vals, km_vals, substrate_0, m_keys, community,
     """
     Runs the dynamic FBA simulation using solve_ivp and the ChemostatTracker.
     """
-    m_keys = list(substrate_0.keys()) 
     y0 = np.array([substrate_0[k] for k in m_keys]) 
     t_start, t_end = t_span
 
