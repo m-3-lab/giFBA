@@ -107,7 +107,8 @@ class ChemostatTracker:
         return max_accel - self.tol
 
 
-def run_dfba(renamed_models, vmax_vals, km_vals, substrate_0, community, rel_abund, t_span=(0, 100), tol=1e-5, method="RK45"):
+
+def run_dfba(renamed_models, vmax_vals, km_vals, substrate_0, m_keys, community, rel_abund, t_span=(0, 100), tol=1e-5, method="RK45"):
     """
     Runs the dynamic FBA simulation using solve_ivp and the ChemostatTracker.
     """
