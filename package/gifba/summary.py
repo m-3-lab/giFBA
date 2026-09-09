@@ -83,7 +83,7 @@ class CommunitySummary:
         )
         self.flux["Metabolite"] = self.flux["Exchange"].map(self.community.ex_to_met)
         self.flux["Metabolite"] = self.flux["Metabolite"].fillna(self.flux["Exchange"])
-        self.flux = self.flux.set_index(["Model", "Metabolite"])
+        self.flux = self.flux.set_index(["Model", "Exchange"])
 
         # add element information
         metabolites = {m.id if pd.notnull(m.id) else m: m for m in self.community.exchange_metabolites}
