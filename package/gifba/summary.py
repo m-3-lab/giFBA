@@ -89,7 +89,7 @@ class CommunitySummary:
         metabolites = {m.id if pd.notnull(m.id) else m: m for m in self.community.exchange_metabolites}
         self.flux[f"{self.element}-Number"] = [
             metabolites[met_id].elements.get(self.element, 0) if met_id in metabolites else 0
-            for met_id in self.flux.index.get_level_values("Metabolite")
+            for met_id in self.flux["Metabolite"]
         ]
         self.flux[f"{self.element}-Flux"] = self.flux[f"{self.element}-Number"] * self.flux["Flux"].abs()        
 
