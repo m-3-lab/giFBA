@@ -469,7 +469,10 @@ class gifbaObject:
         for ex in self.models[model_idx].exchanges:
             mask = np.array(self.org_exs) == ex.id
             if mask.any():  # Check if the exchange reaction exists in org_exs
-                ex.lower_bound = -self._env_scaling_factors[model_idx, mask] * self.env_fluxes.loc[iter, 0][ex.id]
+                # .item() because boolean-indexing _env_scaling_factors yields a
+                # 1-element array, and cobra needs a scalar bound: numpy >= 2.0
+                # raises TypeError when it calls isinf() on a 1-d array.
+                ex.lower_bound = (-self._env_scaling_factors[model_idx, mask] * self.env_fluxes.loc[iter, 0][ex.id]).item()
        
         return
 

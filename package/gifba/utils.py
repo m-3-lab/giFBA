@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import cobra as cb
 from cobra.util.solver import linear_reaction_coefficients
 from importlib.resources import files

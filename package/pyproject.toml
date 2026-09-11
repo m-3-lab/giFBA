@@ -11,16 +11,25 @@ authors = [
 ]
 license = { text = "MIT" }
 readme = "README.md"
-requires-python = ">=3.8, <3.14.0"
+# 3.10 floor: run_gifba's signature uses PEP 604 (`float | None`), which is
+# evaluated at def time and raises TypeError on 3.8/3.9.
+requires-python = ">=3.10, <3.14"
 
 dependencies = [
     "cobra>=0.27.0",
-    "micom>=0.36.0",
-    "numpy>=1.21, <2.0.0",
+    "numpy>=1.21",
     "pandas>=1.3",
-    "scipy>=1.8.1",
-    "gurobipy>=10.0.0"
+    "scipy>=1.8.1"
 ]
+
+# micom is imported lazily inside utils.prep_micom_cfba and
+# prepare_compartmentalized_model_with_micom; gurobipy is never imported by
+# this package at all and is only needed so optlang can find Gurobi. Neither
+# is required for the core run_gifba path, which works on cobra's bundled GLPK.
+[project.optional-dependencies]
+test = ["pytest>=7.0"]
+micom = ["micom>=0.36.0"]
+gurobi = ["gurobipy>=10.0.0"]
 
 [project.urls]
 Homepage = "https://m-3-lab.github.io"
@@ -30,3 +39,8 @@ package-data = { "gifba" = ["Toy_Models/*.json"] }
 
 [tool.setuptools.packages.find]
 include = ["gifba*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = ["slow: tests that take more than a second"]

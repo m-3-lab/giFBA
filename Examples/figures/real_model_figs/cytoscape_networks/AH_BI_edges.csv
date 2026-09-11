@@ -1,27 +1,27 @@
 Source,Target,Type,Value
-Bifidobacterium longum infantis ATCC 15697,glyglu[e],Uptake,0.2280125341901864
-Eubacterium hallii DSM 3353,glyglu[e],Uptake,0.3310666204062084
-Bifidobacterium longum infantis ATCC 15697,biomass[c],Secretion,0.06676818729483948
-Eubacterium hallii DSM 3353,biomass[c],Secretion,0.31686838194787875
-Bifidobacterium longum infantis ATCC 15697,co2[e],Secretion,0.4858780404786254
-Eubacterium hallii DSM 3353,co2[e],Secretion,17.1733225049014
-Bifidobacterium longum infantis ATCC 15697,ac[e],Secretion,0.1715462199982553
-Eubacterium hallii DSM 3353,ac[e],Uptake,1.002824614373277
-Eubacterium hallii DSM 3353,hxan[e],Uptake,0.14492285979400862
-Eubacterium hallii DSM 3353,ala_L[e],Uptake,0.21185629896006003
-Eubacterium hallii DSM 3353,leu_L[e],Uptake,0.1389974844252565
-Bifidobacterium longum infantis ATCC 15697,nh4[e],Uptake,0.2010411727301982
-Eubacterium hallii DSM 3353,nh4[e],Uptake,1.2168447413396213
-Bifidobacterium longum infantis ATCC 15697,4abut[e],Secretion,0.1540202961027945
-Bifidobacterium longum infantis ATCC 15697,h[e],Secretion,9.272566451654406
-Eubacterium hallii DSM 3353,h[e],Uptake,7.865094900112087
-Bifidobacterium longum infantis ATCC 15697,lac_L[e],Secretion,9.266496713487225
-Eubacterium hallii DSM 3353,lac_L[e],Uptake,9.266496713487195
-Eubacterium hallii DSM 3353,pi[e],Uptake,0.4545675932386241
-Bifidobacterium longum infantis ATCC 15697,glc_D[e],Uptake,5.000000000000006
-Eubacterium hallii DSM 3353,glc_D[e],Uptake,5.0000000000000036
-Eubacterium hallii DSM 3353,h2[e],Secretion,15.14647960060227
-Bifidobacterium longum infantis ATCC 15697,h2o[e],Secretion,1.1625181001294358
-Eubacterium hallii DSM 3353,h2o[e],Secretion,6.739235777042334
-Eubacterium hallii DSM 3353,but[e],Secretion,9.108313211838356
-Eubacterium hallii DSM 3353,lys_L[e],Uptake,0.10569144879871495
+Eubacterium hallii DSM 3353,lys_L[e],Uptake,0.10501965215912752
+Bifidobacterium longum infantis ATCC 15697,4abut[e],Secretion,0.18261133276931474
+Bifidobacterium longum infantis ATCC 15697,glc_D[e],Uptake,5.0
+Eubacterium hallii DSM 3353,glc_D[e],Uptake,5.0
+Eubacterium hallii DSM 3353,h2[e],Secretion,15.870296326604551
+Bifidobacterium longum infantis ATCC 15697,h2o[e],Secretion,1.1053360267964791
+Eubacterium hallii DSM 3353,h2o[e],Secretion,5.928677643940563
+Eubacterium hallii DSM 3353,but[e],Secretion,8.713493208997496
+Bifidobacterium longum infantis ATCC 15697,lac_L[e],Secretion,9.237905676820862
+Eubacterium hallii DSM 3353,lac_L[e],Uptake,9.237905676820862
+Bifidobacterium longum infantis ATCC 15697,glyglu[e],Uptake,0.2566035708567066
+Eubacterium hallii DSM 3353,glyglu[e],Uptake,0.32896229270896016
+Eubacterium hallii DSM 3353,ala_L[e],Uptake,0.21050969664422037
+Eubacterium hallii DSM 3353,pi[e],Uptake,0.4516782678951318
+Eubacterium hallii DSM 3353,leu_L[e],Uptake,0.13811398775632702
+Bifidobacterium longum infantis ATCC 15697,ac[e],Secretion,0.2287282933311473
+Eubacterium hallii DSM 3353,ac[e],Uptake,0.22872829333081945
+Eubacterium hallii DSM 3353,hxan[e],Uptake,0.14400170021756264
+Bifidobacterium longum infantis ATCC 15697,nh4[e],Uptake,0.17245013606368004
+Eubacterium hallii DSM 3353,nh4[e],Uptake,1.209110225279681
+Bifidobacterium longum infantis ATCC 15697,co2[e],Secretion,0.5144690771450734
+Eubacterium hallii DSM 3353,co2[e],Secretion,17.11653403848259
+Bifidobacterium longum infantis ATCC 15697,biomass[c],Secretion,0.06676818729483944
+Eubacterium hallii DSM 3353,biomass[c],Secretion,0.3148543011816145
+Bifidobacterium longum infantis ATCC 15697,h[e],Secretion,9.2725664516547
+Eubacterium hallii DSM 3353,h[e],Uptake,7.4366749725979435

@@ -2,7 +2,6 @@ README.md
 pyproject.toml
 gifba/__init__.py
 gifba/config.py
-gifba/diff_fba.py
 gifba/gifba_object.py
 gifba/summary.py
 gifba/utils.py
@@ -31,3 +30,6 @@ gifba/Toy_Models/sim5_2_org1.json
 gifba/Toy_Models/sim5_2_org2.json
 gifba/publication_utils/comparisons.py
 gifba/publication_utils/plotting.py
+tests/test_summary.py
+tests/test_toy_models.py
+tests/test_validators.py

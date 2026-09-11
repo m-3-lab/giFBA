@@ -11,5 +11,10 @@ Examples/2_real_models/data/
 __pycache__/
 *.py[cod]
 
+# pytest
+.pytest_cache/
+
 # macOS Finder metadata
 .DS_Store
+
+package/CLAUDE.md
