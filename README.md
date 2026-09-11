@@ -93,3 +93,12 @@ python -m pytest package/tests -k validators # solver-free subset
 CI runs the same suite on Python 3.10 and 3.13 with GLPK. `package/tests/golden_values.py`
 holds measured reference fluxes for the ten toy models — see `package/CLAUDE.md` for
 the project's contribution conventions if you're changing solver behavior.
+
+## AI Usage
+
+Parts of this repository — including portions of the code, tests, and this
+documentation — were drafted with the assistance of AI coding tools (Claude Code).
+All AI-assisted contributions are reviewed by the project maintainers, and the
+underlying scientific method, model validation, and numerical results (e.g. unit 
+testing) are checked against expected biological/mathematical behavior rather 
+than taken on faith from generated output.
