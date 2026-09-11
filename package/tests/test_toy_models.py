@@ -28,15 +28,15 @@ def objectives_of(community, org_final):
 @pytest.mark.parametrize("case", TOY_CASES)
 def test_convergence_matches_golden(run_toy, case):
     """Convergence iteration, period, and FBA call count are unchanged."""
-    expected_iter, expected_period, expected_sim_ct, _ = GOLDEN_RUNS[case]
+    expected_iter, expected_period, expected_simulation_count, _ = GOLDEN_RUNS[case]
     community, _, _ = run_toy(case)
 
     assert community.iter_converged == expected_iter
     assert community.periodicity == expected_period
-    # simulation_ct counts LP solves that cleared GROWTH_MIN_OBJ. It jumps if
+    # simulation_count counts LP solves that cleared GROWTH_MIN_OBJ. It jumps if
     # the overconsumption re-run loop changes behavior, which makes it a cheap
     # canary for _check_overconsumption regressions.
-    assert community.simulation_ct == expected_sim_ct
+    assert community.simulation_count == expected_simulation_count
 
 
 @pytest.mark.parametrize("case", TOY_CASES)
@@ -67,12 +67,12 @@ def test_return_shapes(run_toy, case):
     community, env_final, org_final = run_toy(case)
 
     assert isinstance(env_final, pd.Series)
-    assert set(env_final.index) == set(community.org_exs)
+    assert set(env_final.index) == set(community.exchange_ids)
 
     assert isinstance(org_final, pd.DataFrame)
     assert org_final.index.name == "Model"
-    assert list(org_final.index) == list(range(community.size))
-    assert set(org_final.columns) == set(community.org_rxns)
+    assert list(org_final.index) == list(range(community.num_models))
+    assert set(org_final.columns) == set(community.reaction_ids)
 
 
 @pytest.mark.parametrize("case", TOY_CASES)
@@ -89,7 +89,7 @@ def test_stored_flux_frames_drop_run_level(run_toy, case):
     assert list(community.env_fluxes.index.names) == ["Iteration"]
 
     # One row per (model, iteration); env carries an extra row for iteration 0.
-    assert len(community.org_fluxes) == community.size * GOLDEN_ITERS
+    assert len(community.org_fluxes) == community.num_models * GOLDEN_ITERS
     assert len(community.env_fluxes) == GOLDEN_ITERS + 1
 
     # The documented slicing idiom still works.
@@ -109,10 +109,10 @@ def test_rerunning_a_community_is_deterministic(toy_community):
     """
     community = toy_community("3_1_crossfeed")
 
-    first_env, first_org = community.run_gifba(iters=GOLDEN_ITERS, method="pfba")
+    first_env, first_org = community.run_gifba(n_iterations=GOLDEN_ITERS, method="pfba")
     # Copy: run_gifba reassigns these attributes, but be explicit about it.
     first_env, first_org = first_env.copy(), first_org.copy()
-    second_env, second_org = community.run_gifba(iters=GOLDEN_ITERS, method="pfba")
+    second_env, second_org = community.run_gifba(n_iterations=GOLDEN_ITERS, method="pfba")
 
     pd.testing.assert_series_equal(first_env, second_env)
     pd.testing.assert_frame_equal(first_org, second_org)
@@ -123,8 +123,8 @@ def test_fresh_community_reproduces_same_fixed_point(toy_community):
     first = toy_community("3_1_crossfeed")
     second = toy_community("3_1_crossfeed")
 
-    first_env, first_org = first.run_gifba(iters=GOLDEN_ITERS, method="pfba")
-    second_env, second_org = second.run_gifba(iters=GOLDEN_ITERS, method="pfba")
+    first_env, first_org = first.run_gifba(n_iterations=GOLDEN_ITERS, method="pfba")
+    second_env, second_org = second.run_gifba(n_iterations=GOLDEN_ITERS, method="pfba")
 
     pd.testing.assert_series_equal(first_env, second_env)
     pd.testing.assert_frame_equal(first_org, second_org)

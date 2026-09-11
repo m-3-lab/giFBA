@@ -1,6 +1,6 @@
 """Measured reference values for the bundled toy models.
 
-Every number here was produced by running ``run_gifba(iters=25, method="pfba")``
+Every number here was produced by running ``run_gifba(n_iterations=25, method="pfba")``
 against the models shipped in ``gifba/Toy_Models`` with the LP solver pinned to
 GLPK. They are *observed* values, not analytically derived ones, so they double
 as a regression fence: if a refactor of ``gifba_object.py`` changes any of them,
@@ -22,10 +22,10 @@ the underlying loader bugs are fixed:
   mass-generating loop in the models rather than by the intended medium.
 """
 
-# iters used for every golden run; all ten cases converge well inside this.
+# n_iterations used for every golden run; all ten cases converge well inside this.
 GOLDEN_ITERS = 25
 
-# case -> (iter_converged, periodicity, simulation_ct, [objective per model])
+# case -> (iter_converged, periodicity, simulation_count, [objective per model])
 GOLDEN_RUNS = {
     "1_1_single":                (2, 1, 3, [10.0]),
     "1_2_single":                (2, 1, 3, [20.0]),

@@ -27,7 +27,7 @@ def main():
         for model in models:
             model.solver = SOLVER
         community = gifba.gifbaObject(models, media)
-        env_final, org_final = community.run_gifba(iters=ITERS, method="pfba")
+        env_final, org_final = community.run_gifba(n_iterations=ITERS, method="pfba")
 
         objectives = [
             round(float(org_final.loc[idx, rxn]), 12)
@@ -36,7 +36,7 @@ def main():
         runs[case] = (
             community.iter_converged,
             community.periodicity,
-            community.simulation_ct,
+            community.simulation_count,
             objectives,
         )
         envs[case] = {k: round(float(v), 12) for k, v in env_final.items()}

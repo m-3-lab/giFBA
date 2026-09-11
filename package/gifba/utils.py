@@ -7,8 +7,8 @@ import pandas as pd
 # from package import gifba
 
 
-def load_simple_models(number):        
-    situation_models = {
+def load_simple_models(case):        
+    case_models = {
         "1_1_single"               : ["sim1_1.json"],
         "1_2_single"               : ["sim1_2.json"],
         "1_3_parallel"             : ["sim1_3_org1.json", "sim1_3_org2.json"],
@@ -21,22 +21,22 @@ def load_simple_models(number):
         "5_2_dynamical"            : ["sim5_2_org1.json", "sim5_2_org2.json"]
     }
 
-    situation_media = None
-    if number in ["1_1_single", "1_2_single", "2_1_competition", "3_2_layered", "4_1_crossfeed_competition", "5_1_coupling", "5_2_dynamical"]: # A only in media 
-        situation_media = {"EX_A(e)": -10}
-    elif number in ["1_3_parallel", "4_2_superfluous_crossfeed"]:
-        situation_media = {"EX_A(e)": -10, "EX_B(e)": -10}
-    elif number in ["3_1_crossfeed"]:
-        situation_media = {"EX_A(e)": -10, "EX_C(e)": -10}
-    elif number in ["4_2_superfluous_crossfeed"]:
-        situation_media = {"EX_A(e)": -10, "EX_B(e)": -10, "EX_D(e)": -10}
+    case_media = None
+    if case in ["1_1_single", "1_2_single", "2_1_competition", "3_2_layered", "4_1_crossfeed_competition", "5_1_coupling", "5_2_dynamical"]: # A only in media 
+        case_media = {"EX_A(e)": -10}
+    elif case in ["1_3_parallel", "4_2_superfluous_crossfeed"]:
+        case_media = {"EX_A(e)": -10, "EX_B(e)": -10}
+    elif case in ["3_1_crossfeed"]:
+        case_media = {"EX_A(e)": -10, "EX_C(e)": -10}
+    elif case in ["4_2_superfluous_crossfeed"]:
+        case_media = {"EX_A(e)": -10, "EX_B(e)": -10, "EX_D(e)": -10}
 
     models = []
-    for file_name in situation_models[number]:
+    for file_name in case_models[case]:
         model_path = files("gifba").joinpath("Toy_Models", file_name)
         models.append(cb.io.load_json_model(str(model_path)))
     
-    return models, situation_media
+    return models, case_media
 
 def find_min_medium(community=None, models=None, base_media=None, min_growth=None):
     """result = {k: max(dict1.get(k, float('-inf')), dict2.get(k, float('-inf')))
@@ -55,20 +55,20 @@ def find_min_medium(community=None, models=None, base_media=None, min_growth=Non
 
     min_medium = []
     for model in models:
-        with model as model_t:
+        with model as model_copy:
             for rxn_id, uptake in base_media.items():
-                if rxn_id in model_t.exchanges:
-                    met = list(model_t.exchanges.get_by_id(rxn_id).metabolites.keys())[0]
-                    model_t.add_boundary(met, type="sink", reaction_id=rxn_id+'_tmp',lb=-1*uptake,ub=1000)
+                if rxn_id in model_copy.exchanges:
+                    met = list(model_copy.exchanges.get_by_id(rxn_id).metabolites.keys())[0]
+                    model_copy.add_boundary(met, type="sink", reaction_id=rxn_id+'_tmp',lb=-1*uptake,ub=1000)
                 
-            for ex in model_t.exchanges:
+            for ex in model_copy.exchanges:
                 ex.lower_bound = -1000
                 ex.upper_bound = 1000
 
-            mm = cb.medium.minimal_medium(model_t, min_growth,minimize_components=True)
+            model_min_medium = cb.medium.minimal_medium(model_copy, min_growth,minimize_components=True)
 
-            model_min_med = mm.to_dict()
-            min_medium.append(pd.Series(model_min_med))
+            model_min_medium_dict = model_min_medium.to_dict()
+            min_medium.append(pd.Series(model_min_medium_dict))
     min_medium.append(pd.Series(base_media)) # add base media to ensure all components are included
     
     min_medium = pd.concat(min_medium, axis=1).fillna(0)
@@ -97,16 +97,16 @@ def check_rel_abund(rel_abund, n_models):
     rel_abund = rel_abund.astype(float).reshape(-1, 1)
     return rel_abund
 
-def check_iters(iters):
-    if iters is None:
-        iters = 10
-    elif not isinstance(iters, int):
-        iters = int(iters)
-    if iters < 1:
-        iters = 1
-        print("Iterations set to:", iters)
+def check_n_iterations(n_iterations):
+    if n_iterations is None:
+        n_iterations = 10
+    elif not isinstance(n_iterations, int):
+        n_iterations = int(n_iterations)
+    if n_iterations < 1:
+        n_iterations = 1
+        print("Iterations set to:", n_iterations)
     
-    return iters
+    return n_iterations
 
 def check_media(community):
     """None, complete, [min, 0.10], dict"""
@@ -115,7 +115,7 @@ def check_media(community):
     community.media = "complete" if community.media is None else community.media
     if isinstance(community.media, str):
         if community.media.lower() == "complete":
-            community.media = dict(zip(community.org_exs, np.full(len(community.org_exs), -1000)))
+            community.media = dict(zip(community.exchange_ids, np.full(len(community.exchange_ids), -1000)))
         else:
             raise ValueError("Media must be None, 'complete', float, or a dict with reaction IDs as keys and flux values as values.")
     
@@ -173,21 +173,21 @@ def prep_micom_cfba(community_id, ids, paths, rel_abund=None):
     import pandas as pd
 
     abund = rel_abund if rel_abund is not None else [1/len(ids) for _ in range(len(ids))]
-    community = pd.DataFrame({
+    community_df = pd.DataFrame({
         "id": ids,
         "file": paths,
         "abundance": abund
     })
 
     # create micom community
-    micom_comm = Community(community)
+    micom_community = Community(community_df)
 
     cfba_model = cb.Model(community_id)
 
-    for met in micom_comm.metabolites:
+    for met in micom_community.metabolites:
         cfba_model.add_metabolites([met.copy()])
     
-    for rxn in micom_comm.reactions:
+    for rxn in micom_community.reactions:
         new_rxn = rxn.copy()
         new_rxn.id = rxn.id
         new_rxn.lower_bound = rxn.lower_bound
@@ -201,27 +201,27 @@ def prep_micom_cfba(community_id, ids, paths, rel_abund=None):
         cfba_model.add_reactions([new_rxn])
 
     objective_dict = {}
-    for constraint in micom_comm.constraints:
+    for constraint in micom_community.constraints:
         if "community" in constraint.name:
             coefficients_dict = constraint.expression.as_coefficients_dict()
 
             for var in constraint.variables:
-                for idx, id in enumerate(ids):
-                    if var.name.endswith(f"_{id}") and var.name != "community_objective":
+                for idx, model_id in enumerate(ids):
+                    if var.name.endswith(f"_{model_id}") and var.name != "community_objective":
                         rxn = cfba_model.reactions.get_by_id(var.name)
                         objective_dict[rxn] = abs(coefficients_dict[var])
 
     # set coeffs to relative abundances for each organism's biomass reaction
-    for idx, id in enumerate(ids):
+    for idx, model_id in enumerate(ids):
         for rxn in objective_dict.keys():
-            if rxn.id.endswith(f"_{id}"):
+            if rxn.id.endswith(f"_{model_id}"):
                 objective_dict[rxn] = abund[idx]
 
     # Set the objective of the cfba_model
     cfba_model.objective = objective_dict
     cfba_model.objective_direction = "max"
 
-    return cfba_model, micom_comm, objective_dict
+    return cfba_model, micom_community, objective_dict
 
 def prepare_compartmentalized_model(community, rel_abund=None, obj_rxn_ids=None):
     from cobra import Model
@@ -229,8 +229,8 @@ def prepare_compartmentalized_model(community, rel_abund=None, obj_rxn_ids=None)
 
     models = community.models
     media = community.media
-    rel_abund = list(community.rel_abund.flatten()) if rel_abund is None else rel_abund #check_rel_abund(rel_abund, community.size)
-    community_id = community.id
+    rel_abund = list(community.rel_abund.flatten()) if rel_abund is None else rel_abund #check_rel_abund(rel_abund, community.num_models)
+    community_id = community.community_id
 
     # community.create_vars()
 
@@ -363,21 +363,21 @@ def prepare_compartmentalized_model_with_micom(gifba_community, model_paths, med
     abund = [0.5, 0.5]
     ids = [f"Org{i+1}" for i in range(len(models))]
     # create community dataframe
-    community = pd.DataFrame({
+    community_df = pd.DataFrame({
         "id": ids,
         "file": model_paths,
         "abundance": abund
     })
 
     # create micom community
-    community = Community(community)
+    micom_community = Community(community_df)
 
-    comp_model = cb.Model(f"compartmentalized_model_{gifba_community.id}")
+    comp_model = cb.Model(f"compartmentalized_model_{gifba_community.community_id}")
 
-    tmp = cb.Model("tmp")
-    tmp.add_reactions([r.copy() for r in community.reactions])  # use community.model
+    micom_reaction_model = cb.Model("micom_reaction_model")
+    micom_reaction_model.add_reactions([r.copy() for r in micom_community.reactions])  # use community.model
 
-    for rxn in tmp.reactions:
+    for rxn in micom_reaction_model.reactions:
         # new_stoich = {}
         # for met, coef in list(rxn.metabolites.items()):  # snapshot (met->coef)
         #     if met.compartment == "m" and len(rxn.metabolites) == 1:
@@ -401,12 +401,12 @@ def prepare_compartmentalized_model_with_micom(gifba_community, model_paths, med
                 rxn.upper_bound = rxn_up_bounds[model_num][orig_id]# * abund[model_num]
 
 
-    comp_model.add_reactions([r.copy() for r in tmp.reactions])
+    comp_model.add_reactions([r.copy() for r in micom_reaction_model.reactions])
 
-    
-    for reaction in comp_model.reactions:
-        if "biomass" in reaction.id.lower() or "bio" in reaction.id.lower():
-            print(reaction.id, reaction.reaction, reaction.lower_bound, reaction.upper_bound)
+
+    for rxn in comp_model.reactions:
+        if "biomass" in rxn.id.lower() or "bio" in rxn.id.lower():
+            print(rxn.id, rxn.reaction, rxn.lower_bound, rxn.upper_bound)
     
     # change objective to community growth (weighted sum of biomass reactions)
     objective_reactions = [rxn for rxn in comp_model.reactions if "dm_biomass(e)" in rxn.id.lower()]

@@ -83,7 +83,7 @@ for idx, a0 in enumerate(a0_vals):
         community = gifba.gifbaObject(models, media, rel_abund=rel_abund)
 
         # run iterations
-        media_flux, org_flux = community.run_gifba(iters=iters, method="pfba")
+        media_flux, org_flux = community.run_gifba(n_iterations=iters, method="pfba")
 
         save_tsv_row(csv_log_path, 
                     community.rel_abund.flatten(), 

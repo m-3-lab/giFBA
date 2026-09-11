@@ -246,10 +246,10 @@ community = gifba.gifbaObject(renamed_models, [euro_media, 0.1], # minimal media
 
 # Run gifba
 gifba_start_time = time.time()
-env_flux, org_flux = community.run_gifba(iters=100, method="pfba", v=False)
+env_flux, org_flux = community.run_gifba(n_iterations=100, method="pfba", verbose=False)
 gifba_end_time = time.time()
 gifba_solve_time = gifba_end_time - gifba_start_time
-gifba_fba_calls = community.simulation_ct
+gifba_fba_calls = community.simulation_count
 
 
 experiment_logs["gifba_solve_time"] = gifba_solve_time

@@ -68,11 +68,11 @@ def test_check_rel_abund_rejects(rel_abund, n_models, message):
 
 
 # --------------------------------------------------------------------------
-# check_iters
+# check_n_iterations
 # --------------------------------------------------------------------------
 
 @pytest.mark.parametrize(
-    "iters, expected",
+    "n_iterations, expected",
     [
         (None, 10),     # documented default
         (1, 1),
@@ -84,13 +84,13 @@ def test_check_rel_abund_rejects(rel_abund, n_models, message):
     ],
     ids=["none", "one", "typical", "zero-clamped", "negative-clamped", "float-truncates", "numeric-str"],
 )
-def test_check_iters(iters, expected):
-    assert utils.check_iters(iters) == expected
+def test_check_n_iterations(n_iterations, expected):
+    assert utils.check_n_iterations(n_iterations) == expected
 
 
-def test_check_iters_rejects_non_numeric_string():
+def test_check_n_iterations_rejects_non_numeric_string():
     with pytest.raises(ValueError, match="invalid literal for int"):
-        utils.check_iters("abc")
+        utils.check_n_iterations("abc")
 
 
 # --------------------------------------------------------------------------
@@ -187,7 +187,7 @@ def test_check_models_rejects(models, message):
 # check_media takes the whole community and reads/writes community.media, so a
 # namespace stub is enough for the dict paths. The None / "complete" /
 # [dict, min_growth] forms are deliberately untested: the first two raise
-# AttributeError because check_media reaches for community.org_exs before
+# AttributeError because check_media reaches for community.exchange_ids before
 # create_vars() has built it, and the list form needs a real community.
 # --------------------------------------------------------------------------
 

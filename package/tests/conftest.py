@@ -57,12 +57,12 @@ def run_toy(toy_community):
     Returns ``(community, env_final, org_final)``. Defaults match the
     conditions under which the golden values were measured.
     """
-    def _run(case, iters=None, method="pfba", **kwargs):
+    def _run(case, n_iterations=None, method="pfba", **kwargs):
         from golden_values import GOLDEN_ITERS
 
         community = toy_community(case, **kwargs)
         env_final, org_final = community.run_gifba(
-            iters=GOLDEN_ITERS if iters is None else iters,
+            n_iterations=GOLDEN_ITERS if n_iterations is None else n_iterations,
             method=method,
         )
         return community, env_final, org_final

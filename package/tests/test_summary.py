@@ -3,7 +3,7 @@
 These assert *structure* -- index levels and column names -- rather than
 numbers. That is deliberate: the two most recent commits to this repo
 (``4859d00`` and ``6387c51``, both "modify flux df") were a two-step hotfix to
-``summary.py::_generate`` in which an index level moved from ``Metabolite`` to
+``summary.py::_build_summary_frames`` in which an index level moved from ``Metabolite`` to
 ``Exchange`` and the C-number lookup was left reading the old level. The
 intermediate state raised at runtime and no test existed to catch it. The three
 assertions below would have.
@@ -82,9 +82,9 @@ def test_objective_values_agree_with_the_run(run_toy):
     assert summary.objective_total == pytest.approx(sum(expected))
 
 
-def test_iter_shown_defaults_to_last_iteration(run_toy):
+def test_iteration_shown_defaults_to_last_iteration(run_toy):
     community, _, _ = run_toy(CASE)
-    assert community.summarize().iter_shown == GOLDEN_ITERS - 1
+    assert community.summarize().iteration_shown == GOLDEN_ITERS - 1
 
 
 def test_to_cytoscape_column_contract(summary):
