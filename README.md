@@ -1,61 +1,95 @@
+# giFBA: Greedy Iterative Flux Balance Analysis
 
-# giFBA: Greedy Interaction Flux Balance Analysis
+giFBA is a [COBRApy](https://opencobra.github.io/cobrapy/) extension for simulating
+metabolic exchange in microbial communities. Instead of solving one large
+compartmentalized LP for the whole community (cFBA) or a single joint objective
+(MICOM), giFBA iterates: each organism is optimized independently against a shared
+environmental "pot" of metabolites, secreted/consumed fluxes update that pot, and the
+process repeats until the community reaches a fixed point (or a periodic attractor).
 
-This is a COBRApy extension for modeling community interaction.
+This repository contains the `gifba` Python package (in `package/`) plus the
+notebooks, validation models, and analysis scripts used to develop and benchmark it.
 
 ## Installation
-```
+
+```bash
 pip install "git+https://github.com/m-3-lab/giFBA.git@main#subdirectory=package"
 ```
 
-## Directory Description
-```
-📦giFBA
- ┣ 📂Examples
- ┃ ┣ 📂Model_Diagrams
- ┃ ┣ 📂Results
- ┃ ┃ ┣ 📂cFBA
- ┃ ┃ ┣ 📂giFBA_AGORA
- ┃ ┃ ┣ 📂giFBA_Simple
- ┃ ┃ ┣ 📂cFBA_Models
- ┃ ┃ ┗ micom_results.csv
- ┃ ┣ create_simple_fba.ipynb
- ┃ ┣ gifba_comparisons.ipynb
- ┃ ┗ gifba_utilization.ipynb
- ┣ 📂package
- ┃ ┣ 📂gifba
- ┃ ┃ ┣ 📂Simple_Models
- ┃ ┃ ┣ __init__.py
- ┃ ┃ ┣ config.py
- ┃ ┃ ┣ gifba_object.py
- ┃ ┃ ┣ summary.py
- ┃ ┃ ┗ utils.py
- ┃ ┣ README.md
- ┃ ┗ pyproject.toml
- ┣ .gitignore
- ┗ README.md
+Requires Python 3.10–3.13. Core dependencies (`cobra`, `numpy`, `pandas`, `scipy`)
+are installed automatically and give you the full `run_gifba` path on cobra's
+bundled GLPK solver. Two optional extras are available if you need them:
+
+```bash
+pip install "gifba[gurobi] @ git+https://github.com/m-3-lab/giFBA.git@main#subdirectory=package"  # faster LP solver (needs a license)
+pip install "gifba[micom]  @ git+https://github.com/m-3-lab/giFBA.git@main#subdirectory=package"  # utils.prep_micom_cfba / prepare_compartmentalized_model_with_micom
 ```
 
-### Description of Directory Tree
-- `package/` : contains all package code for gifba package
-    - `package/gifba/` : contains source code (objects, methods, validation models, etc.)
-    - `package/gifba/Simple_Models` : All simple models used for validation of methods
-- `Examples` : contains all validation, results, \& figure generation
-    - `Examples/gifba_comparisons.ipynb` : Contains validation code for the following:
-        - Generating compartmentalized FBA (cFBA) models (stored in `Examples/Results/cFBA_Models`)
-        - Solving cFBA models \& finding solution space 
-        - Creating \& solving MICOM communities
-    - `Examples/gifba_utilization.ipynb` : Contains walkthrough code for the following:
-        - All 12 Simple Modesl for validation with:
-            - Initialization \& giFBA usage
-            - Plotting/Comparison to individualized FBA, cFBA, MICOM, \& giFBA
-        - 2 simulations of real AGORA2 communities (*not included in repository*) with:
-            - Summary Display
-            - Cytoscape-ready files
-    - `Examples/create_simple_fba.ipynb` : Notebook to create each unique "organism" for simple model validation. Some models are exact duplicates or similar (internal rxn bounds changed), thus not shown. 
-    - `Examples/Model_Diagrams/` : Contains all Validation model diagrams (corresponding to simple models in `package/gifba/Simple_Models`)
-    - `Examples/Results/` : Contains the following:
-        - `cFBA/` : csv files of each simulation and the solution space 
-        - `giFBA_AGORA/` : Cytoscape-ready files of nodes \& edges for AGORA2 model examples
-        - `giFBA_Simple/` : Saved images of the simulated growth of each simple, validation model
-        - `micom_results.csv` : MICOM simulation results for each simulation (each simulation has 5 tradeoff parameter values stored)
+For local development, clone the repo and install editable with test extras:
+
+```bash
+git clone https://github.com/m-3-lab/giFBA.git
+cd giFBA
+pip install -e "./package[test]"
+python -m pytest package/tests
+```
+
+## Quickstart
+
+```python
+import cobra as cb
+from gifba import gifbaObject
+
+model_a = cb.io.load_json_model("organism_a.json")
+model_b = cb.io.load_json_model("organism_b.json")
+
+community = gifbaObject(
+    models=[model_a, model_b],
+    media={"EX_glc__D_e": -10},   # negative flux = uptake available in the shared pot
+    rel_abund=[0.5, 0.5],
+)
+
+env_final, org_final = community.run_gifba(n_iterations=50, method="pfba")
+
+print(community.summarize())          # human-readable per-organism uptake/secretion report
+edges, nodes = community.summarize().to_cytoscape()  # export for Cytoscape network viz
+```
+
+## Directory Tree
+
+```
+📦giFBA
+ ┣ 📂package                    Installable "gifba" Python package (see package/README.md for API reference)
+ ┣ 📂Examples
+ ┃ ┣ 📂1_toy_models             Walkthroughs of giFBA on the 10 toy models (non-interacting, competition, cross-feeding, combined, coupling)
+ ┃ ┣ 📂2_real_models             Notebooks applying giFBA to real AGORA2 communities (E. coli/B. theta, A. hallii/B. infantis, C. diff, MICOM comparison)
+ ┃ ┗ 📂figures                  Saved figures/network diagrams generated by the notebooks above
+ ┣ 📂diff_method                Benchmarking notebooks comparing giFBA to a clamped dynamic FBA (dFBA) implementation
+ ┣ .github/workflows/tests.yml  CI: runs the package test suite on Python 3.10 and 3.13
+ ┗ README.md                    
+```
+
+## Package Layout & API Reference
+
+Full API reference (public classes, methods, and functions) lives in
+[`package/README.md`](package/README.md). The short version:
+
+- **`gifba.gifbaObject`** — build a community from a list of `cobra.Model` objects
+  and a shared media, then call `.run_gifba()` to simulate to a fixed point.
+- **`gifba.CommunitySummary`** — returned by `gifbaObject.summarize()`; formats
+  per-organism and community-level uptake/secretion, and exports Cytoscape node/edge
+  tables.
+- **`gifba.utils`** — validation/coercion helpers used by `gifbaObject`, the bundled
+  toy-model loader (`load_simple_models`), minimal-medium search
+  (`find_min_medium`), and optional MICOM/compartmentalized-model interop.
+
+## Testing
+
+```bash
+python -m pytest package/tests              # full suite (~3s)
+python -m pytest package/tests -k validators # solver-free subset
+```
+
+CI runs the same suite on Python 3.10 and 3.13 with GLPK. `package/tests/golden_values.py`
+holds measured reference fluxes for the ten toy models — see `package/CLAUDE.md` for
+the project's contribution conventions if you're changing solver behavior.
