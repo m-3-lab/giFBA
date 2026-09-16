@@ -1,0 +1,18 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Salmonella_enterica_subsp_enterica_serovar_Hadar_str_2012K_0272.mat",
+        "Ruminococcaceae_nov_ERR1022409.mat",
+        "Bifidobacterium_adolescentis_ERR2230153.mat",
+        "Campylobacter_jejuni_subsp_jejuni_1336.mat",
+        "Helicobacter_pylori_NQ4216.mat"
+    ],
+    "sum_N_rxns": 6940,
+    "sum_N_mets": 6640,
+    "vmax": 1000.0,
+    "km": 1.0,
+    "gifba_solve_time": 34.206429958343506,
+    "solve_ivp_time": 4386.320192337036,
+    "gifba_fba_calls": 175,
+    "dfba_fba_calls": 258340
+}

@@ -1,0 +1,20 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Proteus_mirabilis_HI4320.mat",
+        "Enterococcus_caccae_ATCC_BAA_1240.mat",
+        "Enterococcus_faecalis_WH257.mat",
+        "Cutibacterium_acnes_PA_12_1_R1.mat",
+        "Propionibacterium_acidipropionici_ATCC_4875.mat",
+        "Streptococcus_pneumoniae_PNI0010.mat",
+        "Sarcina_nov_ERR1022347.mat"
+    ],
+    "sum_N_rxns": 9180,
+    "sum_N_mets": 8207,
+    "vmax": 100.0,
+    "km": 1.0,
+    "gifba_solve_time": 90.25571393966675,
+    "solve_ivp_time": 350.31993651390076,
+    "gifba_fba_calls": 609,
+    "dfba_fba_calls": 18200
+}

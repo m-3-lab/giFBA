@@ -1,0 +1,20 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Bifidobacterium_longum_NCC2705.mat",
+        "Escherichia_coli_P0298942_11.mat",
+        "Bacillus_cereus_BAG5O_1.mat",
+        "Escherichia_coli_KTE94.mat",
+        "Streptococcus_agalactiae_FSL_S3_003.mat",
+        "Serratia_rubidaea_NBRC_103169.mat",
+        "Bacillus_cereus_Rock3_44.mat"
+    ],
+    "sum_N_rxns": 15321,
+    "sum_N_mets": 13220,
+    "vmax": 100.0,
+    "km": 0.5,
+    "gifba_solve_time": 54.30275249481201,
+    "solve_ivp_time": 685.7659380435944,
+    "gifba_fba_calls": 203,
+    "dfba_fba_calls": 31717
+}

@@ -1,0 +1,20 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Proteus_vulgaris_FDAARGOS_366.mat",
+        "Staphylococcus_aureus_M1083.mat",
+        "Corynebacterium_pseudodiphtheriticum_DSM_44287.mat",
+        "Streptococcus_pneumoniae_GA62681.mat",
+        "Streptococcus_agalactiae_CCUG_44050.mat",
+        "Lactobacillus_gasseri_SV_16A_US.mat",
+        "Streptococcus_agalactiae_LMG_15083.mat"
+    ],
+    "sum_N_rxns": 10479,
+    "sum_N_mets": 9463,
+    "vmax": 1000.0,
+    "km": 1.0,
+    "gifba_solve_time": 91.93593621253967,
+    "solve_ivp_time": 3455.241379261017,
+    "gifba_fba_calls": 798,
+    "dfba_fba_calls": 174489
+}

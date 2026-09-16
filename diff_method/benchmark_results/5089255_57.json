@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Escherichia_coli_KTE194.mat",
+        "Escherichia_coli_BCE034_MS_14.mat",
+        "Escherichia_coli_PA13.mat"
+    ],
+    "sum_N_rxns": 10350,
+    "sum_N_mets": 8835,
+    "vmax": 100.0,
+    "km": 0.5,
+    "gifba_solve_time": 66.47512984275818,
+    "solve_ivp_time": 7856.149697542191,
+    "gifba_fba_calls": 96,
+    "dfba_fba_calls": 135816
+}

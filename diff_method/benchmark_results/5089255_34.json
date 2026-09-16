@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Escherichia_coli_95_0941.mat",
+        "Clostridium_saccharolyticum_WM1.mat",
+        "Gordonibacter_pamelaeae_7_10_1_bT_DSM_19378.mat"
+    ],
+    "sum_N_rxns": 5797,
+    "sum_N_mets": 5122,
+    "vmax": 500.0,
+    "km": 0.5,
+    "gifba_solve_time": 71.23538613319397,
+    "solve_ivp_time": 84.75231456756592,
+    "gifba_fba_calls": 120,
+    "dfba_fba_calls": 1998
+}

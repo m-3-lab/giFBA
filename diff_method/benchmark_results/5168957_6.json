@@ -1,0 +1,21 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Salmonella_enterica_subsp_enterica_serovar_Agona_str_73_H_09.mat",
+        "Capnocytophaga_sp_oral_taxon_336_str_F0502.mat",
+        "Mobiluncus_mulieris_28_1.mat",
+        "Bacillus_atrophaeus_ATCC_49822_1.mat",
+        "Escherichia_coli_P0305260_9.mat",
+        "Lactobacillus_ruminis_ATCC_27782.mat"
+    ],
+    "sum_N_rxns": 10435,
+    "sum_N_mets": 9271,
+    "vmax": 1000.0,
+    "km": 1.0,
+    "solver_method": "RK45",
+    "gifba_solve_time": 146.0148413181305,
+    "solve_ivp_time": null,
+    "gifba_fba_calls": 468,
+    "dfba_fba_calls": 411000,
+    "dfba_status": "dfba_in_progress_411000"
+}

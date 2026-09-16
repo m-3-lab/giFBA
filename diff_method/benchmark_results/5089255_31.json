@@ -1,0 +1,18 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Sellimonas_intestinalis_BR72.mat",
+        "Blautia_massiliensis_GD9.mat",
+        "Staphylococcus_aureus_M0075.mat",
+        "Escherichia_coli_DEC6C.mat",
+        "Streptococcus_agalactiae_GB00924.mat"
+    ],
+    "sum_N_rxns": 9373,
+    "sum_N_mets": 8277,
+    "vmax": 500.0,
+    "km": 1.0,
+    "gifba_solve_time": 85.38767981529236,
+    "solve_ivp_time": 839.186240196228,
+    "gifba_fba_calls": 165,
+    "dfba_fba_calls": 24570
+}

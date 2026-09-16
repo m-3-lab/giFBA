@@ -1,0 +1,18 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Escherichia_coli_MP021017_11.mat",
+        "Lactobacillus_versmoldensis_DSM_14857_KCTC_3814.mat",
+        "Lachnospiraceae_nov_ERR1022342.mat",
+        "Escherichia_coli_6_0172.mat",
+        "Lachnoclostridium_nov_ERR2221159.mat"
+    ],
+    "sum_N_rxns": 10376,
+    "sum_N_mets": 9266,
+    "vmax": 100.0,
+    "km": 0.5,
+    "gifba_solve_time": 72.99535036087036,
+    "solve_ivp_time": 116.22538495063782,
+    "gifba_fba_calls": 150,
+    "dfba_fba_calls": 3205
+}

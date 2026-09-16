@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Actinobacillus_pleuropneumoniae_serovar_1_str_4074.mat",
+        "Bacillus_cereus_BAG5X12_1.mat",
+        "Streptococcus_mutans_5SM3.mat"
+    ],
+    "sum_N_rxns": 5194,
+    "sum_N_mets": 4943,
+    "vmax": 1000.0,
+    "km": 1.0,
+    "gifba_solve_time": 22.219305515289307,
+    "solve_ivp_time": 16.48194146156311,
+    "gifba_fba_calls": 60,
+    "dfba_fba_calls": 909
+}

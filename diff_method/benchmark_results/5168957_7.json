@@ -1,0 +1,21 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Escherichia_coli_88_0221.mat",
+        "Klebsiella_pneumoniae_ERR2221372.mat",
+        "Enterococcus_faecium_7330381_1.mat",
+        "Klebsiella_pneumoniae_VAKPC280.mat",
+        "Paenibacillus_ihuae_GD6.mat",
+        "Bacillus_cereus_E33L.mat"
+    ],
+    "sum_N_rxns": 12437,
+    "sum_N_mets": 10979,
+    "vmax": 500.0,
+    "km": 0.1,
+    "solver_method": "BDF",
+    "gifba_solve_time": 192.51185846328735,
+    "solve_ivp_time": null,
+    "gifba_fba_calls": 450,
+    "dfba_fba_calls": 300000,
+    "dfba_status": "dfba_in_progress_300000"
+}

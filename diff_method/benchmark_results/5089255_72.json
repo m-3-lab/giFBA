@@ -1,0 +1,18 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Cutibacterium_acnes_HL086PA1.mat",
+        "Bacillus_clausii_KSM_K16.mat",
+        "Scardovia_wiggsiae_F0424.mat",
+        "Escherichia_coli_P0305260_10.mat",
+        "Staphylococcus_lentus_ERR2221130.mat"
+    ],
+    "sum_N_rxns": 9171,
+    "sum_N_mets": 7915,
+    "vmax": 100.0,
+    "km": 0.5,
+    "gifba_solve_time": 86.70815014839172,
+    "solve_ivp_time": 226.32364010810852,
+    "gifba_fba_calls": 220,
+    "dfba_fba_calls": 6675
+}

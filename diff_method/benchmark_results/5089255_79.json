@@ -1,0 +1,20 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Salmonella_enterica_subsp_enterica_serovar_Weltevreden_str_2007_60_3289_1.mat",
+        "Escherichia_coli_B185.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Heidelberg_str_SL476.mat",
+        "Helicobacter_pylori_HLJHP253.mat",
+        "Blautia_torques_ERR1203943.mat",
+        "Enterococcus_faecium_VAN_345.mat",
+        "Butyrivibrio_fibrisolvens_16_4.mat"
+    ],
+    "sum_N_rxns": 12614,
+    "sum_N_mets": 11215,
+    "vmax": 500.0,
+    "km": 1.0,
+    "gifba_solve_time": 107.83331418037415,
+    "solve_ivp_time": 592.2442865371704,
+    "gifba_fba_calls": 539,
+    "dfba_fba_calls": 23569
+}

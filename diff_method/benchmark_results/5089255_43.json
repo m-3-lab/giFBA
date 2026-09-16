@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Escherichia_coli_KTE13.mat",
+        "Enterococcus_faecium_9930238_2.mat",
+        "Enterococcus_faecalis_HIP11704.mat"
+    ],
+    "sum_N_rxns": 6262,
+    "sum_N_mets": 5568,
+    "vmax": 100.0,
+    "km": 0.5,
+    "gifba_solve_time": 137.2904040813446,
+    "solve_ivp_time": 54.95020055770874,
+    "gifba_fba_calls": 1056,
+    "dfba_fba_calls": 1989
+}

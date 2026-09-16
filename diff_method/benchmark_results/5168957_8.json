@@ -1,0 +1,25 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Bacillus_cereus_03BB108.mat",
+        "Campylobacter_jejuni_jejuni_M1.mat",
+        "Streptococcus_macedonicus_ACA_DC_198.mat",
+        "Streptococcus_pneumoniae_GA54354.mat",
+        "Clostridioides_difficile_2007855.mat",
+        "Leptotrichia_hongkongensis_JMUB5056.mat",
+        "Campylobacter_jejuni_subsp_jejuni_55037.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_77_2659.mat",
+        "Eubacterium_rectale_ERR1203958.mat",
+        "Streptococcus_cristatus_LRIIBV4.mat"
+    ],
+    "sum_N_rxns": 12936,
+    "sum_N_mets": 11670,
+    "vmax": 100.0,
+    "km": 0.1,
+    "solver_method": "RK45",
+    "gifba_solve_time": 413.8235855102539,
+    "solve_ivp_time": null,
+    "gifba_fba_calls": 3140,
+    "dfba_fba_calls": 645000,
+    "dfba_status": "dfba_in_progress_645000"
+}

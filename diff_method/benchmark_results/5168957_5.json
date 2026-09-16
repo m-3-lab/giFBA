@@ -1,0 +1,25 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Enterococcus_mundtii_QU_25.mat",
+        "Cuneatibacter_caecimuris_DSM_29486.mat",
+        "Streptococcus_agalactiae_GB00864.mat",
+        "Bacillus_megaterium_NBRC_15308_ATCC_14581.mat",
+        "Streptococcus_parasanguinis_SK236.mat",
+        "Enterococcus_faecalis_HEF39.mat",
+        "Acinetobacter_baumannii_AB_909_01_7.mat",
+        "Bifidobacterium_adolescentis_ERR1022366.mat",
+        "Streptococcus_mutans_TCI_400.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Newport_str_Levine_1.mat"
+    ],
+    "sum_N_rxns": 14636,
+    "sum_N_mets": 13235,
+    "vmax": 100.0,
+    "km": 1.0,
+    "solver_method": "RK45",
+    "gifba_solve_time": 231.16650795936584,
+    "solve_ivp_time": 8332.28492808342,
+    "gifba_fba_calls": 950,
+    "dfba_fba_calls": 225500,
+    "dfba_status": "dfba_complete"
+}

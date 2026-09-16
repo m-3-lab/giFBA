@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Bacillus_cereus_BAG6O_1.mat",
+        "Actinomyces_sp_ph3.mat",
+        "Enterococcus_faecalis_SS_6.mat"
+    ],
+    "sum_N_rxns": 4080,
+    "sum_N_mets": 3692,
+    "vmax": 500.0,
+    "km": 0.5,
+    "gifba_solve_time": 17.938701391220093,
+    "solve_ivp_time": 11.80114221572876,
+    "gifba_fba_calls": 60,
+    "dfba_fba_calls": 912
+}

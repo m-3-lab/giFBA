@@ -1,0 +1,20 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Clostridium_bolteae_ATCC_BAA_613.mat",
+        "Streptococcus_pneumoniae_BS458.mat",
+        "Leptotrichia_shahii_DSM_19757.mat",
+        "Escherichia_coli_O113_H21_str_CL_3.mat",
+        "Staphylococcus_aureus_M1451.mat",
+        "Lactobacillus_dextrinicus_DSM_20335.mat",
+        "Helicobacter_pylori_HP250AFiii.mat"
+    ],
+    "sum_N_rxns": 10174,
+    "sum_N_mets": 8991,
+    "vmax": 500.0,
+    "km": 1.0,
+    "gifba_solve_time": 168.30570602416992,
+    "solve_ivp_time": 2051.0783517360687,
+    "gifba_fba_calls": 560,
+    "dfba_fba_calls": 77301
+}

@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Pseudomonas_fluorescens_A506.mat",
+        "Staphylococcus_aureus_PM1.mat",
+        "Helicobacter_pylori_Hp_H_30.mat"
+    ],
+    "sum_N_rxns": 4369,
+    "sum_N_mets": 3936,
+    "vmax": 500.0,
+    "km": 1.0,
+    "gifba_solve_time": 18.184500217437744,
+    "solve_ivp_time": 39.931339502334595,
+    "gifba_fba_calls": 45,
+    "dfba_fba_calls": 3213
+}

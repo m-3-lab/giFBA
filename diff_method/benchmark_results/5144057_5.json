@@ -1,0 +1,21 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Enterococcus_faecalis_D32.mat",
+        "Photobacterium_leiognathi_subsp_mandapamensis_svers11.mat",
+        "Bacillus_thuringiensis_IBL_4222.mat",
+        "Pantoea_agglomerans_3.mat",
+        "Streptococcus_pneumoniae_GA47597.mat",
+        "Lactobacillus_pentosus_KCA1.mat"
+    ],
+    "sum_N_rxns": 8719,
+    "sum_N_mets": 7598,
+    "vmax": 500.0,
+    "km": 0.1,
+    "solver_method": "BDF",
+    "gifba_solve_time": 47.19175124168396,
+    "solve_ivp_time": 63.78006863594055,
+    "gifba_fba_calls": 336,
+    "dfba_fba_calls": 3636,
+    "dfba_status": "dfba_complete"
+}

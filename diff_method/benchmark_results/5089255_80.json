@@ -1,0 +1,20 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Bacteroides_uniformis_ERR2230141.mat",
+        "Shigella_dysenteriae_225_75.mat",
+        "Escherichia_coli_P0298942_3.mat",
+        "Lactobacillus_fermentum_F_6.mat",
+        "Bifidobacterium_adolescentis_ERR1022366.mat",
+        "Helicobacter_pylori_Hp_P_11b.mat",
+        "Eubacterium_sp_14_2.mat"
+    ],
+    "sum_N_rxns": 12160,
+    "sum_N_mets": 10868,
+    "vmax": 100.0,
+    "km": 0.1,
+    "gifba_solve_time": 91.35921931266785,
+    "solve_ivp_time": 132.499746799469,
+    "gifba_fba_calls": 378,
+    "dfba_fba_calls": 4879
+}

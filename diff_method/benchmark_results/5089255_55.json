@@ -1,0 +1,18 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Vibrio_furnissii_CIP_102972.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Newport_str_CVM_33953.mat",
+        "Bacteroides_nov_ERR2221300.mat",
+        "Staphylococcus_aureus_subsp_aureus_CIGC340D.mat",
+        "Paeniclostridium_sordellii_R26833.mat"
+    ],
+    "sum_N_rxns": 8081,
+    "sum_N_mets": 7371,
+    "vmax": 1000.0,
+    "km": 1.0,
+    "gifba_solve_time": 62.25568985939026,
+    "solve_ivp_time": 5922.663452863693,
+    "gifba_fba_calls": 275,
+    "dfba_fba_calls": 273150
+}

@@ -1,0 +1,20 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Eggerthella_lenta_CC86D54.mat",
+        "Staphylococcus_aureus_M0075.mat",
+        "Acinetobacter_baumannii_AB_TG2026.mat",
+        "Planococcus_massiliensis_DSM_28915.mat",
+        "Weissella_confusa_LBAE_C39_2.mat",
+        "Bacteroides_vulgatus_ERR1022411.mat",
+        "Streptococcus_parauberis_KRS_02109.mat"
+    ],
+    "sum_N_rxns": 9084,
+    "sum_N_mets": 8315,
+    "vmax": 100.0,
+    "km": 0.1,
+    "gifba_solve_time": 55.9013569355011,
+    "solve_ivp_time": 179.42288517951965,
+    "gifba_fba_calls": 273,
+    "dfba_fba_calls": 9226
+}

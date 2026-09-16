@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Streptococcus_pneumoniae_GA44511.mat",
+        "Bacteroides_stercoris_ERR2230162.mat",
+        "Enterobacter_hormaechei_YT3.mat"
+    ],
+    "sum_N_rxns": 4394,
+    "sum_N_mets": 3781,
+    "vmax": 100.0,
+    "km": 0.5,
+    "gifba_solve_time": 36.650707960128784,
+    "solve_ivp_time": 2100.552890777588,
+    "gifba_fba_calls": 108,
+    "dfba_fba_calls": 98538
+}

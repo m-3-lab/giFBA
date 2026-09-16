@@ -1,0 +1,17 @@
+{
+    "N_models": 2,
+    "model_names": [
+        "Streptococcus_agalactiae_GB00219.mat",
+        "Escherichia_coli_P0302293_6.mat"
+    ],
+    "sum_N_rxns": 5379,
+    "sum_N_mets": 4576,
+    "vmax": 500.0,
+    "km": 0.5,
+    "solver_method": "BDF",
+    "gifba_solve_time": 32.28752517700195,
+    "solve_ivp_time": 49.77953314781189,
+    "gifba_fba_calls": 12,
+    "dfba_fba_calls": 1298,
+    "dfba_status": "dfba_complete"
+}

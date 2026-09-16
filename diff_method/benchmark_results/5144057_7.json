@@ -1,0 +1,26 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Enterococcus_faecium_109_A1.mat",
+        "Helicobacter_pylori_GAMchJs136i.mat",
+        "Mycobacterium_abscessus_M115.mat",
+        "Anaerococcus_rubeinfantis_DSM_101186.mat",
+        "Escherichia_coli_93_0055.mat",
+        "Escherichia_coli_96_0427.mat",
+        "Staphylococcus_aureus_M0648.mat",
+        "Bacteroides_fragilis_ERR1203962.mat",
+        "Vibrio_mimicus_SX_4.mat",
+        "Aeromonas_dhakensis_SSU.mat"
+    ],
+    "sum_N_rxns": 18300,
+    "sum_N_mets": 16609,
+    "vmax": 500.0,
+    "km": 1.0,
+    "solver_method": "RK45",
+    "gifba_solve_time": 122.28517699241638,
+    "solve_ivp_time": 10826.426225662231,
+    "gifba_fba_calls": 740,
+    "dfba_fba_calls": 456620,
+    "dfba_status": "Not Started",
+    "status": "dfba_complete"
+}

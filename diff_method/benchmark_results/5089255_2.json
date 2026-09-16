@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Pseudomonas_stutzeri_DSM_4166.mat",
+        "Staphylococcus_aureus_M1450.mat",
+        "Listeria_monocytogenes_FSL_J2_071.mat"
+    ],
+    "sum_N_rxns": 4682,
+    "sum_N_mets": 4108,
+    "vmax": 500.0,
+    "km": 0.5,
+    "gifba_solve_time": 17.023295879364014,
+    "solve_ivp_time": 505.04152250289917,
+    "gifba_fba_calls": 36,
+    "dfba_fba_calls": 32778
+}

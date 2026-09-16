@@ -1,0 +1,25 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Veillonella_sp_oral_taxon_780_str_F0422.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_648904_3_6.mat",
+        "Lachnospiraceae_nov_ERR171283.mat",
+        "Escherichia_coli_HM46.mat",
+        "Acidovorax_caeni_R_24608.mat",
+        "Actinobacillus_pleuropneumoniae_serovar_12_str_1096.mat",
+        "Streptococcus_mutans_TCI_30.mat",
+        "Staphylococcus_aureus_B147830.mat",
+        "Escherichia_coli_MS_119_7.mat",
+        "Escherichia_coli_KTE121.mat"
+    ],
+    "sum_N_rxns": 21059,
+    "sum_N_mets": 18837,
+    "vmax": 100.0,
+    "km": 1.0,
+    "solver_method": "BDF",
+    "gifba_solve_time": 97.35987877845764,
+    "solve_ivp_time": 1374.177323102951,
+    "gifba_fba_calls": 470,
+    "dfba_fba_calls": 49950,
+    "dfba_status": "dfba_complete"
+}

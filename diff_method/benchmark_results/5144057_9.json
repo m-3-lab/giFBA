@@ -1,0 +1,21 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Brevundimonas_subvibrioides_ATCC_15264.mat",
+        "Escherichia_coli_900105_10e.mat",
+        "Escherichia_coli_KTE3.mat",
+        "Streptococcus_pneumoniae_GA43264.mat",
+        "Lactobacillus_dextrinicus_DSM_20335.mat",
+        "Ureaplasma_urealyticum_serovar_9_str_ATCC_33175.mat"
+    ],
+    "sum_N_rxns": 10807,
+    "sum_N_mets": 9627,
+    "vmax": 500.0,
+    "km": 0.1,
+    "solver_method": "BDF",
+    "gifba_solve_time": 126.8698832988739,
+    "solve_ivp_time": null,
+    "gifba_fba_calls": 528,
+    "dfba_fba_calls": 456000,
+    "dfba_status": "dfba_in_progress_456000"
+}

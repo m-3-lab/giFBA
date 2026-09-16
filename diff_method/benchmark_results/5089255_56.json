@@ -1,0 +1,18 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Cronobacter_sakazakii_ES35.mat",
+        "Enterococcus_faecalis_B5035.mat",
+        "Escherichia_coli_B_str_REL606.mat",
+        "Streptococcus_agalactiae_BSU174.mat",
+        "Mucispirillum_schaedleri_ASF457.mat"
+    ],
+    "sum_N_rxns": 10276,
+    "sum_N_mets": 9204,
+    "vmax": 100.0,
+    "km": 0.5,
+    "gifba_solve_time": 89.9125645160675,
+    "solve_ivp_time": 125.43889307975769,
+    "gifba_fba_calls": 200,
+    "dfba_fba_calls": 3330
+}

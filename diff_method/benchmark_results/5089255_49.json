@@ -1,0 +1,20 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Enterococcus_faecium_UAA431.mat",
+        "Haemophilus_parainfluenzae_T3T1.mat",
+        "Blautia_luti_ERR1022471.mat",
+        "Enterococcus_faecium_TX0133a04.mat",
+        "Streptococcus_pneumoniae_2081074.mat",
+        "Streptococcus_mutans_TCI_242.mat",
+        "Escherichia_coli_O157_H7_str_FRIK966.mat"
+    ],
+    "sum_N_rxns": 10578,
+    "sum_N_mets": 9408,
+    "vmax": 500.0,
+    "km": 0.5,
+    "gifba_solve_time": 52.467469453811646,
+    "solve_ivp_time": 107.44277572631836,
+    "gifba_fba_calls": 189,
+    "dfba_fba_calls": 4690
+}

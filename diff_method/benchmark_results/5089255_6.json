@@ -1,0 +1,20 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Turicibacter_sanguinis_ERR1022280.mat",
+        "Clostridioides_difficile_QCD_63q42.mat",
+        "Campylobacter_jejuni_jejuni_M1.mat",
+        "Bacteroides_vulgatus_ERR2230128.mat",
+        "Bacillus_cereus_BDRD_ST196.mat",
+        "Megasphaera_genomosp_type_2.mat",
+        "Staphylococcus_aureus_M1016.mat"
+    ],
+    "sum_N_rxns": 9546,
+    "sum_N_mets": 8744,
+    "vmax": 100.0,
+    "km": 0.5,
+    "gifba_solve_time": 46.17432975769043,
+    "solve_ivp_time": 441.83886766433716,
+    "gifba_fba_calls": 126,
+    "dfba_fba_calls": 22757
+}

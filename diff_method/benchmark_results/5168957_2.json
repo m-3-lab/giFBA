@@ -1,0 +1,21 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Escherichia_coli_O157_H7_str_TW14588.mat",
+        "Pediococcus_acidilactici_ERR2221334.mat",
+        "Proteus_mirabilis_ATCC_29906.mat",
+        "Lachnobacterium_bovis_S1b.mat",
+        "Helicobacter_pylori_NQ392.mat",
+        "Bifidobacterium_adolescentis_ATCC_15703.mat"
+    ],
+    "sum_N_rxns": 9066,
+    "sum_N_mets": 8034,
+    "vmax": 100.0,
+    "km": 0.1,
+    "solver_method": "RK45",
+    "gifba_solve_time": 54.49322986602783,
+    "solve_ivp_time": null,
+    "gifba_fba_calls": 366,
+    "dfba_fba_calls": 906000,
+    "dfba_status": "dfba_in_progress_906000"
+}

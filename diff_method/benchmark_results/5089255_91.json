@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Bacteroides_ovatus_SD_CMC_3f.mat",
+        "Listeria_monocytogenes_4a_L99.mat",
+        "Paeniclostridium_sordellii_R15892.mat"
+    ],
+    "sum_N_rxns": 5283,
+    "sum_N_mets": 4447,
+    "vmax": 100.0,
+    "km": 0.5,
+    "gifba_solve_time": 55.97758650779724,
+    "solve_ivp_time": 504.62067699432373,
+    "gifba_fba_calls": 60,
+    "dfba_fba_calls": 15384
+}

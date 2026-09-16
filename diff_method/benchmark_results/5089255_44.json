@@ -1,0 +1,20 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Lactobacillus_crispatus_FB049_03.mat",
+        "Escherichia_coli_P0299917_9.mat",
+        "Enterococcus_faecalis_Com1.mat",
+        "Bacteroides_sartorii_JCM_17136.mat",
+        "Clostridium_beijerinckii_G117.mat",
+        "Collinsella_aerofaciens_ATCC_25986.mat",
+        "Bacillus_cereus_VD133.mat"
+    ],
+    "sum_N_rxns": 11399,
+    "sum_N_mets": 10368,
+    "vmax": 1000.0,
+    "km": 1.0,
+    "gifba_solve_time": 96.7573823928833,
+    "solve_ivp_time": 120.1661787033081,
+    "gifba_fba_calls": 539,
+    "dfba_fba_calls": 4816
+}

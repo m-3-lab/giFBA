@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Salmonella_enterica_subsp_enterica_serovar_Heidelberg_str_SL486.mat",
+        "Sarcina_nov_ERR2221241.mat",
+        "Prevotella_sp_oral_taxon_473_str_F0040.mat"
+    ],
+    "sum_N_rxns": 4247,
+    "sum_N_mets": 3957,
+    "vmax": 100.0,
+    "km": 0.5,
+    "gifba_solve_time": 26.9558048248291,
+    "solve_ivp_time": 12.86157488822937,
+    "gifba_fba_calls": 162,
+    "dfba_fba_calls": 858
+}

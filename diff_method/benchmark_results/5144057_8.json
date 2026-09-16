@@ -1,0 +1,21 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_648900_1_16.mat",
+        "Clostridium_sp_SS2_1.mat",
+        "Anaerostipes_sp_3_2_56FAA.mat",
+        "Escherichia_coli_UM146.mat",
+        "Bacteroides_vulgatus_ERR1204045.mat",
+        "Campylobacter_coli_YH501.mat"
+    ],
+    "sum_N_rxns": 10110,
+    "sum_N_mets": 8949,
+    "vmax": 1000.0,
+    "km": 0.5,
+    "solver_method": "BDF",
+    "gifba_solve_time": 91.44365787506104,
+    "solve_ivp_time": 122.72185802459717,
+    "gifba_fba_calls": 324,
+    "dfba_fba_calls": 4158,
+    "dfba_status": "dfba_complete"
+}

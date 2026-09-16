@@ -1,0 +1,23 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Bacillus_cereus_03BB108.mat",
+        "Bacillus_cereus_K_5975c.mat",
+        "Streptococcus_gallolyticus_subsp_gallolyticus_TX20005.mat",
+        "Helicobacter_pylori_Hp_M4.mat",
+        "Lachnospiraceae_bacterium_1_1_57FAA.mat",
+        "Turicimonas_muris_YL45.mat",
+        "Klebsiella_pneumoniae_ERR2221118.mat",
+        "Parabacteroides_sp_HGS0025.mat",
+        "Blautia_nov_ERR2230073.mat",
+        "Clostridiales_incertae_sedis_nov_ERR1022334.mat"
+    ],
+    "sum_N_rxns": 13774,
+    "sum_N_mets": 12900,
+    "vmax": 100.0,
+    "km": 0.5,
+    "gifba_solve_time": 487.37282371520996,
+    "solve_ivp_time": 5835.322550773621,
+    "gifba_fba_calls": 7230,
+    "dfba_fba_calls": 407540
+}

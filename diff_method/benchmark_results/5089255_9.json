@@ -1,0 +1,23 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Escherichia_coli_ERR1203920.mat",
+        "Escherichia_coli_P0302293_8.mat",
+        "Haemophilus_influenzae_PittAA.mat",
+        "Enterococcus_faecium_UAA910.mat",
+        "Helicobacter_pylori_N6.mat",
+        "Klebsiella_pneumoniae_UHKPC57.mat",
+        "Enterococcus_faecalis_ERR1204022.mat",
+        "Lactobacillus_acidipiscis_KCTC_13900.mat",
+        "Escherichia_coli_2845350.mat",
+        "Lachnospiraceae_nov_ERR1022433.mat"
+    ],
+    "sum_N_rxns": 18181,
+    "sum_N_mets": 15992,
+    "vmax": 1000.0,
+    "km": 0.1,
+    "gifba_solve_time": 125.23376035690308,
+    "solve_ivp_time": 9304.447393417358,
+    "gifba_fba_calls": 800,
+    "dfba_fba_calls": 409050
+}

@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Veillonellaceae_nov_ERR2221308.mat",
+        "Bacteroides_sp_4_1_36.mat",
+        "Proteus_vulgaris_08MAS1600.mat"
+    ],
+    "sum_N_rxns": 5081,
+    "sum_N_mets": 4421,
+    "vmax": 1000.0,
+    "km": 1.0,
+    "gifba_solve_time": 62.69049334526062,
+    "solve_ivp_time": 78.77731561660767,
+    "gifba_fba_calls": 48,
+    "dfba_fba_calls": 1767
+}

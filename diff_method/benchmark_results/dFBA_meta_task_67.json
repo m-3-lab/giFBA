@@ -1,0 +1,23 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Streptococcus_mutans_DSM_20523.mat",
+        "Lachnoclostridium_nov_ERR1022305.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Newport_str_CVM_21559.mat",
+        "Enterococcus_faecium_E1644.mat",
+        "Enterococcus_faecium_UAA1022.mat",
+        "Actinomyces_sp_HPA0247.mat",
+        "Bacillus_cereus_VD045.mat",
+        "Rodentibacter_pneumotropicus_DSM_21403.mat",
+        "Cutibacterium_acnes_HL056PA1.mat",
+        "Helicobacter_pylori_Hp_H_44.mat"
+    ],
+    "sum_N_rxns": 14808,
+    "sum_N_mets": 13740,
+    "vmax": 100.0,
+    "km": 0.5,
+    "gifba_solve_time": 164.63070559501648,
+    "solve_ivp_time": 380.22703671455383,
+    "gifba_fba_calls": 1710,
+    "dfba_fba_calls": 19540
+}

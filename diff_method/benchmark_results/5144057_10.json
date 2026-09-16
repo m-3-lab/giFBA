@@ -1,0 +1,21 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Shigella_flexneri_K_272.mat",
+        "Escherichia_coli_P0305260_15.mat",
+        "Bacteroides_clarus_YIT_12056.mat",
+        "Helicobacter_pylori_Hp_A_6.mat",
+        "Staphylococcus_aureus_M0927.mat",
+        "Streptococcus_macedonicus_ACA_DC_198.mat"
+    ],
+    "sum_N_rxns": 12151,
+    "sum_N_mets": 10553,
+    "vmax": 100.0,
+    "km": 1.0,
+    "solver_method": "BDF",
+    "gifba_solve_time": null,
+    "solve_ivp_time": null,
+    "gifba_fba_calls": null,
+    "dfba_fba_calls": 0,
+    "dfba_status": "models_loaded"
+}

@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Escherichia_coli_2861200.mat",
+        "Streptococcus_agalactiae_FSL_S3_026.mat",
+        "Alistipes_shahii_WAL_8301.mat"
+    ],
+    "sum_N_rxns": 8229,
+    "sum_N_mets": 7124,
+    "vmax": 500.0,
+    "km": 0.5,
+    "gifba_solve_time": 99.22709774971008,
+    "solve_ivp_time": 5886.239681482315,
+    "gifba_fba_calls": 189,
+    "dfba_fba_calls": 116127
+}

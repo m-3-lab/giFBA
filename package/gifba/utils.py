@@ -67,8 +67,9 @@ def find_min_medium(community=None, models=None, base_media=None, min_growth=Non
 
             model_min_medium = cb.medium.minimal_medium(model_copy, min_growth,minimize_components=True)
 
-            model_min_medium_dict = model_min_medium.to_dict()
-            min_medium.append(pd.Series(model_min_medium_dict))
+            if model_min_medium is not None:
+                model_min_medium_dict = model_min_medium.to_dict()
+                min_medium.append(pd.Series(model_min_medium_dict))
     min_medium.append(pd.Series(base_media)) # add base media to ensure all components are included
     
     min_medium = pd.concat(min_medium, axis=1).fillna(0)

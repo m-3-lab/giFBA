@@ -1,20 +1,20 @@
 ID,Name,Type
-Eubacterium hallii DSM 3353,Eubacterium hallii DSM 3353,Organism
 Bifidobacterium longum infantis ATCC 15697,Bifidobacterium longum infantis ATCC 15697,Organism
-lys_L[e],L-lysine,Metabolite
-4abut[e],4-Aminobutanoate,Metabolite
-glc_D[e],D-glucose,Metabolite
-h2[e],Hydrogen,Metabolite
-h2o[e],Water,Metabolite
-but[e],Butyrate,Metabolite
+Eubacterium hallii DSM 3353,Eubacterium hallii DSM 3353,Organism
+co2[e],Carbon dioxide,Metabolite
 lac_L[e],L-lactate,Metabolite
-glyglu[e],Glycyl-L-glutamate,Metabolite
 ala_L[e],L-alanine,Metabolite
-pi[e],hydrogenphosphate,Metabolite
-leu_L[e],L-leucine,Metabolite
+h2[e],Hydrogen,Metabolite
 ac[e],Acetate,Metabolite
+glc_D[e],D-glucose,Metabolite
+pi[e],hydrogenphosphate,Metabolite
+but[e],Butyrate,Metabolite
+h[e],proton,Metabolite
+4abut[e],4-Aminobutanoate,Metabolite
+glyglu[e],Glycyl-L-glutamate,Metabolite
 hxan[e],Hypoxanthine,Metabolite
 nh4[e],Ammonium,Metabolite
-co2[e],Carbon dioxide,Metabolite
 biomass[c],Produced biomass,Metabolite
-h[e],proton,Metabolite
+h2o[e],Water,Metabolite
+leu_L[e],L-leucine,Metabolite
+lys_L[e],L-lysine,Metabolite

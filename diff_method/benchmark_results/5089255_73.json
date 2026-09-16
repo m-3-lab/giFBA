@@ -1,0 +1,20 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Acinetobacter_baumannii_TCDC_AB0715.mat",
+        "Cutibacterium_acnes_HL053PA2.mat",
+        "Corynebacterium_efficiens_YS_314.mat",
+        "Bacteroides_fragilis_ERR2221134.mat",
+        "Streptococcus_pneumoniae_GA41301.mat",
+        "Vibrio_parahaemolyticus_10329.mat",
+        "Streptococcus_agalactiae_GB00955.mat"
+    ],
+    "sum_N_rxns": 11964,
+    "sum_N_mets": 10583,
+    "vmax": 1000.0,
+    "km": 1.0,
+    "gifba_solve_time": 48.33868932723999,
+    "solve_ivp_time": 3012.0342485904694,
+    "gifba_fba_calls": 287,
+    "dfba_fba_calls": 177527
+}

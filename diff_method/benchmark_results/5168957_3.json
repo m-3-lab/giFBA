@@ -1,0 +1,17 @@
+{
+    "N_models": 2,
+    "model_names": [
+        "Streptococcus_gallolyticus_subsp_gallolyticus_ATCC_BAA_2069.mat",
+        "Paenibacillus_daejeonensis_DSM_15491.mat"
+    ],
+    "sum_N_rxns": 3842,
+    "sum_N_mets": 3291,
+    "vmax": 1000.0,
+    "km": 1.0,
+    "solver_method": "RK45",
+    "gifba_solve_time": 36.51690459251404,
+    "solve_ivp_time": null,
+    "gifba_fba_calls": 22,
+    "dfba_fba_calls": 0,
+    "dfba_status": "gifba_complete"
+}

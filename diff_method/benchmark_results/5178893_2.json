@@ -1,0 +1,17 @@
+{
+    "N_models": 2,
+    "model_names": [
+        "Streptococcus_mutans_SM1.mat",
+        "Enterococcus_faecium_9830091_5.mat"
+    ],
+    "sum_N_rxns": 2416,
+    "sum_N_mets": 2253,
+    "vmax": 100.0,
+    "km": 1.0,
+    "solver_method": "RK45",
+    "gifba_solve_time": 13.262126684188843,
+    "solve_ivp_time": null,
+    "gifba_fba_calls": 60,
+    "dfba_fba_calls": 0,
+    "dfba_status": "gifba_complete"
+}

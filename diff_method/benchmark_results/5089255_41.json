@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Bacteroides_dorei_DSM_17855.mat",
+        "Fusobacterium_russii_ATCC_25533.mat",
+        "Acinetobacter_baumannii_AB_TG2018.mat"
+    ],
+    "sum_N_rxns": 4853,
+    "sum_N_mets": 4312,
+    "vmax": 500.0,
+    "km": 0.5,
+    "gifba_solve_time": 29.475562810897827,
+    "solve_ivp_time": 5473.820004940033,
+    "gifba_fba_calls": 96,
+    "dfba_fba_calls": 267399
+}

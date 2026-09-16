@@ -1,0 +1,20 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Staphylococcus_aureus_PPUKM_261_2009.mat",
+        "Helicobacter_pylori_83.mat",
+        "Bacillus_megaterium_NBRC_15308_ATCC_14581.mat",
+        "Acinetobacter_baumannii_ABNIH26.mat",
+        "Escherichia_coli_O26_H11_str_CVM10030.mat",
+        "Klebsiella_pneumoniae_hvKP1.mat",
+        "Brachyspira_pilosicoli_WesB.mat"
+    ],
+    "sum_N_rxns": 14239,
+    "sum_N_mets": 12579,
+    "vmax": 100.0,
+    "km": 1.0,
+    "gifba_solve_time": 267.8829622268677,
+    "solve_ivp_time": 639.7675580978394,
+    "gifba_fba_calls": 1407,
+    "dfba_fba_calls": 18452
+}

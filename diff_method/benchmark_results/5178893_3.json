@@ -1,0 +1,17 @@
+{
+    "N_models": 2,
+    "model_names": [
+        "Eggerthella_sp_YY7918.mat",
+        "Fusobacterium_nucleatum_subsp_animalis_D11.mat"
+    ],
+    "sum_N_rxns": 2116,
+    "sum_N_mets": 1987,
+    "vmax": 500.0,
+    "km": 1.0,
+    "solver_method": "RK45",
+    "gifba_solve_time": 10.16870379447937,
+    "solve_ivp_time": 297.57394671440125,
+    "gifba_fba_calls": 16,
+    "dfba_fba_calls": 25078,
+    "dfba_status": "dfba_complete"
+}

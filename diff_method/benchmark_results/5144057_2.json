@@ -1,0 +1,18 @@
+{
+    "N_models": 2,
+    "model_names": [
+        "Bacteroides_thetaiotaomicron_ERR2221264.mat",
+        "Lactobacillus_rhamnosus_R0011.mat"
+    ],
+    "sum_N_rxns": 3820,
+    "sum_N_mets": 3406,
+    "vmax": 1000.0,
+    "km": 1.0,
+    "solver_method": "RK45",
+    "gifba_solve_time": 24.367125272750854,
+    "solve_ivp_time": null,
+    "gifba_fba_calls": 24,
+    "dfba_fba_calls": 4000,
+    "dfba_status": "Not Started",
+    "status": "dfba_in_progress_4000"
+}

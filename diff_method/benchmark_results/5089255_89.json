@@ -1,0 +1,23 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Mycobacterium_abscessus_4S_0116_S.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Agona_str_64_H_00.mat",
+        "Prevotella_amnii_CRIS_21A_A.mat",
+        "Ruminococcaceae_nov_ERR1022336.mat",
+        "Enterococcus_faecalis_UAA903.mat",
+        "Staphylococcus_aureus_M1142.mat",
+        "uncultured_Blautia_sp_ERR1022472.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Agona_str_32_A_00.mat",
+        "Noviherbaspirillum_massiliense_JC206.mat",
+        "Mycobacterium_avium_subsp_avium_ATCC_25291.mat"
+    ],
+    "sum_N_rxns": 14280,
+    "sum_N_mets": 12886,
+    "vmax": 100.0,
+    "km": 1.0,
+    "gifba_solve_time": 77.5885579586029,
+    "solve_ivp_time": 3321.0367550849915,
+    "gifba_fba_calls": 410,
+    "dfba_fba_calls": 169880
+}

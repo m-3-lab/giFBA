@@ -1,0 +1,23 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Escherichia_coli_DEC7B.mat",
+        "Klebsiella_michiganensis_MGH87.mat",
+        "Staphylococcus_aureus_M0237.mat",
+        "Lactococcus_garvieae_Tac2.mat",
+        "Proteus_mirabilis_C05028.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_PT23.mat",
+        "Enterococcus_faecalis_B4568.mat",
+        "Streptococcus_agalactiae_CCUG_28551.mat",
+        "Acinetobacter_baumannii_NIPH_1362.mat",
+        "Streptococcus_gallolyticus_UCN34.mat"
+    ],
+    "sum_N_rxns": 18803,
+    "sum_N_mets": 16852,
+    "vmax": 100.0,
+    "km": 1.0,
+    "gifba_solve_time": 150.41081428527832,
+    "solve_ivp_time": 8460.867282867432,
+    "gifba_fba_calls": 700,
+    "dfba_fba_calls": 308060
+}

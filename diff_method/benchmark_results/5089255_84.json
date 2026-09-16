@@ -1,0 +1,20 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Bacillus_cereus_BAG1X1_3.mat",
+        "Bacteroides_pyogenes_JCM_6292.mat",
+        "Prevotella_maculosa_DSM_19339_JCM_15638.mat",
+        "Pseudoflavonifractor_capillosus_strain_ATCC_29799.mat",
+        "Streptococcus_mitis_SK1073.mat",
+        "Escherichia_coli_KTE169.mat",
+        "Escherichia_coli_ATCC_25922.mat"
+    ],
+    "sum_N_rxns": 13457,
+    "sum_N_mets": 12255,
+    "vmax": 100.0,
+    "km": 1.0,
+    "gifba_solve_time": 66.6228711605072,
+    "solve_ivp_time": 638.0445482730865,
+    "gifba_fba_calls": 280,
+    "dfba_fba_calls": 27237
+}

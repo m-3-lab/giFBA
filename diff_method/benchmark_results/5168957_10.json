@@ -1,0 +1,21 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Lactobacillus_vaccinostercus_DSM_20634.mat",
+        "Klebsiella_pneumoniae_646_1568.mat",
+        "Enterococcus_faecium_TX0133B.mat",
+        "Dermacoccus_nishinomiyaensis_DSM_20448.mat",
+        "Bacteroides_dorei_ERR2230082.mat",
+        "Blautia_nov_ERR1203955.mat"
+    ],
+    "sum_N_rxns": 8672,
+    "sum_N_mets": 7995,
+    "vmax": 500.0,
+    "km": 1.0,
+    "solver_method": "BDF",
+    "gifba_solve_time": 62.63024950027466,
+    "solve_ivp_time": 81.1023108959198,
+    "gifba_fba_calls": 252,
+    "dfba_fba_calls": 3804,
+    "dfba_status": "dfba_complete"
+}

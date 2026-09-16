@@ -1,0 +1,17 @@
+{
+    "N_models": 2,
+    "model_names": [
+        "Escherichia_coli_KTE227.mat",
+        "Escherichia_coli_E101.mat"
+    ],
+    "sum_N_rxns": 7149,
+    "sum_N_mets": 6227,
+    "vmax": 500.0,
+    "km": 1.0,
+    "solver_method": "BDF",
+    "gifba_solve_time": 31.29461145401001,
+    "solve_ivp_time": 57.726901054382324,
+    "gifba_fba_calls": 16,
+    "dfba_fba_calls": 1256,
+    "dfba_status": "dfba_complete"
+}

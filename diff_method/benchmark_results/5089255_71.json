@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Bordetella_hinzii_F582.mat",
+        "Escherichia_coli_FRIK1996.mat",
+        "Lactobacillus_acidophilus_ATCC_4796.mat"
+    ],
+    "sum_N_rxns": 5881,
+    "sum_N_mets": 5232,
+    "vmax": 500.0,
+    "km": 1.0,
+    "gifba_solve_time": 64.1352801322937,
+    "solve_ivp_time": 9366.049260854721,
+    "gifba_fba_calls": 105,
+    "dfba_fba_calls": 270930
+}

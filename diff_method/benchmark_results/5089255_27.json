@@ -1,0 +1,18 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Salmonella_enterica_subsp_enterica_serovar_Heidelberg_str_CFSAN00328.mat",
+        "Selenomonas_noxia_F0398.mat",
+        "Escherichia_coli_DEC2B.mat",
+        "Aeromonas_hydrophila_SNUFPC_A8.mat",
+        "Streptococcus_agalactiae_GB00247.mat"
+    ],
+    "sum_N_rxns": 10820,
+    "sum_N_mets": 9578,
+    "vmax": 100.0,
+    "km": 1.0,
+    "gifba_solve_time": 158.65314650535583,
+    "solve_ivp_time": 8062.482661962509,
+    "gifba_fba_calls": 300,
+    "dfba_fba_calls": 157390
+}

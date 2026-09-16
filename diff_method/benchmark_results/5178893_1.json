@@ -1,0 +1,21 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Streptococcus_pneumoniae_BS457.mat",
+        "Paeniclostridium_sordellii_SSCC18838.mat",
+        "Helicobacter_pylori_Hp_A_5.mat",
+        "Intestinimonas_butyriciproducens_SRB_521_5_I.mat",
+        "Escherichia_coli_P0298942_10.mat",
+        "Subdoligranulum_sp_4_3_54A2FAA.mat"
+    ],
+    "sum_N_rxns": 8648,
+    "sum_N_mets": 7787,
+    "vmax": 500.0,
+    "km": 1.0,
+    "solver_method": "RK45",
+    "gifba_solve_time": 75.40925812721252,
+    "solve_ivp_time": null,
+    "gifba_fba_calls": 522,
+    "dfba_fba_calls": 141000,
+    "dfba_status": "dfba_in_progress_141000"
+}

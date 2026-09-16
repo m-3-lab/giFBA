@@ -1,0 +1,25 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Enterococcus_faecalis_B3053.mat",
+        "Pseudomonas_putida_SJTE_1.mat",
+        "Staphylococcus_aureus_subsp_aureus_IS_3.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Agona_str_07_O_05.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_53_407.mat",
+        "Enterococcus_faecalis_B2277.mat",
+        "Escherichia_coli_O157_H7_str_1044.mat",
+        "Clostridium_spiroforme_DSM_1552.mat",
+        "Escherichia_coli_P0299438_7.mat",
+        "Fusobacterium_massiliense_DSM_103085.mat"
+    ],
+    "sum_N_rxns": 18909,
+    "sum_N_mets": 16569,
+    "vmax": 100.0,
+    "km": 1.0,
+    "solver_method": "RK45",
+    "gifba_solve_time": 348.2389221191406,
+    "solve_ivp_time": null,
+    "gifba_fba_calls": 1180,
+    "dfba_fba_calls": 309000,
+    "dfba_status": "dfba_in_progress_309000"
+}

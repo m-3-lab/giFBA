@@ -1,0 +1,25 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Enterococcus_faecium_VAN_327.mat",
+        "Escherichia_coli_KTE25.mat",
+        "Neisseria_meningitidis_2842STDY5881431.mat",
+        "Staphylococcus_aureus_M0280.mat",
+        "Bifidobacterium_ruminantium_DSM_6489.mat",
+        "Enterococcus_faecalis_Com7.mat",
+        "Streptococcus_pneumoniae_2070531.mat",
+        "Staphylococcus_aureus_subsp_aureus_VRS10.mat",
+        "Enterococcus_faecalis_TX4000.mat",
+        "Terrisporobacter_mayombei_ERR2221147.mat"
+    ],
+    "sum_N_rxns": 14665,
+    "sum_N_mets": 12930,
+    "vmax": 100.0,
+    "km": 1.0,
+    "solver_method": "BDF",
+    "gifba_solve_time": 56.828959703445435,
+    "solve_ivp_time": 421.39957451820374,
+    "gifba_fba_calls": 200,
+    "dfba_fba_calls": 19720,
+    "dfba_status": "dfba_complete"
+}

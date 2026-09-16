@@ -1,0 +1,18 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Streptococcus_mutans_S1B.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Agona_str_50_E_08.mat",
+        "Blautia_nov_ERR2221279.mat",
+        "Campylobacter_coli_90_3.mat",
+        "Actinobacillus_pleuropneumoniae_serovar_2_str_S1536.mat"
+    ],
+    "sum_N_rxns": 7962,
+    "sum_N_mets": 7578,
+    "vmax": 100.0,
+    "km": 1.0,
+    "gifba_solve_time": 92.7120132446289,
+    "solve_ivp_time": 1919.1314358711243,
+    "gifba_fba_calls": 875,
+    "dfba_fba_calls": 110260
+}

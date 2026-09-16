@@ -1,0 +1,18 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Salmonella_enterica_subsp_enterica_serovar_Montevideo_str_19N.mat",
+        "Streptococcus_salivarius_ERR2221359.mat",
+        "Staphylococcus_aureus_subsp_aureus_VRS3a.mat",
+        "Pseudomonas_fluorescens_Q2_87.mat",
+        "Prevotella_veroralis_F0319.mat"
+    ],
+    "sum_N_rxns": 8997,
+    "sum_N_mets": 7999,
+    "vmax": 1000.0,
+    "km": 0.5,
+    "gifba_solve_time": 87.07569193840027,
+    "solve_ivp_time": 4625.623995780945,
+    "gifba_fba_calls": 255,
+    "dfba_fba_calls": 153885
+}

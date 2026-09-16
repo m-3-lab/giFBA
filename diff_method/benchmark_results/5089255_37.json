@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Staphylococcus_aureus_M0144.mat",
+        "Streptococcus_pneumoniae_4075_00.mat",
+        "Lactobacillus_amylovorus_30SC.mat"
+    ],
+    "sum_N_rxns": 3782,
+    "sum_N_mets": 3407,
+    "vmax": 100.0,
+    "km": 0.1,
+    "gifba_solve_time": 14.856723546981812,
+    "solve_ivp_time": 13.794580936431885,
+    "gifba_fba_calls": 51,
+    "dfba_fba_calls": 891
+}

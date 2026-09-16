@@ -1,0 +1,20 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Clostridium_saccharoperbutylacetonicum_N1_4_HMT.mat",
+        "Acinetobacter_baumannii_AC30.mat",
+        "Enterococcus_raffinosus_DSM_5633.mat",
+        "Actinobacillus_pleuropneumoniae_serovar_2_str_4226.mat",
+        "Bacteroides_fragilis_str_3397_T10.mat",
+        "Enterococcus_faecalis_T7.mat",
+        "Staphylococcus_simulans_ACS_120_V_Sch1.mat"
+    ],
+    "sum_N_rxns": 11345,
+    "sum_N_mets": 9868,
+    "vmax": 100.0,
+    "km": 0.1,
+    "gifba_solve_time": 49.39733839035034,
+    "solve_ivp_time": 71.03764867782593,
+    "gifba_fba_calls": 385,
+    "dfba_fba_calls": 4669
+}

@@ -1,0 +1,23 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Staphylococcus_aureus_subsp_aureus_ATCC_51811.mat",
+        "Escherichia_coli_H489.mat",
+        "Mobilicoccus_massiliensis_DSM_29065.mat",
+        "Helicobacter_pylori_Hp_H_5b.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_CVM_N202.mat",
+        "Treponema_vincentii_F0403.mat",
+        "Acinetobacter_baumannii_1656_2.mat",
+        "Streptococcus_pneumoniae_MNZ11b.mat",
+        "Streptococcus_agalactiae_PR06.mat",
+        "Staphylococcus_epidermidis_NIHLM008.mat"
+    ],
+    "sum_N_rxns": 17022,
+    "sum_N_mets": 15225,
+    "vmax": 100.0,
+    "km": 0.5,
+    "gifba_solve_time": 126.01734590530396,
+    "solve_ivp_time": 987.1348626613617,
+    "gifba_fba_calls": 480,
+    "dfba_fba_calls": 33350
+}

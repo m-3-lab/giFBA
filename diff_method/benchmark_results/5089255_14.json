@@ -1,0 +1,16 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Propionibacterium_namnetense_SK182B_JCVI.mat",
+        "Enterococcus_faecium_E3548.mat",
+        "Bacteroides_nov_ERR2221137.mat"
+    ],
+    "sum_N_rxns": 4209,
+    "sum_N_mets": 3742,
+    "vmax": 1000.0,
+    "km": 1.0,
+    "gifba_solve_time": 34.78846287727356,
+    "solve_ivp_time": 52.059165716171265,
+    "gifba_fba_calls": 66,
+    "dfba_fba_calls": 1836
+}

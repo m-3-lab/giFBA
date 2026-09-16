@@ -1,0 +1,18 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Escherichia_albertii_KF1.mat",
+        "Geobacillus_stearothermophilus_ATCC_7953.mat",
+        "Lactobacillus_delbrueckii_subsp_delbrueckii_DSM_20074.mat",
+        "Lactobacillus_nov_ERR2221384.mat",
+        "Enterobacter_nov_ERR2221289.mat"
+    ],
+    "sum_N_rxns": 6965,
+    "sum_N_mets": 6010,
+    "vmax": 1000.0,
+    "km": 1.0,
+    "gifba_solve_time": 52.247225761413574,
+    "solve_ivp_time": 2252.1152873039246,
+    "gifba_fba_calls": 255,
+    "dfba_fba_calls": 121485
+}

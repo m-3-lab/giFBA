@@ -1,0 +1,18 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Clostridium_sp_7_2_43FAA.mat",
+        "Escherichia_coli_PA2.mat",
+        "Escherichia_coli_ABU_83972.mat",
+        "Listeria_monocytogenes_08_5923.mat",
+        "Clostridium_massilioamazoniensis_ND2.mat"
+    ],
+    "sum_N_rxns": 11546,
+    "sum_N_mets": 9996,
+    "vmax": 500.0,
+    "km": 1.0,
+    "gifba_solve_time": 52.73245620727539,
+    "solve_ivp_time": 1736.158445596695,
+    "gifba_fba_calls": 120,
+    "dfba_fba_calls": 54760
+}

@@ -1,0 +1,18 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Staphylococcus_aureus_M0029.mat",
+        "Microbacterium_paraoxydans_77MFTsu3_2.mat",
+        "Bacteroides_vulgatus_ERR2221272.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_648905_5_18.mat",
+        "Burkholderia_cepacia_LO6.mat"
+    ],
+    "sum_N_rxns": 8105,
+    "sum_N_mets": 7131,
+    "vmax": 100.0,
+    "km": 0.5,
+    "gifba_solve_time": 133.5778203010559,
+    "solve_ivp_time": 187.07899475097656,
+    "gifba_fba_calls": 1120,
+    "dfba_fba_calls": 9870
+}
