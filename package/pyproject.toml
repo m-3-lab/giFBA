@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gifba"
-version = "0.1.0"
+version = "0.2.0"
 description = "A set of tools and helpers for running iterative interaction flux balance analysis with COBRApy models"
 authors = [
     { name="M-3-Lab", email="your.email@example.com" }
