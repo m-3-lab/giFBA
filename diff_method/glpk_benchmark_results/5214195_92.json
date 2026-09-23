@@ -1,0 +1,30 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Escherichia_coli_DEC3E.mat",
+        "Clostridium_sp_ASF356.mat",
+        "Acinetobacter_baumannii_NIPH_1362.mat",
+        "Sarcina_nov_ERR1204023.mat",
+        "Faecalibacterium_prausnitzii_ERR2221188.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Agona_str_45_E_09.mat",
+        "Helicobacter_pylori_Hp_H_44.mat"
+    ],
+    "sum_N_rxns": 11794,
+    "sum_N_mets": 10789,
+    "vmax": 628.0291441834253,
+    "km": 0.11233240329780274,
+    "solver_method": "RK45",
+    "early_stop_window": 21,
+    "early_stop_tol": 3.5111917342151277e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 66.36838984489441,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 539,
+    "dfba_pfba_calls": 311318,
+    "dfba_status": "dfba_in_progress_308000",
+    "error": "ValueError: The lower bound must be less than or equal to the upper bound (4176.615910126925 <= 1000.0).",
+    "status": "failed",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null,
+    "traceback": "Traceback (most recent call last):\n  File \"/gpfs1/home/r/d/rdsiegel/giFBA/dFBA_runs/VACC_dfba.py\", line 380, in main\n    model.reactions.get_by_id(ex_id).lower_bound = -uptake_limit\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/context.py\", line 111, in wrapper\n    func(self, new_value)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/core/reaction.py\", line 343, in lower_bound\n    self._check_bounds(value, self._upper_bound)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/core/reaction.py\", line 266, in _check_bounds\n    raise ValueError(\nValueError: The lower bound must be less than or equal to the upper bound (4176.615910126925 <= 1000.0).\n"
+}

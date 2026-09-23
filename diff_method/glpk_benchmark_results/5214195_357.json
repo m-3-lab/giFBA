@@ -1,0 +1,31 @@
+{
+    "N_models": 9,
+    "model_names": [
+        "Streptococcus_pneumoniae_Taiwan19F_14.mat",
+        "Yersinia_kristensenii_ATCC_33638.mat",
+        "Escherichia_coli_KTE181.mat",
+        "Escherichia_coli_99_0741.mat",
+        "Mycobacterium_avium_subsp_avium_ATCC_25291.mat",
+        "Streptococcus_agalactiae_FSL_S3_102.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_CDC_2010K_1559.mat",
+        "Moraxella_catarrhalis_7169.mat",
+        "Streptococcus_salivarius_K12.mat"
+    ],
+    "sum_N_rxns": 18449,
+    "sum_N_mets": 16269,
+    "vmax": 977.0099572992257,
+    "km": 0.4750810162102797,
+    "solver_method": "RK45",
+    "early_stop_window": 24,
+    "early_stop_tol": 3.5111917342151277e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 247.57341265678406,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 1044,
+    "dfba_pfba_calls": 261000,
+    "dfba_status": "dfba_in_progress_261000",
+    "error": null,
+    "status": "dfba_in_progress_261000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

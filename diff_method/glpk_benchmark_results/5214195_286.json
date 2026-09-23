@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Ruminococcus_sp_5_1_39BFAA.mat",
+        "Bifidobacterium_breve_12L.mat",
+        "Streptococcus_mutans_TCI_278.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Agona_str_67_H_09.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_CDC_2010K_1010.mat"
+    ],
+    "sum_N_rxns": 7780,
+    "sum_N_mets": 6982,
+    "vmax": 284.8035868435802,
+    "km": 0.22051307399030456,
+    "solver_method": "RK45",
+    "early_stop_window": 17,
+    "early_stop_tol": 2.477076355991714e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 42.878129959106445,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 100,
+    "dfba_pfba_calls": 377500,
+    "dfba_status": "dfba_in_progress_377500",
+    "error": null,
+    "status": "dfba_in_progress_377500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

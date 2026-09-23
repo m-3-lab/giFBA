@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Enterococcus_faecalis_ERR2221346.mat",
+        "Staphylococcus_aureus_subsp_aureus_COL.mat",
+        "Bifidobacterium_adolescentis_ERR2221322.mat",
+        "Acinetobacter_calcoaceticus_TG19588.mat",
+        "Bacillus_simplex_ERR2221243.mat",
+        "Clostridium_perfringens_C_str_JGS1495.mat"
+    ],
+    "sum_N_rxns": 9539,
+    "sum_N_mets": 8519,
+    "vmax": 443.0621457583882,
+    "km": 0.33516026509388425,
+    "solver_method": "RK45",
+    "early_stop_window": 6,
+    "early_stop_tol": 7.56463327554629e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 46.853676557540894,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 180,
+    "dfba_pfba_calls": 450000,
+    "dfba_status": "dfba_in_progress_450000",
+    "error": null,
+    "status": "dfba_in_progress_450000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

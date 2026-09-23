@@ -1,0 +1,25 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Enterococcus_gallinarum_ERR2221347.mat",
+        "Neisseria_subflava_NJ9703.mat",
+        "Staphylococcus_aureus_subsp_aureus_DSM_20231.mat"
+    ],
+    "sum_N_rxns": 3858,
+    "sum_N_mets": 3379,
+    "vmax": 774.263682681127,
+    "km": 0.43287612810830595,
+    "solver_method": "RK45",
+    "early_stop_window": 8,
+    "early_stop_tol": 4.641588833612782e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 20.19929265975952,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 117,
+    "dfba_pfba_calls": 583500,
+    "dfba_status": "dfba_in_progress_583500",
+    "error": null,
+    "status": "dfba_in_progress_583500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

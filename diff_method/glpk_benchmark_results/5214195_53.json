@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Eubacterium_rectale_ERR2230060.mat",
+        "Bacteroides_xylanisolvens_SD_CC_1b.mat",
+        "Escherichia_coli_2749250.mat",
+        "Escherichia_coli_O157_H7_str_2149.mat",
+        "Enterococcus_faecium_E4215.mat"
+    ],
+    "sum_N_rxns": 10409,
+    "sum_N_mets": 8830,
+    "vmax": 849.7534359086446,
+    "km": 0.5462277217684343,
+    "solver_method": "RK45",
+    "early_stop_window": 7,
+    "early_stop_tol": 2.848035868435805e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 49.0300829410553,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 115,
+    "dfba_pfba_calls": 302500,
+    "dfba_status": "dfba_in_progress_302500",
+    "error": null,
+    "status": "dfba_in_progress_302500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,32 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Streptococcus_mutans_SA38.mat",
+        "Klebsiella_michiganensis_MGH87.mat",
+        "Christensenella_minuta_DSM_22607.mat",
+        "Bacteroides_sp_2_1_33B.mat",
+        "Enterococcus_faecalis_ERV31.mat",
+        "Comamonas_testosteroni_CNB_2.mat",
+        "Pseudomonas_monteilii_NBRC_103158.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Thompson_str_2010K_1863.mat",
+        "Escherichia_coli_P0299438_8.mat",
+        "Staphylococcus_aureus_M0493.mat"
+    ],
+    "sum_N_rxns": 17918,
+    "sum_N_mets": 15530,
+    "vmax": 394.4206059437656,
+    "km": 0.1,
+    "solver_method": "RK45",
+    "early_stop_window": 23,
+    "early_stop_tol": 1.232846739442066e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 320.35798025131226,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 1770,
+    "dfba_pfba_calls": 305000,
+    "dfba_status": "dfba_in_progress_305000",
+    "error": null,
+    "status": "dfba_in_progress_305000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

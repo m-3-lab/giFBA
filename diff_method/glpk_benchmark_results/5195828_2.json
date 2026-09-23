@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Helicobacter_pylori_NQ4053.mat",
+        "Capnocytophaga_sp_CM59.mat",
+        "Streptococcus_agalactiae_MRI_Z1_211.mat",
+        "Clostridium_perfringens_SM101.mat",
+        "Lactobacillus_rhamnosus_LRHMDP2.mat"
+    ],
+    "sum_N_rxns": 8038,
+    "sum_N_mets": 7425,
+    "vmax": 166.81005372000593,
+    "km": 0.10476157527896648,
+    "solver_method": "RK45",
+    "early_stop_window": 4,
+    "early_stop_tol": 1.747528400007683e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 46.449164152145386,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 240,
+    "dfba_pfba_calls": 492500,
+    "dfba_status": "dfba_in_progress_492500",
+    "error": null,
+    "status": "dfba_in_progress_492500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

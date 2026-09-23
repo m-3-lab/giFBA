@@ -1,0 +1,29 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Bacillus_cereus_HuB13_1.mat",
+        "Enterococcus_faecalis_T20.mat",
+        "Barnesiella_intestinihominis_ERR2230085.mat",
+        "Extibacter_muris_DSM_28560.mat",
+        "Actinomyces_sp_ph3.mat",
+        "Escherichia_coli_ATCC_25922.mat",
+        "Staphylococcus_aureus_M0994.mat"
+    ],
+    "sum_N_rxns": 11163,
+    "sum_N_mets": 9962,
+    "vmax": 135.30477745798075,
+    "km": 0.1384886371393873,
+    "solver_method": "RK45",
+    "early_stop_window": 14,
+    "early_stop_tol": 7.564633275546291e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 143.69878959655762,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 623,
+    "dfba_pfba_calls": 329000,
+    "dfba_status": "dfba_in_progress_329000",
+    "error": null,
+    "status": "dfba_in_progress_329000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

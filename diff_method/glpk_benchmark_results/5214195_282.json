@@ -1,0 +1,25 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Lactobacillus_delbrueckii_subsp_bulgaricus_ATCC_11842.mat",
+        "Campylobacter_fetus_subsp_fetus_82_40.mat",
+        "Escherichia_coli_KTE153.mat"
+    ],
+    "sum_N_rxns": 5737,
+    "sum_N_mets": 5099,
+    "vmax": 585.7020818056667,
+    "km": 0.19179102616724888,
+    "solver_method": "RK45",
+    "early_stop_window": 21,
+    "early_stop_tol": 2.848035868435805e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 58.02705407142639,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 72,
+    "dfba_pfba_calls": 6000,
+    "dfba_status": "dfba_in_progress_6000",
+    "error": null,
+    "status": "dfba_in_progress_6000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

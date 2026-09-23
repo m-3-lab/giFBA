@@ -1,0 +1,24 @@
+{
+    "N_models": 2,
+    "model_names": [
+        "Enterococcus_faecalis_TX0411.mat",
+        "Lactobacillus_hilgardii_ATCC_8290.mat"
+    ],
+    "sum_N_rxns": 2739,
+    "sum_N_mets": 2555,
+    "vmax": 231.01297000831605,
+    "km": 0.2848035868435802,
+    "solver_method": "RK45",
+    "early_stop_window": 23,
+    "early_stop_tol": 1.747528400007683e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 21.822620630264282,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 42,
+    "dfba_pfba_calls": 407000,
+    "dfba_status": "dfba_in_progress_407000",
+    "error": null,
+    "status": "dfba_in_progress_407000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,27 @@
+{
+    "N_models": 4,
+    "model_names": [
+        "Escherichia_coli_DEC6D.mat",
+        "Campylobacter_coli_1957.mat",
+        "Erysipelatoclostridium_ramosum_ERR2221150.mat",
+        "Cutibacterium_acnes_PRP_38.mat"
+    ],
+    "sum_N_rxns": 8379,
+    "sum_N_mets": 7605,
+    "vmax": 559.0810182512223,
+    "km": 0.12328467394420663,
+    "solver_method": "RK45",
+    "early_stop_window": 19,
+    "early_stop_tol": 5.722367659350221e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 65.68417453765869,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 48,
+    "dfba_pfba_calls": 31544,
+    "dfba_status": "dfba_in_progress_30000",
+    "error": "Infeasible: None (infeasible).",
+    "status": "failed",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null,
+    "traceback": "Traceback (most recent call last):\n  File \"/gpfs1/home/r/d/rdsiegel/giFBA/dFBA_runs/VACC_dfba.py\", line 382, in main\n    solution = cb.flux_analysis.parsimonious.pfba(model)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/flux_analysis/parsimonious.py\", line 94, in pfba\n    add_pfba(m, objective=objective, fraction_of_optimum=fraction_of_optimum)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/flux_analysis/parsimonious.py\", line 132, in add_pfba\n    sutil.fix_objective_as_constraint(model, fraction=fraction_of_optimum)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/solver.py\", line 513, in fix_objective_as_constraint\n    bound = model.slim_optimize(error_value=None) * fraction\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/core/model.py\", line 1202, in slim_optimize\n    assert_optimal(self, message)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/solver.py\", line 590, in assert_optimal\n    raise exception_cls(f\"{message} ({status}).\")\ncobra.exceptions.Infeasible: None (infeasible).\n"
+}

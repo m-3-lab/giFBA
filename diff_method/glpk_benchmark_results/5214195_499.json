@@ -1,0 +1,26 @@
+{
+    "N_models": 4,
+    "model_names": [
+        "Enterococcus_faecalis_B1874.mat",
+        "Enterococcus_faecalis_SF24413.mat",
+        "Atopobium_vaginae_CMW7778A.mat",
+        "Veillonellaceae_nov_ERR2221308.mat"
+    ],
+    "sum_N_rxns": 4217,
+    "sum_N_mets": 3836,
+    "vmax": 305.3855508833416,
+    "km": 0.29836472402833397,
+    "solver_method": "RK45",
+    "early_stop_window": 29,
+    "early_stop_tol": 1.2328467394420658e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 30.53801655769348,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 180,
+    "dfba_pfba_calls": 590000,
+    "dfba_status": "dfba_in_progress_590000",
+    "error": null,
+    "status": "dfba_in_progress_590000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

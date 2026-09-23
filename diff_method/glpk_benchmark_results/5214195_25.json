@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Salmonella_enterica_subsp_enterica_serovar_Typhi_str_CT18.mat",
+        "Escherichia_coli_KTE177.mat",
+        "Escherichia_coli_KTE104.mat",
+        "Lactobacillus_jensenii_269_3.mat",
+        "Streptococcus_pneumoniae_GA54644.mat"
+    ],
+    "sum_N_rxns": 12503,
+    "sum_N_mets": 11004,
+    "vmax": 343.04692863149194,
+    "km": 0.1592282793341092,
+    "solver_method": "RK45",
+    "early_stop_window": 23,
+    "early_stop_tol": 1.6297508346206435e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 72.59149551391602,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 205,
+    "dfba_pfba_calls": 245000,
+    "dfba_status": "dfba_in_progress_245000",
+    "error": null,
+    "status": "dfba_in_progress_245000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

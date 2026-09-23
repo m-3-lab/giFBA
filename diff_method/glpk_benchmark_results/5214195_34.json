@@ -1,0 +1,25 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Staphylococcus_aureus_subsp_aureus_CIGC345D.mat",
+        "Escherichia_coli_2860650.mat",
+        "Brevibacterium_linens_BL2.mat"
+    ],
+    "sum_N_rxns": 6384,
+    "sum_N_mets": 5508,
+    "vmax": 657.9332246575682,
+    "km": 0.24201282647943823,
+    "solver_method": "RK45",
+    "early_stop_window": 13,
+    "early_stop_tol": 2.1544346900318867e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 54.14564347267151,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 159,
+    "dfba_pfba_calls": 295500,
+    "dfba_status": "dfba_in_progress_295500",
+    "error": null,
+    "status": "dfba_in_progress_295500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

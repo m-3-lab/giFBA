@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Borkfalkia_ceftriaxoniphila_HDS1380.mat",
+        "Anaerotignum_lactatifermentans_DSM_14214.mat",
+        "Coprococcus_comes_ERR1022354.mat",
+        "Enterobacter_asburiae_LF7a.mat",
+        "Dysgonomonas_mossii_DSM_22836.mat"
+    ],
+    "sum_N_rxns": 6973,
+    "sum_N_mets": 6165,
+    "vmax": 830.2175681319744,
+    "km": 0.8302175681319746,
+    "solver_method": "RK45",
+    "early_stop_window": 16,
+    "early_stop_tol": 1.6297508346206435e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 53.642359495162964,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 130,
+    "dfba_pfba_calls": 400000,
+    "dfba_status": "dfba_in_progress_400000",
+    "error": null,
+    "status": "dfba_in_progress_400000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,27 @@
+{
+    "N_models": 4,
+    "model_names": [
+        "Coprococcus_eutactus_ATCC_27759.mat",
+        "Bacteroides_propionicifaciens_DSM_19291_JCM_14649.mat",
+        "Enterococcus_faecalis_62.mat",
+        "Escherichia_coli_EC1847.mat"
+    ],
+    "sum_N_rxns": 7004,
+    "sum_N_mets": 6253,
+    "vmax": 932.60334688322,
+    "km": 0.9111627561154894,
+    "solver_method": "BDF",
+    "early_stop_window": 24,
+    "early_stop_tol": 1.5199110829529332e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 76.01547241210938,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 380,
+    "dfba_pfba_calls": 71780,
+    "dfba_status": "dfba_in_progress_70000",
+    "error": "Infeasible: None (infeasible).",
+    "status": "failed",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null,
+    "traceback": "Traceback (most recent call last):\n  File \"/gpfs1/home/r/d/rdsiegel/giFBA/dFBA_runs/VACC_dfba.py\", line 382, in main\n    solution = cb.flux_analysis.parsimonious.pfba(model)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/flux_analysis/parsimonious.py\", line 94, in pfba\n    add_pfba(m, objective=objective, fraction_of_optimum=fraction_of_optimum)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/flux_analysis/parsimonious.py\", line 132, in add_pfba\n    sutil.fix_objective_as_constraint(model, fraction=fraction_of_optimum)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/solver.py\", line 513, in fix_objective_as_constraint\n    bound = model.slim_optimize(error_value=None) * fraction\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/core/model.py\", line 1202, in slim_optimize\n    assert_optimal(self, message)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/solver.py\", line 590, in assert_optimal\n    raise exception_cls(f\"{message} ({status}).\")\ncobra.exceptions.Infeasible: None (infeasible).\n"
+}

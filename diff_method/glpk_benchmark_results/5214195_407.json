@@ -1,0 +1,24 @@
+{
+    "N_models": 2,
+    "model_names": [
+        "Escherichia_coli_E110019.mat",
+        "Enterococcus_faecalis_ERV31.mat"
+    ],
+    "sum_N_rxns": 5055,
+    "sum_N_mets": 4548,
+    "vmax": 187.3817422860385,
+    "km": 0.16297508346206444,
+    "solver_method": "RK45",
+    "early_stop_window": 27,
+    "early_stop_tol": 8.111308307896873e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 35.283525228500366,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 42,
+    "dfba_pfba_calls": 246000,
+    "dfba_status": "dfba_in_progress_246000",
+    "error": null,
+    "status": "dfba_in_progress_246000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

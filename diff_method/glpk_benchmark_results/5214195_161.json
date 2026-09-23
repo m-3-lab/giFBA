@@ -1,0 +1,26 @@
+{
+    "N_models": 4,
+    "model_names": [
+        "Staphylococcus_intermedius_NCTC_11048.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Gallinarum_str_287_91.mat",
+        "Escherichia_coli_KTE93.mat",
+        "Shigella_flexneri_K_272.mat"
+    ],
+    "sum_N_rxns": 10169,
+    "sum_N_mets": 8808,
+    "vmax": 705.4802310718645,
+    "km": 0.9545484566618342,
+    "solver_method": "RK45",
+    "early_stop_window": 28,
+    "early_stop_tol": 2.310129700083158e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 92.1191177368164,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 172,
+    "dfba_pfba_calls": 200000,
+    "dfba_status": "dfba_in_progress_200000",
+    "error": null,
+    "status": "dfba_in_progress_200000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

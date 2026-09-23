@@ -1,0 +1,32 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Escherichia_coli_DEC15B.mat",
+        "Escherichia_coli_KTE18.mat",
+        "Bacteroides_thetaiotaomicron_ERR2221274.mat",
+        "Campylobacter_coli_YH501.mat",
+        "Providencia_rettgeri_DSM_1131.mat",
+        "Shigella_flexneri_2002017.mat",
+        "Staphylococcus_aureus_KLT6.mat",
+        "Anaerotruncus_colihominis_ERR2221105.mat",
+        "Enterococcus_faecalis_7330112_3.mat",
+        "Actinomyces_odontolyticus_ATCC_17982.mat"
+    ],
+    "sum_N_rxns": 19253,
+    "sum_N_mets": 16634,
+    "vmax": 394.4206059437656,
+    "km": 0.7564633275546291,
+    "solver_method": "RK45",
+    "early_stop_window": 12,
+    "early_stop_tol": 5.336699231206313e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 197.97171354293823,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 790,
+    "dfba_pfba_calls": 270000,
+    "dfba_status": "dfba_in_progress_270000",
+    "error": null,
+    "status": "dfba_in_progress_270000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

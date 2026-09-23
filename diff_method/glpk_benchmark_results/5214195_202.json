@@ -1,0 +1,29 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Gemella_haemolysans_M341.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Typhimurium_str_14028S.mat",
+        "Bacteroides_vulgatus_ERR1022358.mat",
+        "Escherichia_coli_Xuzhou21.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Newport_str_CVM_37978.mat",
+        "Corynebacterium_mastitidis_DSM_44356.mat",
+        "Staphylococcus_aureus_subsp_aureus_USA300_FPR3757.mat"
+    ],
+    "sum_N_rxns": 12914,
+    "sum_N_mets": 11472,
+    "vmax": 220.51307399030455,
+    "km": 0.5462277217684343,
+    "solver_method": "BDF",
+    "early_stop_window": 27,
+    "early_stop_tol": 1.519911082952933e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 89.80604577064514,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 210,
+    "dfba_pfba_calls": 273000,
+    "dfba_status": "dfba_in_progress_273000",
+    "error": null,
+    "status": "dfba_in_progress_273000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

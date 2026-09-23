@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Klebsiella_oxytoca_CAV1335.mat",
+        "Campylobacter_lari_RM2100.mat",
+        "Staphylococcus_aureus_M1083.mat",
+        "Yersinia_pseudotuberculosis_YPIII.mat",
+        "Paeniclostridium_sordellii_W2946.mat",
+        "Enterococcus_faecalis_UAA702.mat"
+    ],
+    "sum_N_rxns": 9344,
+    "sum_N_mets": 7991,
+    "vmax": 196.30406500402705,
+    "km": 0.19630406500402708,
+    "solver_method": "RK45",
+    "early_stop_window": 29,
+    "early_stop_tol": 2.1544346900318822e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 70.88263010978699,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 462,
+    "dfba_pfba_calls": 432000,
+    "dfba_status": "dfba_in_progress_432000",
+    "error": null,
+    "status": "dfba_in_progress_432000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

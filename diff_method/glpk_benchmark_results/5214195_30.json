@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Salmonella_enterica_subsp_enterica_serovar_Newport_str_CVM_19449.mat",
+        "Fusobacterium_periodonticum_2_1_31.mat",
+        "Staphylococcus_epidermidis_NIHLM003.mat",
+        "Campylobacter_jejuni_subsp_jejuni_LMG_9217.mat",
+        "Escherichia_coli_P0304816_12.mat"
+    ],
+    "sum_N_rxns": 9674,
+    "sum_N_mets": 8758,
+    "vmax": 327.45491628777285,
+    "km": 0.20092330025650468,
+    "solver_method": "RK45",
+    "early_stop_window": 28,
+    "early_stop_tol": 2.0092330025650458e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 47.510677337646484,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 130,
+    "dfba_pfba_calls": 337500,
+    "dfba_status": "dfba_in_progress_337500",
+    "error": null,
+    "status": "dfba_in_progress_337500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,29 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Escherichia_coli_99_1762.mat",
+        "Lactobacillus_paracasei_CRF28.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Pomona_str_ATCC_10729.mat",
+        "Helicobacter_pylori_GAM119Bi.mat",
+        "Yersinia_enterocolitica_NFO.mat",
+        "uncultured_Ruminococcus_sp_ERR1022393.mat",
+        "Clostridium_colicanis_209318.mat"
+    ],
+    "sum_N_rxns": 14914,
+    "sum_N_mets": 13587,
+    "vmax": 312.5715849688235,
+    "km": 0.6734150657750824,
+    "solver_method": "RK45",
+    "early_stop_window": 25,
+    "early_stop_tol": 1.6297508346206435e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 124.62661957740784,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 343,
+    "dfba_pfba_calls": 234500,
+    "dfba_status": "dfba_in_progress_234500",
+    "error": null,
+    "status": "dfba_in_progress_234500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Staphylococcus_aureus_M0953.mat",
+        "Lactobacillus_rhamnosus_LMS2_1.mat",
+        "Lactobacillus_paracasei_subsp_paracasei_Lpp120.mat",
+        "Bacillus_thuringiensis_serovar_monterrey_BGSC_4AJ1.mat",
+        "Campylobacter_jejuni_subsp_jejuni_NW.mat",
+        "Listeria_monocytogenes_HCC23.mat"
+    ],
+    "sum_N_rxns": 9401,
+    "sum_N_mets": 8452,
+    "vmax": 830.2175681319744,
+    "km": 0.5722367659350218,
+    "solver_method": "RK45",
+    "early_stop_window": 15,
+    "early_stop_tol": 4.641588833612782e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 74.66575837135315,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 264,
+    "dfba_pfba_calls": 267000,
+    "dfba_status": "dfba_in_progress_267000",
+    "error": null,
+    "status": "dfba_in_progress_267000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

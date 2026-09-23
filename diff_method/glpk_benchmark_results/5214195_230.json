@@ -1,0 +1,30 @@
+{
+    "N_models": 8,
+    "model_names": [
+        "Bacteroides_caccae_ERR1022396.mat",
+        "Eggerthella_lenta_22C.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_CDC_2010K_1457.mat",
+        "Streptococcus_parasanguinis_SK236.mat",
+        "Helicobacter_cinaedi_CCUG_18818.mat",
+        "Streptococcus_agalactiae_STIR_CD_17.mat",
+        "Escherichia_coli_P0301867_2.mat",
+        "Subdoligranulum_sp_4_3_54A2FAA.mat"
+    ],
+    "sum_N_rxns": 12968,
+    "sum_N_mets": 11390,
+    "vmax": 890.2150854450392,
+    "km": 0.41320124001153374,
+    "solver_method": "RK45",
+    "early_stop_window": 28,
+    "early_stop_tol": 1e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 173.74238085746765,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 824,
+    "dfba_pfba_calls": 340000,
+    "dfba_status": "dfba_in_progress_340000",
+    "error": null,
+    "status": "dfba_in_progress_340000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

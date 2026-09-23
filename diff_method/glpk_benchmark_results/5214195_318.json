@@ -1,0 +1,31 @@
+{
+    "N_models": 9,
+    "model_names": [
+        "Staphylococcus_aureus_M1373.mat",
+        "Clostridium_disporicum_2789STDY5608827.mat",
+        "Bifidobacterium_longum_ERR2230158.mat",
+        "Cutibacterium_acnes_ERR2221379.mat",
+        "Streptococcus_thermophilus_ND03.mat",
+        "Klebsiella_pneumoniae_subsp_pneumoniae_KPNIH11.mat",
+        "Porphyromonas_gingivalis_W83.mat",
+        "Escherichia_coli_EC1870.mat",
+        "Staphylococcus_aureus_M1224.mat"
+    ],
+    "sum_N_rxns": 15006,
+    "sum_N_mets": 13361,
+    "vmax": 394.4206059437656,
+    "km": 0.3125715849688237,
+    "solver_method": "RK45",
+    "early_stop_window": 13,
+    "early_stop_tol": 2.0092330025650458e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 163.16052055358887,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 765,
+    "dfba_pfba_calls": 315000,
+    "dfba_status": "dfba_in_progress_315000",
+    "error": null,
+    "status": "dfba_in_progress_315000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

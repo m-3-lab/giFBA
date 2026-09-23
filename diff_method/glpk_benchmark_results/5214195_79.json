@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Escherichia_coli_O104_H4_str_H112180280.mat",
+        "Lachnospiraceae_nov_ERR2221266.mat",
+        "Bifidobacterium_pseudocatenulatum_ERR1204070.mat",
+        "Escherichia_coli_p0305293_8.mat",
+        "Escherichia_coli_99_1775.mat",
+        "Enterococcus_faecalis_TX1337RF.mat"
+    ],
+    "sum_N_rxns": 13448,
+    "sum_N_mets": 11663,
+    "vmax": 599.4842503189409,
+    "km": 0.1417474162926805,
+    "solver_method": "RK45",
+    "early_stop_window": 29,
+    "early_stop_tol": 3.511191734215127e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 65.54113507270813,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 192,
+    "dfba_pfba_calls": 243000,
+    "dfba_status": "dfba_in_progress_243000",
+    "error": null,
+    "status": "dfba_in_progress_243000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

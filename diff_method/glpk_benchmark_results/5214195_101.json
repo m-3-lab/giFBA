@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_50_3079.mat",
+        "Haemophilus_influenzae_PittAA.mat",
+        "Cryptobacterium_curtum_DSM_15641.mat",
+        "Enterococcus_faecalis_B2202.mat",
+        "Klebsiella_oxytoca_ERR2221348.mat"
+    ],
+    "sum_N_rxns": 7237,
+    "sum_N_mets": 6246,
+    "vmax": 284.8035868435802,
+    "km": 0.38535285937105296,
+    "solver_method": "RK45",
+    "early_stop_window": 23,
+    "early_stop_tol": 1.1497569953977357e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 113.95861458778381,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 395,
+    "dfba_pfba_calls": 400000,
+    "dfba_status": "dfba_in_progress_400000",
+    "error": null,
+    "status": "dfba_in_progress_400000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

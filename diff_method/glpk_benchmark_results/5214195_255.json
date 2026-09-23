@@ -1,0 +1,26 @@
+{
+    "N_models": 4,
+    "model_names": [
+        "Escherichia_coli_KTE35.mat",
+        "Selenomonas_infelix_ATCC_43532.mat",
+        "Bacillus_cereus_VD184.mat",
+        "Pediococcus_acidilactici_ERR2221169.mat"
+    ],
+    "sum_N_rxns": 7611,
+    "sum_N_mets": 6868,
+    "vmax": 657.9332246575682,
+    "km": 0.31992671377973836,
+    "solver_method": "RK45",
+    "early_stop_window": 22,
+    "early_stop_tol": 4.641588833612782e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 102.36920070648193,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 296,
+    "dfba_pfba_calls": 198000,
+    "dfba_status": "dfba_in_progress_198000",
+    "error": null,
+    "status": "dfba_in_progress_198000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

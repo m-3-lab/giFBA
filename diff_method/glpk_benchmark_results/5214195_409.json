@@ -1,0 +1,31 @@
+{
+    "N_models": 9,
+    "model_names": [
+        "Alistipes_timonensis_ERR2221390.mat",
+        "Bacillus_atrophaeus_BACI051_N.mat",
+        "Ruminococcaceae_nov_ERR2221397.mat",
+        "Lactobacillus_rhamnosus_LMS2_1.mat",
+        "Fusobacterium_nucleatum_subsp_animalis_3_1_33.mat",
+        "Staphylococcus_aureus_subsp_aureus_21340.mat",
+        "Clostridium_amazonitimonense_MGYG_HGUT_01477.mat",
+        "Enterococcus_faecium_E1039.mat",
+        "Streptococcus_mutans_TCI_196.mat"
+    ],
+    "sum_N_rxns": 12054,
+    "sum_N_mets": 11163,
+    "vmax": 319.92671377973846,
+    "km": 0.23644894126454072,
+    "solver_method": "RK45",
+    "early_stop_window": 17,
+    "early_stop_tol": 9.326033468832199e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 37.318238496780396,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 126,
+    "dfba_pfba_calls": 517500,
+    "dfba_status": "dfba_in_progress_517500",
+    "error": null,
+    "status": "dfba_in_progress_517500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,31 @@
+{
+    "N_models": 9,
+    "model_names": [
+        "Helicobacter_pylori_UM066.mat",
+        "Streptococcus_pneumoniae_SPAR27.mat",
+        "Bifidobacterium_breve_MCC_1114.mat",
+        "Bacteroides_xylanisolvens_ERR1022297.mat",
+        "Enterococcus_faecalis_TX2134.mat",
+        "Escherichia_coli_DEC12E.mat",
+        "Achromobacter_xylosoxidans_ERR2221246.mat",
+        "Escherichia_coli_P0298942_6.mat",
+        "Escherichia_coli_KTE28.mat"
+    ],
+    "sum_N_rxns": 17981,
+    "sum_N_mets": 15749,
+    "vmax": 132.19411484660287,
+    "km": 0.41320124001153374,
+    "solver_method": "RK45",
+    "early_stop_window": 23,
+    "early_stop_tol": 1.4174741629268049e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 140.91454458236694,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 486,
+    "dfba_pfba_calls": 238500,
+    "dfba_status": "dfba_in_progress_238500",
+    "error": null,
+    "status": "dfba_in_progress_238500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

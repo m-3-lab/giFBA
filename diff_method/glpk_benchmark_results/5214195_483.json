@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Escherichia_coli_EPEC_C342_62.mat",
+        "Rothia_dentocariosa_M567.mat",
+        "Aeromonas_hydrophila_ML09_119.mat",
+        "Escherichia_coli_2866750.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_642044_8_1.mat"
+    ],
+    "sum_N_rxns": 12937,
+    "sum_N_mets": 11661,
+    "vmax": 178.8649529057435,
+    "km": 0.2782559402207124,
+    "solver_method": "RK45",
+    "early_stop_window": 17,
+    "early_stop_tol": 3.764935806792471e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 56.46696615219116,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 140,
+    "dfba_pfba_calls": 225000,
+    "dfba_status": "dfba_in_progress_225000",
+    "error": null,
+    "status": "dfba_in_progress_225000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

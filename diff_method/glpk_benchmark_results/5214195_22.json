@@ -1,0 +1,29 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Acinetobacter_baumannii_AB_2008_15_34_7.mat",
+        "Streptococcus_pneumoniae_R6M2_PG.mat",
+        "Escherichia_coli_P0298942_4.mat",
+        "Clostridium_botulinum_H04402_065.mat",
+        "Staphylococcus_aureus_subsp_aureus_ED98.mat",
+        "Escherichia_coli_P0305260_4.mat",
+        "Staphylococcus_aureus_M1321.mat"
+    ],
+    "sum_N_rxns": 13425,
+    "sum_N_mets": 11400,
+    "vmax": 1000.0,
+    "km": 0.7220809018385466,
+    "solver_method": "RK45",
+    "early_stop_window": 14,
+    "early_stop_tol": 8.697490026177835e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 43.80468034744263,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 98,
+    "dfba_pfba_calls": 308000,
+    "dfba_status": "dfba_in_progress_308000",
+    "error": null,
+    "status": "dfba_in_progress_308000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

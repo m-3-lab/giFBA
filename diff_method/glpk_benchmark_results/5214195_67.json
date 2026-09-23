@@ -1,0 +1,31 @@
+{
+    "N_models": 8,
+    "model_names": [
+        "Streptococcus_parauberis_NCFD_2020.mat",
+        "Metakosakonia_massiliensis_JC163.mat",
+        "Acinetobacter_radioresistens_SH164.mat",
+        "Slackia_equolifaciens_DSM_24851.mat",
+        "Escherichia_coli_PA28.mat",
+        "Lactobacillus_jensenii_27_2_CHN.mat",
+        "Bacillus_thuringiensis_str_Al_Hakam.mat",
+        "Porphyromonas_somerae_DSM_23386.mat"
+    ],
+    "sum_N_rxns": 12665,
+    "sum_N_mets": 11523,
+    "vmax": 376.49358067924675,
+    "km": 0.20092330025650468,
+    "solver_method": "RK45",
+    "early_stop_window": 25,
+    "early_stop_tol": 1.519911082952933e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 99.1765239238739,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 616,
+    "dfba_pfba_calls": 35200,
+    "dfba_status": "dfba_in_progress_32000",
+    "error": "Infeasible: None (infeasible).",
+    "status": "failed",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null,
+    "traceback": "Traceback (most recent call last):\n  File \"/gpfs1/home/r/d/rdsiegel/giFBA/dFBA_runs/VACC_dfba.py\", line 382, in main\n    solution = cb.flux_analysis.parsimonious.pfba(model)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/flux_analysis/parsimonious.py\", line 94, in pfba\n    add_pfba(m, objective=objective, fraction_of_optimum=fraction_of_optimum)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/flux_analysis/parsimonious.py\", line 132, in add_pfba\n    sutil.fix_objective_as_constraint(model, fraction=fraction_of_optimum)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/solver.py\", line 513, in fix_objective_as_constraint\n    bound = model.slim_optimize(error_value=None) * fraction\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/core/model.py\", line 1202, in slim_optimize\n    assert_optimal(self, message)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/solver.py\", line 590, in assert_optimal\n    raise exception_cls(f\"{message} ({status}).\")\ncobra.exceptions.Infeasible: None (infeasible).\n"
+}

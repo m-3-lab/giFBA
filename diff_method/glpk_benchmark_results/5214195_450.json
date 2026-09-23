@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Staphylococcus_aureus_M1533.mat",
+        "Staphylococcus_aureus_HI049C.mat",
+        "Bacillus_cereus_E33L.mat",
+        "Streptococcus_pneumoniae_GA47562.mat",
+        "Streptococcus_australis_ERR2221360.mat"
+    ],
+    "sum_N_rxns": 6870,
+    "sum_N_mets": 5984,
+    "vmax": 196.30406500402705,
+    "km": 0.1788649529057435,
+    "solver_method": "RK45",
+    "early_stop_window": 19,
+    "early_stop_tol": 1.873817422860383e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 25.385838747024536,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 150,
+    "dfba_pfba_calls": 505000,
+    "dfba_status": "dfba_in_progress_505000",
+    "error": null,
+    "status": "dfba_in_progress_505000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

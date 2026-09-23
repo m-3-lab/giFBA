@@ -1,0 +1,25 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Kocuria_rhizophila_P7_4.mat",
+        "Escherichia_coli_CB7326.mat",
+        "Photobacterium_sp_SKA34.mat"
+    ],
+    "sum_N_rxns": 6587,
+    "sum_N_mets": 5915,
+    "vmax": 343.04692863149194,
+    "km": 0.40370172585965547,
+    "solver_method": "RK45",
+    "early_stop_window": 6,
+    "early_stop_tol": 1.1497569953977357e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 40.59190845489502,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 78,
+    "dfba_pfba_calls": 288000,
+    "dfba_status": "dfba_in_progress_288000",
+    "error": null,
+    "status": "dfba_in_progress_288000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

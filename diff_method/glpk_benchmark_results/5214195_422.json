@@ -1,0 +1,30 @@
+{
+    "N_models": 8,
+    "model_names": [
+        "Escherichia_coli_KTE233.mat",
+        "Escherichia_coli_99_0741.mat",
+        "Escherichia_coli_str_K_12_substr_W3110.mat",
+        "Prevotella_intermedia_ATCC_25611.mat",
+        "Helicobacter_pylori_HLJHP271.mat",
+        "Paeniclostridium_sordellii_SSCC18838.mat",
+        "Anaerostipes_caccae_ERR1203925.mat",
+        "Escherichia_coli_PA31.mat"
+    ],
+    "sum_N_rxns": 18051,
+    "sum_N_mets": 15770,
+    "vmax": 628.0291441834253,
+    "km": 0.4862601580065355,
+    "solver_method": "RK45",
+    "early_stop_window": 25,
+    "early_stop_tol": 1e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 109.47486186027527,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 632,
+    "dfba_pfba_calls": 312000,
+    "dfba_status": "dfba_in_progress_312000",
+    "error": null,
+    "status": "dfba_in_progress_312000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

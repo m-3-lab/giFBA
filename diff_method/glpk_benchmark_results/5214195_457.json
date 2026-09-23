@@ -1,0 +1,30 @@
+{
+    "N_models": 8,
+    "model_names": [
+        "Clostridiaceae_nov_ERR2221345.mat",
+        "Hydrotalea_flava_isolate_2.mat",
+        "Lactobacillus_buchneri_CD034.mat",
+        "Helicobacter_pylori_A45.mat",
+        "Clostridium_acetobutylicum_DSM_1731.mat",
+        "Klebsiella_aerogenes_CAV1320.mat",
+        "Staphylococcus_aureus_subsp_aureus_21345.mat",
+        "Moraxella_catarrhalis_RH4.mat"
+    ],
+    "sum_N_rxns": 11144,
+    "sum_N_mets": 10247,
+    "vmax": 572.236765935022,
+    "km": 0.1519911082952934,
+    "solver_method": "RK45",
+    "early_stop_window": 7,
+    "early_stop_tol": 1.519911082952933e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 215.35562252998352,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 2248,
+    "dfba_pfba_calls": 496000,
+    "dfba_status": "dfba_in_progress_496000",
+    "error": null,
+    "status": "dfba_in_progress_496000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,32 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Helicobacter_pylori_HP250AFiii.mat",
+        "Rickettsiella_grylli.mat",
+        "Atopobium_rimae_ATCC_49626.mat",
+        "Bilophila_wadsworthia_3_1_6.mat",
+        "Bacillus_atrophaeus_ATCC_9372_2.mat",
+        "Escherichia_coli_H494.mat",
+        "Escherichia_coli_KTE108.mat",
+        "Helicobacter_pylori_HPAG1.mat",
+        "Lysinibacillus_fusiformis_ZC1.mat",
+        "Citrobacter_sp_KTE32.mat"
+    ],
+    "sum_N_rxns": 18351,
+    "sum_N_mets": 16870,
+    "vmax": 200.9233002565048,
+    "km": 0.20565123083486514,
+    "solver_method": "BDF",
+    "early_stop_window": 26,
+    "early_stop_tol": 1.0722672220103232e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 97.73822832107544,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 250,
+    "dfba_pfba_calls": 290000,
+    "dfba_status": "dfba_in_progress_290000",
+    "error": null,
+    "status": "dfba_in_progress_290000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

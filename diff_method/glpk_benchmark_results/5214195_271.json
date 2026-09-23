@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Escherichia_coli_EC4421.mat",
+        "Escherichia_coli_M863.mat",
+        "Staphylococcus_aureus_M0391.mat",
+        "Staphylococcus_aureus_subsp_aureus_VRS2.mat",
+        "Lactobacillus_iners_UPII_60_B.mat",
+        "Clostridium_isatidis_DSM_15098.mat"
+    ],
+    "sum_N_rxns": 10862,
+    "sum_N_mets": 9595,
+    "vmax": 215.44346900318845,
+    "km": 0.17475284000076838,
+    "solver_method": "RK45",
+    "early_stop_window": 8,
+    "early_stop_tol": 9.326033468832199e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 110.96087121963501,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 378,
+    "dfba_pfba_calls": 291000,
+    "dfba_status": "dfba_in_progress_291000",
+    "error": null,
+    "status": "dfba_in_progress_291000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

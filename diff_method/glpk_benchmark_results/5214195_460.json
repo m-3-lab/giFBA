@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Streptococcus_pneumoniae_SPN032672.mat",
+        "Escherichia_coli_KTE90.mat",
+        "Escherichia_coli_KTE178.mat",
+        "Enterococcus_faecalis_B2488.mat",
+        "Streptococcus_pneumoniae_GA58581.mat"
+    ],
+    "sum_N_rxns": 10191,
+    "sum_N_mets": 8650,
+    "vmax": 585.7020818056667,
+    "km": 0.9111627561154894,
+    "solver_method": "RK45",
+    "early_stop_window": 12,
+    "early_stop_tol": 5.336699231206313e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 38.19895148277283,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 165,
+    "dfba_pfba_calls": 332500,
+    "dfba_status": "dfba_in_progress_332500",
+    "error": null,
+    "status": "dfba_in_progress_332500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

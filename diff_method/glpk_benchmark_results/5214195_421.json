@@ -1,0 +1,26 @@
+{
+    "N_models": 4,
+    "model_names": [
+        "Butyricimonas_sp_Marseille_P2440.mat",
+        "Lachnoclostridium_nov_ERR1022392.mat",
+        "Escherichia_coli_5_2239.mat",
+        "Klebsiella_aerogenes_CAV1320.mat"
+    ],
+    "sum_N_rxns": 7565,
+    "sum_N_mets": 6684,
+    "vmax": 174.7528400007683,
+    "km": 0.20565123083486514,
+    "solver_method": "RK45",
+    "early_stop_window": 29,
+    "early_stop_tol": 5.336699231206313e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 83.31994891166687,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 200,
+    "dfba_pfba_calls": 270000,
+    "dfba_status": "dfba_in_progress_270000",
+    "error": null,
+    "status": "dfba_in_progress_270000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,26 @@
+{
+    "N_models": 4,
+    "model_names": [
+        "Pseudomonas_putida_W619.mat",
+        "Mucispirillum_schaedleri_ASF457.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Hartford_str_06_0676.mat",
+        "Bacteroides_thetaiotaomicron_dnLKV9.mat"
+    ],
+    "sum_N_rxns": 7978,
+    "sum_N_mets": 7184,
+    "vmax": 509.413801481638,
+    "km": 0.17475284000076838,
+    "solver_method": "RK45",
+    "early_stop_window": 25,
+    "early_stop_tol": 2.4770763559917087e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 42.630839586257935,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 128,
+    "dfba_pfba_calls": 344000,
+    "dfba_status": "dfba_in_progress_344000",
+    "error": null,
+    "status": "dfba_in_progress_344000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Staphylococcus_aureus_subsp_aureus_RN4220.mat",
+        "Pediococcus_acidilactici_ERR2221299.mat",
+        "Lactobacillus_oligofermentans_DSM_15707_LMG_22743.mat",
+        "Reyranella_soli_NBRC_108950.mat",
+        "Listeria_monocytogenes_JF5171.mat",
+        "Bacteroides_sp_4_3_47FAA.mat"
+    ],
+    "sum_N_rxns": 8076,
+    "sum_N_mets": 7124,
+    "vmax": 756.463327554629,
+    "km": 0.533669923120631,
+    "solver_method": "RK45",
+    "early_stop_window": 19,
+    "early_stop_tol": 5.336699231206313e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 73.4196891784668,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 336,
+    "dfba_pfba_calls": 438000,
+    "dfba_status": "dfba_in_progress_438000",
+    "error": null,
+    "status": "dfba_in_progress_438000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

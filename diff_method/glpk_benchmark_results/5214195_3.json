@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Enterococcus_faecalis_TX1322.mat",
+        "Marinospirillum_alkaliphilum_DSM_21637.mat",
+        "Klebsiella_pneumoniae_subsp_pneumoniae_WGLW2.mat",
+        "Staphylococcus_aureus_M0212.mat",
+        "Colibacter_massiliensis_DSM_103304.mat"
+    ],
+    "sum_N_rxns": 7291,
+    "sum_N_mets": 6494,
+    "vmax": 351.1191734215131,
+    "km": 0.10235310218990261,
+    "solver_method": "RK45",
+    "early_stop_window": 13,
+    "early_stop_tol": 1.519911082952933e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 36.64886736869812,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 180,
+    "dfba_pfba_calls": 475000,
+    "dfba_status": "dfba_in_progress_475000",
+    "error": null,
+    "status": "dfba_in_progress_475000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

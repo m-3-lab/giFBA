@@ -1,0 +1,30 @@
+{
+    "N_models": 8,
+    "model_names": [
+        "Staphylococcus_aureus_HI022.mat",
+        "Pseudomonas_monteilii_QM.mat",
+        "Slackia_equolifaciens_DSM_24851.mat",
+        "Megasphaera_elsdenii_DSM_20460.mat",
+        "Enterococcus_faecium_Com15.mat",
+        "Escherichia_coli_P0305260_5.mat",
+        "Streptococcus_agalactiae_GB00893.mat",
+        "Butyricimonas_synergistica_DSM_23225.mat"
+    ],
+    "sum_N_rxns": 13561,
+    "sum_N_mets": 11977,
+    "vmax": 253.53644939701115,
+    "km": 0.3944206059437656,
+    "solver_method": "RK45",
+    "early_stop_window": 4,
+    "early_stop_tol": 4.328761281083061e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 114.91451835632324,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 1048,
+    "dfba_pfba_calls": 532000,
+    "dfba_status": "dfba_in_progress_532000",
+    "error": null,
+    "status": "dfba_in_progress_532000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

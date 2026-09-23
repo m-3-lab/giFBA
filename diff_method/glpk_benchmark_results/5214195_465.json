@@ -1,0 +1,24 @@
+{
+    "N_models": 2,
+    "model_names": [
+        "Escherichia_coli_O55_H7_str_USDA_5905.mat",
+        "Bacteroides_nordii_CL02T12C05.mat"
+    ],
+    "sum_N_rxns": 4549,
+    "sum_N_mets": 3856,
+    "vmax": 394.4206059437656,
+    "km": 0.4430621457583881,
+    "solver_method": "RK45",
+    "early_stop_window": 5,
+    "early_stop_tol": 1e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 25.011388301849365,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 64,
+    "dfba_pfba_calls": 319000,
+    "dfba_status": "dfba_in_progress_319000",
+    "error": null,
+    "status": "dfba_in_progress_319000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

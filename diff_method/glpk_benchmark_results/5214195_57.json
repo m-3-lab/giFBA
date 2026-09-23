@@ -1,0 +1,31 @@
+{
+    "N_models": 9,
+    "model_names": [
+        "Anaerovorax_odorimutans_DSM_5092.mat",
+        "Klebsiella_pneumoniae_UHKPC48.mat",
+        "Cutibacterium_acnes_HL083PA2.mat",
+        "Helicobacter_pylori_GAM249T.mat",
+        "Acidobacterium_capsulatum_ATCC_51196.mat",
+        "Pseudomonas_massiliensis_DSM_29075.mat",
+        "Enterococcus_faecalis_UAA1014.mat",
+        "Staphylococcus_epidermidis_NIHLM070.mat",
+        "Escherichia_coli_DEC15D.mat"
+    ],
+    "sum_N_rxns": 16031,
+    "sum_N_mets": 14514,
+    "vmax": 453.4878508128582,
+    "km": 0.7564633275546291,
+    "solver_method": "RK45",
+    "early_stop_window": 5,
+    "early_stop_tol": 1.5199110829529332e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 87.24963808059692,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 594,
+    "dfba_pfba_calls": 436500,
+    "dfba_status": "dfba_in_progress_436500",
+    "error": null,
+    "status": "dfba_in_progress_436500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

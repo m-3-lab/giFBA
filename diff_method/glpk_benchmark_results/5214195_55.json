@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Prevotella_oris_F0302.mat",
+        "Helicobacter_pylori_P12.mat",
+        "Enterococcus_faecalis_TX1342.mat",
+        "Acinetobacter_baumannii_AB900.mat",
+        "Staphylococcus_epidermidis_NIHLM070.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_CDC_2010K_0899.mat"
+    ],
+    "sum_N_rxns": 8175,
+    "sum_N_mets": 7307,
+    "vmax": 265.6087782946687,
+    "km": 0.1353047774579807,
+    "solver_method": "RK45",
+    "early_stop_window": 23,
+    "early_stop_tol": 2.477076355991714e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 80.16694474220276,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 150,
+    "dfba_pfba_calls": 438000,
+    "dfba_status": "dfba_in_progress_438000",
+    "error": null,
+    "status": "dfba_in_progress_438000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,30 @@
+{
+    "N_models": 8,
+    "model_names": [
+        "Campylobacter_coli_7_1.mat",
+        "Streptococcus_pneumoniae_GA40563.mat",
+        "Photobacterium_damselae_Phdp_Wu_1.mat",
+        "Escherichia_coli_KTE99.mat",
+        "Eubacterium_hallii_DSM_3353.mat",
+        "Bacillus_cereus_VD166.mat",
+        "Burkholderia_cenocepacia_J2315.mat",
+        "Proteus_mirabilis_WGLW6.mat"
+    ],
+    "sum_N_rxns": 14955,
+    "sum_N_mets": 13743,
+    "vmax": 112.33240329780277,
+    "km": 0.22051307399030456,
+    "solver_method": "RK45",
+    "early_stop_window": 7,
+    "early_stop_tol": 3.0538555088334123e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 136.76653480529785,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 472,
+    "dfba_pfba_calls": 260000,
+    "dfba_status": "dfba_in_progress_260000",
+    "error": null,
+    "status": "dfba_in_progress_260000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

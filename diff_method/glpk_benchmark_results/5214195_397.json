@@ -1,0 +1,29 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Treponema_medium_ATCC_700293.mat",
+        "Campylobacter_jejuni_subsp_jejuni_PT14.mat",
+        "Escherichia_coli_2866350.mat",
+        "Klebsiella_pneumoniae_PR04.mat",
+        "Serratia_liquefaciens_FDAARGOS_125.mat",
+        "Brachybacterium_paraconglomeratum_LC44.mat",
+        "Klebsiella_sp_MS_92_3.mat"
+    ],
+    "sum_N_rxns": 13673,
+    "sum_N_mets": 12142,
+    "vmax": 253.53644939701115,
+    "km": 0.3274549162877729,
+    "solver_method": "RK45",
+    "early_stop_window": 6,
+    "early_stop_tol": 1.4174741629268048e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 94.02444815635681,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 651,
+    "dfba_pfba_calls": 392000,
+    "dfba_status": "dfba_in_progress_392000",
+    "error": null,
+    "status": "dfba_in_progress_392000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

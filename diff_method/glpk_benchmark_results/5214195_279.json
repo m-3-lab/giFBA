@@ -1,0 +1,29 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Vallitalea_guaymasensis_L81.mat",
+        "Helicobacter_pylori_HP250AFii.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Newport_str_CVM_33953.mat",
+        "Streptococcus_agalactiae_BSU447.mat",
+        "Escherichia_coli_DEC15A.mat",
+        "Escherichia_coli_P0301867_5.mat",
+        "Shigella_sonnei_FDAARGOS_128.mat"
+    ],
+    "sum_N_rxns": 15560,
+    "sum_N_mets": 13703,
+    "vmax": 265.6087782946687,
+    "km": 0.739072203352578,
+    "solver_method": "RK45",
+    "early_stop_window": 26,
+    "early_stop_tol": 1.873817422860383e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 335.6571846008301,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 1470,
+    "dfba_pfba_calls": 213500,
+    "dfba_status": "dfba_in_progress_213500",
+    "error": null,
+    "status": "dfba_in_progress_213500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

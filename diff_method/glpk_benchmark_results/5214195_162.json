@@ -1,0 +1,27 @@
+{
+    "N_models": 4,
+    "model_names": [
+        "Streptococcus_thermophilus_MN_ZLW_002.mat",
+        "Cutibacterium_acnes_HL059PA1.mat",
+        "Helicobacter_pylori_GAM100Ai.mat",
+        "Streptococcus_australis_ATCC_700641.mat"
+    ],
+    "sum_N_rxns": 6086,
+    "sum_N_mets": 5783,
+    "vmax": 585.7020818056667,
+    "km": 0.1592282793341092,
+    "solver_method": "RK45",
+    "early_stop_window": 12,
+    "early_stop_tol": 1.629750834620647e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 26.02122950553894,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 32,
+    "dfba_pfba_calls": 38408,
+    "dfba_status": "dfba_in_progress_38000",
+    "error": "Infeasible: None (infeasible).",
+    "status": "failed",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null,
+    "traceback": "Traceback (most recent call last):\n  File \"/gpfs1/home/r/d/rdsiegel/giFBA/dFBA_runs/VACC_dfba.py\", line 382, in main\n    solution = cb.flux_analysis.parsimonious.pfba(model)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/flux_analysis/parsimonious.py\", line 94, in pfba\n    add_pfba(m, objective=objective, fraction_of_optimum=fraction_of_optimum)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/flux_analysis/parsimonious.py\", line 132, in add_pfba\n    sutil.fix_objective_as_constraint(model, fraction=fraction_of_optimum)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/solver.py\", line 513, in fix_objective_as_constraint\n    bound = model.slim_optimize(error_value=None) * fraction\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/core/model.py\", line 1202, in slim_optimize\n    assert_optimal(self, message)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/solver.py\", line 590, in assert_optimal\n    raise exception_cls(f\"{message} ({status}).\")\ncobra.exceptions.Infeasible: None (infeasible).\n"
+}

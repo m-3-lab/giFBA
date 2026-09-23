@@ -1,0 +1,23 @@
+{
+    "N_models": 1,
+    "model_names": [
+        "Acidaminococcus_fermentans_DSM_20731.mat"
+    ],
+    "sum_N_rxns": 1231,
+    "sum_N_mets": 1163,
+    "vmax": 236.4489412645407,
+    "km": 0.1321941148466029,
+    "solver_method": "RK45",
+    "early_stop_window": 11,
+    "early_stop_tol": 1.072267222010323e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 12.132444858551025,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 4,
+    "dfba_pfba_calls": 466000,
+    "dfba_status": "dfba_in_progress_466000",
+    "error": null,
+    "status": "dfba_in_progress_466000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

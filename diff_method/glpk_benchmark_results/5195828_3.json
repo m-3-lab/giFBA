@@ -1,0 +1,31 @@
+{
+    "N_models": 9,
+    "model_names": [
+        "Streptococcus_anginosus_SK52.mat",
+        "Lachnospiraceae_bacterium_2_1_46FAA.mat",
+        "Butyrivibrio_fibrisolvens_16_4.mat",
+        "Erysipelothrix_rhusiopathiae_SY1027.mat",
+        "Escherichia_coli_5905.mat",
+        "Anaerotruncus_nov_ERR2221396.mat",
+        "Trabulsiella_guamensis_ATCC_49490.mat",
+        "Erysipelotrichaceae_nov_ERR2221179.mat",
+        "Mogibacterium_timidum_ATCC_33093.mat"
+    ],
+    "sum_N_rxns": 12194,
+    "sum_N_mets": 11138,
+    "vmax": 443.0621457583882,
+    "km": 0.27185882427329405,
+    "solver_method": "RK45",
+    "early_stop_window": 11,
+    "early_stop_tol": 4.977023564332114e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 61.476306438446045,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 423,
+    "dfba_pfba_calls": 562500,
+    "dfba_status": "dfba_in_progress_562500",
+    "error": null,
+    "status": "dfba_in_progress_562500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

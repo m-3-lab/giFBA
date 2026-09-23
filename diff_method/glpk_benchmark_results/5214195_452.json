@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Streptococcus_pneumoniae_5185_06.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Hadar_str_2011K_0112.mat",
+        "Pseudomonas_putida_DLL_E4.mat",
+        "Turicibacter_sanguinis_PC909.mat",
+        "Cutibacterium_acnes_HL005PA4.mat",
+        "Citrobacter_freundii_GTC_09479.mat"
+    ],
+    "sum_N_rxns": 10925,
+    "sum_N_mets": 9782,
+    "vmax": 200.9233002565048,
+    "km": 0.16681005372000587,
+    "solver_method": "RK45",
+    "early_stop_window": 16,
+    "early_stop_tol": 2.1544346900318822e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 94.48194599151611,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 312,
+    "dfba_pfba_calls": 297000,
+    "dfba_status": "dfba_in_progress_297000",
+    "error": null,
+    "status": "dfba_in_progress_297000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

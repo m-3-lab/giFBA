@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Lactobacillus_acidophilus_NCFM.mat",
+        "Paraclostridium_bifermentans_WYM.mat",
+        "Streptococcus_parasanguinis_ERR2221175.mat",
+        "Enterobacter_ludwigii_UW5.mat",
+        "Staphylococcus_epidermidis_NIHLM095.mat"
+    ],
+    "sum_N_rxns": 6500,
+    "sum_N_mets": 5804,
+    "vmax": 657.9332246575682,
+    "km": 0.5462277217684343,
+    "solver_method": "RK45",
+    "early_stop_window": 6,
+    "early_stop_tol": 2.1544346900318865e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 51.70817160606384,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 215,
+    "dfba_pfba_calls": 455000,
+    "dfba_status": "dfba_in_progress_455000",
+    "error": null,
+    "status": "dfba_in_progress_455000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

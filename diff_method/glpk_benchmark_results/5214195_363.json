@@ -1,0 +1,32 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Flaviflexus_massiliensis_SIT4.mat",
+        "Streptococcus_agalactiae_STIR_CD_21.mat",
+        "Prevotella_amnii_DNF00058.mat",
+        "Parabacteroides_merdae_CL03T12C32.mat",
+        "Lactobacillus_paraplantarum_DSM_10667.mat",
+        "Helicobacter_pylori_HP250AFii.mat",
+        "Prevotella_bryantii_C21a.mat",
+        "Streptococcus_mutans_TCI_243.mat",
+        "Streptococcus_mutans_TCI_222.mat",
+        "Bacillus_cereus_BAG3X2_1.mat"
+    ],
+    "sum_N_rxns": 14974,
+    "sum_N_mets": 14209,
+    "vmax": 849.7534359086446,
+    "km": 0.38535285937105296,
+    "solver_method": "RK45",
+    "early_stop_window": 28,
+    "early_stop_tol": 1.747528400007683e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 145.24890089035034,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 700,
+    "dfba_pfba_calls": 380000,
+    "dfba_status": "dfba_in_progress_380000",
+    "error": null,
+    "status": "dfba_in_progress_380000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Escherichia_coli_PA33.mat",
+        "Escherichia_coli_BCE006_MS_23.mat",
+        "Escherichia_coli_174750.mat",
+        "Helicobacter_pylori_GAM83T.mat",
+        "Acinetobacter_baumannii_MDR_TJ.mat",
+        "Staphylococcus_aureus_subsp_aureus_21262.mat"
+    ],
+    "sum_N_rxns": 14605,
+    "sum_N_mets": 12673,
+    "vmax": 546.2277217684342,
+    "km": 0.1384886371393873,
+    "solver_method": "RK45",
+    "early_stop_window": 12,
+    "early_stop_tol": 5.336699231206313e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 164.3014898300171,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 522,
+    "dfba_pfba_calls": 201000,
+    "dfba_status": "dfba_in_progress_201000",
+    "error": null,
+    "status": "dfba_in_progress_201000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

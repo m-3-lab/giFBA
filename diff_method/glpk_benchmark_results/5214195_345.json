@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Enterococcus_faecalis_B1327.mat",
+        "Clostridium_cochlearium_NCTC13027.mat",
+        "Staphylococcus_aureus_M1520.mat",
+        "Lactobacillus_plantarum_UCMA_3037.mat",
+        "Nesterenkonia_massiliensis_NP1.mat",
+        "Cutibacterium_acnes_HL020PA1.mat"
+    ],
+    "sum_N_rxns": 8583,
+    "sum_N_mets": 7808,
+    "vmax": 242.01282647943833,
+    "km": 0.19630406500402708,
+    "solver_method": "RK45",
+    "early_stop_window": 17,
+    "early_stop_tol": 3.274549162877732e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 71.13660526275635,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 294,
+    "dfba_pfba_calls": 417000,
+    "dfba_status": "dfba_in_progress_417000",
+    "error": null,
+    "status": "dfba_in_progress_417000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,30 @@
+{
+    "N_models": 8,
+    "model_names": [
+        "Lachnospiraceae_nov_ERR1203950.mat",
+        "Streptococcus_agalactiae_BSU252.mat",
+        "Akkermansia_sp_KLE1797.mat",
+        "Streptococcus_agalactiae_FSL_S3_062.mat",
+        "Acinetobacter_sp_WC_323.mat",
+        "Lachnospiraceae_nov_ERR2221278.mat",
+        "Enterococcus_massiliensis_DSM_100308.mat",
+        "Bacteroides_vulgatus_ERR2230128.mat"
+    ],
+    "sum_N_rxns": 11374,
+    "sum_N_mets": 10444,
+    "vmax": 509.413801481638,
+    "km": 0.7054802310718644,
+    "solver_method": "RK45",
+    "early_stop_window": 15,
+    "early_stop_tol": 8.111308307896872e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 94.37230706214905,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 432,
+    "dfba_pfba_calls": 348000,
+    "dfba_status": "dfba_in_progress_348000",
+    "error": null,
+    "status": "dfba_in_progress_348000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

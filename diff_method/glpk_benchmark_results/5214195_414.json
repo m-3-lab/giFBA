@@ -1,0 +1,25 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Vibrio_mimicus_VM223.mat",
+        "Vallitalea_guaymasensis_L81.mat",
+        "Bacillus_thuringiensis_IBL_4222.mat"
+    ],
+    "sum_N_rxns": 4652,
+    "sum_N_mets": 4200,
+    "vmax": 546.2277217684342,
+    "km": 0.739072203352578,
+    "solver_method": "RK45",
+    "early_stop_window": 19,
+    "early_stop_tol": 4.977023564332114e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 19.848317623138428,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 69,
+    "dfba_pfba_calls": 508500,
+    "dfba_status": "dfba_in_progress_508500",
+    "error": null,
+    "status": "dfba_in_progress_508500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

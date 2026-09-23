@@ -1,0 +1,31 @@
+{
+    "N_models": 9,
+    "model_names": [
+        "Acinetobacter_baumannii_Canada_BC_5.mat",
+        "Staphylococcus_aureus_M0415.mat",
+        "Enterococcus_faecium_E2966.mat",
+        "Bacillus_cereus_BAG5X12_1.mat",
+        "Streptococcus_pneumoniae_SPN033038.mat",
+        "Lachnospiraceae_nov_ERR2221266.mat",
+        "Acinetobacter_baumannii_AB_TG2030.mat",
+        "Escherichia_coli_p0305293_15.mat",
+        "Staphylococcus_aureus_M0528.mat"
+    ],
+    "sum_N_rxns": 14279,
+    "sum_N_mets": 12347,
+    "vmax": 200.9233002565048,
+    "km": 0.19630406500402708,
+    "solver_method": "RK45",
+    "early_stop_window": 14,
+    "early_stop_tol": 6.579332246575682e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 61.787829637527466,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 270,
+    "dfba_pfba_calls": 396000,
+    "dfba_status": "dfba_in_progress_396000",
+    "error": null,
+    "status": "dfba_in_progress_396000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

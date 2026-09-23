@@ -1,0 +1,25 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Bacteroides_finegoldii_ERR1022319.mat",
+        "Enterococcus_faecalis_599.mat",
+        "Acinetobacter_junii_SH205.mat"
+    ],
+    "sum_N_rxns": 4194,
+    "sum_N_mets": 3791,
+    "vmax": 432.87612810830615,
+    "km": 0.5214008287999686,
+    "solver_method": "RK45",
+    "early_stop_window": 21,
+    "early_stop_tol": 3.764935806792471e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 31.832271337509155,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 48,
+    "dfba_pfba_calls": 439500,
+    "dfba_status": "dfba_in_progress_439500",
+    "error": null,
+    "status": "dfba_in_progress_439500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

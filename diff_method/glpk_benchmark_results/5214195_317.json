@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Escherichia_coli_O104_H4_str_11_4522.mat",
+        "Carnobacterium_maltaromaticum_ATCC_35586.mat",
+        "Escherichia_coli_KTE12.mat",
+        "Staphylococcus_aureus_subsp_aureus_21172.mat",
+        "Klebsiella_michiganensis_10_5250.mat"
+    ],
+    "sum_N_rxns": 11651,
+    "sum_N_mets": 10027,
+    "vmax": 792.4828983539178,
+    "km": 0.12045035402587821,
+    "solver_method": "RK45",
+    "early_stop_window": 27,
+    "early_stop_tol": 1.747528400007683e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 120.89211916923523,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 340,
+    "dfba_pfba_calls": 215000,
+    "dfba_status": "dfba_in_progress_215000",
+    "error": null,
+    "status": "dfba_in_progress_215000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

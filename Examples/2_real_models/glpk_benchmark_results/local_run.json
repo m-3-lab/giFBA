@@ -1,0 +1,24 @@
+{
+    "N_models": 2,
+    "model_names": [
+        "Citrobacter_freundii_GTC_09479.mat",
+        "Streptococcus_pneumoniae_GA19923.mat"
+    ],
+    "sum_N_rxns": 3574,
+    "sum_N_mets": 3182,
+    "vmax": 756.463327554629,
+    "km": 0.3125715849688237,
+    "solver_method": "RK45",
+    "early_stop_window": 28,
+    "early_stop_tol": 1e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 24.353109121322632,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 30,
+    "dfba_pfba_calls": 0,
+    "dfba_status": "Not Started",
+    "error": null,
+    "status": "gifba_complete",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

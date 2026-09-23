@@ -1,0 +1,25 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Aminivibrio_pyruvatiphilus_DSM_25964.mat",
+        "Staphylococcus_aureus_M0391.mat",
+        "Streptococcus_pneumoniae_GA43257.mat"
+    ],
+    "sum_N_rxns": 3725,
+    "sum_N_mets": 3283,
+    "vmax": 475.0810162102798,
+    "km": 0.1417474162926805,
+    "solver_method": "RK45",
+    "early_stop_window": 5,
+    "early_stop_tol": 4.641588833612782e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 17.986628532409668,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 108,
+    "dfba_pfba_calls": 697500,
+    "dfba_status": "dfba_in_progress_697500",
+    "error": null,
+    "status": "dfba_in_progress_697500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,30 @@
+{
+    "N_models": 8,
+    "model_names": [
+        "Staphylococcus_aureus_subsp_aureus_T0131.mat",
+        "Bacillus_cereus_BAG3X2_1.mat",
+        "Sarcina_nov_ERR1022372.mat",
+        "Streptococcus_agalactiae_GB00954.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Mississippi_str_2010K_1406.mat",
+        "Enterococcus_faecalis_TX0312.mat",
+        "Enterococcus_faecalis_str_C_19315_led_1b_pp_SCV.mat",
+        "Streptococcus_agalactiae_GB00887.mat"
+    ],
+    "sum_N_rxns": 14900,
+    "sum_N_mets": 13341,
+    "vmax": 278.2559402207126,
+    "km": 0.1592282793341092,
+    "solver_method": "RK45",
+    "early_stop_window": 22,
+    "early_stop_tol": 3.511191734215127e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 162.61121225357056,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 704,
+    "dfba_pfba_calls": 304000,
+    "dfba_status": "dfba_in_progress_304000",
+    "error": null,
+    "status": "dfba_in_progress_304000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

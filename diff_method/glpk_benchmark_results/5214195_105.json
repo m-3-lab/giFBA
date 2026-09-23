@@ -1,0 +1,24 @@
+{
+    "N_models": 1,
+    "model_names": [
+        "Streptococcus_pneumoniae_23F.mat"
+    ],
+    "sum_N_rxns": 1073,
+    "sum_N_mets": 932,
+    "vmax": 546.2277217684342,
+    "km": 0.8111308307896873,
+    "solver_method": "BDF",
+    "early_stop_window": 22,
+    "early_stop_tol": 2.4770763559917087e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 4.970991373062134,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 4,
+    "dfba_pfba_calls": 3590,
+    "dfba_status": "dfba_in_progress_3500",
+    "error": "ValueError: f(a) and f(b) must have different signs",
+    "status": "failed",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null,
+    "traceback": "Traceback (most recent call last):\n  File \"/gpfs1/home/r/d/rdsiegel/giFBA/dFBA_runs/VACC_dfba.py\", line 359, in main\n    sol, dfba_solve_time = benchmark_dfba(\n  File \"/gpfs1/home/r/d/rdsiegel/giFBA/dFBA_runs/VACC_dfba.py\", line 280, in benchmark_dfba\n    sol = solve_ivp(\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/scipy/integrate/_ivp/ivp.py\", line 681, in solve_ivp\n    root_indices, roots, terminate = handle_events(\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/scipy/integrate/_ivp/ivp.py\", line 110, in handle_events\n    roots = [solve_event_equation(events[event_index], sol, t_old, t)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/scipy/integrate/_ivp/ivp.py\", line 110, in <listcomp>\n    roots = [solve_event_equation(events[event_index], sol, t_old, t)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/scipy/integrate/_ivp/ivp.py\", line 75, in solve_event_equation\n    return brentq(lambda t: event(t, sol(t)), t_old, t,\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/scipy/optimize/_zeros_py.py\", line 806, in brentq\n    r = _zeros._brentq(f, a, b, xtol, rtol, maxiter, args, full_output, disp)\nValueError: f(a) and f(b) must have different signs\n"
+}

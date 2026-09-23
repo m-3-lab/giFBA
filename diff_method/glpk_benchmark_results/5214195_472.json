@@ -1,0 +1,29 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Escherichia_coli_KTE40.mat",
+        "Cutibacterium_acnes_HL087PA3.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Dublin_str_UC16.mat",
+        "Staphylococcus_aureus_A8115.mat",
+        "Escherichia_coli_EC1737.mat",
+        "Collinsella_aerofaciens_ERR2230102.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Agona_str_43_E_09.mat"
+    ],
+    "sum_N_rxns": 16593,
+    "sum_N_mets": 14694,
+    "vmax": 104.76157527896652,
+    "km": 0.23644894126454072,
+    "solver_method": "RK45",
+    "early_stop_window": 26,
+    "early_stop_tol": 2.0092330025650458e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 117.18720364570618,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 77,
+    "dfba_pfba_calls": 157500,
+    "dfba_status": "dfba_in_progress_157500",
+    "error": null,
+    "status": "dfba_in_progress_157500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,30 @@
+{
+    "N_models": 8,
+    "model_names": [
+        "Herbaspirillum_huttiense_subsp_putei_IAM_15032.mat",
+        "Serratia_rubidaea_NCTC10848.mat",
+        "Streptococcus_pneumoniae_GA47439.mat",
+        "Lactobacillus_iners_7_1_47FAA.mat",
+        "Lactobacillus_mali_KCTC_3596_DSM_20444.mat",
+        "Staphylococcus_aureus_M1064.mat",
+        "Cellulomonas_timonensis_DSM_100699.mat",
+        "Escherichia_coli_ABU_83972.mat"
+    ],
+    "sum_N_rxns": 12430,
+    "sum_N_mets": 10798,
+    "vmax": 155.56761439304722,
+    "km": 0.10974987654930562,
+    "solver_method": "RK45",
+    "early_stop_window": 24,
+    "early_stop_tol": 3.511191734215127e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 153.62834477424622,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 768,
+    "dfba_pfba_calls": 356000,
+    "dfba_status": "dfba_in_progress_356000",
+    "error": null,
+    "status": "dfba_in_progress_356000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

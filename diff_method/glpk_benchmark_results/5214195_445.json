@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Prevotella_oulorum_F0390.mat",
+        "Pseudoflavonifractor_capillosus_ERR1022447.mat",
+        "Pseudomonas_aeruginosa_M18.mat",
+        "Streptococcus_danieliae_NM51_B2_22.mat",
+        "Staphylococcus_aureus_B40950.mat"
+    ],
+    "sum_N_rxns": 6509,
+    "sum_N_mets": 5979,
+    "vmax": 673.4150657750821,
+    "km": 0.1321941148466029,
+    "solver_method": "RK45",
+    "early_stop_window": 18,
+    "early_stop_tol": 5.336699231206313e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 63.382529973983765,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 300,
+    "dfba_pfba_calls": 465000,
+    "dfba_status": "dfba_in_progress_465000",
+    "error": null,
+    "status": "dfba_in_progress_465000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

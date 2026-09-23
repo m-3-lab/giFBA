@@ -1,0 +1,30 @@
+{
+    "N_models": 8,
+    "model_names": [
+        "Campylobacter_jejuni_subsp_jejuni_D2600.mat",
+        "Bacillus_cereus_BDRD_ST26.mat",
+        "Providencia_stuartii_MRSN_2154.mat",
+        "Actinobacillus_pleuropneumoniae_serovar_4_str_M62.mat",
+        "Escherichia_coli_4_0967.mat",
+        "Comamonas_aquatica_NBRC_14918.mat",
+        "Alcaligenes_faecalis_subsp_faecalis_NBRC_13111.mat",
+        "Enterococcus_faecalis_Com_6.mat"
+    ],
+    "sum_N_rxns": 14986,
+    "sum_N_mets": 13708,
+    "vmax": 756.463327554629,
+    "km": 0.4862601580065355,
+    "solver_method": "RK45",
+    "early_stop_window": 8,
+    "early_stop_tol": 6.579332246575683e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 137.82275199890137,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 856,
+    "dfba_pfba_calls": 344000,
+    "dfba_status": "dfba_in_progress_344000",
+    "error": null,
+    "status": "dfba_in_progress_344000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

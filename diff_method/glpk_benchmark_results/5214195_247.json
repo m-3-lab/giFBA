@@ -1,0 +1,32 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Klebsiella_pneumoniae_subsp_pneumoniae_1084.mat",
+        "Enterococcus_faecium_E1392.mat",
+        "Citrobacter_amalonaticus_FDAARGOS_122.mat",
+        "Streptococcus_oralis_SK10.mat",
+        "Listeria_monocytogenes_ATCC_19117.mat",
+        "Listeria_monocytogenes_serotype_1_2a_str_NCCP_No_15743.mat",
+        "Streptococcus_agalactiae_GB00264.mat",
+        "Aeromonas_jandaei_Riv2.mat",
+        "Kingella_oralis_ATCC_51147.mat",
+        "Pseudomonas_aeruginosa_MSH_10.mat"
+    ],
+    "sum_N_rxns": 17291,
+    "sum_N_mets": 15701,
+    "vmax": 312.5715849688235,
+    "km": 0.14508287784959398,
+    "solver_method": "RK45",
+    "early_stop_window": 18,
+    "early_stop_tol": 1.0722672220103232e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 154.10900139808655,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 720,
+    "dfba_pfba_calls": 280000,
+    "dfba_status": "dfba_in_progress_280000",
+    "error": null,
+    "status": "dfba_in_progress_280000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

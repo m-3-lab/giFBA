@@ -1,0 +1,26 @@
+{
+    "N_models": 4,
+    "model_names": [
+        "Streptococcus_agalactiae_GB00247.mat",
+        "Escherichia_coli_MS_146_1.mat",
+        "Acinetobacter_baumannii_NIPH_201.mat",
+        "Cutibacterium_acnes_PA_12_1_L1.mat"
+    ],
+    "sum_N_rxns": 8502,
+    "sum_N_mets": 7486,
+    "vmax": 403.70172585965537,
+    "km": 0.24770763559917114,
+    "solver_method": "RK45",
+    "early_stop_window": 14,
+    "early_stop_tol": 1.1497569953977357e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 58.15896487236023,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 128,
+    "dfba_pfba_calls": 296000,
+    "dfba_status": "dfba_in_progress_296000",
+    "error": null,
+    "status": "dfba_in_progress_296000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

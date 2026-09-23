@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Staphylococcus_aureus_04_02981.mat",
+        "Escherichia_coli_PA34.mat",
+        "Bacteroides_xylanisolvens_ERR2230096.mat",
+        "Escherichia_coli_KTE82.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_CDC_2010K_1745.mat",
+        "Dyadobacter_fermentans_DSM_18053.mat"
+    ],
+    "sum_N_rxns": 12826,
+    "sum_N_mets": 10918,
+    "vmax": 486.26015800653533,
+    "km": 0.8302175681319746,
+    "solver_method": "RK45",
+    "early_stop_window": 12,
+    "early_stop_tol": 4.328761281083061e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 153.60203981399536,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 846,
+    "dfba_pfba_calls": 285000,
+    "dfba_status": "dfba_in_progress_285000",
+    "error": null,
+    "status": "dfba_in_progress_285000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

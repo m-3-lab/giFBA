@@ -1,0 +1,29 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Escherichia_coli_TW10509.mat",
+        "Sphingosinicella_microcystinivorans_DSM_19791.mat",
+        "Escherichia_coli_KTE28.mat",
+        "Escherichia_coli_KTE122.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Agona_str_SH11G1113.mat",
+        "Varibaculum_cambriense_DNF00696.mat",
+        "Erysipelatoclostridium_ramosum_ERR1203924.mat"
+    ],
+    "sum_N_rxns": 15897,
+    "sum_N_mets": 13854,
+    "vmax": 572.236765935022,
+    "km": 0.1519911082952934,
+    "solver_method": "RK45",
+    "early_stop_window": 18,
+    "early_stop_tol": 3.511191734215127e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 87.421395778656,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 497,
+    "dfba_pfba_calls": 336000,
+    "dfba_status": "dfba_in_progress_336000",
+    "error": null,
+    "status": "dfba_in_progress_336000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

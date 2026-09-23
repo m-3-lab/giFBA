@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Escherichia_coli_4_0967.mat",
+        "Escherichia_coli_HS.mat",
+        "Klebsiella_oxytoca_10_5243.mat",
+        "Escherichia_coli_P0298942_12.mat",
+        "Streptococcus_mutans_UA159.mat"
+    ],
+    "sum_N_rxns": 13726,
+    "sum_N_mets": 11802,
+    "vmax": 242.01282647943833,
+    "km": 0.31992671377973836,
+    "solver_method": "RK45",
+    "early_stop_window": 7,
+    "early_stop_tol": 6.1359072734131755e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 285.9225354194641,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 965,
+    "dfba_pfba_calls": 172500,
+    "dfba_status": "dfba_in_progress_172500",
+    "error": null,
+    "status": "dfba_in_progress_172500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

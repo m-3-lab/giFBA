@@ -1,0 +1,25 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Helicobacter_pylori_GAM244Ai.mat",
+        "Streptococcus_pneumoniae_GA47628.mat",
+        "Staphylococcus_aureus_subsp_aureus_MRGR3.mat"
+    ],
+    "sum_N_rxns": 3804,
+    "sum_N_mets": 3455,
+    "vmax": 673.4150657750821,
+    "km": 0.4229242874389499,
+    "solver_method": "RK45",
+    "early_stop_window": 11,
+    "early_stop_tol": 4.037017258596558e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 25.360852479934692,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 33,
+    "dfba_pfba_calls": 504000,
+    "dfba_status": "dfba_in_progress_504000",
+    "error": null,
+    "status": "dfba_in_progress_504000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

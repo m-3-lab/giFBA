@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Leuconostoc_mesenteroides_ERR2221167.mat",
+        "Staphylococcus_epidermidis_M0881.mat",
+        "Escherichia_coli_2726950.mat",
+        "Escherichia_coli_KTE210.mat",
+        "Enterococcus_faecium_E1731.mat",
+        "Escherichia_coli_2866450.mat"
+    ],
+    "sum_N_rxns": 14645,
+    "sum_N_mets": 12905,
+    "vmax": 247.70763559917114,
+    "km": 0.8302175681319746,
+    "solver_method": "RK45",
+    "early_stop_window": 14,
+    "early_stop_tol": 6.579332246575683e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 51.08534598350525,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 192,
+    "dfba_pfba_calls": 282000,
+    "dfba_status": "dfba_in_progress_282000",
+    "error": null,
+    "status": "dfba_in_progress_282000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

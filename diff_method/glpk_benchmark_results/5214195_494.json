@@ -1,0 +1,31 @@
+{
+    "N_models": 9,
+    "model_names": [
+        "Campylobacter_jejuni_subsp_jejuni_6399.mat",
+        "Staphylococcus_warneri_SG1.mat",
+        "Clostridiaceae_nov_ERR2221383.mat",
+        "Bradyrhizobium_yuanmingense_CCBAU_05623.mat",
+        "Campylobacter_jejuni_subsp_jejuni_04197.mat",
+        "Staphylococcus_aureus_subsp_aureus_21195.mat",
+        "Escherichia_coli_TW10598.mat",
+        "Prevotella_buccalis_ATCC_35310.mat",
+        "Clostridiaceae_nov_ERR2221328.mat"
+    ],
+    "sum_N_rxns": 14203,
+    "sum_N_mets": 12736,
+    "vmax": 977.0099572992257,
+    "km": 0.1592282793341092,
+    "solver_method": "RK45",
+    "early_stop_window": 22,
+    "early_stop_tol": 7.054802310718645e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 153.20425701141357,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 711,
+    "dfba_pfba_calls": 373500,
+    "dfba_status": "dfba_in_progress_373500",
+    "error": null,
+    "status": "dfba_in_progress_373500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

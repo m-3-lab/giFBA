@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Cryptobacterium_curtum_DSM_15641.mat",
+        "Shigella_flexneri_CDC_796_83.mat",
+        "Staphylococcus_aureus_subsp_aureus_NBRC_100910.mat",
+        "Ralstonia_pickettii_OR214.mat",
+        "Escherichia_coli_SCI_07.mat",
+        "Pseudomonas_massiliensis_DSM_29075.mat"
+    ],
+    "sum_N_rxns": 11477,
+    "sum_N_mets": 9835,
+    "vmax": 187.3817422860385,
+    "km": 0.464158883361278,
+    "solver_method": "RK45",
+    "early_stop_window": 5,
+    "early_stop_tol": 1.6297508346206435e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 89.58018016815186,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 264,
+    "dfba_pfba_calls": 264000,
+    "dfba_status": "dfba_in_progress_264000",
+    "error": null,
+    "status": "dfba_in_progress_264000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

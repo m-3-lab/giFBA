@@ -1,0 +1,32 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Bacteroides_clarus_ERR2221196.mat",
+        "Pseudomonas_fluorescens_SBW25.mat",
+        "Staphylococcus_aureus_M1229.mat",
+        "Oligella_urethralis_DSM_7531.mat",
+        "Staphylococcus_aureus_M1321.mat",
+        "Escherichia_coli_DEC1E.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Paratyphi_A_str_AKU_12601.mat",
+        "Gordonia_terrae_NBRC_100016.mat",
+        "Mycobacterium_avium_subsp_paratuberculosis_JQ6.mat",
+        "Lactobacillus_sakei_subsp_sakei_23K.mat"
+    ],
+    "sum_N_rxns": 16525,
+    "sum_N_mets": 14548,
+    "vmax": 443.0621457583882,
+    "km": 0.7924828983539175,
+    "solver_method": "RK45",
+    "early_stop_window": 12,
+    "early_stop_tol": 2.477076355991714e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 91.20936942100525,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 500,
+    "dfba_pfba_calls": 380000,
+    "dfba_status": "dfba_in_progress_380000",
+    "error": null,
+    "status": "dfba_in_progress_380000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

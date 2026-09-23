@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Staphylococcus_aureus_M0780.mat",
+        "Escherichia_coli_KTE209.mat",
+        "Lactobacillus_crispatus_FB077_07.mat",
+        "Enterococcus_faecium_E1626.mat",
+        "Bacillus_cereus_VD142.mat",
+        "Selenomonas_bovis_8_14_1.mat"
+    ],
+    "sum_N_rxns": 10293,
+    "sum_N_mets": 9264,
+    "vmax": 756.463327554629,
+    "km": 0.2154434690031884,
+    "solver_method": "RK45",
+    "early_stop_window": 13,
+    "early_stop_tol": 1.747528400007683e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 63.58444809913635,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 282,
+    "dfba_pfba_calls": 393000,
+    "dfba_status": "dfba_in_progress_393000",
+    "error": null,
+    "status": "dfba_in_progress_393000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

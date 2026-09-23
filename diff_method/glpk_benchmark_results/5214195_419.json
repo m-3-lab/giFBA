@@ -1,0 +1,32 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Streptococcus_pneumoniae_SPN061370.mat",
+        "Enterococcus_faecalis_B4969.mat",
+        "Enterococcus_faecium_UAA1433.mat",
+        "Bacillus_subtilis_subsp_spizizenii_str_W23.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Agona_str_49_E_09.mat",
+        "Streptococcus_agalactiae_FSL_C1_487.mat",
+        "Blautia_nov_ERR2221143.mat",
+        "Fusobacterium_nucleatum_subsp_animalis_3_1_33.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Schwarzengrund_str_SL480.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_CVM_N202.mat"
+    ],
+    "sum_N_rxns": 17057,
+    "sum_N_mets": 15034,
+    "vmax": 343.04692863149194,
+    "km": 0.8111308307896873,
+    "solver_method": "RK45",
+    "early_stop_window": 13,
+    "early_stop_tol": 2.310129700083158e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 129.12993669509888,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 490,
+    "dfba_pfba_calls": 270000,
+    "dfba_status": "dfba_in_progress_270000",
+    "error": null,
+    "status": "dfba_in_progress_270000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

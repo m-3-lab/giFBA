@@ -1,0 +1,29 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Streptococcus_agalactiae_GB00003.mat",
+        "Bifidobacterium_dentium_JCVIHMP022.mat",
+        "Aminivibrio_pyruvatiphilus_DSM_25964.mat",
+        "Helicobacter_pylori_Hp_H_1.mat",
+        "Bacillus_cereus_AH1271.mat",
+        "Escherichia_coli_O157_H_str_493_89.mat"
+    ],
+    "sum_N_rxns": 11969,
+    "sum_N_mets": 10885,
+    "vmax": 148.4968262254465,
+    "km": 0.7564633275546291,
+    "solver_method": "BDF",
+    "early_stop_window": 13,
+    "early_stop_tol": 2.1544346900318865e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 130.94361066818237,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 384,
+    "dfba_pfba_calls": 30168,
+    "dfba_status": "dfba_in_progress_30000",
+    "error": "Infeasible: None (infeasible).",
+    "status": "failed",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null,
+    "traceback": "Traceback (most recent call last):\n  File \"/gpfs1/home/r/d/rdsiegel/giFBA/dFBA_runs/VACC_dfba.py\", line 382, in main\n    solution = cb.flux_analysis.parsimonious.pfba(model)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/flux_analysis/parsimonious.py\", line 94, in pfba\n    add_pfba(m, objective=objective, fraction_of_optimum=fraction_of_optimum)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/flux_analysis/parsimonious.py\", line 132, in add_pfba\n    sutil.fix_objective_as_constraint(model, fraction=fraction_of_optimum)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/solver.py\", line 513, in fix_objective_as_constraint\n    bound = model.slim_optimize(error_value=None) * fraction\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/core/model.py\", line 1202, in slim_optimize\n    assert_optimal(self, message)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/solver.py\", line 590, in assert_optimal\n    raise exception_cls(f\"{message} ({status}).\")\ncobra.exceptions.Infeasible: None (infeasible).\n"
+}

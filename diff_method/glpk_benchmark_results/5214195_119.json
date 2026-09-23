@@ -1,0 +1,31 @@
+{
+    "N_models": 9,
+    "model_names": [
+        "Streptococcus_agalactiae_BSU451.mat",
+        "Lactobacillus_gasseri_JV_V03.mat",
+        "Mycoplasma_hyopneumoniae_168_L.mat",
+        "Burkholderia_cenocepacia_HI2424.mat",
+        "Proteus_mirabilis_ATCC_29906.mat",
+        "Escherichia_coli_APEC_O1.mat",
+        "Kurthia_senegalensis_JC8E.mat",
+        "Bacillus_atrophaeus_DJHJ8.mat",
+        "Streptococcus_agalactiae_GB00084.mat"
+    ],
+    "sum_N_rxns": 17629,
+    "sum_N_mets": 15809,
+    "vmax": 126.1856883066021,
+    "km": 0.36783797718286343,
+    "solver_method": "RK45",
+    "early_stop_window": 14,
+    "early_stop_tol": 3.053855508833412e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 144.6330006122589,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 918,
+    "dfba_pfba_calls": 360000,
+    "dfba_status": "dfba_in_progress_360000",
+    "error": null,
+    "status": "dfba_in_progress_360000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

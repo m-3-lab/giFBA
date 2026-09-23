@@ -1,0 +1,25 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Escherichia_coli_541_15.mat",
+        "Raoultella_ornithinolytica_2_156_04_S1_C1.mat",
+        "Bacillus_cereus_NC7401.mat"
+    ],
+    "sum_N_rxns": 7509,
+    "sum_N_mets": 6570,
+    "vmax": 319.92671377973846,
+    "km": 0.4534878508128582,
+    "solver_method": "RK45",
+    "early_stop_window": 18,
+    "early_stop_tol": 7.054802310718645e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 77.35534858703613,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 105,
+    "dfba_pfba_calls": 184500,
+    "dfba_status": "dfba_in_progress_184500",
+    "error": null,
+    "status": "dfba_in_progress_184500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

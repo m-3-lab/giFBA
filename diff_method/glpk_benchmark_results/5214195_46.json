@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Streptococcus_pneumoniae_GA40563.mat",
+        "Cutibacterium_acnes_HL083PA2.mat",
+        "Staphylococcus_aureus_B53639.mat",
+        "Streptococcus_pneumoniae_GA47688.mat",
+        "Comamonas_testosteroni_S44.mat"
+    ],
+    "sum_N_rxns": 7494,
+    "sum_N_mets": 6594,
+    "vmax": 1000.0,
+    "km": 0.2782559402207124,
+    "solver_method": "RK45",
+    "early_stop_window": 9,
+    "early_stop_tol": 3.764935806792471e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 36.38019251823425,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 160,
+    "dfba_pfba_calls": 587500,
+    "dfba_status": "dfba_in_progress_587500",
+    "error": null,
+    "status": "dfba_in_progress_587500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

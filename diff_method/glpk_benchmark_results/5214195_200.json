@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Vibrio_shilonii_AK1.mat",
+        "Bacteroides_vulgatus_ERR1204045.mat",
+        "Shigella_flexneri_2747_71.mat",
+        "Staphylococcus_aureus_B53639.mat",
+        "Staphylococcus_aureus_M1064.mat"
+    ],
+    "sum_N_rxns": 8680,
+    "sum_N_mets": 7359,
+    "vmax": 932.60334688322,
+    "km": 0.2154434690031884,
+    "solver_method": "RK45",
+    "early_stop_window": 23,
+    "early_stop_tol": 1.629750834620647e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 77.2226915359497,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 225,
+    "dfba_pfba_calls": 312500,
+    "dfba_status": "dfba_in_progress_312500",
+    "error": null,
+    "status": "dfba_in_progress_312500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

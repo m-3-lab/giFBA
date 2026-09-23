@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Streptococcus_pneumoniae_GA43257.mat",
+        "Escherichia_coli_E110019.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_639016_6.mat",
+        "Enterococcus_faecium_E1007.mat",
+        "Escherichia_coli_2726950.mat",
+        "Dermacoccus_sp_Ellin185.mat"
+    ],
+    "sum_N_rxns": 12202,
+    "sum_N_mets": 10607,
+    "vmax": 120.45035402587824,
+    "km": 0.11768119524349985,
+    "solver_method": "RK45",
+    "early_stop_window": 20,
+    "early_stop_tol": 7.564633275546291e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 109.77110719680786,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 516,
+    "dfba_pfba_calls": 285000,
+    "dfba_status": "dfba_in_progress_285000",
+    "error": null,
+    "status": "dfba_in_progress_285000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

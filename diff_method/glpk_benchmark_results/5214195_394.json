@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Haemophilus_sputorum_CCUG_13788.mat",
+        "Streptococcus_mutans_TCI_92.mat",
+        "Carnobacterium_maltaromaticum_DSM_20722.mat",
+        "Staphylococcus_capitis_VCU116.mat",
+        "Corynebacterium_casei_UCMA_3821.mat"
+    ],
+    "sum_N_rxns": 6561,
+    "sum_N_mets": 6071,
+    "vmax": 271.85882427329403,
+    "km": 0.22051307399030456,
+    "solver_method": "RK45",
+    "early_stop_window": 23,
+    "early_stop_tol": 3.274549162877732e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 27.511934518814087,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 235,
+    "dfba_pfba_calls": 675000,
+    "dfba_status": "dfba_in_progress_675000",
+    "error": null,
+    "status": "dfba_in_progress_675000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

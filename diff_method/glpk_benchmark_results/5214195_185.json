@@ -1,0 +1,30 @@
+{
+    "N_models": 8,
+    "model_names": [
+        "Enterococcus_faecium_E1392.mat",
+        "Bacteroides_acidifaciens_1e8A.mat",
+        "Escherichia_coli_KTE190.mat",
+        "Escherichia_coli_H263.mat",
+        "Klebsiella_pneumoniae_subsp_pneumoniae_WGLW1.mat",
+        "Acinetobacter_lwoffii_CIP_70_31.mat",
+        "Escherichia_coli_O157_H_str_493_89.mat",
+        "Staphylococcus_aureus_subsp_aureus_21305.mat"
+    ],
+    "sum_N_rxns": 18187,
+    "sum_N_mets": 16040,
+    "vmax": 705.4802310718645,
+    "km": 0.8497534359086445,
+    "solver_method": "RK45",
+    "early_stop_window": 17,
+    "early_stop_tol": 1.873817422860383e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 149.83032536506653,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 472,
+    "dfba_pfba_calls": 168000,
+    "dfba_status": "dfba_in_progress_168000",
+    "error": null,
+    "status": "dfba_in_progress_168000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

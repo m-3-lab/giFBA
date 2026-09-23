@@ -1,0 +1,26 @@
+{
+    "N_models": 4,
+    "model_names": [
+        "Acinetobacter_baumannii_AB405E4.mat",
+        "Bacillus_cereus_Rock3_44.mat",
+        "Campylobacter_ureolyticus_UMB0112.mat",
+        "Helicobacter_pylori_HP250AFiV.mat"
+    ],
+    "sum_N_rxns": 5302,
+    "sum_N_mets": 4834,
+    "vmax": 811.1308307896873,
+    "km": 0.9545484566618342,
+    "solver_method": "RK45",
+    "early_stop_window": 21,
+    "early_stop_tol": 4.3287612810830616e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 46.18252110481262,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 212,
+    "dfba_pfba_calls": 448000,
+    "dfba_status": "dfba_in_progress_448000",
+    "error": null,
+    "status": "dfba_in_progress_448000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,32 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Acinetobacter_baumannii_AB_908_13.mat",
+        "Enterococcus_faecalis_FA2_2.mat",
+        "Lactobacillus_parabuchneri_DSM_5707_NBRC_107865.mat",
+        "Bacillus_pseudomycoides_Rock1_4.mat",
+        "Neisseria_flavescens_NRL30031_H210.mat",
+        "Staphylococcus_aureus_M0221.mat",
+        "Enterococcus_faecium_HF50215.mat",
+        "Aggregatibacter_aphrophilus_NJ8700.mat",
+        "Parabacteroides_sp_ASF519.mat",
+        "Bacteroides_xylanolyticus_DSM_3808.mat"
+    ],
+    "sum_N_rxns": 14354,
+    "sum_N_mets": 12674,
+    "vmax": 932.60334688322,
+    "km": 0.23644894126454072,
+    "solver_method": "RK45",
+    "early_stop_window": 22,
+    "early_stop_tol": 4.977023564332114e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 230.56972193717957,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 2300,
+    "dfba_pfba_calls": 470000,
+    "dfba_status": "dfba_in_progress_470000",
+    "error": null,
+    "status": "dfba_in_progress_470000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Escherichia_coli_P0304816_11.mat",
+        "Bifidobacterium_scardovii_JCM_12489.mat",
+        "Bacillus_cereus_BAG4X2_1.mat",
+        "Lachnospiraceae_nov_ERR1022389.mat",
+        "Lactobacillus_saerimneri_30a.mat",
+        "Bifidobacterium_breve_ERR2230051.mat"
+    ],
+    "sum_N_rxns": 9274,
+    "sum_N_mets": 8256,
+    "vmax": 335.1602650938841,
+    "km": 0.6135907273413174,
+    "solver_method": "RK45",
+    "early_stop_window": 23,
+    "early_stop_tol": 9.3260334688322e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 55.173282861709595,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 318,
+    "dfba_pfba_calls": 459000,
+    "dfba_status": "dfba_in_progress_459000",
+    "error": null,
+    "status": "dfba_in_progress_459000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

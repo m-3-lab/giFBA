@@ -1,0 +1,32 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Blautia_torques_ERR1022479.mat",
+        "Staphylococcus_aureus_M0250.mat",
+        "Candidatus_Pelagibacter_sp_IMCC9063.mat",
+        "Escherichia_coli_STEC_7v.mat",
+        "Pseudomonas_fragi_F1794.mat",
+        "Enterococcus_faecium_UAA951.mat",
+        "Streptococcus_mutans_AC4446.mat",
+        "Staphylococcus_aureus_subsp_aureus_VRS9.mat",
+        "Veillonella_sp_oral_taxon_780_str_F0422.mat",
+        "Acidaminococcus_sp_HPA0509.mat"
+    ],
+    "sum_N_rxns": 14235,
+    "sum_N_mets": 12575,
+    "vmax": 443.0621457583882,
+    "km": 0.739072203352578,
+    "solver_method": "RK45",
+    "early_stop_window": 25,
+    "early_stop_tol": 4.328761281083062e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 49.7654173374176,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 270,
+    "dfba_pfba_calls": 535000,
+    "dfba_status": "dfba_in_progress_535000",
+    "error": null,
+    "status": "dfba_in_progress_535000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

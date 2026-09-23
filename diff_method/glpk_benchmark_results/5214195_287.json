@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Bacillus_cereus_AH676.mat",
+        "Escherichia_coli_DEC9E.mat",
+        "Campylobacter_coli_14983A.mat",
+        "Pediococcus_acidilactici_MA18_5M.mat",
+        "Cutibacterium_acnes_HL059PA1.mat",
+        "Lactobacillus_iners_UPII_143_D.mat"
+    ],
+    "sum_N_rxns": 11183,
+    "sum_N_mets": 10348,
+    "vmax": 253.53644939701115,
+    "km": 0.20565123083486514,
+    "solver_method": "RK45",
+    "early_stop_window": 11,
+    "early_stop_tol": 1.072267222010323e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 86.17411303520203,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 150,
+    "dfba_pfba_calls": 291000,
+    "dfba_status": "dfba_in_progress_291000",
+    "error": null,
+    "status": "dfba_in_progress_291000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

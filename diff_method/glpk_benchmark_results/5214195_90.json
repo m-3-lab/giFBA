@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Coprococcus_comes_ERR1022290.mat",
+        "Helicobacter_trogontum_50960_7.mat",
+        "Staphylococcus_warneri_L37603.mat",
+        "Bacillus_atrophaeus_ATCC_9372_2.mat",
+        "Streptococcus_agalactiae_GB00986.mat"
+    ],
+    "sum_N_rxns": 7920,
+    "sum_N_mets": 7318,
+    "vmax": 123.28467394420659,
+    "km": 0.1,
+    "solver_method": "RK45",
+    "early_stop_window": 4,
+    "early_stop_tol": 3.764935806792471e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 37.10090255737305,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 130,
+    "dfba_pfba_calls": 420000,
+    "dfba_status": "dfba_in_progress_420000",
+    "error": null,
+    "status": "dfba_in_progress_420000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

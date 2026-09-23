@@ -1,0 +1,28 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Escherichia_coli_H30.mat",
+        "Muricomes_intestini_DSM_29489.mat",
+        "Murdochiella_vaginalis_DSM_102237.mat",
+        "Escherichia_coli_O157_H7_str_G5101.mat",
+        "Haemophilus_influenzae_7P49H1.mat"
+    ],
+    "sum_N_rxns": 9890,
+    "sum_N_mets": 8614,
+    "vmax": 100.0,
+    "km": 0.9545484566618342,
+    "solver_method": "RK45",
+    "early_stop_window": 9,
+    "early_stop_tol": 4.328761281083062e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 118.48582124710083,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 385,
+    "dfba_pfba_calls": 100360,
+    "dfba_status": "dfba_in_progress_100000",
+    "error": "Infeasible: None (infeasible).",
+    "status": "failed",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null,
+    "traceback": "Traceback (most recent call last):\n  File \"/gpfs1/home/r/d/rdsiegel/giFBA/dFBA_runs/VACC_dfba.py\", line 382, in main\n    solution = cb.flux_analysis.parsimonious.pfba(model)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/flux_analysis/parsimonious.py\", line 94, in pfba\n    add_pfba(m, objective=objective, fraction_of_optimum=fraction_of_optimum)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/flux_analysis/parsimonious.py\", line 132, in add_pfba\n    sutil.fix_objective_as_constraint(model, fraction=fraction_of_optimum)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/solver.py\", line 513, in fix_objective_as_constraint\n    bound = model.slim_optimize(error_value=None) * fraction\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/core/model.py\", line 1202, in slim_optimize\n    assert_optimal(self, message)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/solver.py\", line 590, in assert_optimal\n    raise exception_cls(f\"{message} ({status}).\")\ncobra.exceptions.Infeasible: None (infeasible).\n"
+}

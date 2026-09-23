@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Streptococcus_pneumoniae_GA47360.mat",
+        "Escherichia_coli_H299.mat",
+        "Leuconostoc_lactis_KACC_91922.mat",
+        "Bacillus_paralicheniformis_ATCC_9945a.mat",
+        "Streptococcus_salivarius_ERR2221359.mat"
+    ],
+    "sum_N_rxns": 8253,
+    "sum_N_mets": 7187,
+    "vmax": 210.49041445120199,
+    "km": 0.1417474162926805,
+    "solver_method": "RK45",
+    "early_stop_window": 9,
+    "early_stop_tol": 1.1497569953977356e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 86.98063516616821,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 230,
+    "dfba_pfba_calls": 257500,
+    "dfba_status": "dfba_in_progress_257500",
+    "error": null,
+    "status": "dfba_in_progress_257500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

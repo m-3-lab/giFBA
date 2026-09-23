@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Streptococcus_parauberis_KRS_02109.mat",
+        "Escherichia_coli_KTE26.mat",
+        "Enterococcus_faecalis_B1623.mat",
+        "Staphylococcus_cohnii_subsp_cohnii_532.mat",
+        "Escherichia_coli_DEC5A.mat",
+        "Campylobacter_coli_RM2228.mat"
+    ],
+    "sum_N_rxns": 12446,
+    "sum_N_mets": 11154,
+    "vmax": 327.45491628777285,
+    "km": 0.23101297000831597,
+    "solver_method": "RK45",
+    "early_stop_window": 15,
+    "early_stop_tol": 2.1544346900318822e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 111.1627151966095,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 150,
+    "dfba_pfba_calls": 240000,
+    "dfba_status": "dfba_in_progress_240000",
+    "error": null,
+    "status": "dfba_in_progress_240000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

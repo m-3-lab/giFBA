@@ -1,0 +1,25 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Kosakonia_sacchari_SP1.mat",
+        "Staphylococcus_aureus_subsp_aureus_NBRC_100910.mat",
+        "Klebsiella_pneumoniae_NTUH_K2044.mat"
+    ],
+    "sum_N_rxns": 5868,
+    "sum_N_mets": 5050,
+    "vmax": 932.60334688322,
+    "km": 0.5857020818056667,
+    "solver_method": "RK45",
+    "early_stop_window": 21,
+    "early_stop_tol": 7.054802310718646e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 96.63859939575195,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 1047,
+    "dfba_pfba_calls": 405000,
+    "dfba_status": "dfba_in_progress_405000",
+    "error": null,
+    "status": "dfba_in_progress_405000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

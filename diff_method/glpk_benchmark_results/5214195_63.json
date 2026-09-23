@@ -1,0 +1,28 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Acinetobacter_sp_OIFC021.mat",
+        "Enterococcus_faecium_E1972.mat",
+        "Porphyromonadaceae_nov_ERR2221374.mat",
+        "Acinetobacter_radioresistens_DSM_6976.mat",
+        "Porphyromonas_asaccharolytica_PR426713P_I.mat"
+    ],
+    "sum_N_rxns": 6678,
+    "sum_N_mets": 6442,
+    "vmax": 977.0099572992257,
+    "km": 0.10722672220103231,
+    "solver_method": "RK45",
+    "early_stop_window": 10,
+    "early_stop_tol": 1e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 38.293444871902466,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 85,
+    "dfba_pfba_calls": 120820,
+    "dfba_status": "dfba_in_progress_120000",
+    "error": "Infeasible: None (infeasible).",
+    "status": "failed",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null,
+    "traceback": "Traceback (most recent call last):\n  File \"/gpfs1/home/r/d/rdsiegel/giFBA/dFBA_runs/VACC_dfba.py\", line 382, in main\n    solution = cb.flux_analysis.parsimonious.pfba(model)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/flux_analysis/parsimonious.py\", line 94, in pfba\n    add_pfba(m, objective=objective, fraction_of_optimum=fraction_of_optimum)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/flux_analysis/parsimonious.py\", line 132, in add_pfba\n    sutil.fix_objective_as_constraint(model, fraction=fraction_of_optimum)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/solver.py\", line 513, in fix_objective_as_constraint\n    bound = model.slim_optimize(error_value=None) * fraction\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/core/model.py\", line 1202, in slim_optimize\n    assert_optimal(self, message)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/solver.py\", line 590, in assert_optimal\n    raise exception_cls(f\"{message} ({status}).\")\ncobra.exceptions.Infeasible: None (infeasible).\n"
+}

@@ -1,0 +1,27 @@
+{
+    "N_models": 5,
+    "model_names": [
+        "Staphylococcus_aureus_B40950.mat",
+        "Bacteroides_sp_2_1_33B.mat",
+        "Staphylococcus_epidermidis_VCU105.mat",
+        "Ochrobactrum_intermedium_LMG_3301.mat",
+        "Lachnospira_nov_ERR1204071.mat"
+    ],
+    "sum_N_rxns": 7841,
+    "sum_N_mets": 6933,
+    "vmax": 102.35310218990259,
+    "km": 0.18307382802953684,
+    "solver_method": "RK45",
+    "early_stop_window": 20,
+    "early_stop_tol": 9.326033468832199e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 101.41806364059448,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 150,
+    "dfba_pfba_calls": 292500,
+    "dfba_status": "dfba_in_progress_292500",
+    "error": null,
+    "status": "dfba_in_progress_292500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

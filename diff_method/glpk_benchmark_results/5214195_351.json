@@ -1,0 +1,25 @@
+{
+    "N_models": 3,
+    "model_names": [
+        "Proteus_vulgaris_NCTC13145.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Stanley_str_06_0538.mat",
+        "Akkermansia_sp_KLE1798.mat"
+    ],
+    "sum_N_rxns": 4905,
+    "sum_N_mets": 4441,
+    "vmax": 613.5907273413176,
+    "km": 0.739072203352578,
+    "solver_method": "RK45",
+    "early_stop_window": 5,
+    "early_stop_tol": 1.6297508346206436e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 44.51712155342102,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 150,
+    "dfba_pfba_calls": 336000,
+    "dfba_status": "dfba_in_progress_336000",
+    "error": null,
+    "status": "dfba_in_progress_336000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

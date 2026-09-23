@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Lactobacillus_plantarum_ERR2221349.mat",
+        "Oxalobacter_formigenes_HOxBLS.mat",
+        "Clostridium_jeddahtimonense_CL_2.mat",
+        "Vibrio_mimicus_MB_451.mat",
+        "Barnesiella_intestinihominis_YIT_11860.mat",
+        "Atopobium_minutum_10063974.mat"
+    ],
+    "sum_N_rxns": 7170,
+    "sum_N_mets": 6456,
+    "vmax": 247.70763559917114,
+    "km": 0.33516026509388425,
+    "solver_method": "RK45",
+    "early_stop_window": 18,
+    "early_stop_tol": 8.697490026177834e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 39.569254875183105,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 360,
+    "dfba_pfba_calls": 603000,
+    "dfba_status": "dfba_in_progress_603000",
+    "error": null,
+    "status": "dfba_in_progress_603000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

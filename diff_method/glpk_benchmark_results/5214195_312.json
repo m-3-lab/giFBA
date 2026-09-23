@@ -1,0 +1,24 @@
+{
+    "N_models": 2,
+    "model_names": [
+        "Bacteroides_cellulosilyticus_ERR2221326.mat",
+        "Enterococcus_faecalis_Merz96.mat"
+    ],
+    "sum_N_rxns": 3034,
+    "sum_N_mets": 2780,
+    "vmax": 210.49041445120199,
+    "km": 0.26560877829466867,
+    "solver_method": "RK45",
+    "early_stop_window": 22,
+    "early_stop_tol": 3.5111917342151277e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 31.34486699104309,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 60,
+    "dfba_pfba_calls": 408000,
+    "dfba_status": "dfba_in_progress_408000",
+    "error": null,
+    "status": "dfba_in_progress_408000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

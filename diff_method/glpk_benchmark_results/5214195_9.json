@@ -1,0 +1,32 @@
+{
+    "N_models": 10,
+    "model_names": [
+        "Blautia_luti_ERR2221098.mat",
+        "Enterococcus_faecalis_B_4_111.mat",
+        "Collinsella_aerofaciens_ERR2230090.mat",
+        "Rothia_mucilaginosa_NUM_Rm6536.mat",
+        "Porphyromonas_gingivalis_W83.mat",
+        "Enterorhabdus_caecimuris_B7.mat",
+        "Yersinia_enterocolitica_IP_10393.mat",
+        "Brevundimonas_diminuta_470_4.mat",
+        "Erysipelothrix_rhusiopathiae_SY1027.mat",
+        "Muricomes_intestini_DSM_29489.mat"
+    ],
+    "sum_N_rxns": 11578,
+    "sum_N_mets": 10677,
+    "vmax": 977.0099572992257,
+    "km": 0.739072203352578,
+    "solver_method": "RK45",
+    "early_stop_window": 23,
+    "early_stop_tol": 1.3219411484660288e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 124.35411167144775,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 1660,
+    "dfba_pfba_calls": 645000,
+    "dfba_status": "dfba_in_progress_645000",
+    "error": null,
+    "status": "dfba_in_progress_645000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

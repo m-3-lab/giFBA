@@ -1,0 +1,26 @@
+{
+    "N_models": 4,
+    "model_names": [
+        "Fusobacterium_nucleatum_subsp_polymorphum_ATCC_10953.mat",
+        "Staphylococcus_aureus_subsp_aureus_VRS3a.mat",
+        "Staphylococcus_aureus_M0460.mat",
+        "Pseudomonas_aeruginosa_MRW44_1.mat"
+    ],
+    "sum_N_rxns": 6620,
+    "sum_N_mets": 6021,
+    "vmax": 236.4489412645407,
+    "km": 0.10974987654930562,
+    "solver_method": "RK45",
+    "early_stop_window": 28,
+    "early_stop_tol": 6.579332246575683e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 41.16352033615112,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 76,
+    "dfba_pfba_calls": 278000,
+    "dfba_status": "dfba_in_progress_278000",
+    "error": null,
+    "status": "dfba_in_progress_278000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

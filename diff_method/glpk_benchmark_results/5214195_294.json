@@ -1,0 +1,29 @@
+{
+    "N_models": 7,
+    "model_names": [
+        "Enterococcus_faecium_EnGen0376.mat",
+        "Actinomyces_johnsonii_F0510.mat",
+        "Leuconostoc_mesenteroides_subsp_mesenteroides_J18.mat",
+        "Escherichia_coli_DEC2D.mat",
+        "Veillonella_montpellierensis_DSM_17217.mat",
+        "Clostridium_clostridioforme_90A3.mat",
+        "Enterococcus_faecalis_UAA948.mat"
+    ],
+    "sum_N_rxns": 12156,
+    "sum_N_mets": 11110,
+    "vmax": 242.01282647943833,
+    "km": 0.31992671377973836,
+    "solver_method": "RK45",
+    "early_stop_window": 6,
+    "early_stop_tol": 4.3287612810830616e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 111.81710839271545,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 357,
+    "dfba_pfba_calls": 297500,
+    "dfba_status": "dfba_in_progress_297500",
+    "error": null,
+    "status": "dfba_in_progress_297500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

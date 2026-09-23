@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Bacillus_cereus_Rock4_2.mat",
+        "Paenibacillus_sp_GM2.mat",
+        "Gardnerella_vaginalis_00703Bmash.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Newport_str_CVM_4176.mat",
+        "Escherichia_coli_900105_10e.mat",
+        "Campylobacter_jejuni_jejuni_81_176.mat"
+    ],
+    "sum_N_rxns": 11115,
+    "sum_N_mets": 10023,
+    "vmax": 129.1549665014884,
+    "km": 0.5094138014816381,
+    "solver_method": "RK45",
+    "early_stop_window": 21,
+    "early_stop_tol": 5.336699231206313e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 78.89381957054138,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 126,
+    "dfba_pfba_calls": 201000,
+    "dfba_status": "dfba_in_progress_201000",
+    "error": null,
+    "status": "dfba_in_progress_201000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

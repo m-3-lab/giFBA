@@ -1,0 +1,26 @@
+{
+    "N_models": 4,
+    "model_names": [
+        "Lactococcus_garvieae_I113.mat",
+        "Planococcus_massiliensis_DSM_28915.mat",
+        "Lactobacillus_paracasei_LPC_37.mat",
+        "Natranaerovirga_hydrolytica_DSM_24176.mat"
+    ],
+    "sum_N_rxns": 4919,
+    "sum_N_mets": 4718,
+    "vmax": 811.1308307896873,
+    "km": 0.24201282647943823,
+    "solver_method": "RK45",
+    "early_stop_window": 12,
+    "early_stop_tol": 5.336699231206313e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 32.03663158416748,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 100,
+    "dfba_pfba_calls": 512000,
+    "dfba_status": "dfba_in_progress_512000",
+    "error": null,
+    "status": "dfba_in_progress_512000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

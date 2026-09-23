@@ -1,0 +1,23 @@
+{
+    "N_models": 1,
+    "model_names": [
+        "Bifidobacterium_breve_DPC_6330.mat"
+    ],
+    "sum_N_rxns": 1351,
+    "sum_N_mets": 1311,
+    "vmax": 210.49041445120199,
+    "km": 0.1353047774579807,
+    "solver_method": "RK45",
+    "early_stop_window": 19,
+    "early_stop_tol": 4.977023564332114e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 7.082192897796631,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 3,
+    "dfba_pfba_calls": 557500,
+    "dfba_status": "dfba_in_progress_557500",
+    "error": null,
+    "status": "dfba_in_progress_557500",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

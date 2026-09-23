@@ -1,0 +1,25 @@
+{
+    "N_models": 2,
+    "model_names": [
+        "Streptococcus_agalactiae_GB00614.mat",
+        "Streptomyces_massiliensis_AP10.mat"
+    ],
+    "sum_N_rxns": 3456,
+    "sum_N_mets": 3116,
+    "vmax": 183.07382802953677,
+    "km": 0.6579332246575681,
+    "solver_method": "RK45",
+    "early_stop_window": 13,
+    "early_stop_tol": 4.977023564332114e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 17.735310316085815,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 24,
+    "dfba_pfba_calls": 7217,
+    "dfba_status": "dfba_in_progress_7000",
+    "error": "Infeasible: None (infeasible).",
+    "status": "failed",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null,
+    "traceback": "Traceback (most recent call last):\n  File \"/gpfs1/home/r/d/rdsiegel/giFBA/dFBA_runs/VACC_dfba.py\", line 359, in main\n    sol, dfba_solve_time = benchmark_dfba(\n  File \"/gpfs1/home/r/d/rdsiegel/giFBA/dFBA_runs/VACC_dfba.py\", line 280, in benchmark_dfba\n    sol = solve_ivp(\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/scipy/integrate/_ivp/ivp.py\", line 655, in solve_ivp\n    message = solver.step()\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/scipy/integrate/_ivp/base.py\", line 197, in step\n    success, message = self._step_impl()\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/scipy/integrate/_ivp/rk.py\", line 144, in _step_impl\n    y_new, f_new = rk_step(self.fun, t, y, self.f, h, self.A,\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/scipy/integrate/_ivp/rk.py\", line 64, in rk_step\n    K[s] = fun(t + c * h, y + dy)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/scipy/integrate/_ivp/base.py\", line 154, in fun\n    return self.fun_single(t, y)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/scipy/integrate/_ivp/base.py\", line 23, in fun_wrapped\n    return np.asarray(fun(t, y), dtype=dtype)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/scipy/integrate/_ivp/ivp.py\", line 593, in fun\n    return fun(t, x, *args)\n  File \"/gpfs1/home/r/d/rdsiegel/giFBA/dFBA_runs/VACC_dfba.py\", line 227, in ode_wrapper\n    return dsdt(t, S, *args)\n  File \"/gpfs1/home/r/d/rdsiegel/giFBA/dFBA_runs/VACC_dfba.py\", line 184, in dsdt\n    solution = cb.flux_analysis.parsimonious.pfba(model)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/flux_analysis/parsimonious.py\", line 95, in pfba\n    m.slim_optimize(error_value=None)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/core/model.py\", line 1202, in slim_optimize\n    assert_optimal(self, message)\n  File \"/users/r/d/rdsiegel/miniconda3/envs/M3/lib/python3.10/site-packages/cobra/util/solver.py\", line 590, in assert_optimal\n    raise exception_cls(f\"{message} ({status}).\")\ncobra.exceptions.Infeasible: None (infeasible).\n"
+}

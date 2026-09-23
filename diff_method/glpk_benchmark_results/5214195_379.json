@@ -1,0 +1,24 @@
+{
+    "N_models": 2,
+    "model_names": [
+        "Klebsiella_sp_4_1_44FAA.mat",
+        "Escherichia_coli_5_0959.mat"
+    ],
+    "sum_N_rxns": 5506,
+    "sum_N_mets": 4716,
+    "vmax": 954.5484566618347,
+    "km": 0.9545484566618342,
+    "solver_method": "RK45",
+    "early_stop_window": 17,
+    "early_stop_tol": 4.3287612810830616e-07,
+    "model_solver": "glpk",
+    "gifba_solve_time": 69.34330415725708,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 126,
+    "dfba_pfba_calls": 161000,
+    "dfba_status": "dfba_in_progress_161000",
+    "error": null,
+    "status": "dfba_in_progress_161000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

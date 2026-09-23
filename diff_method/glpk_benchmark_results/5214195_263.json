@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Rickettsiella_grylli.mat",
+        "Escherichia_coli_KTE212.mat",
+        "Klebsiella_pneumoniae_VAKPC297.mat",
+        "Helicobacter_pylori_Hp_P_11b.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_648900_1_16.mat",
+        "Neisseria_meningitidis_2842STDY5881431.mat"
+    ],
+    "sum_N_rxns": 11763,
+    "sum_N_mets": 10834,
+    "vmax": 546.2277217684342,
+    "km": 0.533669923120631,
+    "solver_method": "RK45",
+    "early_stop_window": 24,
+    "early_stop_tol": 7.564633275546291e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 85.51676440238953,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 210,
+    "dfba_pfba_calls": 270000,
+    "dfba_status": "dfba_in_progress_270000",
+    "error": null,
+    "status": "dfba_in_progress_270000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

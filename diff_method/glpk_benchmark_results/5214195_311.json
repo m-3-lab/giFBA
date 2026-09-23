@@ -1,0 +1,28 @@
+{
+    "N_models": 6,
+    "model_names": [
+        "Klebsiella_pneumoniae_UHKPC29.mat",
+        "Gemella_sanguinis_ATCC700632.mat",
+        "Streptococcus_mutans_M230.mat",
+        "Escherichia_coli_O26_H11_str_CVM10030.mat",
+        "Enterococcus_faecalis_SS_6.mat",
+        "Roseomonas_cervicalis_ATCC_49957.mat"
+    ],
+    "sum_N_rxns": 10642,
+    "sum_N_mets": 9425,
+    "vmax": 135.30477745798075,
+    "km": 0.1519911082952934,
+    "solver_method": "RK45",
+    "early_stop_window": 24,
+    "early_stop_tol": 5.336699231206313e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 84.84038662910461,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 186,
+    "dfba_pfba_calls": 264000,
+    "dfba_status": "dfba_in_progress_264000",
+    "error": null,
+    "status": "dfba_in_progress_264000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

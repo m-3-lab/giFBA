@@ -1,0 +1,30 @@
+{
+    "N_models": 8,
+    "model_names": [
+        "Roseburia_nov_ERR171282.mat",
+        "Pseudomonas_aeruginosa_PA21_ST175.mat",
+        "Dorea_longicatena_ERR1022309.mat",
+        "Salmonella_enterica_subsp_enterica_serovar_Enteritidis_str_648905_5_18.mat",
+        "Staphylococcus_aureus_subsp_aureus_21252.mat",
+        "Escherichia_coli_ED1a.mat",
+        "Staphylococcus_aureus_M1119.mat",
+        "Escherichia_coli_KTE93.mat"
+    ],
+    "sum_N_rxns": 16683,
+    "sum_N_mets": 14743,
+    "vmax": 585.7020818056667,
+    "km": 0.464158883361278,
+    "solver_method": "RK45",
+    "early_stop_window": 4,
+    "early_stop_tol": 4.977023564332114e-06,
+    "model_solver": "glpk",
+    "gifba_solve_time": 99.06049752235413,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 448,
+    "dfba_pfba_calls": 304000,
+    "dfba_status": "dfba_in_progress_304000",
+    "error": null,
+    "status": "dfba_in_progress_304000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}

@@ -1,0 +1,31 @@
+{
+    "N_models": 9,
+    "model_names": [
+        "Streptomyces_sp_HPH0547.mat",
+        "Enterococcus_gallinarum_ERR2221218.mat",
+        "Alistipes_shahii_ERR2221103.mat",
+        "Enterobacter_cloacae_ERR2221114.mat",
+        "Bifidobacterium_breve_2L.mat",
+        "Mycobacterium_abscessus_M93.mat",
+        "Streptococcus_agalactiae_str_Gottschalk_1002A.mat",
+        "Corynebacterium_variabile_Mu292.mat",
+        "Bacteroides_dorei_CL02T00C15.mat"
+    ],
+    "sum_N_rxns": 13376,
+    "sum_N_mets": 12141,
+    "vmax": 220.51307399030455,
+    "km": 0.5857020818056667,
+    "solver_method": "RK45",
+    "early_stop_window": 20,
+    "early_stop_tol": 1.8738174228603867e-05,
+    "model_solver": "glpk",
+    "gifba_solve_time": 482.61695408821106,
+    "dfba_solve_time": null,
+    "gifba_pfba_calls": 3708,
+    "dfba_pfba_calls": 360000,
+    "dfba_status": "dfba_in_progress_360000",
+    "error": null,
+    "status": "dfba_in_progress_360000",
+    "gifba_fluxes": null,
+    "dfba_fluxes": null
+}
