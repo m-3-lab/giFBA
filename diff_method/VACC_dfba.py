@@ -14,24 +14,26 @@ import gifba
 
 
 # Paths & constants
-agora_dir_base = "/gpfs2/scratch/rdsiegel/agora2_shared"
-# agora_dir_base = "/home/rseag/AGORA2_All_Models"
-EURO_MEDIA_FILE = "/users/r/d/rdsiegel/giFBA/dFBA_runs/euro_diet.tsv"
-# EURO_MEDIA_FILE = "/home/rseag/UVM/M3_Lab/giFBA/Examples/2_real_models/data/euro_diet.tsv"
-output_dir = "/home/rseag/UVM/M3_Lab/giFBA/Examples/2_real_models/glpk_benchmark_results"
+# agora_dir_base = "/gpfs2/scratch/rdsiegel/agora2_shared"
+agora_dir_base = "/home/rseag/AGORA2_All_Models"
+# EURO_MEDIA_FILE = "/users/r/d/rdsiegel/giFBA/dFBA_runs/euro_diet.tsv"
+EURO_MEDIA_FILE = "/home/rseag/UVM/M3_Lab/giFBA/Examples/2_real_models/data/euro_diet.tsv"
+output_dir = "/home/rseag/UVM/M3_Lab/giFBA/Examples/2_real_models/glpk_benchmark_results-test"
 LOG_EVERY_N_CALLS = 500
 OLD_BIOMASS_ID = "EX_biomass(e)"
 COBRA_SOLVER = "glpk"
-t_start, t_end = 0, 100
+t_start, t_end = 0, 0.5
 GIFBA_ITERATIONS = 100
 
 # Monte Carlo sampling space for (N_models, Vmax, Km, ODE solver)
-N_models_list = list(range(1, 11))
+# N_models_list = list(range(1, 11))
+N_models_list = [2]
 V_MAX_LIST = list(np.logspace(2, 3, 100))  # (mmol/(gi*hr)) max uptake rate
 KM_LIST = list(np.logspace(-1, 0, 100))    # (mmol) Michaelis-Menten constant
 SOLVER_LIST = ["RK45", "BDF"]
 EARLY_STOP_WINDOW_LIST = list(range(4, 30)) # window size for linear regression in early stopping event
-EARLY_STOP_TOL_LIST = list(np.logspace(-7, -4, 100))  # tolerances for residuals in early stopping event
+# EARLY_STOP_TOL_LIST = list(np.logspace(-7, -4, 100))  # tolerances for residuals in early stopping event
+EARLY_STOP_TOL_LIST = [1e-5]
 
 array_job_id = os.environ.get("SLURM_ARRAY_JOB_ID")
 task_id = os.environ.get("SLURM_ARRAY_TASK_ID")
@@ -113,34 +115,79 @@ def rename_community_biomass(models, old_biomass_id="EX_Bio(e)"):
 
 
 def load_agora_models(N):
-    selected_models = []
-    selected_models_files = []
+    # selected_models = []
+    # selected_models_files = []
 
-    # List of directory contents to randomly choose from
-    model_files = [
-        name for name in os.listdir(agora_dir_base)
-        if os.path.isfile(os.path.join(agora_dir_base, name))
-    ]
+    # # List of directory contents to randomly choose from
+    # model_files = [
+    #     name for name in os.listdir(agora_dir_base)
+    #     if os.path.isfile(os.path.join(agora_dir_base, name))
+    # ]
 
-    for _ in range(N):
-        model_file = np.random.choice(model_files)
-        while model_file in selected_models_files:
-            model_file = np.random.choice(model_files) # avoid duplicates - not necessary but nice for diversity
-        model_path = os.path.join(agora_dir_base, model_file)
-        model = cb.io.load_matlab_model(model_path)
-        model.solver = COBRA_SOLVER
+    # for _ in range(N):
+    #     model_file = np.random.choice(model_files)
+    #     while model_file in selected_models_files:
+    #         model_file = np.random.choice(model_files) # avoid duplicates - not necessary but nice for diversity
+    #     model_path = os.path.join(agora_dir_base, model_file)
+    #     model = cb.io.load_matlab_model(model_path)
+    #     model.solver = COBRA_SOLVER
 
-        selected_models.append(model)
-        selected_models_files.append(model_file)
+    #     selected_models.append(model)
+    #     selected_models_files.append(model_file)
+
+    AH_path = "/home/rseag/AGORA2_All_Models/Eubacterium_hallii_DSM_3353.mat"
+    BI_path = "/home/rseag/AGORA2_All_Models/Bifidobacterium_longum_infantis_ATCC_15697.mat"
+
+    AH = cb.io.load_matlab_model(AH_path)
+    BI = cb.io.load_matlab_model(BI_path)
+
+
+    selected_models = [BI, AH]
+    selected_models_files = ["Bifidobacterium_longum_infantis_ATCC_15697.mat", "Eubacterium_hallii_DSM_3353.mat"]
 
     return selected_models, selected_models_files
 
 
 def load_medium():
     """Load the Euro-diet medium and key it by AGORA-style exchange IDs."""
-    df = pd.read_csv(EURO_MEDIA_FILE, sep="\t", header=0, index_col=0)
-    flux_dict = df.to_dict()["Flux Value"]
-    return {ex.replace("[e]", "(e)"): -flux for ex, flux in flux_dict.items()}
+    # df = pd.read_csv(EURO_MEDIA_FILE, sep="\t", header=0, index_col=0)
+    # flux_dict = df.to_dict()["Flux Value"]
+
+    media = {
+        'EX_o2(e)': 0, #aerobic/anaerobic
+        'EX_h2o(e)': -1000,
+        'EX_pi(e)': -1000,
+        'EX_fe2(e)': -1000,
+        'EX_fe3(e)': -1000,
+        'EX_zn2(e)': -1000,
+        'EX_so4(e)': -1000,
+        'EX_cu2(e)': -1000,
+        'EX_k(e)': -1000,
+        'EX_mg2(e)': -1000,
+        'EX_mn2(e)': -1000,
+        'EX_cd2(e)': -1000,
+        'EX_cl(e)': -1000,
+        'EX_ca2(e)': -1000,
+        'EX_cobalt2(e)': -1000,
+        'EX_glc_D(e)': -10,
+        'EX_nh4(e)': -20,
+
+        'EX_ribflv(e)': -1000,
+        'EX_pnto_R(e)': -1000,
+        'EX_nac(e)': -1000,
+        'EX_his_L(e)': -1000,
+        'EX_asn_L(e)': -1000,
+        'EX_glycys(e)': -1000,
+
+        'EX_lys_L(e)': -1000,
+        'EX_ala_L(e)': -1000,
+        'EX_met_L(e)': -1000,
+        'EX_leu_L(e)': -1000,
+        'EX_hxan(e)': -1000,    
+        'EX_glyglu(e)': -1000
+    }
+    # return {ex.replace("[e]", "(e)"): -flux for ex, flux in flux_dict.items()}
+    return {ex.replace("[e]", "(e)"): flux for ex, flux in media.items()}
 
 
 def sample_parameters():
@@ -178,16 +225,21 @@ def dsdt(t, S, models, vmax, km, media_keys, community, rel_abund, pbar=None):
                 model.reactions.get_by_id(ex_id).lower_bound = -uptake_limit
 
         # Run pFBA
-        if pbar is not None:
-            pbar.set_postfix_str(f"growth = {model.slim_optimize():.6f}")
-        solution = cb.flux_analysis.parsimonious.pfba(model)
-        n_dfba_pfba_calls += 1
+        try:
+            if pbar is not None:
+                pbar.set_postfix_str(f"growth = {model.slim_optimize():.6f}")
+            solution = cb.flux_analysis.parsimonious.pfba(model)
+            n_dfba_pfba_calls += 1
 
-        # Add fluxes to the net rate of change (weighted by clamped relative abundance)
-        if solution.status == "optimal":
-            for i, ex_id in enumerate(media_keys):
-                flux_per_hr = solution.fluxes.get(ex_id, 0)
-                dsdt_rates[i] += flux_per_hr * rel_abund[mdl_idx].item()
+            # Add fluxes to the net rate of change (weighted by clamped relative abundance)
+            if solution.status == "optimal":
+                for i, ex_id in enumerate(media_keys):
+                    flux_per_hr = solution.fluxes.get(ex_id, 0)
+                    dsdt_rates[i] += flux_per_hr * rel_abund[mdl_idx].item()
+        except cb.exceptions.Infeasible:
+            n_dfba_pfba_calls += 1
+            if pbar is not None:
+                pbar.set_postfix_str("growth = 0.000000 (Infeasible)")
 
     # Add baseline media exchange fluxes (fixed, taken from the giFBA solution)
     for i, ex_id in enumerate(media_keys):
@@ -343,6 +395,8 @@ def main():
         m_keys = list(substrate_0.keys())
         m_vals = np.array([substrate_0[k] for k in m_keys])
         y0 = np.zeros(len(m_vals))
+        # y0 = m_vals.copy()  # start with the same initial concentrations as giFBA
+        # print(len(y0), len(m_keys), np.unique(y0))
 
         vmax_vals = pd.DataFrame(
             np.full((len(renamed_models), len(m_keys)), V_MAX_ALL),
