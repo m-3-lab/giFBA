@@ -17,4 +17,6 @@ __pycache__/
 # macOS Finder metadata
 .DS_Store
 
-package/CLAUDE.md
+raw_data/Benchmark_AH_BI/
+raw_data/Benchmark_N_orgs/
+
