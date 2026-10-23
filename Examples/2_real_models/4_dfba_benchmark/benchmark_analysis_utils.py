@@ -1,11 +1,9 @@
 """Shared helpers for analyzing giFBA vs. dFBA benchmark results.
 
-These functions back ``benchmark_analysis_dfba_general.ipynb``, which loads,
-bins, and compares giFBA/dFBA benchmark JSON results across experiment
-families (e.g. the fixed two-organism "AH_BI" community and the variable
-1-10 organism "N_orgs" communities). They were previously duplicated, with
-drift, inline across several sibling notebooks in this directory; this module
-is the single place they now live.
+These functions back ``process_results.py`` and the ``4_1``/``4_2``
+analysis notebooks, which load, bin, and compare giFBA/dFBA benchmark JSON
+results across experiment families (e.g. the fixed two-organism "AH_BI"
+community and the variable 1-10 organism "N_orgs" communities).
 
 Everything here is organism-count-agnostic except where noted (the
 ``get_org_index``/``build_org_color_map``/``get_org_label``/``add_flux_traces``
@@ -68,8 +66,8 @@ class ExperimentConfig:
     Attributes:
         name: Short experiment label, used as the output-filename suffix so
             different experiments never clobber each other's figures.
-        results_dir: Name of the results directory (resolved relative to the
-            notebook's working directory), holding one ``*.json`` file per run.
+        results_dir: Name of the results directory under ``data/raw/``,
+            holding one ``*.json`` file per run.
         max_time_s: Wall-clock seconds substituted for ``dfba_solve_time`` on
             runs that were only checkpointed mid-progress (status
             ``dfba_in_progress_*``) rather than completed.

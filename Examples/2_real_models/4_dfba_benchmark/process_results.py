@@ -1,9 +1,9 @@
 """Preprocesses raw giFBA vs. dFBA benchmark JSON results into cached files.
 
-Does the expensive part of ``benchmark_analysis_dfba_general.ipynb`` (loading
-every result JSON, flattening the nested flux dicts, and computing the
-equivalence metrics) once, and writes three files per experiment to
-``{name}_data/``:
+Does the expensive part of the analysis (loading every result JSON from
+``data/raw/``, flattening the nested flux dicts, and computing the equivalence
+metrics) once, and writes three files per experiment to ``data/{name}/`` for
+the ``4_1``/``4_2`` notebooks:
 
     model_names_{name}.csv   per-run model names, lists stored as JSON strings
     hyperparams_{name}.csv   per-run hyperparameters, run stats, and MAE/RPE
@@ -27,7 +27,8 @@ import pandas as pd
 import benchmark_analysis_utils as bau
 
 BASE_DIR = Path(__file__).resolve().parent
-RAW_DATA_DIR = BASE_DIR / "raw_data"
+DATA_DIR = BASE_DIR / "data"
+RAW_DATA_DIR = DATA_DIR / "raw"
 
 NESTED_COLS = ["rel_abund_list", "media"]
 DROPPED_COLS = ["gifba_fluxes", "dfba_fluxes", "error", "status", "dfba_success", "dfba_message"]
@@ -110,8 +111,8 @@ def process_experiment(config: bau.ExperimentConfig) -> None:
     for col in bau.present(NESTED_COLS, hyperparams_df):
         hyperparams_df[col] = hyperparams_df[col].map(json.dumps)
 
-    out_dir = BASE_DIR / f"{config.name}_data"
-    out_dir.mkdir(exist_ok=True)
+    out_dir = DATA_DIR / config.name
+    out_dir.mkdir(parents=True, exist_ok=True)
     model_names_path = out_dir / f"model_names_{config.name}.csv"
     hyperparams_path = out_dir / f"hyperparams_{config.name}.csv"
     fluxes_path = out_dir / f"fluxes_{config.name}.pkl"

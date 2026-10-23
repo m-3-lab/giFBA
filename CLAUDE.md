@@ -5,10 +5,11 @@ Python package for microbial community metabolic modeling, using fixed point pro
 Target Python Version: 3.10+
 
 ## Common Commands
-Run all commands from the repository root.
+Run all commands from the repository root, except the dFBA benchmark, which runs from its own directory and needs plotly, seaborn and tol_colors (not in `gifba_test`):
 
-## Target Analysis
-- Push the current repo to the main library (ensure .gitignore properly written)
+```bash
+cd Examples/2_real_models/4_dfba_benchmark && conda run -n M3 python process_results.py
+```
 
 ## Refactoring & Code Guidelines
 
@@ -17,7 +18,7 @@ Run all commands from the repository root.
 - Prefer classes with `gifba_object.py` for understanding per community details
 - Example Code Usage with Toy Community Metabolic Models resides in `Examples/1_toy_models/`
 - Application to synthetic community interactions on real bacterial models are located in `/Examples/2_real_models/`
-- Benchmark code (Scripts for running benchmark, data/results, and analysis code) used for comparison of giFBA to a modified dynamic FBA method are in `diff_method`
+- Benchmark code (Scripts for running benchmark, data/results, and analysis code) used for comparison of giFBA to a modified dynamic FBA method are in `Examples/2_real_models/4_dfba_benchmark/`. Its figures go to `Examples/figures/real_model_figs/dfba_benchmark/`. Leave `vacc_scripts/VACC_*.py` paths as they are (they run on the cluster), and keep benchmark-only dependencies out of `package/`.
 
 ### Typing & Documentation
 - **Static Typehinting:** Each method and function must have static typehinting 
