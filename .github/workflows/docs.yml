@@ -2,7 +2,7 @@ name: Deploy Docs
 on:
   push:
     branches:
-      - main
+      - review_rs
 jobs:
   deploy:
     runs-on: ubuntu-latest
