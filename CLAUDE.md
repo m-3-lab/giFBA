@@ -8,11 +8,7 @@ Target Python Version: 3.10+
 Run all commands from the repository root.
 
 ## Target Analysis
-Review `diff_method/` directory to aide analysis of the modified dynamic FBA and giFBA techniques. 
-- Scripts for running the code on the UVM VACC are located in `diff_method/Benchmark_Scripts`
-- Results for each set of benchmarks are stored in `diff_method/Benchmark_analyses`
-- Code/notebooks for analysis and comparing results in `diff_method/Benchmark_analyses`
-
+- Push the current repo to the main library (ensure .gitignore properly written)
 
 ## Refactoring & Code Guidelines
 

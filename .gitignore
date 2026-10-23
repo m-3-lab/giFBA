@@ -17,6 +17,6 @@ __pycache__/
 # macOS Finder metadata
 .DS_Store
 
-raw_data/Benchmark_AH_BI/
-raw_data/Benchmark_N_orgs/
+diff_method/Benchmark_analyses/raw_data/Benchmark_AH_BI/
+diff_method/Benchmark_analyses/raw_data/Benchmark_N_orgs/
 
