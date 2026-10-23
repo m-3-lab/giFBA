@@ -11,34 +11,31 @@ import cobra as cb
 from scipy.integrate import solve_ivp
 
 import gifba
+cobra_config = cb.Configuration()
+cobra_config.solver = "glpk"
 
 
 # Paths & constants
-# agora_dir_base = "/gpfs2/scratch/rdsiegel/agora2_shared"
-agora_dir_base = "/home/rseag/AGORA2_All_Models"
-# EURO_MEDIA_FILE = "/users/r/d/rdsiegel/giFBA/dFBA_runs/euro_diet.tsv"
-EURO_MEDIA_FILE = "/home/rseag/UVM/M3_Lab/giFBA/Examples/2_real_models/data/euro_diet.tsv"
-output_dir = "/home/rseag/UVM/M3_Lab/giFBA/Examples/2_real_models/glpk_benchmark_results-test"
+agora_dir_base = "/gpfs2/scratch/rdsiegel/agora2_shared"
+# agora_dir_base = "/home/rseag/AGORA2_All_Models"
+EURO_MEDIA_FILE = "/users/r/d/rdsiegel/giFBA/dFBA_runs/euro_diet.tsv"
+# EURO_MEDIA_FILE = "/home/rseag/UVM/M3_Lab/giFBA/Examples/2_real_models/data/euro_diet.tsv"
+output_dir = "Benchmark_N_orgs"
 LOG_EVERY_N_CALLS = 500
 OLD_BIOMASS_ID = "EX_biomass(e)"
 COBRA_SOLVER = "glpk"
-t_start, t_end = 0, 0.5
+t_start, t_end = 0, 100
 GIFBA_ITERATIONS = 100
 
 # Monte Carlo sampling space for (N_models, Vmax, Km, ODE solver)
-# N_models_list = list(range(1, 11))
-N_models_list = [2]
-V_MAX_LIST = list(np.logspace(2, 3, 100))  # (mmol/(gi*hr)) max uptake rate
+N_models_list = list(range(1, 11))
+V_MAX_LIST = list(np.logspace(1, 2, 100))  # (mmol/(gi*hr)) max uptake rate
 KM_LIST = list(np.logspace(-1, 0, 100))    # (mmol) Michaelis-Menten constant
 SOLVER_LIST = ["RK45", "BDF"]
-EARLY_STOP_WINDOW_LIST = list(range(4, 30)) # window size for linear regression in early stopping event
-# EARLY_STOP_TOL_LIST = list(np.logspace(-7, -4, 100))  # tolerances for residuals in early stopping event
-EARLY_STOP_TOL_LIST = [1e-5]
+
 
 array_job_id = os.environ.get("SLURM_ARRAY_JOB_ID")
 task_id = os.environ.get("SLURM_ARRAY_TASK_ID")
-# array_job_id = np.random.randint(100000, 999999)          # For local testing, generate a random job ID
-# task_id = np.random.randint(1, 100)                       # For local testing, generate a random task ID
 job_id = f"{array_job_id}_{task_id}" if array_job_id else "local_run"
 output_file = os.path.join(output_dir, f"{job_id}.json")
 
@@ -52,6 +49,8 @@ def init_logs():
     experiment_logs = {
         "N_models": None,
         "model_names": None,
+        "rel_abund": None,
+        "media": None,
         "sum_N_rxns": None,
         "sum_N_mets": None,
         "vmax": None,
@@ -69,6 +68,8 @@ def init_logs():
         "status": None,
         "gifba_fluxes": None,
         "dfba_fluxes": None,
+        "gifba_iter_converged": None,
+        "gifba_periodicity": None
     }
 
 
@@ -115,90 +116,49 @@ def rename_community_biomass(models, old_biomass_id="EX_Bio(e)"):
 
 
 def load_agora_models(N):
-    # selected_models = []
-    # selected_models_files = []
+    selected_models = []
+    selected_models_files = []
 
-    # # List of directory contents to randomly choose from
-    # model_files = [
-    #     name for name in os.listdir(agora_dir_base)
-    #     if os.path.isfile(os.path.join(agora_dir_base, name))
-    # ]
+    # List of directory contents to randomly choose from
+    model_files = [
+        name for name in os.listdir(agora_dir_base)
+        if os.path.isfile(os.path.join(agora_dir_base, name))
+    ]
 
-    # for _ in range(N):
-    #     model_file = np.random.choice(model_files)
-    #     while model_file in selected_models_files:
-    #         model_file = np.random.choice(model_files) # avoid duplicates - not necessary but nice for diversity
-    #     model_path = os.path.join(agora_dir_base, model_file)
-    #     model = cb.io.load_matlab_model(model_path)
-    #     model.solver = COBRA_SOLVER
+    for _ in range(N):
+        model_file = np.random.choice(model_files)
+        while model_file in selected_models_files:
+            model_file = np.random.choice(model_files) # avoid duplicates - not necessary but nice for diversity
+        model_path = os.path.join(agora_dir_base, model_file)
+        model = cb.io.load_matlab_model(model_path)
+        model.solver = COBRA_SOLVER
 
-    #     selected_models.append(model)
-    #     selected_models_files.append(model_file)
-
-    AH_path = "/home/rseag/AGORA2_All_Models/Eubacterium_hallii_DSM_3353.mat"
-    BI_path = "/home/rseag/AGORA2_All_Models/Bifidobacterium_longum_infantis_ATCC_15697.mat"
-
-    AH = cb.io.load_matlab_model(AH_path)
-    BI = cb.io.load_matlab_model(BI_path)
-
-
-    selected_models = [BI, AH]
-    selected_models_files = ["Bifidobacterium_longum_infantis_ATCC_15697.mat", "Eubacterium_hallii_DSM_3353.mat"]
+        selected_models.append(model)
+        selected_models_files.append(model_file)
 
     return selected_models, selected_models_files
 
-
 def load_medium():
-    """Load the Euro-diet medium and key it by AGORA-style exchange IDs."""
-    # df = pd.read_csv(EURO_MEDIA_FILE, sep="\t", header=0, index_col=0)
-    # flux_dict = df.to_dict()["Flux Value"]
+    # """Load the Euro-diet medium and key it by AGORA-style exchange IDs."""
+    df = pd.read_csv(EURO_MEDIA_FILE, sep="\t", header=0, index_col=0)
+    flux_dict = df.to_dict()["Flux Value"]
+    media = {ex.replace("[e]", "(e)"): -flux for ex, flux in flux_dict.items()}
 
-    media = {
-        'EX_o2(e)': 0, #aerobic/anaerobic
-        'EX_h2o(e)': -1000,
-        'EX_pi(e)': -1000,
-        'EX_fe2(e)': -1000,
-        'EX_fe3(e)': -1000,
-        'EX_zn2(e)': -1000,
-        'EX_so4(e)': -1000,
-        'EX_cu2(e)': -1000,
-        'EX_k(e)': -1000,
-        'EX_mg2(e)': -1000,
-        'EX_mn2(e)': -1000,
-        'EX_cd2(e)': -1000,
-        'EX_cl(e)': -1000,
-        'EX_ca2(e)': -1000,
-        'EX_cobalt2(e)': -1000,
-        'EX_glc_D(e)': -10,
-        'EX_nh4(e)': -20,
+    
+    return media
 
-        'EX_ribflv(e)': -1000,
-        'EX_pnto_R(e)': -1000,
-        'EX_nac(e)': -1000,
-        'EX_his_L(e)': -1000,
-        'EX_asn_L(e)': -1000,
-        'EX_glycys(e)': -1000,
-
-        'EX_lys_L(e)': -1000,
-        'EX_ala_L(e)': -1000,
-        'EX_met_L(e)': -1000,
-        'EX_leu_L(e)': -1000,
-        'EX_hxan(e)': -1000,    
-        'EX_glyglu(e)': -1000
-    }
-    # return {ex.replace("[e]", "(e)"): -flux for ex, flux in flux_dict.items()}
-    return {ex.replace("[e]", "(e)"): flux for ex, flux in media.items()}
 
 
 def sample_parameters():
     """Randomly draw one Monte Carlo parameter set."""
     N = int(np.random.choice(N_models_list))
+    REL_ABUND = np.random.dirichlet(np.ones(N)*0.5, size=1).flatten()
+    while min(REL_ABUND) < 0.05 or REL_ABUND.round(6).sum() != 1.0:
+        REL_ABUND = np.random.dirichlet(np.ones(N)*0.5, size=1).flatten()
     V_MAX_ALL = float(np.random.choice(V_MAX_LIST))
     K_M_ALL = float(np.random.choice(KM_LIST))
     SOLVER = str(np.random.choice(SOLVER_LIST))
-    EARLY_STOP_WINDOW_SIZE = int(np.random.choice(EARLY_STOP_WINDOW_LIST))
-    EARLY_STOP_TOL = float(np.random.choice(EARLY_STOP_TOL_LIST))
-    return N, V_MAX_ALL, K_M_ALL, SOLVER, EARLY_STOP_WINDOW_SIZE, EARLY_STOP_TOL
+    return N, REL_ABUND, V_MAX_ALL, K_M_ALL, SOLVER
 
 
 # clamped dFBA
@@ -306,7 +266,7 @@ def benchmark_gifba(renamed_models, medium, rel_abund):
     community = gifba.gifbaObject(renamed_models, [medium, 0.1], rel_abund=rel_abund)
 
     gifba_start_time = time.time()
-    env_flux, org_flux = community.run_gifba(n_iterations=GIFBA_ITERATIONS, method="pfba")
+    env_flux, org_flux = community.run_gifba(n_iterations=GIFBA_ITERATIONS, method="pfba", v=True)
     gifba_end_time = time.time()
 
     gifba_solve_time = gifba_end_time - gifba_start_time
@@ -348,8 +308,11 @@ def main():
     init_logs()
 
     try:
-        N, V_MAX_ALL, K_M_ALL, SOLVER, EARLY_STOP_WINDOW_SIZE, EARLY_STOP_TOL = sample_parameters()
+        EARLY_STOP_WINDOW_SIZE = 20
+        EARLY_STOP_TOL = 1e-7
+        N, REL_ABUND, V_MAX_ALL, K_M_ALL, SOLVER = sample_parameters()
         experiment_logs.update(N_models=N, 
+                               rel_abund=list(REL_ABUND),
                                vmax=V_MAX_ALL, 
                                km=K_M_ALL, 
                                solver_method=SOLVER, 
@@ -357,9 +320,6 @@ def main():
                                early_stop_tol=EARLY_STOP_TOL)
         save_checkpoint(status="params_sampled")
 
-        # change dfba logger to log every LOG_EVERY_N_CALLS * N_models calls
-        global LOG_EVERY_N_CALLS
-        LOG_EVERY_N_CALLS = LOG_EVERY_N_CALLS * N
 
         # AGORA model selection and loading
         selected_models, selected_models_files = load_agora_models(N)
@@ -376,15 +336,20 @@ def main():
         save_checkpoint(status="models_loaded")
 
         # giFBA
-        rel_abund = np.ones(N) / N
         medium = load_medium()
+        experiment_logs["media"] = medium
 
         community, env_flux, org_flux, gifba_solve_time, gifba_pfba_calls = benchmark_gifba(
-            renamed_models, medium, rel_abund
+            renamed_models, medium, REL_ABUND
         )
+        gifba_iter_converged = community.iter_converged
+        gifba_periodicity = community.periodicity
+        
         experiment_logs.update(
             gifba_solve_time=float(gifba_solve_time),
             gifba_pfba_calls=int(gifba_pfba_calls),
+            gifba_iter_converged=gifba_iter_converged,
+            gifba_periodicity=gifba_periodicity
         )
         save_checkpoint(status="gifba_complete")
 
@@ -394,9 +359,9 @@ def main():
         substrate_0 = community.env_fluxes.loc[0, :].to_dict()
         m_keys = list(substrate_0.keys())
         m_vals = np.array([substrate_0[k] for k in m_keys])
-        y0 = np.zeros(len(m_vals))
-        # y0 = m_vals.copy()  # start with the same initial concentrations as giFBA
-        # print(len(y0), len(m_keys), np.unique(y0))
+
+        # get initial concentrations from the media fluxes
+        y0 = np.zeros(len(substrate_0))
 
         vmax_vals = pd.DataFrame(
             np.full((len(renamed_models), len(m_keys)), V_MAX_ALL),
