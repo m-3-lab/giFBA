@@ -1,11 +1,18 @@
 """Human-readable summaries of a finished giFBA run."""
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 import cobra as cb
 import numpy as np
 import pandas as pd
 from cobra.util.solver import linear_reaction_coefficients
 from . import utils
 from .config import GROWTH_MIN_OBJ, ROUND
+
+if TYPE_CHECKING:
+    from .gifba_object import gifbaObject
 
 class CommunitySummary:
     """Uptake/secretion summary of a finished giFBA run.
@@ -15,12 +22,14 @@ class CommunitySummary:
     level, with optional elemental-flux weighting. `str(summary)` and `repr(summary)`
     return `to_string()`; in a Jupyter notebook the summary renders as HTML tables.
 
+    The tables always describe `community.org_final`, the fluxes averaged over the
+    detected attractor (or over the trailing iterations when the run did not converge).
+    There is no per-iteration view; use `community.org_fluxes` for the full history.
+
     Args:
         community (gifbaObject): A community that has already been run with `run_gifba`.
-        iteration_shown (int, optional): Iteration label shown in the report header.
-            Defaults to the community's last iteration.
         element (str): Chemical element (as in `cobra.Metabolite.elements`) used to
-            compute %-of-flux breakdowns. Defaults to `"C"` (carbon).
+            compute %-of-flux breakdowns. Keyword-only. Defaults to `"C"` (carbon).
 
     Attributes:
         flux (pd.DataFrame): Long-form per-organism flux table indexed by
@@ -34,11 +43,17 @@ class CommunitySummary:
             order.
         objective_total (float): Sum of all models' objective fluxes.
         method (str): The FBA method (`"pfba"` or `"fba"`) the community was run with.
+        iter_converged (int | None): Zero-based iteration at which convergence was
+            detected, matching the `Iteration` labels in `community.org_fluxes`. None if
+            the run hit its iteration limit without converging.
+        periodicity (int): Number of iterations averaged into the final fluxes: 1 for a
+            fixed point, the cycle length for a periodic attractor, or the trailing
+            window size when the run did not converge.
+        n_iterations (int): Iteration limit the community was run with.
     """
-    def __init__(self, community, iteration_shown=None, element="C"):
+    def __init__(self, community: gifbaObject, *, element: str = "C") -> None:
         
         # initialize attributes
-        self.iteration_shown = None
         self.method = None
         self.objective_rxns = None
         self.objective_vals = None
@@ -47,21 +62,16 @@ class CommunitySummary:
         self.secretion = None
         self.element = element
         
-        self._build_summary_frames(community, iteration_shown)
+        self._build_summary_frames(community)
 
-    def _build_summary_frames(self, community, iteration_shown):
-        # check iteration_shown is valid
-        if self.iteration_shown is not None:
-            if not isinstance(self.iteration_shown, (int, float)) or self.iteration_shown < 0 or self.iteration_shown >= self.n_iterations:
-                raise ValueError("iteration_shown must be a non-negative integer less than the number of iterations.")
-            else:
-                self.iteration_shown = int(iteration_shown)
-        else: 
-            self.iteration_shown = community.n_iterations - 1
+    def _build_summary_frames(self, community: gifbaObject) -> None:
 
         # pull organism fluxes
         self.community = community
         self.flux = self.community.org_final.copy()
+        self.iter_converged = self.community.iter_converged
+        self.periodicity = self.community.periodicity
+        self.n_iterations = self.community.n_iterations
 
         # extract objectives and create expressions to print
         self.method = self.community.method
@@ -121,8 +131,22 @@ class CommunitySummary:
         self.flux = self.flux[self.flux['Flux'] != 0] # remove zero fluxes
 
         return
+
+    def _header(self) -> str:
+        """Describe which fluxes the report shows, e.g. `Fixed Point at Iteration 3`."""
+        if self.iter_converged is None:
+            return (
+                f"Not Converged in {self.n_iterations} Iterations, "
+                f"Averaged over Last {self.periodicity}"
+            )
+        if self.periodicity == 1:
+            return f"Fixed Point at Iteration {self.iter_converged}"
+        return (
+            f"Period-{self.periodicity} Cycle at Iteration {self.iter_converged}, "
+            "Averaged over Cycle"
+        )
     
-    def to_cytoscape(self):
+    def to_cytoscape(self) -> tuple[pd.DataFrame, pd.DataFrame]:
         """Export the community's exchange network as Cytoscape tables.
 
         Returns:
@@ -148,7 +172,7 @@ class CommunitySummary:
 
         return self.cytoscape_edges, self.cytoscape_nodes
 
-    def to_string(self):
+    def to_string(self) -> str:
         """Format the full text report.
 
         Returns:
@@ -156,7 +180,7 @@ class CommunitySummary:
                 percentages.
         """
         output = []
-        output.append(f"Community Summary (Cumulative through Iteration {self.iteration_shown}):\n")
+        output.append(f"Community Summary ({self._header()}):\n")
         output.append(f"Optimization Type: {self.method}\n")
         output.append(f"{self.objective_total_expression}\n\n")
 
@@ -214,16 +238,16 @@ class CommunitySummary:
 
         return "".join(output)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Return the string representation of the summary."""
         return self.to_string()
     
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Return the string representation of the summary."""
         return self.to_string()
 
-    def _repr_html_(self):
-        html = f"<h3>Community Summary (Cumulative through Iteration {self.iteration_shown})</h3>"
+    def _repr_html_(self) -> str:
+        html = f"<h3>Community Summary ({self._header()})</h3>"
         html += f"<b>Optimization Type:</b> {self.method}<br>"
         html += f"{self.objective_total_expression}<br>"
 

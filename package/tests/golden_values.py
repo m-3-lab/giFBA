@@ -9,12 +9,14 @@ the change was numerically visible and needs justifying.
 Updating a value here is a deliberate act. Re-measure with
 ``tests/_remeasure.py`` rather than hand-editing.
 
-Two rows pin behavior that is arguably wrong, and will need re-measuring if
-the underlying loader bugs are fixed:
+In ``4_2_superfluous_crossfeed`` organism 2 does not grow (objective 0.0). That
+is the behavior the case is built to show: organism 2 only eats C, and under
+greedy pFBA organism 1 gains nothing by converting B to C, so it never
+secretes any.
 
-* ``4_2_superfluous_crossfeed`` -- organism 2 does not grow (objective 0.0)
-  because ``utils.load_simple_models`` has an unreachable ``elif`` that denies
-  it ``EX_D(e)``.
+One row pins behavior that is arguably wrong, and will need re-measuring if
+the underlying loader bug is fixed:
+
 * ``5_2_dynamical`` -- its medium never reaches the models. The loader supplies
   ``{"EX_A(e)": -10}`` but ``sim5_2_org{1,2}.json`` spell their exchanges
   ``Ex_A(e)`` with a lowercase x, so the key matches nothing and the case runs

@@ -82,9 +82,64 @@ def test_objective_values_agree_with_the_run(run_toy):
     assert summary.objective_total == pytest.approx(sum(expected))
 
 
-def test_iteration_shown_defaults_to_last_iteration(run_toy):
+def test_convergence_attributes_mirror_the_run(run_toy):
+    from gifba import CommunitySummary
+
     community, _, _ = run_toy(CASE)
-    assert community.summarize().iteration_shown == GOLDEN_ITERS - 1
+    summary = CommunitySummary(community)
+
+    assert summary.iter_converged == community.iter_converged
+    assert summary.periodicity == community.periodicity
+    assert summary.n_iterations == GOLDEN_ITERS
+
+
+def test_header_reports_fixed_point(run_toy):
+    from gifba import CommunitySummary
+
+    community, _, _ = run_toy(CASE)
+    assert community.periodicity == 1
+    header = f"Community Summary (Fixed Point at Iteration {community.iter_converged})"
+
+    summary = CommunitySummary(community)
+    assert str(summary).startswith(header + ":")
+    assert summary._repr_html_().startswith(f"<h3>{header}</h3>")
+
+
+def test_header_reports_periodic_cycle(run_toy):
+    """5_2_dynamical settles into a cycle rather than a fixed point."""
+    from gifba import CommunitySummary
+
+    community, _, _ = run_toy("5_2_dynamical")
+    assert community.iter_converged is not None and community.periodicity > 1
+
+    assert str(CommunitySummary(community)).startswith(
+        f"Community Summary (Period-{community.periodicity} Cycle at Iteration "
+        f"{community.iter_converged}, Averaged over Cycle):"
+    )
+
+
+def test_header_reports_non_convergence(run_toy):
+    """Three iterations is too few for the crossfeed case to converge."""
+    from gifba import CommunitySummary
+
+    community, _, _ = run_toy(CASE, n_iterations=3)
+    assert community.iter_converged is None
+    summary = CommunitySummary(community)
+
+    assert summary.iter_converged is None
+    assert str(summary).startswith(
+        f"Community Summary (Not Converged in 3 Iterations, "
+        f"Averaged over Last {community.periodicity}):"
+    )
+
+
+def test_element_is_keyword_only(run_toy):
+    """A stray positional argument must not land in ``element`` silently."""
+    from gifba import CommunitySummary
+
+    community, _, _ = run_toy(CASE)
+    with pytest.raises(TypeError):
+        CommunitySummary(community, "N")
 
 
 def test_to_cytoscape_column_contract(summary):

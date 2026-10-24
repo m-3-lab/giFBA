@@ -103,7 +103,7 @@ class gifbaObject:
                   threshold: float | None = None, 
                   attractor_size: float | None = None, 
                   relaxation_ratio: float | None = None, 
-                  fp_method: Literal["picard", "relaxation", "anderson"] | None = None, 
+                  fp_method: Literal["picard", "relaxation"] | None = None, 
                   v: bool = False, 
                   debug: bool = False
                   ) -> tuple[pd.Series, pd.DataFrame]:
@@ -129,16 +129,21 @@ class gifbaObject:
             attractor_size (float, optional): The size of the attractor (in percentage of number of 
                 iterations) if convergence is not achieved. Defaults to 0.9 if None provided.
             relaxation_ratio (float, optional): Ratio value chosen for relaxation method used in fixed 
-                point solver. Defaults to 1.0 if None provided.
+                point solver. Defaults to 1.0 if None provided. Ignored when fp_method is "picard".
             fp_method (str, optional): The fixed point solver method to use for the simulation - must 
-                be "picard", "relaxation" (recommended), or "anderson". Defaults to "picard" if None 
-                provided. If "picard" is chosen, the relaxation_ratio parameter will be overridden to 1.0.
+                be "picard" or "relaxation" (recommended). Defaults to "relaxation" if None provided, 
+                so relaxation_ratio still applies. "picard" is relaxation with relaxation_ratio 
+                forced to 1.0. "anderson" is reserved and not yet implemented.
             v (bool, optional): Toggle verbose output. True will provide printed outputs for current 
                 iteration and any re-runs from overconsumption adjustment. Defaults to False.
             debug (bool, optional): Development mode. True will provide additional debugging 
                 information detailing the simulation process (media & org. fluxes at each step, 
                 overconsumption ratio, overconsumption adjustment). Not recommended for real-world 
                 community models. Defaults to False.
+
+        Raises:
+            NotImplementedError: If fp_method is "anderson". Raised before any solving starts.
+            ValueError: If fp_method is not None, "picard", "relaxation", or "anderson".
         
         State Modified (Side Effects):
             self.env_fluxes (pd.DataFrame): Full environmental fluxes DataFrame for all iterations and 
@@ -176,6 +181,10 @@ class gifbaObject:
         self.method = utils.check_method(method)
         self.threshold = self.threshold if threshold is None else threshold
         self.attractor_size = 0.9 if attractor_size is None else attractor_size
+        if fp_method == "anderson":
+            raise NotImplementedError("fp_method='anderson' is not implemented yet; use 'relaxation' or 'picard'.")
+        if fp_method not in (None, "picard", "relaxation"):
+            raise ValueError(f"fp_method must be 'picard', 'relaxation', or None, got {fp_method!r}.")
         self.relaxation_ratio = 1.0 if relaxation_ratio is None or fp_method == "picard" else relaxation_ratio
         self.fp_method = "relaxation" if fp_method is None or fp_method == "picard" else fp_method
         self.verbose = v
@@ -368,7 +377,7 @@ class gifbaObject:
             default method uses relaxation with a relaxation_ratio of 1.0 (picard-equivalent), which
             updates the media conditions based on the sum of the organism fluxes and the current media
             conditions.
-            The Anderson method is currently under development and not fully implemented.
+            The Anderson method is not implemented; `run_gifba()` rejects it before solving.
 
         Args:
             iteration (int): The current iteration number for the simulation. Used to index into the environmental and organism fluxes DataFrames to update the media conditions for the next iteration.
@@ -878,17 +887,17 @@ class gifbaObject:
         """Context manager exit point."""
         return False
 
-    def summarize(self, iteration_shown=None):
+    def summarize(self, element: str = "C") -> CommunitySummary:
         """Build a summary of the community's final fluxes.
 
         Args:
-            iteration_shown (int, optional): Iteration label shown in the report header.
-                Cosmetic only. Defaults to the last iteration run.
+            element (str, optional): Chemical element (as in `cobra.Metabolite.elements`)
+                used for the %-of-flux breakdowns. Defaults to `"C"` (carbon).
 
         Returns:
             CommunitySummary: Uptake/secretion tables for the community and each organism.
         """
-        return CommunitySummary(self, iteration_shown)
+        return CommunitySummary(self, element=element)
     
     def average_periodicity(self):
         """Average the flux history over the detected attractor.
@@ -911,7 +920,7 @@ class gifbaObject:
 
         if self.periodicity is not None and self.iter_converged is not None:
             if self.periodicity == 1:
-                if self.verbose: print("System Fixed Point found after", self.iter_converged, "iterations.")
+                if self.verbose: print("System Fixed Point found at iteration", self.iter_converged, f"({self.iter_converged + 1} iterations run).")
             else:
                 if self.verbose: print("System has periodic behavior with a period of", self.periodicity, "iterations. Last ", self.periodicity, "iterations will be averaged and stored.")
         

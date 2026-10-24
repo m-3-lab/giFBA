@@ -51,26 +51,6 @@ than taken on faith from generated output.
 
 ## TODO
 
-### Bugs and code that doesn't match its docs
-
-- [ ] `utils.load_simple_models`: `"4_2_superfluous_crossfeed"` appears in two `elif`
-      branches, so the `EX_D(e)` media branch can never run.
-- [ ] `utils.find_min_medium`: the `models=` path calls `models.deepcopy()` on a list,
-      which has no such method.
-- [ ] `CommunitySummary`: `iteration_shown` is ignored. `_build_summary_frames` checks
-      `self.iteration_shown` (always `None` at that point) and `self.n_iterations`
-      (never set), so the report always uses the last iteration.
-- [ ] `gifbaObject.run_gifba`: the docstring says `fp_method` defaults to `"picard"`,
-      but the code sets `"relaxation"` (equivalent with a ratio of 1.0).
-- [ ] `gifbaObject.run_gifba`: `fp_method="anderson"` is accepted but
-      `_update_media` only handles relaxation, so it silently runs a plain update
-      instead of raising `NotImplementedError`.
-- [ ] `utils.prepare_compartmentalized_model`: modifies `community.models` in place
-      (exchange bounds, metabolite IDs and compartments).
-- [ ] `utils.prepare_compartmentalized_model_with_micom`: abundances are hard-coded to
-      `[0.5, 0.5]`, and `media`, `rel_abund` and `obj_rxn_ids` have no effect on the
-      returned model.
-
 ### Documentation
 
 - [ ] Review the drafted docstrings in `utils.py` (all functions) and the module
