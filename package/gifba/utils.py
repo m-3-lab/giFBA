@@ -1,3 +1,9 @@
+"""Validation helpers and standalone utilities.
+
+Most `check_*` functions are used internally by `gifbaObject.__init__` and
+`gifbaObject.run_gifba` but are safe to call directly.
+"""
+
 import cobra as cb
 from cobra.util.solver import linear_reaction_coefficients
 from importlib.resources import files
@@ -8,6 +14,21 @@ import pandas as pd
 
 
 def load_simple_models(case):        
+    """Load one of the bundled toy-model cases from `gifba/Toy_Models`.
+
+    Args:
+        case (str): Case name, one of `"1_1_single"`, `"1_2_single"`, `"1_3_parallel"`,
+            `"2_1_competition"`, `"3_1_crossfeed"`, `"3_2_layered"`,
+            `"4_1_crossfeed_competition"`, `"4_2_superfluous_crossfeed"`,
+            `"5_1_coupling"` or `"5_2_dynamical"`.
+
+    Returns:
+        tuple[list[cobra.Model], dict[str, float]]: `(models, media)`, the case's models
+            and the media it is run on.
+
+    Raises:
+        KeyError: If `case` is not a bundled case name.
+    """
     case_models = {
         "1_1_single"               : ["sim1_1.json"],
         "1_2_single"               : ["sim1_2.json"],
@@ -39,8 +60,24 @@ def load_simple_models(case):
     return models, case_media
 
 def find_min_medium(community=None, models=None, base_media=None, min_growth=None):
-    """result = {k: max(dict1.get(k, float('-inf')), dict2.get(k, float('-inf')))
-          for k in set(dict1) | set(dict2)}"""
+    """Derive a minimal medium that supports growth of every model.
+
+    Runs `cobra.medium.minimal_medium` on each model with `base_media` added as sinks,
+    then takes the per-exchange maximum across models, unioned with `base_media`. Pass
+    either a `community` or explicit `models`/`base_media`/`min_growth`.
+
+    Args:
+        community (gifbaObject, optional): Community whose `media` is a
+            `[base_media, min_growth]` list. Its models are used directly.
+        models (list[cobra.Model], optional): Models to use when no community is given.
+        base_media (dict[str, float], optional): Exchange IDs to fluxes always included in
+            the medium. Signs are ignored.
+        min_growth (float, optional): Minimum growth each model must reach. Defaults to
+            0.1 when `community` is not given.
+
+    Returns:
+        dict[str, float]: Media dict of negative (uptake) fluxes keyed by exchange ID.
+    """
     
     if community is not None:
         if isinstance(community.media, (list)):
@@ -79,6 +116,20 @@ def find_min_medium(community=None, models=None, base_media=None, min_growth=Non
 
 
 def check_rel_abund(rel_abund, n_models):
+    """Validate and normalize relative abundances.
+
+    Args:
+        rel_abund (str | array-like | None): Abundance per model. `None` or any string
+            (e.g. `"equal"`) gives an even split. Values are normalized to sum to 1.
+        n_models (int): Number of models in the community.
+
+    Returns:
+        np.ndarray: Relative abundances of shape `(n_models, 1)` summing to 1.
+
+    Raises:
+        ValueError: If the length doesn't match `n_models`, or values are negative or
+            sum to zero.
+    """
     if rel_abund is None:
         rel_abund = np.ones(n_models) / n_models
     elif isinstance(rel_abund, str):
@@ -99,6 +150,15 @@ def check_rel_abund(rel_abund, n_models):
     return rel_abund
 
 def check_n_iterations(n_iterations):
+    """Coerce the iteration count to a positive integer.
+
+    Args:
+        n_iterations (int | float | None): Requested number of iterations. Defaults to 10
+            if None; values below 1 are raised to 1.
+
+    Returns:
+        int: Number of iterations to run.
+    """
     if n_iterations is None:
         n_iterations = 10
     elif not isinstance(n_iterations, int):
@@ -110,7 +170,22 @@ def check_n_iterations(n_iterations):
     return n_iterations
 
 def check_media(community):
-    """None, complete, [min, 0.10], dict"""
+    """Resolve a community's media into a plain flux dict.
+
+    Args:
+        community (gifbaObject): Community whose `media` is `None`, `"complete"`, a
+            `[base_media, min_growth]` list, or a dict of exchange IDs to fluxes. `None`
+            and `"complete"` open every exchange in `community.exchange_ids` to -1000; a
+            list is passed to `find_min_medium`.
+
+    Returns:
+        dict[str, float]: A copy of the resolved media. `community.media` is also updated
+            in place.
+
+    Raises:
+        ValueError: If the media type is unsupported, or a key isn't a string or a value
+            isn't a number.
+    """
 
     # None or "complete" == Set all exchanges to -1000
     community.media = "complete" if community.media is None else community.media
@@ -134,6 +209,17 @@ def check_media(community):
     return community.media.copy()
 
 def check_models(models):
+    """Validate and copy the community models.
+
+    Args:
+        models (cobra.Model | list[cobra.Model]): A single model or a list of models.
+
+    Returns:
+        list[cobra.Model]: Copies of the input models.
+
+    Raises:
+        ValueError: If `models` is None, not a model/list, or contains a non-model.
+    """
     if models is None:
         raise ValueError("Models must be provided as a list of cobra.Model objects or single cobra.Model.")
 
@@ -153,6 +239,18 @@ def check_models(models):
     return models_list
 
 def check_method(method):
+    """Validate the FBA method name.
+
+    Args:
+        method (str | None): `"pfba"` or `"fba"`, case-insensitive. Defaults to `"pfba"`
+            if None.
+
+    Returns:
+        str: The lower-case method name.
+
+    Raises:
+        ValueError: If `method` isn't a string or isn't one of the two methods.
+    """
     if method is None:
         method = "pfba"
     elif not isinstance(method, str):
@@ -169,6 +267,23 @@ def check_method(method):
     return method
 
 def prep_micom_cfba(community_id, ids, paths, rel_abund=None):
+    """Build a compartmentalized cFBA model from a MICOM community.
+
+    Requires the `micom` extra. The objective is the abundance-weighted sum of each
+    organism's biomass reaction.
+
+    Args:
+        community_id (str): ID given to the returned `cobra.Model`.
+        ids (list[str]): Organism IDs, used as suffixes on MICOM's reaction IDs.
+        paths (list[str]): Model file paths, in the same order as `ids`.
+        rel_abund (list[float], optional): Abundance per organism. Defaults to an even
+            split.
+
+    Returns:
+        tuple[cobra.Model, micom.Community, dict]: `(cfba_model, micom_community,
+            objective_dict)`, where `objective_dict` maps each biomass reaction to its
+            objective coefficient.
+    """
     from micom import Community
     import cobra as cb
     import pandas as pd
@@ -225,6 +340,26 @@ def prep_micom_cfba(community_id, ids, paths, rel_abund=None):
     return cfba_model, micom_community, objective_dict
 
 def prepare_compartmentalized_model(community, rel_abund=None, obj_rxn_ids=None):
+    """Build a compartmentalized cFBA model from a giFBA community.
+
+    Each organism gets its own compartments (`c1`, `e1`, `c2`, `e2`, ...) and `e0` is the
+    shared pool, so the result can be compared against giFBA. The objective is the
+    unweighted sum of the organisms' objective reactions.
+
+    Note that this modifies `community.models` in place: exchange bounds are reset and
+    metabolite IDs and compartments are renamed.
+
+    Args:
+        community (gifbaObject): Community providing the models, media and
+            `community_id`.
+        rel_abund (list[float], optional): Abundance per organism. Defaults to
+            `community.rel_abund`.
+        obj_rxn_ids (list[str], optional): Reaction IDs (after renaming) to use as the
+            objective. Defaults to every per-organism `biomass(e...)` reaction.
+
+    Returns:
+        tuple[cobra.Model, list[cobra.Reaction]]: `(comp_model, objective_reactions)`.
+    """
     from cobra import Model
     import cobra as cb
 
@@ -345,6 +480,28 @@ def prepare_compartmentalized_model(community, rel_abund=None, obj_rxn_ids=None)
 
 
 def prepare_compartmentalized_model_with_micom(gifba_community, model_paths, media, rel_abund=None, obj_rxn_ids=None):
+    """Build a compartmentalized cFBA model from MICOM's reaction set.
+
+    Requires the `micom` extra. Same idea as `prepare_compartmentalized_model`, but the
+    reactions come from a MICOM community built from `model_paths`, with internal
+    reaction bounds copied from the giFBA models.
+
+    Note that abundances are currently fixed at `[0.5, 0.5]`, and `media`, `rel_abund`
+    and `obj_rxn_ids` are not applied to the returned model.
+
+    Args:
+        gifba_community (gifbaObject): Community providing the models and
+            `community_id`.
+        model_paths (list[str]): Model file paths, in the same order as the community's
+            models.
+        media (dict[str, float]): Exchange IDs to fluxes.
+        rel_abund (list[float], optional): Abundance per organism.
+        obj_rxn_ids (list[str], optional): Reaction IDs to use as the objective.
+
+    Returns:
+        tuple[cobra.Model, list[cobra.Reaction]]: `(comp_model, objective_reactions)`,
+            where the objective reactions are the per-organism `dm_biomass(e)` reactions.
+    """
     import pandas as pd
     import cobra as cb
     import gifba 

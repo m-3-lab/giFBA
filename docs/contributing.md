@@ -62,10 +62,10 @@ GLPK on every push and pull request.
 ## Docstrings and autodoc
 
 Public modules, classes and functions should have Google-style docstrings and static
-type hints. Much of the source does not meet this yet, so the
-[API Reference](api.md) is written by hand for now. Once the docstrings are in place,
-that page will switch to `::: gifba...` blocks rendered by mkdocstrings, which is
-already configured in `mkdocs.yml`.
+type hints. The [API Reference](api.md) is generated from these docstrings by
+mkdocstrings, so a change to a public docstring shows up on the site at the next
+deploy. Members starting with `_` are left out. To document a new public module, add a
+`::: gifba.<module>` block to `docs/api.md`.
 
 ## Building the docs
 

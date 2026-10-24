@@ -1,3 +1,5 @@
+"""Core giFBA simulation object."""
+
 import cobra as cb
 import numpy as np
 import pandas as pd
@@ -10,6 +12,61 @@ from .summary import CommunitySummary
 
 
 class gifbaObject:
+    """A microbial community simulated with greedy interaction FBA.
+
+    Wraps a list of `cobra.Model` instances (deep-copied on construction) and runs the
+    giFBA fixed-point loop over a shared media. Can be used as a context manager
+    (`with gifbaObject(...) as community:`), which is currently a no-op passthrough.
+
+    Args:
+        models (cobra.Model | list[cobra.Model]): The organism model(s) in the community.
+            Deep-copied internally.
+        media (dict[str, float] | str | list | None): Shared exchange media. A dict maps
+            exchange IDs to fluxes (negative = uptake available). `"complete"` or `None`
+            opens every exchange to -1000. A `[base_media, min_growth]` list derives a
+            minimal medium via `utils.find_min_medium`.
+        rel_abund (str | array-like): Relative abundance per model. `"equal"` (default)
+            splits evenly; otherwise a 1D array-like of length `num_models`, normalized
+            to sum to 1.
+
+    Other Parameters:
+        threshold (float): Convergence tolerance. Defaults to 1e-12.
+        oc_rounding (int): Decimal places used when checking overconsumption. Defaults
+            to `config.ROUND` (6).
+        oc_method (str): Overconsumption-correction algorithm, `"optim"` or `"newton"`.
+            Defaults to `"optim"`.
+        community_id (str | None): Optional label for the community, used by
+            `utils.prepare_compartmentalized_model*`.
+        debug (bool): Verbose per-iteration/per-rerun debug printing. Defaults to False.
+        verbose (bool): Print convergence/overconsumption progress. Defaults to False.
+
+    Attributes:
+        models (list[cobra.Model]): The (copied) community models.
+        media (dict[str, float]): Resolved media dict after validation.
+        num_models (int): Number of organisms in the community.
+        rel_abund (np.ndarray): Resolved relative abundance, shape `(num_models, 1)`.
+        objective_rxns (dict[int, str]): `{model_index: objective_reaction_id}` for each
+            model's linear objective.
+        simulation_count (int): Running count of LP solves that cleared the minimum
+            growth cutoff.
+        env_fluxes (pd.DataFrame): Full media flux history, indexed by `Iteration`,
+            columns are exchange IDs. Set by `run_gifba`.
+        org_fluxes (pd.DataFrame): Full per-organism flux history, indexed by
+            `(Model, Iteration)`, columns are reaction IDs. Set by `run_gifba`.
+        iter_converged (int | None): Iteration where convergence/periodicity was
+            detected, or None. Set by `run_gifba`.
+        periodicity (int | None): Length of the detected attractor cycle (1 = true fixed
+            point), or None. Set by `run_gifba`.
+        exchange_ids (list[str]): Unique exchange IDs across the whole community. Set by
+            `create_vars`.
+        reaction_ids (list[str]): Unique reaction IDs across the whole community. Set by
+            `create_vars`.
+        exchange_to_metabolite_id (dict[str, str]): Exchange ID to metabolite ID lookup,
+            used for reporting. Set by `create_vars`.
+        metabolite_id_to_name (dict[str, str]): Metabolite ID to name lookup, used for
+            reporting. Set by `create_vars`.
+        model_names (dict[int, str]): `{model_index: model.name}`. Set by `create_vars`.
+    """
 
     def __init__(self, models, media, rel_abund="equal",
                  **kwargs):
@@ -178,6 +235,9 @@ class gifbaObject:
         """ 
         Initialize storage for state variables, set initial media, and extract pertinent community 
         details.
+
+        Called automatically at the start of `run_gifba`; only call directly if you need a 
+        freshly-initialized community without running it.
 
         [Flow / Hierarchy]
         Setup method. Called at the beginning of the simulation before the iterative fixed-point solver 
@@ -819,10 +879,29 @@ class gifbaObject:
         return False
 
     def summarize(self, iteration_shown=None):
+        """Build a summary of the community's final fluxes.
+
+        Args:
+            iteration_shown (int, optional): Iteration label shown in the report header.
+                Cosmetic only. Defaults to the last iteration run.
+
+        Returns:
+            CommunitySummary: Uptake/secretion tables for the community and each organism.
+        """
         return CommunitySummary(self, iteration_shown)
     
     def average_periodicity(self):
-        """Calculate the average periodicity of the system based on the environmental fluxes."""
+        """Average the flux history over the detected attractor.
+
+        Averages `env_fluxes`/`org_fluxes` over the detected period, or, absent
+        convergence, over the last `attractor_size` fraction of iterations with a printed
+        warning. Called automatically at the end of `run_gifba`.
+
+        Returns:
+            tuple[pd.Series, pd.DataFrame]: `(env_flux_avg, org_flux_avg)`, the averaged
+                media fluxes indexed by exchange ID and the averaged per-organism fluxes
+                indexed by model.
+        """
         # if no convergence, give warning and return average of all iterations
         if self.periodicity is None and self.iter_converged is None:
             self.periodicity = int(self.n_iterations * self.attractor_size) # set periodicity to a percentage of total n_iterations if no convergence, so at least some averaging is done

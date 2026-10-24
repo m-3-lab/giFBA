@@ -48,3 +48,44 @@ All AI-assisted contributions are reviewed by the project maintainers, and the
 underlying scientific method, model validation, and numerical results (e.g. unit 
 testing) are checked against expected biological/mathematical behavior rather 
 than taken on faith from generated output.
+
+## TODO
+
+### Bugs and code that doesn't match its docs
+
+- [ ] `utils.load_simple_models`: `"4_2_superfluous_crossfeed"` appears in two `elif`
+      branches, so the `EX_D(e)` media branch can never run.
+- [ ] `utils.find_min_medium`: the `models=` path calls `models.deepcopy()` on a list,
+      which has no such method.
+- [ ] `CommunitySummary`: `iteration_shown` is ignored. `_build_summary_frames` checks
+      `self.iteration_shown` (always `None` at that point) and `self.n_iterations`
+      (never set), so the report always uses the last iteration.
+- [ ] `gifbaObject.run_gifba`: the docstring says `fp_method` defaults to `"picard"`,
+      but the code sets `"relaxation"` (equivalent with a ratio of 1.0).
+- [ ] `gifbaObject.run_gifba`: `fp_method="anderson"` is accepted but
+      `_update_media` only handles relaxation, so it silently runs a plain update
+      instead of raising `NotImplementedError`.
+- [ ] `utils.prepare_compartmentalized_model`: modifies `community.models` in place
+      (exchange bounds, metabolite IDs and compartments).
+- [ ] `utils.prepare_compartmentalized_model_with_micom`: abundances are hard-coded to
+      `[0.5, 0.5]`, and `media`, `rel_abund` and `obj_rxn_ids` have no effect on the
+      returned model.
+
+### Documentation
+
+- [ ] Review the drafted docstrings in `utils.py` (all functions) and the module
+      docstrings in `gifba_object.py`, `summary.py`, `utils.py` and `config.py`.
+- [ ] Add static type hints to public signatures. Most types on the API page
+      currently come from the docstrings rather than the code.
+- [ ] Optionally convert the custom docstring sections in `gifba_object.py`
+      ("State Modified", "Calls", "[Flow / Hierarchy]") to standard Google sections.
+      They render as plain text blocks on the API page.
+
+### Packaging and deployment
+
+- [ ] `package/pyproject.toml`: the description still says "iterative interaction",
+      and the author email is a placeholder.
+- [ ] `.github/workflows/docs.yml`: switch the deploy trigger from `review_rs` back to
+      `main` after merging, and consider adding `workflow_dispatch` for manual
+      redeploys.
+- [ ] GitHub Pages: set the source to the `gh-pages` branch at `/`.

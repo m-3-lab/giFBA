@@ -1,3 +1,5 @@
+"""Human-readable summaries of a finished giFBA run."""
+
 import cobra as cb
 import numpy as np
 import pandas as pd
@@ -6,10 +8,32 @@ from . import utils
 from .config import GROWTH_MIN_OBJ, ROUND
 
 class CommunitySummary:
-    """Class to summarize the results of giFBA analysis.
-    
+    """Uptake/secretion summary of a finished giFBA run.
+
+    Built by `gifbaObject.summarize()`. Formats a community's final fluxes into
+    human-readable uptake/secretion tables, at both the whole-community and per-organism
+    level, with optional elemental-flux weighting. `str(summary)` and `repr(summary)`
+    return `to_string()`; in a Jupyter notebook the summary renders as HTML tables.
+
+    Args:
+        community (gifbaObject): A community that has already been run with `run_gifba`.
+        iteration_shown (int, optional): Iteration label shown in the report header.
+            Defaults to the community's last iteration.
+        element (str): Chemical element (as in `cobra.Metabolite.elements`) used to
+            compute %-of-flux breakdowns. Defaults to `"C"` (carbon).
+
     Attributes:
-        
+        flux (pd.DataFrame): Long-form per-organism flux table indexed by
+            `(Model, Exchange)`, with `Flux`, `Metabolite`, `{element}-Number` and
+            `{element}-Flux` columns. Zero fluxes are dropped.
+        total_flux (pd.DataFrame): The same columns aggregated across the whole community,
+            indexed by `Metabolite`.
+        objective_rxns (dict[int, str]): `{model_index: objective_reaction_id}`, copied
+            from the community.
+        objective_vals (list[float]): Final objective (growth) flux per model, in model
+            order.
+        objective_total (float): Sum of all models' objective fluxes.
+        method (str): The FBA method (`"pfba"` or `"fba"`) the community was run with.
     """
     def __init__(self, community, iteration_shown=None, element="C"):
         
@@ -99,6 +123,13 @@ class CommunitySummary:
         return
     
     def to_cytoscape(self):
+        """Export the community's exchange network as Cytoscape tables.
+
+        Returns:
+            tuple[pd.DataFrame, pd.DataFrame]: `(edges_df, nodes_df)`. Edges have
+                `Source`, `Target`, `Type` (`"Uptake"`/`"Secretion"`) and `Value` columns;
+                nodes have `ID`, `Name` and `Type` (`"Organism"`/`"Metabolite"`) columns.
+        """
         # pull pertinent info for cytoscape edge table
         self.cytoscape_edges = self.flux.reset_index()
         self.cytoscape_edges["Source"] = self.cytoscape_edges["Model"].map(self.community.model_names)
@@ -118,7 +149,12 @@ class CommunitySummary:
         return self.cytoscape_edges, self.cytoscape_nodes
 
     def to_string(self):
-        """Display the summary of the community."""
+        """Format the full text report.
+
+        Returns:
+            str: Community and per-organism uptake/secretion tables, with elemental-flux
+                percentages.
+        """
         output = []
         output.append(f"Community Summary (Cumulative through Iteration {self.iteration_shown}):\n")
         output.append(f"Optimization Type: {self.method}\n")

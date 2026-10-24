@@ -20,12 +20,21 @@ markdown_extensions:
 
 plugins:
   - search
-  # Not used by any page yet: api.md is hand-written until the source has
-  # Google-style docstrings, at which point it switches to `::: gifba...` blocks.
   - mkdocstrings:
       handlers:
         python:
           paths: [package]
+          options:
+            docstring_style: google
+            docstring_options:
+              returns_named_value: false
+            show_root_heading: true
+            show_source: false
+            merge_init_into_class: true
+            members_order: source
+            separate_signature: true
+            show_signature_annotations: true
+            filters: ["!^_"]
 
 nav:
   - Home: index.md
