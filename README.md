@@ -51,21 +51,8 @@ than taken on faith from generated output.
 
 ## TODO
 
-### Documentation
-
-- [ ] Review the drafted docstrings in `utils.py` (all functions) and the module
-      docstrings in `gifba_object.py`, `summary.py`, `utils.py` and `config.py`.
-- [ ] Add static type hints to public signatures. Most types on the API page
-      currently come from the docstrings rather than the code.
-- [ ] Optionally convert the custom docstring sections in `gifba_object.py`
-      ("State Modified", "Calls", "[Flow / Hierarchy]") to standard Google sections.
-      They render as plain text blocks on the API page.
-
 ### Packaging and deployment
 
-- [ ] `package/pyproject.toml`: the description still says "iterative interaction",
-      and the author email is a placeholder.
-- [ ] `.github/workflows/docs.yml`: switch the deploy trigger from `review_rs` back to
-      `main` after merging, and consider adding `workflow_dispatch` for manual
-      redeploys.
-- [ ] GitHub Pages: set the source to the `gh-pages` branch at `/`.
+- [ ] TASK_1
+- [ ] TASK_2
+- [ ] TASK_3
