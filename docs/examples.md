@@ -23,7 +23,7 @@ Bifurcation analyses for the coupling cases are in
 
 ## Real models
 
-Notebooks applying giFBA to AGORA2 communities:
+Notebooks applying giFBA to AGORA2 GEMs communities:
 
 - [2_1_ahallii_binfantis](https://github.com/m-3-lab/giFBA/blob/main/Examples/2_real_models/2_1_ahallii_binfantis.ipynb):
   *A. hallii* / *B. infantis* community
