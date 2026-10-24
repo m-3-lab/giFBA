@@ -30,6 +30,8 @@ gifba/Toy_Models/sim5_2_org1.json
 gifba/Toy_Models/sim5_2_org2.json
 gifba/publication_utils/comparisons.py
 gifba/publication_utils/plotting.py
+tests/test_fp_method.py
 tests/test_summary.py
 tests/test_toy_models.py
+tests/test_utils.py
 tests/test_validators.py
