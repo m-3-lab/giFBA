@@ -109,7 +109,7 @@ class gifbaObject:
                   attractor_size: float | None = None, 
                   relaxation_ratio: float | None = None, 
                   fp_method: Literal["picard", "relaxation"] | None = None, 
-                  v: bool = False, 
+                  verbose: bool = False, 
                   debug: bool = False
                   ) -> tuple[pd.Series, pd.DataFrame]:
         """ 
@@ -193,7 +193,7 @@ class gifbaObject:
             raise ValueError(f"fp_method must be 'picard', 'relaxation', or None, got {fp_method!r}.")
         self.relaxation_ratio = 1.0 if relaxation_ratio is None or fp_method == "picard" else relaxation_ratio
         self.fp_method = "relaxation" if fp_method is None or fp_method == "picard" else fp_method
-        self.verbose = v
+        self.verbose = verbose
         self.debug = debug # will print info on every iteration and re-run, so use with caution
         
         # create storage variables
