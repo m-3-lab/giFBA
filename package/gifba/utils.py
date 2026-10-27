@@ -38,21 +38,21 @@ def load_simple_models(case: str) -> tuple[list[cb.Model], dict[str, float]]:
         "1_1_single"               : ["sim1_1.json"],
         "1_2_single"               : ["sim1_2.json"],
         "1_3_parallel"             : ["sim1_3_org1.json", "sim1_3_org2.json"],
-        "2_1_competition"          : ["sim2_1_org1.json", "sim2_1_org2.json"],
-        "3_1_crossfeed"            : ["sim3_1_org1.json", "sim3_1_org2.json"],
-        "3_2_layered"              : ["sim3_2_org1.json", "sim3_2_org2.json"],
+        "2_1_crossfeed"            : ["sim2_1_org1.json", "sim2_1_org2.json"],
+        "2_2_layered"              : ["sim2_2_org1.json", "sim2_2_org2.json"],
+        "2_3_superfluous_crossfeed": ["sim2_3_org1.json", "sim2_3_org2.json"],
+        "3_competition"            : ["sim3_org1.json", "sim3_org2.json"],
         "4_1_crossfeed_competition": ["sim4_1_org1.json", "sim4_1_org2.json"],
-        "4_2_superfluous_crossfeed": ["sim4_2_org1.json", "sim4_2_org2.json"],
-        "5_1_coupling"             : ["sim5_1_org1.json", "sim5_1_org2.json"],
-        "5_2_dynamical"            : ["sim5_2_org1.json", "sim5_2_org2.json"]
+        "4_2_coupling"             : ["sim4_2_org1.json", "sim4_2_org2.json"],
+        "4_3_dynamical"            : ["sim5_2_org1.json", "sim5_2_org2.json"]
     }
 
     case_media = None
-    if case in ["1_1_single", "1_2_single", "2_1_competition", "3_2_layered", "4_1_crossfeed_competition", "5_1_coupling", "5_2_dynamical"]: # A only in media 
+    if case in ["1_1_single", "1_2_single", "3_competition", "2_2_layered", "4_1_crossfeed_competition", "4_2_coupling", "4_3_dynamical"]: # A only in media 
         case_media = {"EX_A(e)": -10}
-    elif case in ["1_3_parallel", "4_2_superfluous_crossfeed"]:
+    elif case in ["1_3_parallel", "2_3_superfluous_crossfeed"]:
         case_media = {"EX_A(e)": -10, "EX_B(e)": -10}
-    elif case in ["3_1_crossfeed"]:
+    elif case in ["2_1_crossfeed"]:
         case_media = {"EX_A(e)": -10, "EX_C(e)": -10}
 
     models = []

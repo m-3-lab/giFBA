@@ -23,40 +23,45 @@ class gifbaObject:
             Deep-copied internally.
         media (dict[str, float] | str | list | None): Shared exchange media. A dict maps
             exchange IDs to fluxes (negative = uptake available). `"complete"` or `None`
-            opens every exchange to -1000. A `[base_media, min_growth]` list derives a
+            opens every exchange to -1000. A `[base_media_dict, min_growth_float]` list derives a
             minimal medium via `utils.find_min_medium`.
         rel_abund (str | array-like): Relative abundance per model. `"equal"` (default)
-            splits evenly; otherwise a 1D array-like of length `num_models`, normalized
+            splits evenly; otherwise a 1D array-like of length `len(models)`, normalized
             to sum to 1.
 
     Other Parameters:
         threshold (float): Convergence tolerance. Defaults to 1e-12.
         oc_rounding (int): Decimal places used when checking overconsumption. Defaults
             to `config.ROUND` (6).
-        oc_method (str): Overconsumption-correction algorithm, `"optim"` or `"newton"`.
-            Defaults to `"optim"`.
+        oc_method (str): Overconsumption-correction algorithm, `"optim"` for a scipy-based 
+            LP-optimization approach or `"newton"` for a Newton-Raphson approach. Defaults 
+            to `"optim"`.
         community_id (str | None): Optional label for the community, used by
             `utils.prepare_compartmentalized_model*`.
-        debug (bool): Verbose per-iteration/per-rerun debug printing. Defaults to False.
-        verbose (bool): Print convergence/overconsumption progress. Defaults to False.
+        debug (bool): Verbose per-iteration/per-rerun debug printing - primarily included 
+            for development purposes. Defaults to False.
+        verbose (bool): Print Iterations/convergence progress and overconsumption progress. 
+            Defaults to False.
 
     Attributes:
         models (list[cobra.Model]): The (copied) community models.
         media (dict[str, float]): Resolved media dict after validation.
         num_models (int): Number of organisms in the community.
-        rel_abund (np.ndarray): Resolved relative abundance, shape `(num_models, 1)`.
+        rel_abund (np.ndarray): Resolved relative abundance column-vector, shape `(num_models, 1)`.
         objective_rxns (dict[int, str]): `{model_index: objective_reaction_id}` for each
             model's linear objective.
         simulation_count (int): Running count of LP solves that cleared the minimum
             growth cutoff.
         env_fluxes (pd.DataFrame): Full media flux history, indexed by `Iteration`,
-            columns are exchange IDs. Set by `run_gifba`.
+            columns are exchange IDs. Index 0 indicates based media for system. Set by `run_gifba`.
         org_fluxes (pd.DataFrame): Full per-organism flux history, indexed by
-            `(Model, Iteration)`, columns are reaction IDs. Set by `run_gifba`.
+            `(Model, Iteration)`, columns are reaction IDs. Iteration 0 indices indicate growth/fluxes
+            on the base media - iteration n simulates growht on the n-th iteration media of `env_fluxes` 
+            Set by `run_gifba`.
         iter_converged (int | None): Iteration where convergence/periodicity was
             detected, or None. Set by `run_gifba`.
         periodicity (int | None): Length of the detected attractor cycle (1 = true fixed
-            point), or None. Set by `run_gifba`.
+            point), or None if no convergence detected. Set by `run_gifba`.
         exchange_ids (list[str]): Unique exchange IDs across the whole community. Set by
             `create_vars`.
         reaction_ids (list[str]): Unique reaction IDs across the whole community. Set by
@@ -113,21 +118,23 @@ class gifbaObject:
         [Flow / Hierarchy]
         Call `create_vars()` to initialize storage variables for the simulation.
         Call `_update_media()` for each iteration to simulate growth at each discrete step and update 
-            state variables in accordance with fixed point solver method. See `_update_media()` for 
-            more details.
+            state variables in accordance with fixed point iteration-based solver method. See `_update_media()` 
+            for more details.
         Check fixed point convergence by comparing current iteration to all previous iterations to 
             identify fixed points/periodic behavior.
         Upon completion/convergence, call `average_periodicity()` to perform element-wise average of
             state variables in fixed point/period/attractor.
 
         Args:
-            n_iterations (int): Number of iterations to run the simulation.
+            n_iterations (int): Maximum number of iterations to run the simulation.
             method (str): The FBA method to use for the simulation - must be "pfba" (recommended) or 
                 "fba".
             threshold (float, optional): The numerical threshold for convergence. Defaults to 1e-12 
                 if None provided.
             attractor_size (float, optional): The size of the attractor (in percentage of number of 
-                iterations) if convergence is not achieved. Defaults to 0.9 if None provided.
+                iterations) if convergence is not achieved. For a 10 iteration simulation, an attractor 
+                of size 0.9 would correspond to averaging over the last 9 iterations. Defaults to 0.9 
+                if None provided.
             relaxation_ratio (float, optional): Ratio value chosen for relaxation method used in fixed 
                 point solver. Defaults to 1.0 if None provided. Ignored when fp_method is "picard".
             fp_method (str, optional): The fixed point solver method to use for the simulation - must 
@@ -143,7 +150,6 @@ class gifbaObject:
 
         Raises:
             NotImplementedError: If fp_method is "anderson". Raised before any solving starts.
-            ValueError: If fp_method is not None, "picard", "relaxation", or "anderson".
         
         State Modified (Side Effects):
             self.env_fluxes (pd.DataFrame): Full environmental fluxes DataFrame for all iterations and 

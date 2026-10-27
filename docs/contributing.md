@@ -23,7 +23,6 @@
 📦package
  ┣ 📂gifba
  ┃ ┣ 📂Toy_Models          10 bundled 2-organism JSON models (non-interacting, competition, cross-feeding, coupling, ...)
- ┃ ┣ 📂publication_utils   Reserved for plotting/comparison helpers (not yet implemented)
  ┃ ┣ __init__.py           Public exports: gifbaObject, CommunitySummary
  ┃ ┣ config.py             Package-wide constants
  ┃ ┣ gifba_object.py       gifbaObject: the fixed-point giFBA simulation engine

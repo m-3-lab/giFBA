@@ -5,7 +5,8 @@ metabolic exchange in microbial communities. Instead of solving one large
 compartmentalized LP for the whole community (cFBA) or a single joint objective
 (MICOM), giFBA iterates: each organism is optimized independently against a shared
 environmental pool of metabolites, only secreted fluxes update that pool, and the
-process repeats until the community reaches a fixed point (or a periodic attractor).
+process repeats until the community reaches a fixed point, periodic attractor, or until
+the maximum number of iterations is reached.
 
 The [repository](https://github.com/m-3-lab/giFBA) contains the `gifba` Python package
 (in `package/`) plus the notebooks, validation models, and analysis scripts used to
@@ -52,7 +53,7 @@ env_final, org_final = community.run_gifba(n_iterations=25, method="pfba")
 ## Package overview
 
 - **`gifba.gifbaObject`**: build a community from a list of `cobra.Model` objects
-  and a shared media, then call `.run_gifba()` to simulate to a fixed point.
+  and a shared media, then call `.run_gifba()` to solve for a fixed point.
 - **`gifba.CommunitySummary`**: returned by `gifbaObject.summarize()`. Formats
   per-organism and community-level uptake/secretion, and exports Cytoscape node/edge
   tables.

@@ -1,11 +1,12 @@
 # giFBA: Greedy Interaction Flux Balance Analysis
 
 giFBA is a [COBRApy](https://opencobra.github.io/cobrapy/) extension for simulating
-metabolic exchange in microbial communities. Instead of solving one large
-compartmentalized LP for the whole community (cFBA) or a single joint objective
-(MICOM), giFBA iterates: each organism is optimized independently against a shared
-environmental pool of metabolites, only secreted fluxes update that pool, and the
-process repeats until the community reaches a fixed point (or a periodic attractor).
+metabolic exchange in microbial communities using the Greedy Interaction Flux Balance 
+Analysis technique. Instead of solving one large compartmentalized LP for the whole 
+community (cFBA) or a single joint objective (MICOM), giFBA iterates: each organism 
+is optimized independently against a shared environmental pool of metabolites, only 
+secreted fluxes update that pool, and the process repeats until the community reaches 
+a fixed point (or a periodic attractor).
 
 **Documentation:** <https://m-3-lab.github.io/giFBA/> (source in [`docs/`](docs/))
 
