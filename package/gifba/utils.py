@@ -44,7 +44,7 @@ def load_simple_models(case: str) -> tuple[list[cb.Model], dict[str, float]]:
         "3_competition"            : ["sim3_org1.json", "sim3_org2.json"],
         "4_1_crossfeed_competition": ["sim4_1_org1.json", "sim4_1_org2.json"],
         "4_2_coupling"             : ["sim4_2_org1.json", "sim4_2_org2.json"],
-        "4_3_dynamical"            : ["sim5_2_org1.json", "sim5_2_org2.json"]
+        "4_3_dynamical"            : ["sim4_3_org1.json", "sim4_3_org2.json"]
     }
 
     case_media = None
