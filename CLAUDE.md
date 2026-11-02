@@ -27,7 +27,7 @@ cd Examples/2_real_models/4_dfba_benchmark && conda run -n M3 python process_res
 - **Indentation Style:** use 4-space/tab indentation
 - **Human-First Tone:** Write code, comments, and documentation as if written by an experienced human developer. 
 - **No AI Filler:** Completely avoid conversational transitions, robotic summaries, or textbook-style structural remarks.
-- **Concise Comments:** Only write comments for complex, non-obvious logic. Never restate what the code clearly expresses.
+- **Concise Comments:** Only write comments for complex, non-obvious logic
 
 ### Testing & Verification Standards
 Tests live in `package/tests/` and run in ~3s. Run from the repository root:

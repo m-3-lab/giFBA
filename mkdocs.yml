@@ -1,0 +1,46 @@
+site_name: giFBA
+site_description: Greedy Interaction Flux Balance Analysis for microbial communities
+site_url: https://m-3-lab.github.io/giFBA/
+repo_url: https://github.com/m-3-lab/giFBA
+repo_name: m-3-lab/giFBA
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  features:
+    - content.code.copy
+    - navigation.sections
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [package]
+          options:
+            docstring_style: google
+            docstring_options:
+              returns_named_value: false
+            show_root_heading: true
+            show_source: false
+            merge_init_into_class: true
+            members_order: source
+            separate_signature: true
+            show_signature_annotations: true
+            filters: ["!^_"]
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Examples:
+      - Overview: examples.md
+      - dFBA Benchmark: examples/dfba_benchmark.md
+  - API Reference: api.md
+  - Contributing: contributing.md

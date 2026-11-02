@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: gifba
-Version: 0.1.0
+Version: 0.2.0
 Summary: A set of tools and helpers for running iterative interaction flux balance analysis with COBRApy models
 Author-email: M-3-Lab <your.email@example.com>
 License: MIT
@@ -17,3 +17,17 @@ Provides-Extra: micom
 Requires-Dist: micom>=0.36.0; extra == "micom"
 Provides-Extra: gurobi
 Requires-Dist: gurobipy>=10.0.0; extra == "gurobi"
+
+# gifba
+
+A [COBRApy](https://opencobra.github.io/cobrapy/) extension for greedy interaction
+flux balance analysis (giFBA) of microbial communities: each organism is optimized
+independently against a shared environmental pool, fluxes update the pool, and the
+loop repeats to a fixed point (or periodic attractor).
+
+```bash
+pip install "git+https://github.com/m-3-lab/giFBA.git@main#subdirectory=package"
+```
+
+Requires Python 3.10–3.13. Installation options, a quickstart, and the full API
+reference are in the documentation: <https://m-3-lab.github.io/giFBA/>

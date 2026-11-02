@@ -1,0 +1,19 @@
+name: Deploy Docs
+on:
+  push:
+    branches:
+      - review_rs
+# gh-deploy pushes the built site to the gh-pages branch, which the default
+# read-only token can't do.
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+      - run: pip install "mkdocs<2" mkdocs-material "mkdocstrings[python]"
+      - run: mkdocs gh-deploy --force

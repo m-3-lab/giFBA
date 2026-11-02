@@ -1,3 +1,5 @@
+"""Core giFBA simulation object."""
+
 import cobra as cb
 import numpy as np
 import pandas as pd
@@ -10,6 +12,66 @@ from .summary import CommunitySummary
 
 
 class gifbaObject:
+    """A microbial community simulated with greedy interaction FBA.
+
+    Wraps a list of `cobra.Model` instances (deep-copied on construction) and runs the
+    giFBA fixed-point loop over a shared media. Can be used as a context manager
+    (`with gifbaObject(...) as community:`), which is currently a no-op passthrough.
+
+    Args:
+        models (cobra.Model | list[cobra.Model]): The organism model(s) in the community.
+            Deep-copied internally.
+        media (dict[str, float] | str | list | None): Shared exchange media. A dict maps
+            exchange IDs to fluxes (negative = uptake available). `"complete"` or `None`
+            opens every exchange to -1000. A `[base_media_dict, min_growth_float]` list derives a
+            minimal medium via `utils.find_min_medium`.
+        rel_abund (str | array-like): Relative abundance per model. `"equal"` (default)
+            splits evenly; otherwise a 1D array-like of length `len(models)`, normalized
+            to sum to 1.
+
+    Other Parameters:
+        threshold (float): Convergence tolerance. Defaults to 1e-12.
+        oc_rounding (int): Decimal places used when checking overconsumption. Defaults
+            to `config.ROUND` (6).
+        oc_method (str): Overconsumption-correction algorithm, `"optim"` for a scipy-based 
+            LP-optimization approach or `"newton"` for a Newton-Raphson approach. Defaults 
+            to `"optim"`.
+        community_id (str | None): Optional label for the community, used by
+            `utils.prepare_compartmentalized_model*`.
+        debug (bool): Verbose per-iteration/per-rerun debug printing - primarily included 
+            for development purposes. Defaults to False.
+        verbose (bool): Print Iterations/convergence progress and overconsumption progress. 
+            Defaults to False.
+
+    Attributes:
+        models (list[cobra.Model]): The (copied) community models.
+        media (dict[str, float]): Resolved media dict after validation.
+        num_models (int): Number of organisms in the community.
+        rel_abund (np.ndarray): Resolved relative abundance column-vector, shape `(num_models, 1)`.
+        objective_rxns (dict[int, str]): `{model_index: objective_reaction_id}` for each
+            model's linear objective.
+        simulation_count (int): Running count of LP solves that cleared the minimum
+            growth cutoff.
+        env_fluxes (pd.DataFrame): Full media flux history, indexed by `Iteration`,
+            columns are exchange IDs. Index 0 indicates based media for system. Set by `run_gifba`.
+        org_fluxes (pd.DataFrame): Full per-organism flux history, indexed by
+            `(Model, Iteration)`, columns are reaction IDs. Iteration 0 indices indicate growth/fluxes
+            on the base media - iteration n simulates growht on the n-th iteration media of `env_fluxes` 
+            Set by `run_gifba`.
+        iter_converged (int | None): Iteration where convergence/periodicity was
+            detected, or None. Set by `run_gifba`.
+        periodicity (int | None): Length of the detected attractor cycle (1 = true fixed
+            point), or None if no convergence detected. Set by `run_gifba`.
+        exchange_ids (list[str]): Unique exchange IDs across the whole community. Set by
+            `create_vars`.
+        reaction_ids (list[str]): Unique reaction IDs across the whole community. Set by
+            `create_vars`.
+        exchange_to_metabolite_id (dict[str, str]): Exchange ID to metabolite ID lookup,
+            used for reporting. Set by `create_vars`.
+        metabolite_id_to_name (dict[str, str]): Metabolite ID to name lookup, used for
+            reporting. Set by `create_vars`.
+        model_names (dict[int, str]): `{model_index: model.name}`. Set by `create_vars`.
+    """
 
     def __init__(self, models, media, rel_abund="equal",
                  **kwargs):
@@ -46,8 +108,8 @@ class gifbaObject:
                   threshold: float | None = None, 
                   attractor_size: float | None = None, 
                   relaxation_ratio: float | None = None, 
-                  fp_method: Literal["picard", "relaxation", "anderson"] | None = None, 
-                  v: bool = False, 
+                  fp_method: Literal["picard", "relaxation"] | None = None, 
+                  verbose: bool = False, 
                   debug: bool = False
                   ) -> tuple[pd.Series, pd.DataFrame]:
         """ 
@@ -56,32 +118,38 @@ class gifbaObject:
         [Flow / Hierarchy]
         Call `create_vars()` to initialize storage variables for the simulation.
         Call `_update_media()` for each iteration to simulate growth at each discrete step and update 
-            state variables in accordance with fixed point solver method. See `_update_media()` for 
-            more details.
+            state variables in accordance with fixed point iteration-based solver method. See `_update_media()` 
+            for more details.
         Check fixed point convergence by comparing current iteration to all previous iterations to 
             identify fixed points/periodic behavior.
         Upon completion/convergence, call `average_periodicity()` to perform element-wise average of
             state variables in fixed point/period/attractor.
 
         Args:
-            n_iterations (int): Number of iterations to run the simulation.
+            n_iterations (int): Maximum number of iterations to run the simulation.
             method (str): The FBA method to use for the simulation - must be "pfba" (recommended) or 
                 "fba".
             threshold (float, optional): The numerical threshold for convergence. Defaults to 1e-12 
                 if None provided.
             attractor_size (float, optional): The size of the attractor (in percentage of number of 
-                iterations) if convergence is not achieved. Defaults to 0.9 if None provided.
+                iterations) if convergence is not achieved. For a 10 iteration simulation, an attractor 
+                of size 0.9 would correspond to averaging over the last 9 iterations. Defaults to 0.9 
+                if None provided.
             relaxation_ratio (float, optional): Ratio value chosen for relaxation method used in fixed 
-                point solver. Defaults to 1.0 if None provided.
+                point solver. Defaults to 1.0 if None provided. Ignored when fp_method is "picard".
             fp_method (str, optional): The fixed point solver method to use for the simulation - must 
-                be "picard", "relaxation" (recommended), or "anderson". Defaults to "picard" if None 
-                provided. If "picard" is chosen, the relaxation_ratio parameter will be overridden to 1.0.
+                be "picard" or "relaxation" (recommended). Defaults to "relaxation" if None provided, 
+                so relaxation_ratio still applies. "picard" is relaxation with relaxation_ratio 
+                forced to 1.0. "anderson" is reserved and not yet implemented.
             v (bool, optional): Toggle verbose output. True will provide printed outputs for current 
                 iteration and any re-runs from overconsumption adjustment. Defaults to False.
             debug (bool, optional): Development mode. True will provide additional debugging 
                 information detailing the simulation process (media & org. fluxes at each step, 
                 overconsumption ratio, overconsumption adjustment). Not recommended for real-world 
                 community models. Defaults to False.
+
+        Raises:
+            NotImplementedError: If fp_method is "anderson". Raised before any solving starts.
         
         State Modified (Side Effects):
             self.env_fluxes (pd.DataFrame): Full environmental fluxes DataFrame for all iterations and 
@@ -119,9 +187,13 @@ class gifbaObject:
         self.method = utils.check_method(method)
         self.threshold = self.threshold if threshold is None else threshold
         self.attractor_size = 0.9 if attractor_size is None else attractor_size
+        if fp_method == "anderson":
+            raise NotImplementedError("fp_method='anderson' is not implemented yet; use 'relaxation' or 'picard'.")
+        if fp_method not in (None, "picard", "relaxation"):
+            raise ValueError(f"fp_method must be 'picard', 'relaxation', or None, got {fp_method!r}.")
         self.relaxation_ratio = 1.0 if relaxation_ratio is None or fp_method == "picard" else relaxation_ratio
         self.fp_method = "relaxation" if fp_method is None or fp_method == "picard" else fp_method
-        self.verbose = v
+        self.verbose = verbose
         self.debug = debug # will print info on every iteration and re-run, so use with caution
         
         # create storage variables
@@ -178,6 +250,9 @@ class gifbaObject:
         """ 
         Initialize storage for state variables, set initial media, and extract pertinent community 
         details.
+
+        Called automatically at the start of `run_gifba`; only call directly if you need a 
+        freshly-initialized community without running it.
 
         [Flow / Hierarchy]
         Setup method. Called at the beginning of the simulation before the iterative fixed-point solver 
@@ -308,7 +383,7 @@ class gifbaObject:
             default method uses relaxation with a relaxation_ratio of 1.0 (picard-equivalent), which
             updates the media conditions based on the sum of the organism fluxes and the current media
             conditions.
-            The Anderson method is currently under development and not fully implemented.
+            The Anderson method is not implemented; `run_gifba()` rejects it before solving.
 
         Args:
             iteration (int): The current iteration number for the simulation. Used to index into the environmental and organism fluxes DataFrames to update the media conditions for the next iteration.
@@ -818,11 +893,30 @@ class gifbaObject:
         """Context manager exit point."""
         return False
 
-    def summarize(self, iteration_shown=None):
-        return CommunitySummary(self, iteration_shown)
+    def summarize(self, element: str = "C") -> CommunitySummary:
+        """Build a summary of the community's final fluxes.
+
+        Args:
+            element (str, optional): Chemical element (as in `cobra.Metabolite.elements`)
+                used for the %-of-flux breakdowns. Defaults to `"C"` (carbon).
+
+        Returns:
+            CommunitySummary: Uptake/secretion tables for the community and each organism.
+        """
+        return CommunitySummary(self, element=element)
     
     def average_periodicity(self):
-        """Calculate the average periodicity of the system based on the environmental fluxes."""
+        """Average the flux history over the detected attractor.
+
+        Averages `env_fluxes`/`org_fluxes` over the detected period, or, absent
+        convergence, over the last `attractor_size` fraction of iterations with a printed
+        warning. Called automatically at the end of `run_gifba`.
+
+        Returns:
+            tuple[pd.Series, pd.DataFrame]: `(env_flux_avg, org_flux_avg)`, the averaged
+                media fluxes indexed by exchange ID and the averaged per-organism fluxes
+                indexed by model.
+        """
         # if no convergence, give warning and return average of all iterations
         if self.periodicity is None and self.iter_converged is None:
             self.periodicity = int(self.n_iterations * self.attractor_size) # set periodicity to a percentage of total n_iterations if no convergence, so at least some averaging is done
@@ -832,7 +926,7 @@ class gifbaObject:
 
         if self.periodicity is not None and self.iter_converged is not None:
             if self.periodicity == 1:
-                if self.verbose: print("System Fixed Point found after", self.iter_converged, "iterations.")
+                if self.verbose: print("System Fixed Point found at iteration", self.iter_converged, f"({self.iter_converged + 1} iterations run).")
             else:
                 if self.verbose: print("System has periodic behavior with a period of", self.periodicity, "iterations. Last ", self.periodicity, "iterations will be averaged and stored.")
         
