@@ -1,3 +1,9 @@
+"""Human-readable summaries of a finished giFBA run."""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 import cobra as cb
 import numpy as np
 import pandas as pd
@@ -5,16 +11,49 @@ from cobra.util.solver import linear_reaction_coefficients
 from . import utils
 from .config import GROWTH_MIN_OBJ, ROUND
 
+if TYPE_CHECKING:
+    from .gifba_object import gifbaObject
+
 class CommunitySummary:
-    """Class to summarize the results of giFBA analysis.
-    
+    """Uptake/secretion summary of a finished giFBA run.
+
+    Built by `gifbaObject.summarize()`. Formats a community's final fluxes into
+    human-readable uptake/secretion tables, at both the whole-community and per-organism
+    level, with optional elemental-flux weighting. `str(summary)` and `repr(summary)`
+    return `to_string()`; in a Jupyter notebook the summary renders as HTML tables.
+
+    The tables always describe `community.org_final`, the fluxes averaged over the
+    detected attractor (or over the trailing iterations when the run did not converge).
+    There is no per-iteration view; use `community.org_fluxes` for the full history.
+
+    Args:
+        community (gifbaObject): A community that has already been run with `run_gifba`.
+        element (str): Chemical element (as in `cobra.Metabolite.elements`) used to
+            compute %-of-flux breakdowns. Keyword-only. Defaults to `"C"` (carbon).
+
     Attributes:
-        
+        flux (pd.DataFrame): Long-form per-organism flux table indexed by
+            `(Model, Exchange)`, with `Flux`, `Metabolite`, `{element}-Number` and
+            `{element}-Flux` columns. Zero fluxes are dropped.
+        total_flux (pd.DataFrame): The same columns aggregated across the whole community,
+            indexed by `Metabolite`.
+        objective_rxns (dict[int, str]): `{model_index: objective_reaction_id}`, copied
+            from the community.
+        objective_vals (list[float]): Final objective (growth) flux per model, in model
+            order.
+        objective_total (float): Sum of all models' objective fluxes.
+        method (str): The FBA method (`"pfba"` or `"fba"`) the community was run with.
+        iter_converged (int | None): Zero-based iteration at which convergence was
+            detected, matching the `Iteration` labels in `community.org_fluxes`. None if
+            the run hit its iteration limit without converging.
+        periodicity (int): Number of iterations averaged into the final fluxes: 1 for a
+            fixed point, the cycle length for a periodic attractor, or the trailing
+            window size when the run did not converge.
+        n_iterations (int): Iteration limit the community was run with.
     """
-    def __init__(self, community, iter_shown=None, element="C"):
+    def __init__(self, community: gifbaObject, *, element: str = "C") -> None:
         
         # initialize attributes
-        self.iter_shown = None
         self.method = None
         self.objective_rxns = None
         self.objective_vals = None
@@ -23,40 +62,35 @@ class CommunitySummary:
         self.secretion = None
         self.element = element
         
-        self._generate(community, iter_shown)
+        self._build_summary_frames(community)
 
-    def _generate(self, community, iter_shown):
-        # check iter_shown is valid
-        if self.iter_shown is not None:
-            if not isinstance(self.iter_shown, (int, float)) or self.iter_shown < 0 or self.iter_shown >= self.iters:
-                raise ValueError("iter_shown must be a non-negative integer less than the number of iterations.")
-            else:
-                self.iter_shown = int(iter_shown)
-        else: 
-            self.iter_shown = community.iters - 1
+    def _build_summary_frames(self, community: gifbaObject) -> None:
 
         # pull organism fluxes
         self.community = community
         self.flux = self.community.org_final.copy()
+        self.iter_converged = self.community.iter_converged
+        self.periodicity = self.community.periodicity
+        self.n_iterations = self.community.n_iterations
 
         # extract objectives and create expressions to print
         self.method = self.community.method
         self.objective_rxns = self.community.objective_rxns
-        self.objective_vals = [self.flux.loc[model, rxn] for model, rxn in self.objective_rxns.items()]
-        self.objective_expressions = [f"1.0 * {rxn} = {self.objective_vals[model]}" for model, rxn in self.objective_rxns.items()]
+        self.objective_vals = [self.flux.loc[model_idx, rxn] for model_idx, rxn in self.objective_rxns.items()]
+        self.objective_expressions = [f"1.0 * {rxn} = {self.objective_vals[model_idx]}" for model_idx, rxn in self.objective_rxns.items()]
 
         # calculate total objective value
         self.objective_total = np.array(self.objective_vals).sum()
         self.objective_total_expression = f"Sum(Model_i Biomass) = {self.objective_total}"
 
         # create summary dataframe for overall community
-        self.total_flux = self.community.org_final[self.community.org_exs].sum()
+        self.total_flux = self.community.org_final[self.community.exchange_ids].sum()
         self.total_flux = self.total_flux.T.reset_index()
         self.total_flux = self.total_flux.copy()
         self.total_flux.columns = ["Exchange", "Flux"]
 
         # add metabolite to env_flux
-        self.total_flux["Metabolite"] = self.total_flux["Exchange"].map(self.community.ex_to_met)
+        self.total_flux["Metabolite"] = self.total_flux["Exchange"].map(self.community.exchange_to_metabolite_id)
         self.total_flux = self.total_flux.set_index("Metabolite")
 
 
@@ -72,7 +106,7 @@ class CommunitySummary:
         self.total_flux = self.total_flux[self.total_flux['Flux'] != 0] # remove zero fluxes
 
         # create dfs for organisms
-        self.flux = self.flux[self.community.org_exs].copy()
+        self.flux = self.flux[self.community.exchange_ids].copy()
         self.flux = self.flux.reset_index()
         self.flux.columns = ["Model"] + list(self.flux.columns[1:])
         self.flux = pd.melt(
@@ -81,15 +115,15 @@ class CommunitySummary:
             var_name="Exchange", 
             value_name="Flux"
         )
-        self.flux["Metabolite"] = self.flux["Exchange"].map(self.community.ex_to_met)
+        self.flux["Metabolite"] = self.flux["Exchange"].map(self.community.exchange_to_metabolite_id)
         self.flux["Metabolite"] = self.flux["Metabolite"].fillna(self.flux["Exchange"])
-        self.flux = self.flux.set_index(["Model", "Metabolite"])
+        self.flux = self.flux.set_index(["Model", "Exchange"])
 
         # add element information
         metabolites = {m.id if pd.notnull(m.id) else m: m for m in self.community.exchange_metabolites}
         self.flux[f"{self.element}-Number"] = [
             metabolites[met_id].elements.get(self.element, 0) if met_id in metabolites else 0
-            for met_id in self.flux.index.get_level_values("Metabolite")
+            for met_id in self.flux["Metabolite"]
         ]
         self.flux[f"{self.element}-Flux"] = self.flux[f"{self.element}-Number"] * self.flux["Flux"].abs()        
 
@@ -97,30 +131,56 @@ class CommunitySummary:
         self.flux = self.flux[self.flux['Flux'] != 0] # remove zero fluxes
 
         return
+
+    def _header(self) -> str:
+        """Describe which fluxes the report shows, e.g. `Fixed Point at Iteration 3`."""
+        if self.iter_converged is None:
+            return (
+                f"Not Converged in {self.n_iterations} Iterations, "
+                f"Averaged over Last {self.periodicity}"
+            )
+        if self.periodicity == 1:
+            return f"Fixed Point at Iteration {self.iter_converged}"
+        return (
+            f"Period-{self.periodicity} Cycle at Iteration {self.iter_converged}, "
+            "Averaged over Cycle"
+        )
     
-    def to_cytoscape(self):
+    def to_cytoscape(self) -> tuple[pd.DataFrame, pd.DataFrame]:
+        """Export the community's exchange network as Cytoscape tables.
+
+        Returns:
+            tuple[pd.DataFrame, pd.DataFrame]: `(edges_df, nodes_df)`. Edges have
+                `Source`, `Target`, `Type` (`"Uptake"`/`"Secretion"`) and `Value` columns;
+                nodes have `ID`, `Name` and `Type` (`"Organism"`/`"Metabolite"`) columns.
+        """
         # pull pertinent info for cytoscape edge table
-        self.cyto_edge = self.flux.reset_index()
-        self.cyto_edge["Source"] = self.cyto_edge["Model"].map(self.community.model_names)
-        self.cyto_edge["Target"] = self.cyto_edge["Metabolite"]
-        self.cyto_edge["Type"] = ["Uptake" if flux < 0 else "Secretion" for flux in self.cyto_edge["Flux"]]
-        self.cyto_edge["Value"] = self.cyto_edge["Flux"].abs()
+        self.cytoscape_edges = self.flux.reset_index()
+        self.cytoscape_edges["Source"] = self.cytoscape_edges["Model"].map(self.community.model_names)
+        self.cytoscape_edges["Target"] = self.cytoscape_edges["Metabolite"]
+        self.cytoscape_edges["Type"] = ["Uptake" if flux < 0 else "Secretion" for flux in self.cytoscape_edges["Flux"]]
+        self.cytoscape_edges["Value"] = self.cytoscape_edges["Flux"].abs()
 
         # drop all other info
-        self.cyto_edge = self.cyto_edge[["Source", "Target", "Type", "Value"]]
+        self.cytoscape_edges = self.cytoscape_edges[["Source", "Target", "Type", "Value"]]
 
         # create cytoscape node table
-        self.cyto_node = pd.DataFrame()
-        self.cyto_node["ID"] = pd.concat([self.cyto_edge["Source"], self.cyto_edge["Target"]]).unique()
-        self.cyto_node["Name"] = [self.community.metid_to_name.get(id, id) for id in self.cyto_node["ID"]]
-        self.cyto_node["Type"] = ["Organism" if id in self.community.model_names.values() else "Metabolite" for id in self.cyto_node["ID"]]
+        self.cytoscape_nodes = pd.DataFrame()
+        self.cytoscape_nodes["ID"] = pd.concat([self.cytoscape_edges["Source"], self.cytoscape_edges["Target"]]).unique()
+        self.cytoscape_nodes["Name"] = [self.community.metabolite_id_to_name.get(id, id) for id in self.cytoscape_nodes["ID"]]
+        self.cytoscape_nodes["Type"] = ["Organism" if id in self.community.model_names.values() else "Metabolite" for id in self.cytoscape_nodes["ID"]]
 
-        return self.cyto_edge, self.cyto_node
+        return self.cytoscape_edges, self.cytoscape_nodes
 
-    def to_string(self):
-        """Display the summary of the community."""
+    def to_string(self) -> str:
+        """Format the full text report.
+
+        Returns:
+            str: Community and per-organism uptake/secretion tables, with elemental-flux
+                percentages.
+        """
         output = []
-        output.append(f"Community Summary (Cumulative through Iteration {self.iter_shown}):\n")
+        output.append(f"Community Summary ({self._header()}):\n")
         output.append(f"Optimization Type: {self.method}\n")
         output.append(f"{self.objective_total_expression}\n\n")
 
@@ -147,14 +207,14 @@ class CommunitySummary:
         secretion[f"{self.element}-Flux"] = secretion[f"{self.element}-Flux"].map("{:.2f}%".format)
         output.append(f"{secretion.reset_index().to_string(index=False)}\n\n")
 
-        for model in self.flux.index.get_level_values(0).unique():
+        for model_idx in self.flux.index.get_level_values(0).unique():
             output.append("-----------------------------------------------------------------\n")
-            output.append(f"{self.community.model_names[model]} (Model {model}) Summary:\n")
-            output.append(f"{self.objective_expressions[model]}\n\n")
-            
+            output.append(f"{self.community.model_names[model_idx]} (Model {model_idx}) Summary:\n")
+            output.append(f"{self.objective_expressions[model_idx]}\n\n")
+
             # uptake
-            output.append(f"{self.community.model_names[model]} Uptake:\n")
-            uptake = self.flux.loc[model][self.flux.loc[model]['Flux'] < 0].copy()
+            output.append(f"{self.community.model_names[model_idx]} Uptake:\n")
+            uptake = self.flux.loc[model_idx][self.flux.loc[model_idx]['Flux'] < 0].copy()
             uptake["Flux"] = uptake["Flux"].abs()
             uptake_total_element_flux = uptake.loc[:, f"{self.element}-Flux"].sum()
             if uptake_total_element_flux > 0:
@@ -163,10 +223,10 @@ class CommunitySummary:
                 uptake.loc[:, f"{self.element}-Flux"] = 0
             uptake[f"{self.element}-Flux"] = uptake[f"{self.element}-Flux"].map("{:.2f}%".format)
             output.append(f"{uptake.reset_index().to_string(index=False)}\n\n")
-            
+
             # secretion
-            output.append(f"Model {model} Secretion:\n")
-            secretion = self.flux.loc[model][self.flux.loc[model]['Flux'] > 0].copy()
+            output.append(f"Model {model_idx} Secretion:\n")
+            secretion = self.flux.loc[model_idx][self.flux.loc[model_idx]['Flux'] > 0].copy()
             secretion_total_element_flux = secretion.loc[:, f"{self.element}-Flux"].sum()
             if secretion_total_element_flux > 0:
                 secretion.loc[:, f"{self.element}-Flux"] = secretion.loc[:, f"{self.element}-Flux"] / secretion_total_element_flux * 100
@@ -178,16 +238,16 @@ class CommunitySummary:
 
         return "".join(output)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Return the string representation of the summary."""
         return self.to_string()
     
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Return the string representation of the summary."""
         return self.to_string()
 
-    def _repr_html_(self):
-        html = f"<h3>Community Summary (Cumulative through Iteration {self.iter_shown})</h3>"
+    def _repr_html_(self) -> str:
+        html = f"<h3>Community Summary ({self._header()})</h3>"
         html += f"<b>Optimization Type:</b> {self.method}<br>"
         html += f"{self.objective_total_expression}<br>"
 
@@ -221,12 +281,12 @@ class CommunitySummary:
             html += "<i>No secretion fluxes</i>"
 
         # Organism-level tables
-        for model in self.flux.index.get_level_values(0).unique().sort_values():
-            html += f"<hr><h4>{self.community.model_names[model]} (Model {model}) Summary</h4>"
-            html += f"{self.objective_expressions[model]}<br>"
+        for model_idx in self.flux.index.get_level_values(0).unique().sort_values():
+            html += f"<hr><h4>{self.community.model_names[model_idx]} (Model {model_idx}) Summary</h4>"
+            html += f"{self.objective_expressions[model_idx]}<br>"
 
             # Organism Uptake Table
-            org_uptake = self.flux.loc[model][self.flux.loc[model]['Flux'] < 0].copy()
+            org_uptake = self.flux.loc[model_idx][self.flux.loc[model_idx]['Flux'] < 0].copy()
             org_uptake['Flux'] = org_uptake['Flux'].abs()
             uptake_total_element_flux = org_uptake.loc[:, f"{self.element}-Flux"].sum()
             if uptake_total_element_flux > 0:
@@ -234,21 +294,21 @@ class CommunitySummary:
             else:
                 org_uptake.loc[:, f"{self.element}-Flux"] = 0
             org_uptake[f"{self.element}-Flux"] = org_uptake[f"{self.element}-Flux"].map("{:.2f}%".format)
-            html += f"<b>Model {model} Uptake:</b>"
+            html += f"<b>Model {model_idx} Uptake:</b>"
             if not org_uptake.empty:
                 html += org_uptake.reset_index().to_html(index=False)
             else:
                 html += "<i>No uptake fluxes</i>"
 
             # Organism Secretion Table
-            org_secretion = self.flux.loc[model][self.flux.loc[model]['Flux'] > 0].copy()
+            org_secretion = self.flux.loc[model_idx][self.flux.loc[model_idx]['Flux'] > 0].copy()
             secretion_total_element_flux = org_secretion.loc[:, f"{self.element}-Flux"].sum()
             if secretion_total_element_flux > 0:
                 org_secretion.loc[:, f"{self.element}-Flux"] = org_secretion.loc[:, f"{self.element}-Flux"] / secretion_total_element_flux * 100
             else:
                 org_secretion.loc[:, f"{self.element}-Flux"] = 0
             org_secretion[f"{self.element}-Flux"] = org_secretion[f"{self.element}-Flux"].map("{:.2f}%".format)
-            html += f"<b>Model {model} Secretion:</b>"
+            html += f"<b>Model {model_idx} Secretion:</b>"
             if not org_secretion.empty:
                 html += org_secretion.reset_index().to_html(index=False)
             else:

@@ -17,14 +17,17 @@ def plot_micom_tradeoff_pts(micom_results, iterpretation, tradeoffs, rel_abund, 
             lw=lw)
 
     for idx, alpha_tradeoff in enumerate(tradeoffs):
-        posx = micom_results[micom_results["tradeoff"] == alpha_tradeoff].reset_index()["Org1_growth"].values
-        posy = micom_results[micom_results["tradeoff"] == alpha_tradeoff].reset_index()["Org2_growth"].values
+        mask = np.isclose(micom_results["tradeoff"].astype(float), alpha_tradeoff)
+        
+        posx = micom_results.loc[mask, "Org1_growth"].iloc[0]
+        posy = micom_results.loc[mask, "Org2_growth"].iloc[0]
   
         if iterpretation == "specific":
                 posx /= rel_abund[0]
                 posy /= rel_abund[1]
 
-        label = str(alpha_tradeoff) if alpha_tradeoff != 1.0 else r"$\alpha$=1.0"
+        # old: label = str(alpha_tradeoff) if alpha_tradeoff != 1.0 else r"$\alpha$=1.0"
+        label = rf"$\alpha$={alpha_tradeoff}"
 
         plt.text(posx+offsets[idx][0], posy+offsets[idx][1], 
                 label,

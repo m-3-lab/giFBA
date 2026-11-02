@@ -1,61 +1,73 @@
-
 # giFBA: Greedy Interaction Flux Balance Analysis
 
-This is a COBRApy extension for modeling community interaction.
+giFBA is a [COBRApy](https://opencobra.github.io/cobrapy/) extension for simulating
+metabolic exchange in microbial communities using the Greedy Interaction Flux Balance 
+Analysis technique. Instead of solving one large compartmentalized LP for the whole 
+community (cFBA) or a single joint objective (MICOM), giFBA iterates: each organism 
+is optimized independently against a shared environmental pool of metabolites, only 
+secreted fluxes update that pool, and the process repeats until the community reaches 
+a fixed point (or a periodic attractor).
+
+**Documentation:** <https://m-3-lab.github.io/giFBA/> (source in [`docs/`](docs/))
 
 ## Installation
-```
+
+```bash
 pip install "git+https://github.com/m-3-lab/giFBA.git@main#subdirectory=package"
 ```
 
-## Directory Description
-```
-📦giFBA
- ┣ 📂Examples
- ┃ ┣ 📂Model_Diagrams
- ┃ ┣ 📂Results
- ┃ ┃ ┣ 📂cFBA
- ┃ ┃ ┣ 📂giFBA_AGORA
- ┃ ┃ ┣ 📂giFBA_Simple
- ┃ ┃ ┣ 📂cFBA_Models
- ┃ ┃ ┗ micom_results.csv
- ┃ ┣ create_simple_fba.ipynb
- ┃ ┣ gifba_comparisons.ipynb
- ┃ ┗ gifba_utilization.ipynb
- ┣ 📂package
- ┃ ┣ 📂gifba
- ┃ ┃ ┣ 📂Simple_Models
- ┃ ┃ ┣ __init__.py
- ┃ ┃ ┣ config.py
- ┃ ┃ ┣ gifba_object.py
- ┃ ┃ ┣ summary.py
- ┃ ┃ ┗ utils.py
- ┃ ┣ README.md
- ┃ ┗ pyproject.toml
- ┣ .gitignore
- ┗ README.md
+Requires Python 3.10–3.13. Optional extras and a development setup are covered in
+[Installation](docs/installation.md).
+
+### For contributors
+
+[`environment.yml`](environment.yml) builds a conda environment with everything the
+repository uses: the package (editable) with its `gurobi` and `micom` extras, pytest,
+the MkDocs toolchain, Jupyter, and the libraries needed by the example notebooks and
+the dFBA benchmark (matplotlib, plotly, seaborn, scikit-learn, networkx, tol-colors,
+py4cytoscape, ...).
+
+```bash
+conda env create -f environment.yml
+conda activate gifba-dev
+python -m pytest package/tests
 ```
 
-### Description of Directory Tree
-- `package/` : contains all package code for gifba package
-    - `package/gifba/` : contains source code (objects, methods, validation models, etc.)
-    - `package/gifba/Simple_Models` : All simple models used for validation of methods
-- `Examples` : contains all validation, results, \& figure generation
-    - `Examples/gifba_comparisons.ipynb` : Contains validation code for the following:
-        - Generating compartmentalized FBA (cFBA) models (stored in `Examples/Results/cFBA_Models`)
-        - Solving cFBA models \& finding solution space 
-        - Creating \& solving MICOM communities
-    - `Examples/gifba_utilization.ipynb` : Contains walkthrough code for the following:
-        - All 12 Simple Modesl for validation with:
-            - Initialization \& giFBA usage
-            - Plotting/Comparison to individualized FBA, cFBA, MICOM, \& giFBA
-        - 2 simulations of real AGORA2 communities (*not included in repository*) with:
-            - Summary Display
-            - Cytoscape-ready files
-    - `Examples/create_simple_fba.ipynb` : Notebook to create each unique "organism" for simple model validation. Some models are exact duplicates or similar (internal rxn bounds changed), thus not shown. 
-    - `Examples/Model_Diagrams/` : Contains all Validation model diagrams (corresponding to simple models in `package/gifba/Simple_Models`)
-    - `Examples/Results/` : Contains the following:
-        - `cFBA/` : csv files of each simulation and the solution space 
-        - `giFBA_AGORA/` : Cytoscape-ready files of nodes \& edges for AGORA2 model examples
-        - `giFBA_Simple/` : Saved images of the simulated growth of each simple, validation model
-        - `micom_results.csv` : MICOM simulation results for each simulation (each simulation has 5 tradeoff parameter values stored)
+After editing the file, run `conda env update -f environment.yml --prune`.
+
+## Quickstart
+
+```python
+import cobra as cb
+from gifba import gifbaObject
+
+model_a = cb.io.load_json_model("organism_a.json")
+model_b = cb.io.load_json_model("organism_b.json")
+
+community = gifbaObject(
+    models=[model_a, model_b],
+    media={"EX_glc__D_e": -10},   # negative flux = uptake available in the shared pool
+    rel_abund=[0.5, 0.5],
+)
+
+env_final, org_final = community.run_gifba(n_iterations=50, method="pfba")
+print(community.summarize())
+```
+
+See the [API Reference](docs/api.md), [Examples](docs/examples.md), and
+[Contributing](docs/contributing.md) for more.
+
+## AI Usage
+
+Parts of this repository — including portions of the code, tests, and this
+documentation — were drafted & implemented with the assistance of AI coding tools (Claude Code).
+All AI-assisted contributions are reviewed by the project maintainers, and the
+underlying scientific method, model validation, and numerical results (e.g. unit 
+testing) are checked against expected biological/mathematical behavior rather 
+than taken on faith from generated output.
+
+## TODO
+
+### dFBA Benchmarking
+
+- [ ] TASK_3

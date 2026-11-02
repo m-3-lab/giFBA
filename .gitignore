@@ -2,3 +2,26 @@ Examples_Orig/AGORA2_Models/
 package/gifba/AGORA2_Models/
 Chaos_Vacc/
 Examples/2_real_models/data/
+
+# AGORA models are large binaries fetched separately, not version controlled
+# (anchored to the repo root; Old_Code/AGORA2_Models/ is already tracked)
+/AGORA2_Models/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# pytest
+.pytest_cache/
+
+# macOS Finder metadata
+.DS_Store
+
+Examples/2_real_models/4_dfba_benchmark/data/raw/Benchmark_AH_BI/
+Examples/2_real_models/4_dfba_benchmark/data/raw/Benchmark_N_orgs/
+Examples/2_real_models/4_dfba_benchmark/data/raw/Benchmark_AH_BI_vary_ra/
+
+package/gifba.egg-info
+
+# Temporary pip requirements conda writes during `conda env create/update`
+condaenv.*.requirements.txt
