@@ -35,7 +35,7 @@ GOLDEN_RUNS = {
     "2_1_crossfeed":             (3, 1, 8, [20.0, 10.0]),
     "2_2_layered":               (5, 1, 11, [20.0, 20.0]),
     "2_3_superfluous_crossfeed": (2, 1, 3, [10.0, 0.0]),
-    "3_1_competition":           (2, 1, 12, [5.0, 5.0]),
+    "3_competition":             (2, 1, 12, [5.0, 5.0]),
     "4_1_crossfeed_competition": (3, 1, 16, [5.0, 10.0]),
     "4_2_coupling":              (3, 1, 13, [5.0, 5.0]),
     "4_4_dynamical":             (8, 4, 19, [8.75, 16.25]),
@@ -54,7 +54,7 @@ GOLDEN_ENV = {
                                       "EX_D(e)": 10.0, "EX_Bio(e)": 40.0},
     "2_3_superfluous_crossfeed": {"EX_A(e)": 10.0, "EX_B(e)": 10.0, "EX_C(e)": 0.0,
                                   "EX_Bio(e)": 10.0},
-    "3_1_competition":           {"EX_A(e)": 10.0, "EX_Bio(e)": 10.0},
+    "3_competition":             {"EX_A(e)": 10.0, "EX_Bio(e)": 10.0},
     "4_1_crossfeed_competition": {"EX_A(e)": 10.0, "EX_B(e)": 5.0, "EX_Bio(e)": 15.0},
 
     "4_2_coupling":              {"EX_A(e)": 10.0, "EX_B(e)": 5.0, "EX_Bio(e)": 10.0},

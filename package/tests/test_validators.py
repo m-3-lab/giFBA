@@ -244,7 +244,7 @@ def test_check_media_rejects(media, message):
 
 CASES = (
     "1_1_single", "1_2_single", "1_3_parallel", "2_1_crossfeed", 
-    "2_2_layered", "2_3_superfluous_crossfeed", "3_1_competition",
+    "2_2_layered", "2_3_superfluous_crossfeed", "3_competition",
     "4_1_crossfeed_competition", "4_2_coupling", "4_4_dynamical",
 )
 
