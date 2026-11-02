@@ -52,8 +52,6 @@ than taken on faith from generated output.
 
 ## TODO
 
-### Packaging and deployment
+### dFBA Benchmarking
 
-- [ ] TASK_1
-- [ ] TASK_2
 - [ ] TASK_3

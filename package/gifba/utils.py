@@ -23,9 +23,9 @@ def load_simple_models(case: str) -> tuple[list[cb.Model], dict[str, float]]:
 
     Args:
         case (str): Case name, one of `"1_1_single"`, `"1_2_single"`, `"1_3_parallel"`,
-            `"2_1_competition"`, `"3_1_crossfeed"`, `"3_2_layered"`,
-            `"4_1_crossfeed_competition"`, `"4_2_superfluous_crossfeed"`,
-            `"5_1_coupling"` or `"5_2_dynamical"`.
+            `"2_1_crossfeed"`, `"2_2_layered"`, `"2_3_superfluous_crossfeed"`,
+            `"3_competition"`, `"4_1_crossfeed_competition"`, `"4_2_coupling"` or
+            `"4_4_dynamical"`.
 
     Returns:
         tuple[list[cobra.Model], dict[str, float]]: `(models, media)`, the case's models

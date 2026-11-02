@@ -74,7 +74,7 @@ for idx, a0 in enumerate(a0_vals):
         step_size=1
 
         # load models and media:
-        sim = "5_2_dynamical"
+        sim = "4_4_dynamical"
         models, media = gifba.utils.load_simple_models(sim)
         # print(media_val)
         media["EX_A(e)"] = media_val

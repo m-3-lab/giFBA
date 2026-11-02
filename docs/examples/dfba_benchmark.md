@@ -66,11 +66,12 @@ python process_results.py --config AH_BI   # one experiment
 
 The notebooks read those tables and save figures to `Examples/figures/real_model_figs/dfba_benchmark/`:
 
-- [`4_1_compare_hyperparameters.ipynb`](https://github.com/m-3-lab/giFBA/blob/main/Examples/2_real_models/4_dfba_benchmark/4_1_compare_hyperparameters.ipynb): wall clock and pFBA-call efficiency, and MAE/RPE against the dFBA hyperparameters
-- [`4_2_compare_fluxes.ipynb`](https://github.com/m-3-lab/giFBA/blob/main/Examples/2_real_models/4_dfba_benchmark/4_2_compare_fluxes.ipynb): reaction-level giFBA vs. dFBA flux comparison
-- [`4_3_pca_comparison_AH_BI.ipynb`](https://github.com/m-3-lab/giFBA/blob/main/Examples/2_real_models/4_dfba_benchmark/4_3_pca_comparison_AH_BI.ipynb): PCA of giFBA and dFBA fluxes for the A. hallii / B. infantis community (needs a local AGORA2 install set in `agora_dir_base`, plus the `.mat` models in `../data/`)
+- [`4_1_pca_comparison_AH_BI.ipynb`](https://github.com/m-3-lab/giFBA/blob/main/Examples/2_real_models/4_dfba_benchmark/4_1_pca_comparison_AH_BI.ipynb): PCA of giFBA and dFBA fluxes for the A. hallii / B. infantis community (needs a local AGORA2 install set in `agora_dir_base`, plus the `.mat` models in `../data/`)
+- [`4_2_compare_hyperparameters.ipynb`](https://github.com/m-3-lab/giFBA/blob/main/Examples/2_real_models/4_dfba_benchmark/4_2_compare_hyperparameters.ipynb): wall clock and pFBA-call efficiency, and MAE/RPE against the dFBA hyperparameters
+- [`4_3_compare_AH_BI_fluxes.ipynb`](https://github.com/m-3-lab/giFBA/blob/main/Examples/2_real_models/4_dfba_benchmark/4_3_compare_AH_BI_fluxes.ipynb): reaction-level giFBA vs. dFBA flux comparison for AH_BI, with pFBA call count against MAE and the best/worst runs' fluxes by organism (interactive plotly figure, saved as HTML)
+- [`4_4_compare_N_orgs_fluxes.ipynb`](https://github.com/m-3-lab/giFBA/blob/main/Examples/2_real_models/4_dfba_benchmark/4_4_compare_N_orgs_fluxes.ipynb): reaction-level giFBA vs. dFBA flux comparison for N_orgs
 
-Set `ACTIVE_CONFIG_NAME` at the top of `4_1`/`4_2` to switch between experiments.
+Set `ACTIVE_CONFIG_NAME` at the top of `4_1` to switch between experiments; the flux notebooks are one per experiment.
 
 The aim of this subdirectory is to be able to use this data to inform how dfba and gifba compare answering a form of the question: "giFBA is a steady state method for estimating a dfba solution, but what kind of dfba simulation is it efficiently solving?"
 

@@ -1,6 +1,6 @@
 """Shared helpers for analyzing giFBA vs. dFBA benchmark results.
 
-These functions back ``process_results.py`` and the ``4_1``/``4_2``
+These functions back ``process_results.py`` and the ``4_1``-``4_4``
 analysis notebooks, which load, bin, and compare giFBA/dFBA benchmark JSON
 results across experiment families (e.g. the fixed two-organism "AH_BI"
 community and the variable 1-10 organism "N_orgs" communities).
@@ -25,7 +25,6 @@ import matplotlib
 import plotly.graph_objects as go
 import seaborn as sns
 import tol_colors as tol
-
 
 # ---------------------------------------------------------------------------
 # Experiment configuration
@@ -107,6 +106,11 @@ SOLVER_COLORS: dict[str, str] = {"BDF": tol.bright.blue, "RK45": tol.bright.red}
 #: Fixed giFBA/dFBA colors for the method-comparison violin row, also from Tol
 #: "bright" but distinct from `SOLVER_COLORS`. Key order is the plotting order.
 METHOD_COLORS: dict[str, str] = {"giFBA": tol.bright.green, "dFBA": tol.bright.cyan}
+
+#: Organism colors for the AH_BI flux comparison. Teal and gold differ in both
+#: hue and lightness, and neither is taken by `SOLVER_COLORS`,
+#: `METHOD_COLORS` or the PCA notebook's organism colors.
+AH_BI_ORG_COLORS: dict[str, str] = {"AH": "#009988", "BI": "#DDAA33"}
 
 #: Bin spread/count per hyperparameter, shared by every experiment preset.
 #: Edges are data-driven (``min``/``max`` left as ``None``) rather than

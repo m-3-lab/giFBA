@@ -30,7 +30,6 @@ GIFBA_ITERATIONS = 100
 # Monte Carlo sampling space for (N_models, Vmax, Km, ODE solver)
 # N_models_list = list(range(1, 11))
 N_models_list = [2]
-REL_ABUNDS_MDL1_LIST = np.linspace(0.1, 0.9, 100).tolist()  # relative abundance of model 1 in the community
 V_MAX_LIST = list(np.logspace(0, 2, 100))  # (mmol/(gi*hr)) max uptake rate
 KM_LIST = list(np.logspace(-1, 0, 100))    # (mmol) Michaelis-Menten constant
 SOLVER_LIST = ["RK45", "BDF"]
@@ -207,8 +206,7 @@ def load_medium():
 def sample_parameters():
     """Randomly draw one Monte Carlo parameter set."""
     N = int(np.random.choice(N_models_list))
-    Rel_abund_mdl1 = float(np.random.choice(REL_ABUNDS_MDL1_LIST))
-    REL_ABUND = [Rel_abund_mdl1, 1 - Rel_abund_mdl1]  # relative abundances for the two models
+    REL_ABUND = [0.5, 0.5]  # relative abundances for the two models
     Y0_FACTOR = float(np.random.choice(Y0_FACTORS_LIST))
     Y0_OFFSET = float(np.random.choice(Y0_OFFSETS_LIST))
     V_MAX_ALL = float(np.random.choice(V_MAX_LIST))

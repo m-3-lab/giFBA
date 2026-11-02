@@ -13,8 +13,8 @@ can also be loaded directly with `utils.load_simple_models(case)`.
 | Interaction | Notebook |
 |---|---|
 | Non-interacting | [1_1_single](https://github.com/m-3-lab/giFBA/blob/main/Examples/1_toy_models/1_non_interacting/1_1_single.ipynb), [1_2_single](https://github.com/m-3-lab/giFBA/blob/main/Examples/1_toy_models/1_non_interacting/1_2_single.ipynb), [1_3_parallel](https://github.com/m-3-lab/giFBA/blob/main/Examples/1_toy_models/1_non_interacting/1_3_parallel.ipynb) |
-| Competition | [2_1_competition](https://github.com/m-3-lab/giFBA/blob/main/Examples/1_toy_models/2_competition/2_1_competition.ipynb) |
 | Cross-feeding | [2_1_crossfeed](https://github.com/m-3-lab/giFBA/blob/main/Examples/1_toy_models/2_crossfeeding/2_1_crossfeed.ipynb), [2_2_layered](https://github.com/m-3-lab/giFBA/blob/main/Examples/1_toy_models/2_crossfeeding/2_2_layered.ipynb), [2_3_superfluous_crossfeed](https://github.com/m-3-lab/giFBA/blob/main/Examples/1_toy_models/2_crossfeeding/2_3_superfluous_crossfeed.ipynb) |
+| Competition | [3_competition](https://github.com/m-3-lab/giFBA/blob/main/Examples/1_toy_models/3_competition/3_competition.ipynb) |
 | Combined interactions | [4_1_crossfeed_competition](https://github.com/m-3-lab/giFBA/blob/main/Examples/1_toy_models/4_crossfeed_competition/4_1_crossfeed_competition.ipynb), [4_2_coupling](https://github.com/m-3-lab/giFBA/blob/main/Examples/1_toy_models/4_crossfeed_competition/4_2_coupling.ipynb), [4_4_dynamical](https://github.com/m-3-lab/giFBA/blob/main/Examples/1_toy_models/4_crossfeed_competition/4_4_dynamical.ipynb) |
 
 Bifurcation analyses for the coupling cases are in

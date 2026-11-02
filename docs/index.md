@@ -45,7 +45,7 @@ Or load one of the bundled toy models:
 ```python
 from gifba import gifbaObject, utils
 
-models, media = utils.load_simple_models("3_1_crossfeed")
+models, media = utils.load_simple_models("2_1_crossfeed")
 community = gifbaObject(models, media)
 env_final, org_final = community.run_gifba(n_iterations=25, method="pfba")
 ```
