@@ -19,6 +19,22 @@ pip install "git+https://github.com/m-3-lab/giFBA.git@main#subdirectory=package"
 Requires Python 3.10–3.13. Optional extras and a development setup are covered in
 [Installation](docs/installation.md).
 
+### For contributors
+
+[`environment.yml`](environment.yml) builds a conda environment with everything the
+repository uses: the package (editable) with its `gurobi` and `micom` extras, pytest,
+the MkDocs toolchain, Jupyter, and the libraries needed by the example notebooks and
+the dFBA benchmark (matplotlib, plotly, seaborn, scikit-learn, networkx, tol-colors,
+py4cytoscape, ...).
+
+```bash
+conda env create -f environment.yml
+conda activate gifba-dev
+python -m pytest package/tests
+```
+
+After editing the file, run `conda env update -f environment.yml --prune`.
+
 ## Quickstart
 
 ```python
