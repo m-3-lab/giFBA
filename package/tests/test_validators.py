@@ -243,9 +243,9 @@ def test_check_media_rejects(media, message):
 # --------------------------------------------------------------------------
 
 CASES = (
-    "1_1_single", "1_2_single", "1_3_parallel", "2_1_competition",
-    "3_1_crossfeed", "3_2_layered", "4_1_crossfeed_competition",
-    "4_2_superfluous_crossfeed", "5_1_coupling", "5_2_dynamical",
+    "1_1_single", "1_2_single", "1_3_parallel", "2_1_crossfeed", 
+    "2_2_layered", "2_3_superfluous_crossfeed", "3_1_competition",
+    "4_1_crossfeed_competition", "4_2_coupling", "4_4_dynamical",
 )
 
 
@@ -265,13 +265,13 @@ def test_load_simple_models_returns_usable_models_and_media(case):
     assert all(v < 0 for v in media.values())
 
 
-# 5_2_dynamical is excluded below: its medium does not reach its models at all.
-# load_simple_models hands it {"EX_A(e)": -10}, but sim5_2_org{1,2}.json spell
+# 4_4_dynamical is excluded below: its medium does not reach its models at all.
+# load_simple_models hands it {"EX_A(e)": -10}, but sim4_4_org{1,2}.json spell
 # their exchanges "Ex_A(e)" / "Ex_B(e)" / "Ex_C(e)" with a lowercase x, so the
 # key matches nothing and the case effectively runs on an empty medium. Re-add
 # it here once the loader (or the model files) are fixed -- and re-measure its
 # golden values, which currently pin the broken behavior.
-CASES_WITH_MATCHING_MEDIA = tuple(c for c in CASES if c != "5_2_dynamical")
+CASES_WITH_MATCHING_MEDIA = tuple(c for c in CASES if c != "4_4_dynamical")
 
 
 @pytest.mark.parametrize("case", CASES_WITH_MATCHING_MEDIA)
@@ -299,4 +299,4 @@ def test_load_simple_models_returns_fresh_objects(case):
 
 def test_load_simple_models_rejects_unknown_key():
     with pytest.raises(KeyError):
-        utils.load_simple_models("bogus")
+        utils.load_simple_models("foo")

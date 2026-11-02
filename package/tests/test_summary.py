@@ -106,10 +106,10 @@ def test_header_reports_fixed_point(run_toy):
 
 
 def test_header_reports_periodic_cycle(run_toy):
-    """5_2_dynamical settles into a cycle rather than a fixed point."""
+    """ 4_4_dynamical settles into a cycle rather than a fixed point."""
     from gifba import CommunitySummary
 
-    community, _, _ = run_toy("5_2_dynamical")
+    community, _, _ = run_toy("4_4_dynamical")
     assert community.iter_converged is not None and community.periodicity > 1
 
     assert str(CommunitySummary(community)).startswith(

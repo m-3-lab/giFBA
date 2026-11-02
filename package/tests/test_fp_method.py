@@ -3,7 +3,7 @@
 import pandas as pd
 import pytest
 
-CASE = "5_2_dynamical"
+CASE = "4_4_dynamical"
 N_ITER = 25
 
 

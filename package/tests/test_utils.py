@@ -17,8 +17,8 @@ def _model_state(model: cb.Model) -> list[tuple]:
     return mets + rxns
 
 
-def test_load_simple_models_4_2_media(toy_models) -> None:
-    models, media = toy_models("4_2_superfluous_crossfeed")
+def test_load_simple_models_2_3_media(toy_models) -> None:
+    models, media = toy_models("2_3_superfluous_crossfeed")
     assert media == {"EX_A(e)": -10, "EX_B(e)": -10}
     exchanges = {rxn.id for model in models for rxn in model.exchanges}
     assert set(media) <= exchanges
@@ -54,7 +54,8 @@ def test_find_min_medium_needs_models() -> None:
         utils.find_min_medium()
 
 
-@pytest.mark.parametrize("case", ["3_1_crossfeed", "4_2_superfluous_crossfeed"])
+
+@pytest.mark.parametrize("case", ["2_1_crossfeed", "2_3_superfluous_crossfeed"])
 def test_prepare_compartmentalized_model_leaves_community_untouched(toy_community, case: str) -> None:
     community = toy_community(case, rel_abund=[0.3, 0.7])
     before = [_model_state(model) for model in community.models]
@@ -65,7 +66,7 @@ def test_prepare_compartmentalized_model_leaves_community_untouched(toy_communit
 
 
 def test_prepare_compartmentalized_model_is_repeatable(toy_community) -> None:
-    community = toy_community("3_1_crossfeed")
+    community = toy_community("2_1_crossfeed")
     obj_ids = ["EX_Bio(e1)", "EX_Bio(e2)"]
 
     first, first_obj = utils.prepare_compartmentalized_model(community, obj_rxn_ids=obj_ids)
@@ -77,7 +78,7 @@ def test_prepare_compartmentalized_model_is_repeatable(toy_community) -> None:
 
 
 def test_prepare_compartmentalized_model_scales_by_abundance(toy_community) -> None:
-    community = toy_community("3_1_crossfeed", rel_abund=[0.25, 0.75])
+    community = toy_community("2_1_crossfeed", rel_abund=[0.25, 0.75])
     comp_model, _ = utils.prepare_compartmentalized_model(community)
 
     # Each organism's exchange carries its share of the shared e0 pool.
@@ -107,10 +108,10 @@ def test_prepare_compartmentalized_model_more_than_nine_organisms(toy_models) ->
 
 def test_prepare_compartmentalized_model_with_micom(toy_community) -> None:
     pytest.importorskip("micom")
-    case = "4_2_superfluous_crossfeed"
+    case = "2_3_superfluous_crossfeed"
     community = toy_community(case)
     before = [_model_state(model) for model in community.models]
-    paths = [str(files("gifba").joinpath("Toy_Models", f"sim4_2_org{i}.json")) for i in (1, 2)]
+    paths = [str(files("gifba").joinpath("Toy_Models", f"sim2_3_org{i}.json")) for i in (1, 2)]
 
     comp_model, obj = utils.prepare_compartmentalized_model_with_micom(
         community, paths, {"EX_A(e)": -5}, rel_abund=[0.2, 0.8]

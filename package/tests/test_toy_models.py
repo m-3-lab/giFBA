@@ -107,7 +107,7 @@ def test_rerunning_a_community_is_deterministic(toy_community):
     still lands on the same fixed point is what makes the golden values above
     trustworthy rather than an artifact of call ordering.
     """
-    community = toy_community("3_1_crossfeed")
+    community = toy_community("2_1_crossfeed")
 
     first_env, first_org = community.run_gifba(n_iterations=GOLDEN_ITERS, method="pfba")
     # Copy: run_gifba reassigns these attributes, but be explicit about it.
@@ -120,8 +120,8 @@ def test_rerunning_a_community_is_deterministic(toy_community):
 
 def test_fresh_community_reproduces_same_fixed_point(toy_community):
     """Two independently constructed communities agree."""
-    first = toy_community("3_1_crossfeed")
-    second = toy_community("3_1_crossfeed")
+    first = toy_community("2_1_crossfeed")
+    second = toy_community("2_1_crossfeed")
 
     first_env, first_org = first.run_gifba(n_iterations=GOLDEN_ITERS, method="pfba")
     second_env, second_org = second.run_gifba(n_iterations=GOLDEN_ITERS, method="pfba")
@@ -130,7 +130,8 @@ def test_fresh_community_reproduces_same_fixed_point(toy_community):
     pd.testing.assert_frame_equal(first_org, second_org)
 
 
-@pytest.mark.parametrize("case", ["1_1_single", "3_1_crossfeed", "5_2_dynamical"])
+
+@pytest.mark.parametrize("case", ["1_1_single", "2_1_crossfeed", "4_4_dynamical"])
 def test_fba_and_pfba_agree_on_objectives(run_toy, case):
     """"fba" and "pfba" find the same growth rates on the toy models.
 
