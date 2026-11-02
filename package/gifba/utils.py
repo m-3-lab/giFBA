@@ -44,11 +44,11 @@ def load_simple_models(case: str) -> tuple[list[cb.Model], dict[str, float]]:
         "3_competition"            : ["sim3_org1.json", "sim3_org2.json"],
         "4_1_crossfeed_competition": ["sim4_1_org1.json", "sim4_1_org2.json"],
         "4_2_coupling"             : ["sim4_2_org1.json", "sim4_2_org2.json"],
-        "4_3_dynamical"            : ["sim4_3_org1.json", "sim4_3_org2.json"]
+        "4_4_dynamical"            : ["sim4_4_org1.json", "sim4_4_org2.json"]
     }
 
     case_media = None
-    if case in ["1_1_single", "1_2_single", "3_competition", "2_2_layered", "4_1_crossfeed_competition", "4_2_coupling", "4_3_dynamical"]: # A only in media 
+    if case in ["1_1_single", "1_2_single", "3_competition", "2_2_layered", "4_1_crossfeed_competition", "4_2_coupling", "4_4_dynamical"]: # A only in media 
         case_media = {"EX_A(e)": -10}
     elif case in ["1_3_parallel", "2_3_superfluous_crossfeed"]:
         case_media = {"EX_A(e)": -10, "EX_B(e)": -10}
