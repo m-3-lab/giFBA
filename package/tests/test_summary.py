@@ -14,7 +14,7 @@ import pytest
 
 from golden_values import GOLDEN_ITERS
 
-CASE = "3_1_crossfeed"
+CASE = "2_1_crossfeed"
 
 
 @pytest.fixture
