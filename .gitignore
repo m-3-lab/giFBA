@@ -22,3 +22,6 @@ Examples/2_real_models/4_dfba_benchmark/data/raw/Benchmark_N_orgs/
 Examples/2_real_models/4_dfba_benchmark/data/raw/Benchmark_AH_BI_vary_ra/
 
 package/gifba.egg-info
+
+# Temporary pip requirements conda writes during `conda env create/update`
+condaenv.*.requirements.txt
