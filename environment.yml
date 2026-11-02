@@ -1,0 +1,58 @@
+# Development environment for giFBA: the package with all optional extras, the
+# test suite, the docs site, and every example notebook/script (including the
+# dFBA benchmark). Create from the repository root:
+#
+#   conda env create -f environment.yml
+#   conda activate gifba-dev
+#
+# Update after changing this file:
+#
+#   conda env update -f environment.yml --prune
+#
+# gurobipy installs without a license and falls back to a size-limited trial;
+# everything except Gurobi-specific runs works on cobra's bundled GLPK.
+name: gifba-dev
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python>=3.10,<3.14
+  - pip
+
+  # Core package (package/pyproject.toml)
+  - cobra>=0.27.0
+  - numpy>=1.21
+  - pandas>=1.3
+  - scipy>=1.8.1
+
+  # Tests
+  - pytest>=7.0
+
+  # Examples and dFBA benchmark analysis
+  - matplotlib
+  - plotly
+  - seaborn
+  - scikit-learn
+  - networkx
+  - tqdm
+
+  # Notebooks
+  - jupyterlab
+  - ipykernel
+
+  # Docs site (mkdocs.yml)
+  - mkdocs-material
+  - mkdocstrings-python
+
+  - pip:
+      # Optional extra: MICOM interop (utils.prep_micom_cfba and friends);
+      # not packaged on conda-forge
+      - micom>=0.36.0
+      # Optional extra: Gurobi solver for optlang (needs a license for large LPs)
+      - gurobipy>=10.0.0
+      # Paul Tol colour schemes used by the benchmark figures
+      - tol-colors
+      # Cytoscape bridge for the network-visualization notebook
+      - py4cytoscape
+      # The package itself, editable, so source changes take effect immediately
+      - -e ./package

@@ -1,0 +1,5 @@
+micom>=0.36.0
+gurobipy>=10.0.0
+tol-colors
+py4cytoscape
+-e ./package
