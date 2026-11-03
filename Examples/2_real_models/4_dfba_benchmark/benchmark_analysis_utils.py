@@ -108,8 +108,8 @@ SOLVER_COLORS: dict[str, str] = {"BDF": tol.bright.blue, "RK45": tol.bright.red}
 METHOD_COLORS: dict[str, str] = {"giFBA": tol.bright.green, "dFBA": tol.bright.cyan}
 
 #: Organism colors for the AH_BI flux comparison. Teal and gold differ in both
-#: hue and lightness, and neither is taken by `SOLVER_COLORS`,
-#: `METHOD_COLORS` or the PCA notebook's organism colors.
+#: hue and lightness, and neither is taken by `SOLVER_COLORS` or
+#: `METHOD_COLORS`. The 4_1 PCA notebook uses the same organism colors.
 AH_BI_ORG_COLORS: dict[str, str] = {"AH": "#009988", "BI": "#DDAA33"}
 
 #: Bin spread/count per hyperparameter, shared by every experiment preset.

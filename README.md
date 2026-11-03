@@ -70,6 +70,5 @@ than taken on faith from generated output.
 
 ### dFBA Benchmarking
 
-- [ ] In `Examples/2_real_models/4_dfba_benchmark/4_1_pca_comparison_AH_BI.ipynb`, duplicate the gifba vs dfba fluxes plotting - where hovering on a point displays the reaction and flux information. Only create 1 plot - this ipynb only runs one simulation. Make the colors match colors for the `4_3_compare_AH_BI_fluxes.ipynb`. Display the PCA plot on the left subplot (after transfering pyplot code to use plotly) and the fluxes on the right. Ensure the PCA plot matches in format/view to the pyplot-based plot. 
 - [ ] TASK_3
 - [ ] TASK_3
