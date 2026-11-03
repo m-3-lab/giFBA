@@ -8,6 +8,9 @@ Python 3.10+ package for microbial community metabolic modeling: a fixed-point a
 - `Examples/2_real_models/`: synthetic community interactions on real bacterial models.
 - `Examples/2_real_models/4_dfba_benchmark/`: scripts, data/results and analysis comparing giFBA with a modified dynamic FBA. Figures go to `Examples/figures/real_model_figs/dfba_benchmark/`. Leave the paths in `vacc_scripts/VACC_*.py` alone (they run on the cluster), and keep benchmark-only dependencies out of `package/`.
 
+## Finding code
+Use the graphify MCP tools (`graphify_find`, `graphify_callers`, `graphify_file_neighbors`, `graphify_tests_for`, `query_graph`) to locate relevant code, and read only the files they point to. Avoid broad directory sweeps and whole-file reads to keep context small; pass the same instruction to any subagents. Fall back to targeted grep when graphify is unavailable or the code is uncommitted (the index is a snapshot).
+
 ## Commands
 Run from the repository root. The exception is the dFBA benchmark, which runs from its own directory in the `M3` env:
 
