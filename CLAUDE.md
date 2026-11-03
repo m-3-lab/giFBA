@@ -8,13 +8,16 @@ Python 3.10+ package for microbial community metabolic modeling: a fixed-point a
 - `Examples/2_real_models/`: synthetic community interactions on real bacterial models.
 - `Examples/2_real_models/4_dfba_benchmark/`: scripts, data/results and analysis comparing giFBA with a modified dynamic FBA. Figures go to `Examples/figures/real_model_figs/dfba_benchmark/`. Leave the paths in `vacc_scripts/VACC_*.py` alone (they run on the cluster), and keep benchmark-only dependencies out of `package/`.
 
+## Finding code
+Use the graphify MCP tools (`graphify_find`, `graphify_callers`, `graphify_file_neighbors`, `graphify_tests_for`, `query_graph`) to locate relevant code, and read only the files they point to. Avoid broad directory sweeps and whole-file reads to keep context small; pass the same instruction to any subagents. Fall back to targeted grep when graphify is unavailable or the code is uncommitted (the index is a snapshot).
+
 ## Commands
-Run from the repository root. The exception is the dFBA benchmark, which runs from its own directory in the `M3` env (it needs plotly, seaborn and tol_colors, which are not in `gifba_test`):
+Run from the repository root. The exception is the dFBA benchmark, which runs from its own directory in the `M3` env:
 
 ```bash
-conda run -n gifba_test python -m pytest package/tests              # full suite, ~3s
-conda run -n gifba_test python -m pytest package/tests -k validators # solver-free subset
-conda run -n gifba_test python -m pytest package/tests -x -q         # stop on first failure
+conda run -n M3 python -m pytest package/tests              # full suite, ~3s
+conda run -n M3 python -m pytest package/tests -k validators # solver-free subset
+conda run -n M3 python -m pytest package/tests -x -q         # stop on first failure
 cd Examples/2_real_models/4_dfba_benchmark && conda run -n M3 python process_results.py
 ```
 
