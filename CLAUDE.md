@@ -9,7 +9,7 @@ Python 3.10+ package for microbial community metabolic modeling: a fixed-point a
 - `Examples/2_real_models/4_dfba_benchmark/`: scripts, data/results and analysis comparing giFBA with a modified dynamic FBA. Figures go to `Examples/figures/real_model_figs/dfba_benchmark/`. Leave the paths in `vacc_scripts/VACC_*.py` alone (they run on the cluster), and keep benchmark-only dependencies out of `package/`.
 
 ## Finding code
-Use the graphify MCP tools (`graphify_find`, `graphify_callers`, `graphify_file_neighbors`, `graphify_tests_for`, `query_graph`) to locate relevant code, and read only the files they point to. Avoid broad directory sweeps and whole-file reads to keep context small; pass the same instruction to any subagents. Fall back to targeted grep when graphify is unavailable or the code is uncommitted (the index is a snapshot).
+Before any grep, `cat`, `find` or Read on source code, query graphify first: `graphify_find` for a named symbol, `query_graph` for "how/where does X work", `graphify_callers`/`graphify_callees`, `graphify_file_neighbors`, `graphify_tests_for`. Then read only the line range it points to (`offset`/`limit`), never the whole file; `gifba_object.py` alone is ~14k tokens. Pass the same instruction to any subagents. Fall back to targeted grep only when graphify returns nothing, is unavailable, or the code is uncommitted (the index is a snapshot), and say which fallback applied.
 
 ## Commands
 Run from the repository root. The exception is the dFBA benchmark, which runs from its own directory in the `M3` env:

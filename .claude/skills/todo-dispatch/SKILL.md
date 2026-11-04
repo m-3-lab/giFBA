@@ -118,6 +118,9 @@ Each prompt says:
 - Do not commit and do not modify the environment.
 - Final report: per item, the status (fixed / already fixed by WIP / not a bug /
   partial), what changed, evidence, test results, and decisions for the user.
+  Keep it to 150 words or fewer: one line per item, files changed, the test summary
+  line, and open decisions. No diffs, code blocks, full test output or narration of
+  the steps taken; the dispatcher reads the changes from `git diff` itself.
 
 ## 5. Integrate
 
