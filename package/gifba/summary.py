@@ -156,7 +156,8 @@ class CommunitySummary:
         """
         # pull pertinent info for cytoscape edge table
         self.cytoscape_edges = self.flux.reset_index()
-        self.cytoscape_edges["Source"] = self.cytoscape_edges["Model"].map(self.community.model_names)
+        model_ids = {idx: model.id for idx, model in enumerate(self.community.models)}
+        self.cytoscape_edges["Source"] = self.cytoscape_edges["Model"].map(model_ids)
         self.cytoscape_edges["Target"] = self.cytoscape_edges["Metabolite"]
         self.cytoscape_edges["Type"] = ["Uptake" if flux < 0 else "Secretion" for flux in self.cytoscape_edges["Flux"]]
         self.cytoscape_edges["Value"] = self.cytoscape_edges["Flux"].abs()
@@ -167,8 +168,12 @@ class CommunitySummary:
         # create cytoscape node table
         self.cytoscape_nodes = pd.DataFrame()
         self.cytoscape_nodes["ID"] = pd.concat([self.cytoscape_edges["Source"], self.cytoscape_edges["Target"]]).unique()
-        self.cytoscape_nodes["Name"] = [self.community.metabolite_id_to_name.get(id, id) for id in self.cytoscape_nodes["ID"]]
-        self.cytoscape_nodes["Type"] = ["Organism" if id in self.community.model_names.values() else "Metabolite" for id in self.cytoscape_nodes["ID"]]
+        model_id_to_name = {model.id: model.name for model in self.community.models}
+        self.cytoscape_nodes["Name"] = [
+            model_id_to_name[id] if id in model_id_to_name else self.community.metabolite_id_to_name.get(id, id)
+            for id in self.cytoscape_nodes["ID"]
+        ]
+        self.cytoscape_nodes["Type"] = ["Organism" if id in model_id_to_name else "Metabolite" for id in self.cytoscape_nodes["ID"]]
 
         return self.cytoscape_edges, self.cytoscape_nodes
 
