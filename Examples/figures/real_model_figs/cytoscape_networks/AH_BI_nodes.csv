@@ -1,20 +1,19 @@
 ID,Name,Type
-Eubacterium hallii DSM 3353,Eubacterium hallii DSM 3353,Organism
-Bifidobacterium longum infantis ATCC 15697,Bifidobacterium longum infantis ATCC 15697,Organism
-L-lysine,L-lysine,Metabolite
-Hydrogen,Hydrogen,Metabolite
-Carbon dioxide,Carbon dioxide,Metabolite
-L-leucine,L-leucine,Metabolite
-Water,Water,Metabolite
-4-Aminobutanoate,4-Aminobutanoate,Metabolite
-Acetate,Acetate,Metabolite
-L-lactate,L-lactate,Metabolite
-proton,proton,Metabolite
-Butyrate,Butyrate,Metabolite
-Ammonium,Ammonium,Metabolite
-L-alanine,L-alanine,Metabolite
-Glycyl-L-glutamate,Glycyl-L-glutamate,Metabolite
-Hypoxanthine,Hypoxanthine,Metabolite
-hydrogenphosphate,hydrogenphosphate,Metabolite
-Produced biomass,Produced biomass,Metabolite
-D-glucose,D-glucose,Metabolite
+model,Eubacterium hallii DSM 3353,Organism
+h2o[e],Water,Metabolite
+co2[e],Carbon dioxide,Metabolite
+hxan[e],Hypoxanthine,Metabolite
+lac_L[e],L-lactate,Metabolite
+ac[e],Acetate,Metabolite
+h2[e],Hydrogen,Metabolite
+glc_D[e],D-glucose,Metabolite
+glyglu[e],Glycyl-L-glutamate,Metabolite
+but[e],Butyrate,Metabolite
+leu_L[e],L-leucine,Metabolite
+ala_L[e],L-alanine,Metabolite
+4abut[e],4-Aminobutanoate,Metabolite
+pi[e],hydrogenphosphate,Metabolite
+lys_L[e],L-lysine,Metabolite
+nh4[e],Ammonium,Metabolite
+h[e],proton,Metabolite
+biomass[c],Produced biomass,Metabolite
