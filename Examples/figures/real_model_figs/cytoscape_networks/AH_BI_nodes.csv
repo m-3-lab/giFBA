@@ -1,19 +1,20 @@
-ID,Name,Type
-model,Eubacterium hallii DSM 3353,Organism
+ID,Label,Type
+Bifidobacterium longum infantis ATCC 15697,Bifidobacterium longum infantis ATCC 15697,Organism
+Eubacterium hallii DSM 3353,Eubacterium hallii DSM 3353,Organism
 h2o[e],Water,Metabolite
-co2[e],Carbon dioxide,Metabolite
-hxan[e],Hypoxanthine,Metabolite
-lac_L[e],L-lactate,Metabolite
 ac[e],Acetate,Metabolite
-h2[e],Hydrogen,Metabolite
 glc_D[e],D-glucose,Metabolite
-glyglu[e],Glycyl-L-glutamate,Metabolite
-but[e],Butyrate,Metabolite
+co2[e],Carbon dioxide,Metabolite
+lys_L[e],L-lysine,Metabolite
+biomass[c],Produced biomass,Metabolite
 leu_L[e],L-leucine,Metabolite
+nh4[e],Ammonium,Metabolite
 ala_L[e],L-alanine,Metabolite
 4abut[e],4-Aminobutanoate,Metabolite
+h2[e],Hydrogen,Metabolite
+but[e],Butyrate,Metabolite
+lac_L[e],L-lactate,Metabolite
+hxan[e],Hypoxanthine,Metabolite
 pi[e],hydrogenphosphate,Metabolite
-lys_L[e],L-lysine,Metabolite
-nh4[e],Ammonium,Metabolite
+glyglu[e],Glycyl-L-glutamate,Metabolite
 h[e],proton,Metabolite
-biomass[c],Produced biomass,Metabolite

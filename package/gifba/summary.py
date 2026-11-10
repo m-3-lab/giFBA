@@ -152,7 +152,7 @@ class CommunitySummary:
         Returns:
             tuple[pd.DataFrame, pd.DataFrame]: `(edges_df, nodes_df)`. Edges have
                 `Source`, `Target`, `Type` (`"Uptake"`/`"Secretion"`) and `Value` columns;
-                nodes have `ID`, `Name` and `Type` (`"Organism"`/`"Metabolite"`) columns.
+                nodes have `ID`, `Label` and `Type` (`"Organism"`/`"Metabolite"`) columns.
         """
         # pull pertinent info for cytoscape edge table
         self.cytoscape_edges = self.flux.reset_index()
@@ -168,7 +168,7 @@ class CommunitySummary:
         self.cytoscape_nodes = pd.DataFrame()
         self.cytoscape_nodes["ID"] = pd.concat([self.cytoscape_edges["Source"], self.cytoscape_edges["Target"]]).unique()
         organism_names = set(self.community.model_names.values())
-        self.cytoscape_nodes["Name"] = [
+        self.cytoscape_nodes["Label"] = [
             id if id in organism_names else self.community.metabolite_id_to_name.get(id, id)
             for id in self.cytoscape_nodes["ID"]
         ]

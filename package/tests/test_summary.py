@@ -153,7 +153,7 @@ def test_to_cytoscape_column_contract(summary):
 
     assert isinstance(edges, pd.DataFrame) and isinstance(nodes, pd.DataFrame)
     assert list(edges.columns) == ["Source", "Target", "Type", "Value"]
-    assert list(nodes.columns) == ["ID", "Name", "Type"]
+    assert list(nodes.columns) == ["ID", "Label", "Type"]
 
     assert set(edges["Type"]) <= {"Uptake", "Secretion"}
     assert set(nodes["Type"]) <= {"Organism", "Metabolite"}
