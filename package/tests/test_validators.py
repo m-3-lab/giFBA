@@ -265,16 +265,7 @@ def test_load_simple_models_returns_usable_models_and_media(case):
     assert all(v < 0 for v in media.values())
 
 
-# 4_4_dynamical is excluded below: its medium does not reach its models at all.
-# load_simple_models hands it {"EX_A(e)": -10}, but sim4_4_org{1,2}.json spell
-# their exchanges "Ex_A(e)" / "Ex_B(e)" / "Ex_C(e)" with a lowercase x, so the
-# key matches nothing and the case effectively runs on an empty medium. Re-add
-# it here once the loader (or the model files) are fixed -- and re-measure its
-# golden values, which currently pin the broken behavior.
-CASES_WITH_MATCHING_MEDIA = tuple(c for c in CASES if c != "4_4_dynamical")
-
-
-@pytest.mark.parametrize("case", CASES_WITH_MATCHING_MEDIA)
+@pytest.mark.parametrize("case", CASES)
 def test_load_simple_models_media_keys_exist_in_some_model(case):
     """A medium entry that matches no exchange anywhere is silently ignored.
 

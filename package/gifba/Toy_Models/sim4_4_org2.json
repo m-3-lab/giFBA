@@ -43,7 +43,7 @@
 ],
 "reactions":[
 {
-"id":"Ex_A(e)",
+"id":"EX_A(e)",
 "name":"",
 "metabolites":{
 "A[e]":-1
@@ -53,7 +53,7 @@
 "gene_reaction_rule":""
 },
 {
-"id":"Ex_B(e)",
+"id":"EX_B(e)",
 "name":"",
 "metabolites":{
 "B[e]":-1
@@ -63,7 +63,7 @@
 "gene_reaction_rule":""
 },
 {
-"id":"Ex_C(e)",
+"id":"EX_C(e)",
 "name":"",
 "metabolites":{
 "C[e]":-1
