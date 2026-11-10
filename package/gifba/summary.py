@@ -157,7 +157,9 @@ class CommunitySummary:
         # pull pertinent info for cytoscape edge table
         self.cytoscape_edges = self.flux.reset_index()
         self.cytoscape_edges["Source"] = self.cytoscape_edges["Model"].map(self.community.model_names)
-        self.cytoscape_edges["Target"] = self.cytoscape_edges["Metabolite"]
+        self.cytoscape_edges["Target"] = [
+            self.community.metabolite_id_to_name.get(met, met) for met in self.cytoscape_edges["Metabolite"]
+        ]
         self.cytoscape_edges["Type"] = ["Uptake" if flux < 0 else "Secretion" for flux in self.cytoscape_edges["Flux"]]
         self.cytoscape_edges["Value"] = self.cytoscape_edges["Flux"].abs()
 
